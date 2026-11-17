@@ -34,7 +34,7 @@
         2021
       ],
       "status": "Active",
-      "created_at": "2026-11-17T11:51:57.745066+00:00"
+      "created_at": "2026-11-17T12:04:27.763460+00:00"
     },
     {
       "id": "job-frontend-jr",
@@ -70,7 +70,7 @@
         2024
       ],
       "status": "Active",
-      "created_at": "2026-11-17T11:51:57.745098+00:00"
+      "created_at": "2026-11-17T12:04:27.763482+00:00"
     },
     {
       "id": "job-backend-python",
@@ -106,7 +106,7 @@
         2022
       ],
       "status": "Active",
-      "created_at": "2026-11-17T11:51:57.745106+00:00"
+      "created_at": "2026-11-17T12:04:27.763491+00:00"
     },
     {
       "id": "job-devops-cloud",
@@ -143,7 +143,7 @@
         2022
       ],
       "status": "Active",
-      "created_at": "2026-11-17T11:51:57.745112+00:00"
+      "created_at": "2026-11-17T12:04:27.763497+00:00"
     },
     {
       "id": "job-campus-fresher",
@@ -177,7 +177,7 @@
         2025
       ],
       "status": "Active",
-      "created_at": "2026-11-17T11:51:57.745118+00:00"
+      "created_at": "2026-11-17T12:04:27.763504+00:00"
     }
   ],
   "candidates": [
@@ -277,8 +277,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745164+00:00",
-      "updated_at": "2026-11-17T11:51:57.745166+00:00"
+      "created_at": "2026-11-17T12:04:27.763553+00:00",
+      "updated_at": "2026-11-17T12:04:27.763555+00:00"
     },
     {
       "id": "cand-02",
@@ -360,8 +360,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745182+00:00",
-      "updated_at": "2026-11-17T11:51:57.745184+00:00"
+      "created_at": "2026-11-17T12:04:27.763572+00:00",
+      "updated_at": "2026-11-17T12:04:27.763574+00:00"
     },
     {
       "id": "cand-03",
@@ -444,8 +444,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745197+00:00",
-      "updated_at": "2026-11-17T11:51:57.745199+00:00"
+      "created_at": "2026-11-17T12:04:27.763588+00:00",
+      "updated_at": "2026-11-17T12:04:27.763590+00:00"
     },
     {
       "id": "cand-04",
@@ -530,8 +530,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745213+00:00",
-      "updated_at": "2026-11-17T11:51:57.745215+00:00"
+      "created_at": "2026-11-17T12:04:27.763604+00:00",
+      "updated_at": "2026-11-17T12:04:27.763606+00:00"
     },
     {
       "id": "cand-05",
@@ -613,8 +613,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745227+00:00",
-      "updated_at": "2026-11-17T11:51:57.745229+00:00"
+      "created_at": "2026-11-17T12:04:27.763618+00:00",
+      "updated_at": "2026-11-17T12:04:27.763620+00:00"
     },
     {
       "id": "cand-06",
@@ -683,8 +683,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745240+00:00",
-      "updated_at": "2026-11-17T11:51:57.745242+00:00"
+      "created_at": "2026-11-17T12:04:27.763633+00:00",
+      "updated_at": "2026-11-17T12:04:27.763635+00:00"
     },
     {
       "id": "cand-07",
@@ -782,8 +782,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745256+00:00",
-      "updated_at": "2026-11-17T11:51:57.745257+00:00"
+      "created_at": "2026-11-17T12:04:27.763649+00:00",
+      "updated_at": "2026-11-17T12:04:27.763651+00:00"
     },
     {
       "id": "cand-08",
@@ -862,8 +862,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745270+00:00",
-      "updated_at": "2026-11-17T11:51:57.745271+00:00"
+      "created_at": "2026-11-17T12:04:27.763664+00:00",
+      "updated_at": "2026-11-17T12:04:27.763666+00:00"
     },
     {
       "id": "cand-09",
@@ -940,8 +940,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745283+00:00",
-      "updated_at": "2026-11-17T11:51:57.745285+00:00"
+      "created_at": "2026-11-17T12:04:27.763678+00:00",
+      "updated_at": "2026-11-17T12:04:27.763680+00:00"
     },
     {
       "id": "cand-10",
@@ -1023,8 +1023,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745297+00:00",
-      "updated_at": "2026-11-17T11:51:57.745299+00:00"
+      "created_at": "2026-11-17T12:04:27.763692+00:00",
+      "updated_at": "2026-11-17T12:04:27.763694+00:00"
     },
     {
       "id": "cand-duplicate-01",
@@ -1103,8 +1103,8 @@
         "Identical phone number (+91 98201 12345) matching 'Aarav Sharma'"
       ],
       "duplicate_of_id": "cand-01",
-      "created_at": "2026-11-17T11:51:57.745310+00:00",
-      "updated_at": "2026-11-17T11:51:57.745312+00:00"
+      "created_at": "2026-11-17T12:04:27.763706+00:00",
+      "updated_at": "2026-11-17T12:04:27.763708+00:00"
     },
     {
       "id": "cand-11",
@@ -1172,8 +1172,8 @@
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745324+00:00",
-      "updated_at": "2026-11-17T11:51:57.745325+00:00"
+      "created_at": "2026-11-17T12:04:27.763721+00:00",
+      "updated_at": "2026-11-17T12:04:27.763723+00:00"
     },
     {
       "id": "cand-12",
@@ -1258,21 +1258,21 @@
       "rejection_reason": "Salary expectation mismatch",
       "notes": [
         {
-          "id": "db4d113f-5964-4782-ada7-cb1d44414064",
+          "id": "9b932667-dd87-4fe0-b848-3281efc3a4c0",
           "author": "Lead Recruiter",
           "content": "Strong system design skills demonstrated in Round 1",
-          "created_at": "2026-11-17T11:51:57.976708+00:00"
+          "created_at": "2026-11-17T12:04:28.001400+00:00"
         }
       ],
       "applied_job_id": null,
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-17T11:51:57.745338+00:00",
-      "updated_at": "2026-11-17T11:51:57.745340+00:00"
+      "created_at": "2026-11-17T12:04:27.763736+00:00",
+      "updated_at": "2026-11-17T12:04:27.763738+00:00"
     },
     {
-      "id": "b76e5a36-31b6-4109-b5db-b7f0ff540752",
+      "id": "6358efda-2139-4bb4-b7fe-f562c9873909",
       "name": "Aditya Verma",
       "email": "aditya.verma@example.com",
       "phone": "+91 98112 45678",
@@ -1320,18 +1320,18 @@
           "Grafana"
         ],
         "Tools & Testing": [
-          "Kubernetes",
-          "Docker",
-          "Helm",
-          "Linux",
-          "Nginx",
-          "GitHub Actions",
-          "Terraform",
-          "Prometheus",
           "AWS",
+          "Helm",
+          "Prometheus",
+          "GitHub Actions",
+          "Docker",
+          "Nginx",
           "Grafana",
-          "Python",
-          "CI/CD"
+          "Terraform",
+          "CI/CD",
+          "Kubernetes",
+          "Linux",
+          "Python"
         ]
       },
       "years_of_experience": 4.0,
@@ -1383,13 +1383,13 @@
         "Same candidate name 'Aditya Verma' with matching academic history (B.Tech Computer Science | Delhi Technological University (DT)"
       ],
       "duplicate_of_id": "cand-04",
-      "created_at": "2026-11-17T11:51:57.838514+00:00",
-      "updated_at": "2026-11-17T11:51:57.838522+00:00"
+      "created_at": "2026-11-17T12:04:27.861530+00:00",
+      "updated_at": "2026-11-17T12:04:27.861539+00:00"
     }
   ],
   "sent_emails": [
     {
-      "id": "67dd1237-92e6-41d4-86ee-bc234fbb777c",
+      "id": "82098621-2959-427c-89b4-2952524f6c64",
       "candidate_id": "cand-12",
       "candidate_name": "Nikhil Agarwal",
       "candidate_email": "nikhil.agarwal@example.com",
@@ -1397,7 +1397,7 @@
       "body": "Dear Nikhil Agarwal,\n\nYou are invited for an interview at HireSwift for Senior Full-Stack Engineer on Friday at 4:00 PM IST.",
       "template_type": "interview",
       "status": "Delivered",
-      "sent_at": "2026-11-17T11:51:58.052157+00:00"
+      "sent_at": "2026-11-17T12:04:28.079636+00:00"
     }
   ]
 }

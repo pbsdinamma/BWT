@@ -69,7 +69,7 @@ export default function CandidateFilters({
   if (filters.min_score) activeFilterCount++;
 
   return (
-    <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-4 mb-6 shadow-xs space-y-3.5 transition-colors duration-150">
+    <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-4 mb-6 shadow-2xs space-y-3 font-body transition-colors duration-150">
       {/* Top Filter Bar: Search + Cutoff Chips + View Toggle + Actions (Stitch Style) */}
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3">
         {/* Search Input with ⌘K */}
@@ -80,7 +80,7 @@ export default function CandidateFilters({
             placeholder="Search skills, CGPA, college, candidate name..."
             value={filters.search || ''}
             onChange={(e) => onFilterChange('search', e.target.value)}
-            className="w-full pl-9 pr-12 py-1.5 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#CBD5E1] dark:border-[#334155] rounded-lg text-xs text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-[#64748B] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#0F172A] focus:border-[#1E3A8A] dark:focus:border-blue-500 focus:ring-1 focus:ring-[#1E3A8A] dark:focus:ring-blue-500 outline-none transition-all"
+            className="w-full pl-9 pr-12 py-1.5 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#CBD5E1] dark:border-[#334155] rounded-md text-xs text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-[#64748B] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#0F172A] focus:border-[#1E3A8A] dark:focus:border-blue-500 focus:ring-1 focus:ring-[#1E3A8A] outline-none transition-all"
           />
           <span className="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] text-[10px] font-mono text-[#64748B] dark:text-[#94A3B8]">
             ⌘K
@@ -89,15 +89,15 @@ export default function CandidateFilters({
 
         {/* Cutoff Chips Row */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="text-[#64748B] dark:text-[#94A3B8] font-semibold text-[11px] flex items-center space-x-1 mr-0.5">
+          <span className="text-[#64748B] dark:text-[#94A3B8] font-medium text-[11px] flex items-center space-x-1 mr-0.5">
             <Filter className="w-3.5 h-3.5 text-[#1E3A8A] dark:text-blue-400" />
-            <span>Cutoffs:</span>
+            <span>Cutoff Filters:</span>
           </span>
 
           {/* CGPA Threshold Chip */}
           <div
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-[#F1F5F9] dark:bg-[#0F172A] hover:bg-[#E2E8F0] dark:hover:bg-[#334155] border border-[#E2E8F0] dark:border-[#334155] rounded-lg text-xs font-medium text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs cursor-pointer transition-colors"
+            className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-white dark:bg-[#0F172A] hover:bg-[#F8FAFC] dark:hover:bg-[#334155] border border-[#E2E8F0] dark:border-[#334155] rounded-md text-xs font-medium text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs cursor-pointer transition-colors"
           >
             <span className="text-[#64748B] dark:text-[#94A3B8]">CGPA:</span>
             <span className="font-mono font-bold text-[#1E3A8A] dark:text-blue-400">
@@ -109,7 +109,7 @@ export default function CandidateFilters({
           {/* 10th / 12th Cutoff Chip */}
           <div
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-[#F1F5F9] dark:bg-[#0F172A] hover:bg-[#E2E8F0] dark:hover:bg-[#334155] border border-[#E2E8F0] dark:border-[#334155] rounded-lg text-xs font-medium text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs cursor-pointer transition-colors"
+            className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-white dark:bg-[#0F172A] hover:bg-[#F8FAFC] dark:hover:bg-[#334155] border border-[#E2E8F0] dark:border-[#334155] rounded-md text-xs font-medium text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs cursor-pointer transition-colors"
           >
             <span className="text-[#64748B] dark:text-[#94A3B8]">10th / 12th:</span>
             <span className="font-mono font-bold text-[#0F172A] dark:text-[#F8FAFC]">
@@ -120,7 +120,7 @@ export default function CandidateFilters({
           {/* Experience Chip */}
           <div
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-[#F1F5F9] dark:bg-[#0F172A] hover:bg-[#E2E8F0] dark:hover:bg-[#334155] border border-[#E2E8F0] dark:border-[#334155] rounded-lg text-xs font-medium text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs cursor-pointer transition-colors"
+            className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-white dark:bg-[#0F172A] hover:bg-[#F8FAFC] dark:hover:bg-[#334155] border border-[#E2E8F0] dark:border-[#334155] rounded-md text-xs font-medium text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs cursor-pointer transition-colors"
           >
             <span className="text-[#64748B] dark:text-[#94A3B8]">Exp:</span>
             <span className="font-mono font-bold text-[#0F172A] dark:text-[#F8FAFC]">
@@ -132,7 +132,7 @@ export default function CandidateFilters({
           <select
             value={filters.location || 'All'}
             onChange={(e) => onFilterChange('location', e.target.value)}
-            className="bg-[#F1F5F9] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-lg px-2.5 py-1 text-[#0F172A] dark:text-[#F8FAFC] text-xs font-medium focus:outline-none cursor-pointer"
+            className="bg-white dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-md px-2.5 py-1 text-[#0F172A] dark:text-[#F8FAFC] text-xs font-medium focus:outline-none cursor-pointer"
           >
             {LOCATIONS.map((loc) => (
               <option key={loc} value={loc} className="bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC]">
@@ -145,25 +145,25 @@ export default function CandidateFilters({
         {/* View Switcher & Action Buttons (Stitch MCP Style) */}
         <div className="flex items-center space-x-2 self-end xl:self-center">
           {/* View Mode Toggle: Pipeline vs Table */}
-          <div className="bg-[#F1F5F9] dark:bg-[#0F172A] p-0.5 border border-[#E2E8F0] dark:border-[#334155] rounded-lg flex items-center">
+          <div className="bg-[#F1F5F9] dark:bg-[#0F172A] p-0.5 border border-[#E2E8F0] dark:border-[#334155] rounded-md flex items-center">
             <button
               type="button"
               onClick={() => onViewModeChange('kanban')}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center space-x-1 transition-all cursor-pointer ${
+              className={`px-2.5 py-1 rounded text-xs font-medium flex items-center space-x-1 transition-all cursor-pointer ${
                 viewMode === 'kanban'
-                  ? 'bg-[#1E3A8A] dark:bg-blue-600 text-white shadow-2xs font-semibold'
+                  ? 'bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs font-semibold'
                   : 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC]'
               }`}
             >
-              <Kanban className="w-3.5 h-3.5" />
+              <Kanban className="w-3.5 h-3.5 text-[#1E3A8A] dark:text-blue-400" />
               <span>Pipeline View</span>
             </button>
             <button
               type="button"
               onClick={() => onViewModeChange('table')}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center space-x-1 transition-all cursor-pointer ${
+              className={`px-2.5 py-1 rounded text-xs font-medium flex items-center space-x-1 transition-all cursor-pointer ${
                 viewMode === 'table'
-                  ? 'bg-[#1E3A8A] dark:bg-blue-600 text-white shadow-2xs font-semibold'
+                  ? 'bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC] shadow-2xs font-semibold'
                   : 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC]'
               }`}
             >
@@ -179,7 +179,7 @@ export default function CandidateFilters({
             type="button"
             onClick={onOpenCompare}
             disabled={selectedCount < 2}
-            className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer ${
               selectedCount >= 2
                 ? 'bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800 text-[#1E3A8A] dark:text-blue-300 shadow-2xs'
                 : 'bg-[#F1F5F9] dark:bg-[#0F172A] text-[#94A3B8] border border-[#E2E8F0] dark:border-[#334155] cursor-not-allowed'
@@ -193,7 +193,7 @@ export default function CandidateFilters({
           <button
             type="button"
             onClick={onOpenEmail}
-            className="inline-flex items-center space-x-1.5 px-3 py-1 bg-[#F1F5F9] dark:bg-[#0F172A] hover:bg-[#E2E8F0] dark:hover:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] border border-[#E2E8F0] dark:border-[#334155] rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+            className="inline-flex items-center space-x-1.5 px-3 py-1 bg-white dark:bg-[#0F172A] hover:bg-[#F8FAFC] dark:hover:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] border border-[#E2E8F0] dark:border-[#334155] rounded-md text-xs font-semibold transition-colors cursor-pointer shadow-2xs"
           >
             <Mail className="w-3.5 h-3.5 text-[#1E3A8A] dark:text-blue-400" />
             <span>Email</span>
@@ -202,7 +202,7 @@ export default function CandidateFilters({
           {activeFilterCount > 0 && (
             <button
               onClick={onResetFilters}
-              className="text-xs text-rose-600 dark:text-rose-400 hover:underline px-1 cursor-pointer"
+              className="text-xs text-rose-600 dark:text-rose-400 hover:underline px-1 cursor-pointer font-medium"
             >
               Clear ({activeFilterCount})
             </button>
@@ -212,7 +212,7 @@ export default function CandidateFilters({
 
       {/* Advanced Filter Sliders (Toggleable Drawer / Accordion) */}
       {showAdvanced && (
-        <div className="pt-3 border-t border-[#E2E8F0] dark:border-[#334155] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs bg-[#F8FAFC] dark:bg-[#0F172A] p-3.5 rounded-xl border border-[#E2E8F0] dark:border-[#334155]">
+        <div className="pt-3 border-t border-[#E2E8F0] dark:border-[#334155] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs bg-[#F8FAFC] dark:bg-[#0F172A] p-3.5 rounded-lg border border-[#E2E8F0] dark:border-[#334155]">
           {/* CGPA Slider */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-[#64748B] dark:text-[#94A3B8] font-medium">
@@ -301,7 +301,7 @@ export default function CandidateFilters({
 
       {/* Skills Multi-Select Pills */}
       <div className="flex flex-wrap items-center gap-1.5 pt-1">
-        <span className="text-[11px] font-semibold text-[#64748B] dark:text-[#94A3B8] mr-1 flex items-center space-x-1">
+        <span className="text-[11px] font-medium text-[#64748B] dark:text-[#94A3B8] mr-1 flex items-center space-x-1">
           <Code2 className="w-3.5 h-3.5 text-[#1E3A8A] dark:text-blue-400" />
           <span>Tech Stack:</span>
         </span>
@@ -312,10 +312,10 @@ export default function CandidateFilters({
               key={sk}
               type="button"
               onClick={() => toggleSkill(sk)}
-              className={`px-2 py-0.5 rounded-md text-[11px] font-medium border transition-all cursor-pointer ${
+              className={`px-2 py-0.5 rounded text-[11px] font-medium border transition-all cursor-pointer ${
                 isSelected
                   ? 'bg-blue-50 dark:bg-blue-950/70 text-[#1E3A8A] dark:text-blue-300 border-blue-200 dark:border-blue-700 font-bold'
-                  : 'bg-[#F1F5F9] dark:bg-[#0F172A] text-[#475569] dark:text-[#CBD5E1] border-[#E2E8F0] dark:border-[#334155] hover:border-[#CBD5E1] hover:text-[#0F172A] dark:hover:text-[#F8FAFC]'
+                  : 'bg-[#F8FAFC] dark:bg-[#0F172A] text-[#475569] dark:text-[#CBD5E1] border-[#E2E8F0] dark:border-[#334155] hover:border-[#CBD5E1] hover:text-[#0F172A] dark:hover:text-[#F8FAFC]'
               }`}
             >
               {sk}

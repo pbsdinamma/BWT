@@ -14,11 +14,11 @@ import {
 } from 'lucide-react';
 
 const STAGE_CONFIGS = [
-  { id: 'Applied', title: 'Applied', badgeColor: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700', dotColor: 'bg-slate-400' },
-  { id: 'Shortlisted', title: 'Shortlisted', badgeColor: 'bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 border-blue-200 dark:border-blue-800', dotColor: 'bg-blue-500' },
-  { id: 'Interview', title: 'Interview', badgeColor: 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800', dotColor: 'bg-purple-500' },
-  { id: 'Offer', title: 'Offer / Closed', badgeColor: 'bg-emerald-50 dark:bg-emerald-950/60 text-[#047857] dark:text-emerald-300 border-emerald-200 dark:border-emerald-800', dotColor: 'bg-emerald-500' },
-  { id: 'Rejected', title: 'Rejected', badgeColor: 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800', dotColor: 'bg-rose-500' }
+  { id: 'Applied', title: 'Applied', dotColor: 'bg-slate-400' },
+  { id: 'Shortlisted', title: 'Shortlisted', dotColor: 'bg-[#1E3A8A] dark:bg-blue-500' },
+  { id: 'Interview', title: 'Interview', dotColor: 'bg-purple-600 dark:bg-purple-400' },
+  { id: 'Offer', title: 'Offer / Closed', dotColor: 'bg-[#047857] dark:bg-emerald-400' },
+  { id: 'Rejected', title: 'Rejected', dotColor: 'bg-rose-600 dark:bg-rose-400' }
 ];
 
 export default function PipelineKanban({
@@ -61,16 +61,16 @@ export default function PipelineKanban({
         return (
           <div
             key={stage.id}
-            className="flex flex-col bg-[#F8FAFC] dark:bg-[#0F172A] rounded-xl border border-[#E2E8F0] dark:border-[#334155] p-3 min-h-[620px] shadow-2xs transition-colors duration-150"
+            className="flex flex-col bg-[#F1F5F9]/70 dark:bg-[#0F172A] rounded-xl border border-[#E2E8F0] dark:border-[#334155] p-3 min-h-[640px] shadow-2xs transition-colors duration-150"
           >
             {/* Column Header (Stitch MCP Style) */}
             <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0] dark:border-[#334155] px-1">
               <div className="flex items-center space-x-2">
                 <span className={`w-2.5 h-2.5 rounded-full ${stage.dotColor}`} />
-                <h2 className="font-headline font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">
+                <h2 className="font-headline font-semibold text-sm text-[#0F172A] dark:text-[#F8FAFC]">
                   {stage.title}
                 </h2>
-                <span className="px-2 py-0.5 rounded-full bg-[#F1F5F9] dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] font-mono text-[11px] font-semibold text-[#475569] dark:text-[#CBD5E1]">
+                <span className="px-2 py-0.5 rounded-full bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] font-mono text-[11px] font-medium text-[#475569] dark:text-[#CBD5E1]">
                   {stageCandidates.length}
                 </span>
               </div>
@@ -78,8 +78,8 @@ export default function PipelineKanban({
 
             {/* Subheader info */}
             <div className="text-[11px] text-[#64748B] dark:text-[#94A3B8] py-2 px-1 flex items-center justify-between font-mono">
-              <span>Sorted by AI Match</span>
-              <span className="text-[#1E3A8A] dark:text-blue-400 font-semibold">{stageCandidates.length} profiles</span>
+              <span>Sorted by: AI Match Score</span>
+              <span className="text-[#1E3A8A] dark:text-blue-400 font-medium cursor-pointer">Auto-filter (80%+)</span>
             </div>
 
             {/* Cards Column */}
@@ -98,10 +98,10 @@ export default function PipelineKanban({
                   return (
                     <article
                       key={c.id}
-                      className={`bg-white dark:bg-[#1E293B] border rounded-xl p-3.5 shadow-2xs hover:shadow-xs transition-all cursor-pointer group ${
+                      className={`bg-white dark:bg-[#1E293B] border rounded-xl p-3.5 shadow-2xs hover:border-[#1E3A8A]/50 dark:hover:border-blue-400 hover:shadow-xs transition-all cursor-pointer group ${
                         isSelected
                           ? 'border-[#1E3A8A] dark:border-blue-500 ring-2 ring-[#1E3A8A]/30 dark:ring-blue-500/40'
-                          : 'border-[#E2E8F0] dark:border-[#334155] hover:border-[#CBD5E1] dark:hover:border-[#475569]'
+                          : 'border-[#E2E8F0] dark:border-[#334155]'
                       }`}
                     >
                       {/* Card Top: Name + Comparison Checkbox + AI Match Score Badge */}
@@ -110,7 +110,7 @@ export default function PipelineKanban({
                           <div className="flex items-center space-x-1.5">
                             <h3
                               onClick={() => onSelectCandidate(c.id)}
-                              className="font-headline text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] group-hover:text-[#1E3A8A] dark:group-hover:text-blue-400 transition-colors"
+                              className="font-headline text-sm font-semibold text-[#0F172A] dark:text-[#F8FAFC] group-hover:text-[#1E3A8A] dark:group-hover:text-blue-400 transition-colors"
                             >
                               {c.name}
                             </h3>
@@ -131,7 +131,7 @@ export default function PipelineKanban({
 
                         {/* Stitch AI Match Score Pill */}
                         <span
-                          className={`inline-flex items-center space-x-1 px-2 py-0.5 rounded-full border font-mono text-xs font-bold shrink-0 ${getScoreBadge(
+                          className={`inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full border font-mono text-xs font-bold shrink-0 ${getScoreBadge(
                             score
                           )}`}
                         >
@@ -149,7 +149,7 @@ export default function PipelineKanban({
                       )}
 
                       {/* Qualification Metrics Grid (Stitch MCP Style) */}
-                      <div className="grid grid-cols-3 gap-1 py-1.5 px-2 bg-[#F8FAFC] dark:bg-[#0F172A] rounded-lg text-[11px] font-mono text-[#475569] dark:text-[#CBD5E1] mb-2.5 border border-[#E2E8F0] dark:border-[#334155]">
+                      <div className="grid grid-cols-3 gap-1 py-1.5 px-2 bg-[#F8FAFC] dark:bg-[#0F172A] rounded-lg text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8] mb-2.5 border border-[#E2E8F0] dark:border-[#334155]">
                         <div>
                           <span className="text-[9px] uppercase text-[#64748B] dark:text-[#94A3B8] block font-sans">CGPA</span>
                           <strong className="text-[#0F172A] dark:text-[#F8FAFC] font-bold">
