@@ -1,0 +1,1403 @@
+{
+  "jobs": [
+    {
+      "id": "job-fullstack-sr",
+      "title": "Senior Full-Stack Engineer",
+      "department": "Core Product",
+      "location": "Bengaluru (Hybrid)",
+      "employment_type": "Full-Time",
+      "description": "Looking for an experienced Senior Full Stack Engineer to architect high-performance web applications. You will drive front-end UI and microservice back-end systems, mentor junior engineers, and participate in technical strategy.",
+      "min_experience": 4.0,
+      "max_experience": 8.0,
+      "required_skills": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "AWS"
+      ],
+      "preferred_skills": [
+        "Next.js",
+        "Redis",
+        "Kubernetes",
+        "GraphQL",
+        "CI/CD"
+      ],
+      "min_tenth_percentage": 75.0,
+      "min_twelfth_percentage": 75.0,
+      "min_cgpa": 7.5,
+      "preferred_grad_years": [
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "status": "Active",
+      "created_at": "2026-11-17T11:39:29.609002+00:00"
+    },
+    {
+      "id": "job-frontend-jr",
+      "title": "Frontend Developer (React & Next.js)",
+      "department": "Design Systems",
+      "location": "Remote",
+      "employment_type": "Full-Time",
+      "description": "We are seeking a talented frontend specialist with sharp eye for UI/UX to build interactive web apps using React, Next.js, and modern CSS. Excellent opportunity for fast learning and immediate product impact.",
+      "min_experience": 1.5,
+      "max_experience": 4.0,
+      "required_skills": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "HTML5",
+        "CSS3"
+      ],
+      "preferred_skills": [
+        "Next.js",
+        "Redux",
+        "Figma",
+        "Jest",
+        "Responsive Design"
+      ],
+      "min_tenth_percentage": 70.0,
+      "min_twelfth_percentage": 70.0,
+      "min_cgpa": 7.0,
+      "preferred_grad_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "status": "Active",
+      "created_at": "2026-11-17T11:39:29.609022+00:00"
+    },
+    {
+      "id": "job-backend-python",
+      "title": "Python / Backend Engineer",
+      "department": "Platform & API",
+      "location": "Hyderabad, India",
+      "employment_type": "Full-Time",
+      "description": "Build high-throughput RESTful APIs, distributed microservices, and asynchronous background pipelines using Python, FastAPI, and PostgreSQL. Focus on data modeling, latency optimization, and reliability.",
+      "min_experience": 3.0,
+      "max_experience": 6.0,
+      "required_skills": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "REST API"
+      ],
+      "preferred_skills": [
+        "Django",
+        "Microservices",
+        "Celery",
+        "Kafka",
+        "AWS"
+      ],
+      "min_tenth_percentage": 70.0,
+      "min_twelfth_percentage": 70.0,
+      "min_cgpa": 7.2,
+      "preferred_grad_years": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "status": "Active",
+      "created_at": "2026-11-17T11:39:29.609029+00:00"
+    },
+    {
+      "id": "job-devops-cloud",
+      "title": "DevOps & Cloud Infrastructure Engineer",
+      "department": "SRE & Infra",
+      "location": "Pune (Hybrid)",
+      "employment_type": "Full-Time",
+      "description": "Own our cloud deployment topology, automated CI/CD pipelines, container orchestration, and system observability. Ensure 99.99% uptime across multi-region AWS and Kubernetes clusters.",
+      "min_experience": 3.0,
+      "max_experience": 7.0,
+      "required_skills": [
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "CI/CD",
+        "Linux"
+      ],
+      "preferred_skills": [
+        "Prometheus",
+        "Grafana",
+        "Python",
+        "GitHub Actions",
+        "Nginx"
+      ],
+      "min_tenth_percentage": 65.0,
+      "min_twelfth_percentage": 65.0,
+      "min_cgpa": 6.8,
+      "preferred_grad_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "status": "Active",
+      "created_at": "2026-11-17T11:39:29.609037+00:00"
+    },
+    {
+      "id": "job-campus-fresher",
+      "title": "Software Engineer (Campus Fresher / Graduate)",
+      "department": "Early Career Hub",
+      "location": "Bengaluru, India",
+      "employment_type": "Full-Time",
+      "description": "Graduate program for high-achieving CS/IT students. Build strong engineering foundations across data structures, algorithms, web development, and cloud services.",
+      "min_experience": 0.0,
+      "max_experience": 1.0,
+      "required_skills": [
+        "Java",
+        "Python",
+        "SQL",
+        "Git",
+        "Problem Solving"
+      ],
+      "preferred_skills": [
+        "React",
+        "C++",
+        "Spring Boot",
+        "HTML",
+        "CSS"
+      ],
+      "min_tenth_percentage": 85.0,
+      "min_twelfth_percentage": 85.0,
+      "min_cgpa": 8.0,
+      "preferred_grad_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "status": "Active",
+      "created_at": "2026-11-17T11:39:29.609043+00:00"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "cand-01",
+      "name": "Aarav Sharma",
+      "email": "aarav.sharma@example.com",
+      "phone": "+91 98201 12345",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/aarav-sharma-tech",
+      "github": "https://github.com/aaravsharma",
+      "portfolio": "https://aaravdev.io",
+      "education": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "Indian Institute of Technology (IIT) Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": 93.4,
+        "twelfth_percentage": 91.8,
+        "graduation_year": 2020
+      },
+      "skills": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Redis",
+        "Next.js",
+        "Git",
+        "REST API",
+        "Tailwind CSS"
+      ],
+      "categorized_skills": {
+        "Frontend": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Tailwind CSS"
+        ],
+        "Backend": [
+          "Node.js",
+          "Express",
+          "REST API"
+        ],
+        "Databases": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "AWS",
+          "Git"
+        ]
+      },
+      "years_of_experience": 4.5,
+      "experience_history": [
+        {
+          "company": "Razorpay Payments",
+          "role": "Senior Software Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Engineered high-scale merchant dashboard with React, TypeScript and Node.js. Scaled PostgreSQL read replicas."
+        },
+        {
+          "company": "Swiggy Tech Labs",
+          "role": "Software Developer",
+          "duration": "2020 - 2022",
+          "start_year": null,
+          "end_year": null,
+          "description": "Built reactive checkout frontend and order tracking services using React and Docker."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Distributed Task Scheduler",
+          "tech_stack": [
+            "Node.js",
+            "Redis",
+            "Docker"
+          ],
+          "description": "High-throughput asynchronous queuing engine with 10k ops/sec."
+        }
+      ],
+      "certifications": [
+        "AWS Certified Solutions Architect"
+      ],
+      "raw_text": "Aarav Sharma | IIT Delhi | Senior Full Stack Developer with 4.5 years of experience in React, TypeScript, Node.js, PostgreSQL, Docker, AWS, Redis. 10th: 93.4%, 12th: 91.8%, CGPA: 8.85.",
+      "file_name": "Aarav_Sharma_FullStack_Resume.pdf",
+      "file_type": "pdf",
+      "stage": "Shortlisted",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609084+00:00",
+      "updated_at": "2026-11-17T11:39:29.609086+00:00"
+    },
+    {
+      "id": "cand-02",
+      "name": "Priya Nair",
+      "email": "priya.nair@example.com",
+      "phone": "+91 97412 87654",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/priya-nair-frontend",
+      "github": "https://github.com/priyanair",
+      "portfolio": "https://priyaux.dev",
+      "education": {
+        "degree": "B.Tech in Information Technology",
+        "college": "National Institute of Technology (NIT) Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": 89.0,
+        "twelfth_percentage": 88.5,
+        "graduation_year": 2022
+      },
+      "skills": [
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux",
+        "HTML5",
+        "CSS3",
+        "Figma",
+        "Jest",
+        "Git"
+      ],
+      "categorized_skills": {
+        "Frontend": [
+          "React",
+          "Next.js",
+          "JavaScript",
+          "TypeScript",
+          "Tailwind CSS",
+          "Redux",
+          "HTML5",
+          "CSS3"
+        ],
+        "Tools & Testing": [
+          "Figma",
+          "Jest",
+          "Git"
+        ]
+      },
+      "years_of_experience": 2.5,
+      "experience_history": [
+        {
+          "company": "Flipkart Internet",
+          "role": "Frontend Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Architected accessible UI components in React and Tailwind CSS. Reduced bundle size by 38% using Vite and Next.js."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Open Source Design System",
+          "tech_stack": [
+            "React",
+            "TypeScript",
+            "Tailwind CSS"
+          ],
+          "description": "Modular component library with 1200+ GitHub stars."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Priya Nair | NIT Trichy | Frontend Developer with 2.5 years experience in React, Next.js, TypeScript, Tailwind CSS, Redux, Figma. 10th: 89.0%, 12th: 88.5%, CGPA: 8.4.",
+      "file_name": "Priya_Nair_Frontend_Resume.docx",
+      "file_type": "docx",
+      "stage": "Interview",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609101+00:00",
+      "updated_at": "2026-11-17T11:39:29.609102+00:00"
+    },
+    {
+      "id": "cand-03",
+      "name": "Rohan Deshmukh",
+      "email": "rohan.deshmukh@example.com",
+      "phone": "+91 91672 34567",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/rohan-deshmukh-py",
+      "github": "https://github.com/rohandesh",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": 84.5,
+        "twelfth_percentage": 82.0,
+        "graduation_year": 2021
+      },
+      "skills": [
+        "Python",
+        "FastAPI",
+        "Django",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "REST API",
+        "Microservices",
+        "Git",
+        "Linux"
+      ],
+      "categorized_skills": {
+        "Backend": [
+          "Python",
+          "FastAPI",
+          "Django",
+          "REST API",
+          "Microservices"
+        ],
+        "Databases": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Linux",
+          "Git"
+        ]
+      },
+      "years_of_experience": 3.5,
+      "experience_history": [
+        {
+          "company": "Zomato Ltd",
+          "role": "Backend Engineer",
+          "duration": "2021 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Constructed asynchronous delivery allocation service using FastAPI and PostgreSQL handling 50k requests/min."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Realtime Geofencing Service",
+          "tech_stack": [
+            "Python",
+            "FastAPI",
+            "Redis",
+            "PostgreSQL"
+          ],
+          "description": "Sub-millisecond driver geofencing API."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Rohan Deshmukh | BITS Pilani | Python Backend Developer with 3.5 years of experience in Python, FastAPI, Django, PostgreSQL, Redis, Docker. 10th: 84.5%, 12th: 82.0%, CGPA: 7.9.",
+      "file_name": "Rohan_Deshmukh_Backend.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609115+00:00",
+      "updated_at": "2026-11-17T11:39:29.609117+00:00"
+    },
+    {
+      "id": "cand-04",
+      "name": "Aditya Verma",
+      "email": "aditya.verma@example.com",
+      "phone": "+91 98112 45678",
+      "location": "Delhi, India",
+      "linkedin": "https://linkedin.com/in/aditya-verma-cloud",
+      "github": "https://github.com/adityaverma",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "Delhi Technological University (DTU)",
+        "cgpa": 8.1,
+        "tenth_percentage": 88.0,
+        "twelfth_percentage": 86.5,
+        "graduation_year": 2020
+      },
+      "skills": [
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "CI/CD",
+        "Linux",
+        "GitHub Actions",
+        "Prometheus",
+        "Grafana",
+        "Python",
+        "Nginx"
+      ],
+      "categorized_skills": {
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "GitHub Actions",
+          "Prometheus",
+          "Grafana",
+          "Nginx"
+        ],
+        "Backend": [
+          "Python"
+        ]
+      },
+      "years_of_experience": 4.0,
+      "experience_history": [
+        {
+          "company": "Paytm Labs",
+          "role": "DevOps Engineer",
+          "duration": "2020 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Architected multi-region Kubernetes clusters on AWS EKS with automated Terraform GitOps pipelines."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Automated Canary Deployer",
+          "tech_stack": [
+            "Kubernetes",
+            "Terraform",
+            "GitHub Actions"
+          ],
+          "description": "Automated zero-downtime progressive rollouts with automated rollbacks."
+        }
+      ],
+      "certifications": [
+        "Certified Kubernetes Administrator (CKA)",
+        "AWS Certified Solutions Architect"
+      ],
+      "raw_text": "Aditya Verma | DTU | Senior DevOps Engineer with 4 years experience in Docker, Kubernetes, AWS, Terraform, CI/CD, Linux, Prometheus. 10th: 88.0%, 12th: 86.5%, CGPA: 8.1.",
+      "file_name": "Aditya_Verma_DevOps.pdf",
+      "file_type": "pdf",
+      "stage": "Offer",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609128+00:00",
+      "updated_at": "2026-11-17T11:39:29.609130+00:00"
+    },
+    {
+      "id": "cand-05",
+      "name": "Sneha Kulkarni",
+      "email": "sneha.kulkarni@example.com",
+      "phone": "+91 94230 98765",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/sneha-kulkarni-fresher",
+      "github": "https://github.com/snehakulkarni",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": 95.8,
+        "twelfth_percentage": 94.2,
+        "graduation_year": 2024
+      },
+      "skills": [
+        "Java",
+        "Python",
+        "SQL",
+        "Git",
+        "Problem Solving",
+        "C++",
+        "Spring Boot",
+        "Data Structures",
+        "Algorithms",
+        "HTML",
+        "CSS"
+      ],
+      "categorized_skills": {
+        "Backend": [
+          "Java",
+          "Python",
+          "C++",
+          "Spring Boot"
+        ],
+        "Databases": [
+          "SQL"
+        ],
+        "Soft Skills": [
+          "Problem Solving",
+          "Communication"
+        ],
+        "Cloud & DevOps": [
+          "Git"
+        ]
+      },
+      "years_of_experience": 0.5,
+      "experience_history": [
+        {
+          "company": "Amazon India",
+          "role": "Software Engineering Intern",
+          "duration": "Jan 2024 - Jun 2024",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed telemetry pipeline in Java and SQL for internal inventory management."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Algorithmic Trading Bot",
+          "tech_stack": [
+            "Python",
+            "SQL"
+          ],
+          "description": "Backtested mean-reversion strategies with Pandas."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Sneha Kulkarni | COEP | High-achieving CS Fresher with 9.42 CGPA, 10th: 95.8%, 12th: 94.2%. Proficient in Java, Python, C++, SQL, Problem Solving.",
+      "file_name": "Sneha_Kulkarni_CampusResume.pdf",
+      "file_type": "pdf",
+      "stage": "Shortlisted",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609141+00:00",
+      "updated_at": "2026-11-17T11:39:29.609143+00:00"
+    },
+    {
+      "id": "cand-06",
+      "name": "Vikram Singhania",
+      "email": "vikram.singhania@example.com",
+      "phone": "+91 98300 45678",
+      "location": "Mumbai, India",
+      "linkedin": "https://linkedin.com/in/vikram-singhania-dev",
+      "github": "",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Engineering",
+        "college": "Mumbai University",
+        "cgpa": 6.8,
+        "tenth_percentage": 68.5,
+        "twelfth_percentage": 67.0,
+        "graduation_year": 2020
+      },
+      "skills": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "jQuery",
+        "Git"
+      ],
+      "categorized_skills": {
+        "Backend": [
+          "PHP",
+          "Laravel"
+        ],
+        "Databases": [
+          "MySQL"
+        ],
+        "Frontend": [
+          "JavaScript",
+          "HTML",
+          "CSS"
+        ],
+        "Cloud & DevOps": [
+          "Git"
+        ]
+      },
+      "years_of_experience": 4.0,
+      "experience_history": [
+        {
+          "company": "Apex Web Solutions",
+          "role": "Web Developer",
+          "duration": "2020 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Built e-commerce portals using Laravel and MySQL."
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Vikram Singhania | Mumbai University | Web Developer with 4 years experience in PHP, Laravel, MySQL, JavaScript, HTML, CSS. 10th: 68.5%, 12th: 67.0%, CGPA: 6.8.",
+      "file_name": "Vikram_Singhania_Resume.pdf",
+      "file_type": "pdf",
+      "stage": "Rejected",
+      "rejection_reason": "Skill gap: Lacks React, Node.js and modern cloud technologies required for Senior Full-Stack role.",
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609154+00:00",
+      "updated_at": "2026-11-17T11:39:29.609155+00:00"
+    },
+    {
+      "id": "cand-07",
+      "name": "Ananya Sen",
+      "email": "ananya.sen@example.com",
+      "phone": "+91 98311 23456",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/ananya-sen-fullstack",
+      "github": "https://github.com/ananyasen",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": 92.0,
+        "twelfth_percentage": 90.5,
+        "graduation_year": 2019
+      },
+      "skills": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "GraphQL",
+        "Microservices",
+        "Kubernetes",
+        "Redis",
+        "Jest"
+      ],
+      "categorized_skills": {
+        "Frontend": [
+          "React",
+          "TypeScript"
+        ],
+        "Backend": [
+          "Node.js",
+          "GraphQL",
+          "Microservices"
+        ],
+        "Databases": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "AWS",
+          "Kubernetes"
+        ],
+        "Tools & Testing": [
+          "Jest"
+        ]
+      },
+      "years_of_experience": 5.5,
+      "experience_history": [
+        {
+          "company": "Ola Electric",
+          "role": "Lead Full Stack Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Led team of 6 engineers building fleet management console using React, Node.js, and AWS IoT."
+        },
+        {
+          "company": "Infosys Ltd",
+          "role": "Senior Developer",
+          "duration": "2019 - 2022",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed microservices with PostgreSQL and Docker for European banking clients."
+        }
+      ],
+      "projects": [
+        {
+          "title": "GraphQL Gateway",
+          "tech_stack": [
+            "Node.js",
+            "GraphQL",
+            "Docker"
+          ],
+          "description": "Federated gateway aggregating 12 backend microservices."
+        }
+      ],
+      "certifications": [
+        "AWS Certified Solutions Architect"
+      ],
+      "raw_text": "Ananya Sen | IIIT Bangalore | Lead Full Stack Engineer with 5.5 years in React, Node.js, TypeScript, PostgreSQL, Docker, AWS, GraphQL, Microservices, Kubernetes. 10th: 92.0%, 12th: 90.5%, CGPA: 8.7.",
+      "file_name": "Ananya_Sen_SrFullStack.pdf",
+      "file_type": "pdf",
+      "stage": "Interview",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609168+00:00",
+      "updated_at": "2026-11-17T11:39:29.609170+00:00"
+    },
+    {
+      "id": "cand-08",
+      "name": "Karthik Raja",
+      "email": "karthik.raja@example.com",
+      "phone": "+91 94440 12389",
+      "location": "Chennai, India",
+      "linkedin": "https://linkedin.com/in/karthik-raja-cloud",
+      "github": "",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "Anna University",
+        "cgpa": 7.6,
+        "tenth_percentage": 78.5,
+        "twelfth_percentage": 77.0,
+        "graduation_year": 2021
+      },
+      "skills": [
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Linux",
+        "CI/CD",
+        "Git",
+        "Terraform",
+        "Bash",
+        "Python"
+      ],
+      "categorized_skills": {
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Linux",
+          "CI/CD",
+          "Git",
+          "Terraform"
+        ],
+        "Backend": [
+          "Python"
+        ]
+      },
+      "years_of_experience": 3.2,
+      "experience_history": [
+        {
+          "company": "Freshworks Inc",
+          "role": "Cloud DevOps Engineer",
+          "duration": "2021 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Managed infrastructure as code with Terraform across 15+ microservices in AWS."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Automated Backup & DR Engine",
+          "tech_stack": [
+            "AWS",
+            "Terraform",
+            "Python"
+          ],
+          "description": "Disaster recovery automation tool."
+        }
+      ],
+      "certifications": [
+        "Certified Kubernetes Administrator"
+      ],
+      "raw_text": "Karthik Raja | Anna University | Cloud DevOps Engineer with 3.2 years of experience in Docker, Kubernetes, AWS, Terraform, CI/CD, Linux. 10th: 78.5%, 12th: 77.0%, CGPA: 7.6.",
+      "file_name": "Karthik_Raja_DevOps.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609181+00:00",
+      "updated_at": "2026-11-17T11:39:29.609183+00:00"
+    },
+    {
+      "id": "cand-09",
+      "name": "Tanvi Gupta",
+      "email": "tanvi.gupta@example.com",
+      "phone": "+91 98711 99887",
+      "location": "Noida, India",
+      "linkedin": "https://linkedin.com/in/tanvi-gupta-ui",
+      "github": "",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "Jaypee Institute of Information Technology",
+        "cgpa": 8.6,
+        "tenth_percentage": 91.0,
+        "twelfth_percentage": 89.0,
+        "graduation_year": 2023
+      },
+      "skills": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "HTML5",
+        "CSS3",
+        "Redux",
+        "Jest",
+        "Git"
+      ],
+      "categorized_skills": {
+        "Frontend": [
+          "React",
+          "JavaScript",
+          "TypeScript",
+          "Tailwind CSS",
+          "HTML5",
+          "CSS3",
+          "Redux"
+        ],
+        "Tools & Testing": [
+          "Jest",
+          "Git"
+        ]
+      },
+      "years_of_experience": 1.8,
+      "experience_history": [
+        {
+          "company": "Urban Company",
+          "role": "Frontend Developer",
+          "duration": "2023 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed customer web portals with React and Tailwind CSS."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Component Library",
+          "tech_stack": [
+            "React",
+            "Tailwind CSS"
+          ],
+          "description": "Reusable UI library."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Tanvi Gupta | JIIT | Frontend Developer with 1.8 years experience in React, JavaScript, TypeScript, Tailwind CSS, HTML5, CSS3, Redux. 10th: 91.0%, 12th: 89.0%, CGPA: 8.6.",
+      "file_name": "Tanvi_Gupta_Frontend.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609194+00:00",
+      "updated_at": "2026-11-17T11:39:29.609196+00:00"
+    },
+    {
+      "id": "cand-10",
+      "name": "Siddharth Mehta",
+      "email": "siddharth.mehta@example.com",
+      "phone": "+91 99870 11223",
+      "location": "Mumbai, India",
+      "linkedin": "https://linkedin.com/in/siddharth-mehta-data",
+      "github": "",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech in Computer Engineering",
+        "college": "VJTI Mumbai",
+        "cgpa": 8.3,
+        "tenth_percentage": 88.0,
+        "twelfth_percentage": 85.5,
+        "graduation_year": 2021
+      },
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "Pandas",
+        "NumPy",
+        "Scikit-Learn",
+        "FastAPI",
+        "PostgreSQL",
+        "Docker",
+        "Git"
+      ],
+      "categorized_skills": {
+        "AI & Data Science": [
+          "Machine Learning",
+          "Pandas",
+          "NumPy",
+          "Scikit-Learn"
+        ],
+        "Backend": [
+          "Python",
+          "FastAPI"
+        ],
+        "Databases": [
+          "PostgreSQL"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Git"
+        ]
+      },
+      "years_of_experience": 3.0,
+      "experience_history": [
+        {
+          "company": "Fractal Analytics",
+          "role": "Data Scientist & ML Engineer",
+          "duration": "2021 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Built predictive customer churn models and deployed serving APIs with FastAPI and Docker."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Automated Churn Predictor",
+          "tech_stack": [
+            "Python",
+            "Scikit-Learn",
+            "FastAPI"
+          ],
+          "description": "End-to-end ML classification pipeline."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Siddharth Mehta | VJTI | Data Scientist with 3 years experience in Python, Machine Learning, Scikit-Learn, Pandas, FastAPI, PostgreSQL, Docker. 10th: 88.0%, 12th: 85.5%, CGPA: 8.3.",
+      "file_name": "Siddharth_Mehta_ML.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609207+00:00",
+      "updated_at": "2026-11-17T11:39:29.609208+00:00"
+    },
+    {
+      "id": "cand-duplicate-01",
+      "name": "Aarav Sharma (Updated 2024)",
+      "email": "aarav.sharma@example.com",
+      "phone": "+91 98201 12345",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/aarav-sharma-tech",
+      "github": "",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "Indian Institute of Technology (IIT) Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": 93.4,
+        "twelfth_percentage": 91.8,
+        "graduation_year": 2020
+      },
+      "skills": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Redis",
+        "Next.js",
+        "Kubernetes"
+      ],
+      "categorized_skills": {
+        "Frontend": [
+          "React",
+          "TypeScript",
+          "Next.js"
+        ],
+        "Backend": [
+          "Node.js",
+          "Express"
+        ],
+        "Databases": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "AWS",
+          "Kubernetes"
+        ]
+      },
+      "years_of_experience": 5.0,
+      "experience_history": [
+        {
+          "company": "Razorpay Payments",
+          "role": "Staff Software Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Promoted to Staff Engineer. Leading payments orchestration engine."
+        }
+      ],
+      "projects": [],
+      "certifications": [
+        "AWS Certified Solutions Architect"
+      ],
+      "raw_text": "Aarav Sharma | IIT Delhi | Updated Profile 2024 | Senior Full Stack Developer. React, TypeScript, Node.js, PostgreSQL, Docker, AWS, Kubernetes.",
+      "file_name": "Aarav_Sharma_Updated_2024.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (aarav.sharma@example.com) matching existing candidate 'Aarav Sharma'",
+        "Identical phone number (+91 98201 12345) matching 'Aarav Sharma'"
+      ],
+      "duplicate_of_id": "cand-01",
+      "created_at": "2026-11-17T11:39:29.609219+00:00",
+      "updated_at": "2026-11-17T11:39:29.609221+00:00"
+    },
+    {
+      "id": "cand-11",
+      "name": "Divya Mehra",
+      "email": "divya.mehra@example.com",
+      "phone": "+91 98765 88990",
+      "location": "Remote",
+      "linkedin": "https://linkedin.com/in/divya-mehra-tech",
+      "github": "https://github.com/divyamehra",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "Vellore Institute of Technology (VIT)",
+        "cgpa": 7.8,
+        "tenth_percentage": 82.0,
+        "twelfth_percentage": 80.5,
+        "graduation_year": 2022
+      },
+      "skills": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "REST API",
+        "Git"
+      ],
+      "categorized_skills": {
+        "Frontend": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "Backend": [
+          "Node.js",
+          "REST API"
+        ],
+        "Databases": [
+          "PostgreSQL"
+        ],
+        "Cloud & DevOps": [
+          "Git"
+        ]
+      },
+      "years_of_experience": 2.2,
+      "experience_history": [
+        {
+          "company": "Fintech Startup",
+          "role": "Full Stack Developer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed React dashboard and Node.js REST APIs with PostgreSQL."
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Divya Mehra | VIT | Full Stack Developer with 2.2 years of experience in React, Node.js, TypeScript, PostgreSQL, Tailwind CSS, REST API. 10th: 82.0%, 12th: 80.5%, CGPA: 7.8.",
+      "file_name": "Divya_Mehra_Resume.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609232+00:00",
+      "updated_at": "2026-11-17T11:39:29.609234+00:00"
+    },
+    {
+      "id": "cand-12",
+      "name": "Nikhil Agarwal",
+      "email": "nikhil.agarwal@example.com",
+      "phone": "+91 97110 54321",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/nikhil-agarwal-lead",
+      "github": "https://github.com/nikhilagarwal",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "Indian Institute of Technology (IIT) Kharagpur",
+        "cgpa": 8.95,
+        "tenth_percentage": 94.0,
+        "twelfth_percentage": 93.0,
+        "graduation_year": 2018
+      },
+      "skills": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Redis",
+        "Kubernetes",
+        "Next.js",
+        "Microservices",
+        "CI/CD",
+        "GraphQL"
+      ],
+      "categorized_skills": {
+        "Frontend": [
+          "React",
+          "TypeScript",
+          "Next.js"
+        ],
+        "Backend": [
+          "Node.js",
+          "Microservices",
+          "GraphQL"
+        ],
+        "Databases": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "AWS",
+          "Kubernetes",
+          "CI/CD"
+        ]
+      },
+      "years_of_experience": 6.5,
+      "experience_history": [
+        {
+          "company": "Atlassian",
+          "role": "Principal Software Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Architected collaborative editing services handling millions of concurrent users using React and microservices."
+        },
+        {
+          "company": "InMobi",
+          "role": "Senior Engineer",
+          "duration": "2018 - 2022",
+          "start_year": null,
+          "end_year": null,
+          "description": "Built low-latency ad serving systems using Node.js and AWS."
+        }
+      ],
+      "projects": [],
+      "certifications": [
+        "AWS Solutions Architect Professional"
+      ],
+      "raw_text": "Nikhil Agarwal | IIT Kharagpur | Principal Full Stack Engineer with 6.5 years experience in React, Node.js, TypeScript, PostgreSQL, Docker, AWS, Kubernetes, Redis. 10th: 94.0%, 12th: 93.0%, CGPA: 8.95.",
+      "file_name": "Nikhil_Agarwal_Principal_Resume.pdf",
+      "file_type": "pdf",
+      "stage": "Rejected",
+      "rejection_reason": "Salary expectation mismatch",
+      "notes": [
+        {
+          "id": "7ab4efd4-df5e-470e-bace-3e1c08f5b757",
+          "author": "Lead Recruiter",
+          "content": "Strong system design skills demonstrated in Round 1",
+          "created_at": "2026-11-17T11:39:29.819140+00:00"
+        }
+      ],
+      "applied_job_id": null,
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-17T11:39:29.609246+00:00",
+      "updated_at": "2026-11-17T11:39:29.609248+00:00"
+    },
+    {
+      "id": "1fd716d3-c0ff-463f-a31a-4395a62fecc3",
+      "name": "Aditya Verma",
+      "email": "aditya.verma@example.com",
+      "phone": "+91 98112 45678",
+      "location": "Delhi, India",
+      "linkedin": "https://linkedin.com/in/aditya-verma-cloud",
+      "github": "https://github.com/adityaverma",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | Delhi Technological University (DT",
+        "cgpa": 8.1,
+        "tenth_percentage": 88.0,
+        "twelfth_percentage": 86.5,
+        "graduation_year": 2020
+      },
+      "skills": [
+        "AWS",
+        "CI/CD",
+        "Docker",
+        "GitHub Actions",
+        "Grafana",
+        "Helm",
+        "Kubernetes",
+        "Linux",
+        "Nginx",
+        "Prometheus",
+        "Python",
+        "Terraform"
+      ],
+      "categorized_skills": {
+        "Backend": [
+          "Python"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "GitHub Actions",
+          "Nginx",
+          "Helm",
+          "Prometheus",
+          "Grafana"
+        ],
+        "Tools & Testing": [
+          "Nginx",
+          "Python",
+          "Kubernetes",
+          "Helm",
+          "Prometheus",
+          "CI/CD",
+          "Linux",
+          "Grafana",
+          "Docker",
+          "AWS",
+          "GitHub Actions",
+          "Terraform"
+        ]
+      },
+      "years_of_experience": 4.0,
+      "experience_history": [
+        {
+          "company": "Tech Innovations Pvt Ltd",
+          "role": "pipelines. Certified CKA and AWS Solutions Architect.",
+          "duration": "2021 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Tech Innovations Pvt Ltd",
+          "role": "DevOps Engineer \u2014 Paytm Labs (2020 - Present)",
+          "duration": "2021 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [
+        {
+          "title": "Cloud-Native Enterprise Platform",
+          "tech_stack": [
+            "React",
+            "Node.js",
+            "PostgreSQL",
+            "Docker"
+          ],
+          "description": "Architected high-throughput microservice backend and responsive web client."
+        }
+      ],
+      "certifications": [
+        "CKA"
+      ],
+      "raw_text": "Aditya Verma\nSenior DevOps & Cloud Engineer | Delhi, India | aditya.verma@example.com | +91 98112 45678\nLinkedIn: https://linkedin.com/in/aditya-verma-cloud | GitHub: https://github.com/adityaverma\nProfessional Summary\nDevOps Engineer with 4.0 years of experience managing Kubernetes clusters, AWS infrastructure, and automated CI/CD\npipelines. Certified CKA and AWS Solutions Architect.\nTechnical Skills\nKey Technologies: Docker, Kubernetes, AWS, Terraform, CI/CD, Linux, GitHub Actions, Prometheus, Grafana, Python,\nNginx, Helm\nEducation & Academic Background\nB.Tech Computer Science | Delhi Technological University (DTU) (2016 - 2020)\n\u007f CGPA: 8.1 / 10.0\n\u007f Class XII: 86.5%\n\u007f Class X: 88.0%\nWork Experience\nDevOps Engineer \u2014 Paytm Labs (2020 - Present)\n\u007f Designed multi-region AWS EKS clusters with Terraform GitOps workflows. Reduced deployment cycle time from 40 mins to\n4 mins.\nKey Projects\nCanary Deployer [Kubernetes, GitHub Actions]\n\u007f Custom Kubernetes controller managing traffic splits during canary releases.\n\n",
+      "file_name": "Aditya_Verma_Upload_Test.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": null,
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (aditya.verma@example.com) matching existing candidate 'Aditya Verma'",
+        "Identical phone number (+91 98112 45678) matching 'Aditya Verma'",
+        "Identical LinkedIn profile link matching 'Aditya Verma'",
+        "Same candidate name 'Aditya Verma' with matching academic history (B.Tech Computer Science | Delhi Technological University (DT)"
+      ],
+      "duplicate_of_id": "cand-04",
+      "created_at": "2026-11-17T11:39:29.696254+00:00",
+      "updated_at": "2026-11-17T11:39:29.696262+00:00"
+    }
+  ],
+  "sent_emails": [
+    {
+      "id": "73f10f7e-4408-41ba-947f-7d22a47d2203",
+      "candidate_id": "cand-12",
+      "candidate_name": "Nikhil Agarwal",
+      "candidate_email": "nikhil.agarwal@example.com",
+      "subject": "Interview Invitation: Senior Full-Stack Engineer at HireSwift",
+      "body": "Dear Nikhil Agarwal,\n\nYou are invited for an interview at HireSwift for Senior Full-Stack Engineer on Friday at 4:00 PM IST.",
+      "template_type": "interview",
+      "status": "Delivered",
+      "sent_at": "2026-11-17T11:39:29.887219+00:00"
+    }
+  ]
+}
