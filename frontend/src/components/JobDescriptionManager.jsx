@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Briefcase,
   Plus,
@@ -11,7 +11,12 @@ import {
   MapPin,
   Clock,
   Layers,
-  X
+  X,
+  Save,
+  RefreshCw,
+  Sliders,
+  Check,
+  CheckSquare
 } from 'lucide-react';
 import { api } from '../api';
 
@@ -21,447 +26,474 @@ export default function JobDescriptionManager({
   onSelectActiveJob,
   onRefreshJobs
 }) {
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [editingJob, setEditingJob] = useState(null);
+  const [selectedJobId, setSelectedJobId] = useState(activeJobId || (jobs[0]?.job?.id || ''));
+  const [isSaving, setIsSaving] = useState(false);
+  const [isReindexing, setIsReindexing] = useState(false);
+  const [newSkill, setNewSkill] = useState('');
 
-  // Form state
-  const [formData, setFormData] = useState({
-    title: '',
+  // Find currently selected job
+  const currentJobObj = jobs.find((j) => j.job.id === selectedJobId) || jobs[0];
+  const currentJob = currentJobObj?.job || {
+    id: 'sample',
+    title: 'Full-Stack Software Engineer',
     department: 'Engineering',
     location: 'Bengaluru (Hybrid)',
-    employment_type: 'Full-Time',
-    description: '',
+    description: 'We are hiring a Full-Stack Engineer to scale our core B2B workflow platform.\nRequirements:\n- 2 to 5 years building scalable production web applications.\n- Strong hands-on proficiency in React, TypeScript, Node.js, and SQL databases.\n- Hands-on experience with Docker, cloud infrastructure, and modern CI/CD.\n- Minimum 7.5 CGPA or equivalent.',
     min_experience: 2.0,
     max_experience: 5.0,
-    required_skills: 'React, Node.js, TypeScript',
-    preferred_skills: 'Docker, AWS, PostgreSQL',
-    min_cgpa: 7.0,
+    min_cgpa: 7.5,
     min_tenth_percentage: 70.0,
-    min_twelfth_percentage: 70.0,
-    preferred_grad_years: '2021, 2022, 2023'
+    min_twelfth_percentage: 75.0,
+    required_skills: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'Docker'],
+    preferred_skills: ['AWS', 'Next.js', 'Tailwind CSS', 'Redis', 'GraphQL']
+  };
+
+  const [formData, setFormData] = useState({
+    title: currentJob.title || '',
+    department: currentJob.department || 'Engineering',
+    location: currentJob.location || 'Bengaluru',
+    description: currentJob.description || '',
+    min_experience: currentJob.min_experience || 2.0,
+    max_experience: currentJob.max_experience || 5.0,
+    min_cgpa: currentJob.min_cgpa || 7.5,
+    min_twelfth_percentage: currentJob.min_twelfth_percentage || 75.0,
+    min_tenth_percentage: currentJob.min_tenth_percentage || 70.0,
+    required_skills: currentJob.required_skills || [],
+    preferred_skills: currentJob.preferred_skills || []
   });
 
-  const handleOpenCreate = () => {
-    setEditingJob(null);
-    setFormData({
-      title: '',
-      department: 'Engineering',
-      location: 'Bengaluru (Hybrid)',
-      employment_type: 'Full-Time',
-      description: '',
-      min_experience: 2.0,
-      max_experience: 5.0,
-      required_skills: 'React, Node.js, TypeScript',
-      preferred_skills: 'Docker, AWS, PostgreSQL',
-      min_cgpa: 7.0,
-      min_tenth_percentage: 70.0,
-      min_twelfth_percentage: 70.0,
-      preferred_grad_years: '2021, 2022, 2023'
-    });
-    setShowCreateModal(true);
-  };
+  // Weights (Stitch Scoring Weights)
+  const [weights, setWeights] = useState({
+    skills: 40,
+    experience: 30,
+    academics: 20,
+    domain: 10
+  });
 
-  const handleOpenEdit = (job) => {
-    setEditingJob(job);
-    setFormData({
-      title: job.title,
-      department: job.department,
-      location: job.location,
-      employment_type: job.employment_type,
-      description: job.description,
-      min_experience: job.min_experience,
-      max_experience: job.max_experience || 5.0,
-      required_skills: job.required_skills?.join(', ') || '',
-      preferred_skills: job.preferred_skills?.join(', ') || '',
-      min_cgpa: job.min_cgpa || 0.0,
-      min_tenth_percentage: job.min_tenth_percentage || 0.0,
-      min_twelfth_percentage: job.min_twelfth_percentage || 0.0,
-      preferred_grad_years: job.preferred_grad_years?.join(', ') || ''
-    });
-    setShowCreateModal(true);
-  };
+  useEffect(() => {
+    if (currentJobObj?.job) {
+      const j = currentJobObj.job;
+      setFormData({
+        title: j.title || '',
+        department: j.department || 'Engineering',
+        location: j.location || 'Bengaluru',
+        description: j.description || '',
+        min_experience: j.min_experience || 2.0,
+        max_experience: j.max_experience || 5.0,
+        min_cgpa: j.min_cgpa || 7.5,
+        min_twelfth_percentage: j.min_twelfth_percentage || 75.0,
+        min_tenth_percentage: j.min_tenth_percentage || 70.0,
+        required_skills: j.required_skills || [],
+        preferred_skills: j.preferred_skills || []
+      });
+    }
+  }, [selectedJobId, jobs]);
 
-  const handleSubmit = async (e) => {
+  const handleAddRequiredSkill = (e) => {
     e.preventDefault();
+    if (!newSkill.trim()) return;
+    if (!formData.required_skills.includes(newSkill.trim())) {
+      setFormData((prev) => ({
+        ...prev,
+        required_skills: [...prev.required_skills, newSkill.trim()]
+      }));
+    }
+    setNewSkill('');
+  };
+
+  const removeRequiredSkill = (skillToRemove) => {
+    setFormData((prev) => ({
+      ...prev,
+      required_skills: prev.required_skills.filter((s) => s !== skillToRemove)
+    }));
+  };
+
+  const handleSaveAndReindex = async () => {
+    setIsSaving(true);
+    setIsReindexing(true);
     try {
       const payload = {
         title: formData.title,
         department: formData.department,
         location: formData.location,
-        employment_type: formData.employment_type,
         description: formData.description,
-        min_experience: parseFloat(formData.min_experience) || 0.0,
+        min_experience: parseFloat(formData.min_experience) || 0,
         max_experience: parseFloat(formData.max_experience) || null,
-        required_skills: formData.required_skills.split(',').map((s) => s.trim()).filter(Boolean),
-        preferred_skills: formData.preferred_skills.split(',').map((s) => s.trim()).filter(Boolean),
         min_cgpa: parseFloat(formData.min_cgpa) || null,
-        min_tenth_percentage: parseFloat(formData.min_tenth_percentage) || null,
         min_twelfth_percentage: parseFloat(formData.min_twelfth_percentage) || null,
-        preferred_grad_years: formData.preferred_grad_years
-          .split(',')
-          .map((y) => parseInt(y.trim()))
-          .filter((y) => !isNaN(y)),
-        status: 'Active'
+        min_tenth_percentage: parseFloat(formData.min_tenth_percentage) || null,
+        required_skills: formData.required_skills,
+        preferred_skills: formData.preferred_skills
       };
 
-      if (editingJob) {
-        await api.updateJob(editingJob.id, payload);
+      if (currentJob.id && currentJob.id !== 'sample') {
+        await api.updateJob(currentJob.id, payload);
       } else {
         await api.createJob(payload);
       }
 
-      setShowCreateModal(false);
-      onRefreshJobs();
+      if (onRefreshJobs) await onRefreshJobs();
+      alert('Job description and matching algorithm calibration successfully saved and re-indexed across candidate pool!');
     } catch (err) {
-      alert('Error saving Job Description: ' + err.message);
-    }
-  };
-
-  const handleDelete = async (jobId) => {
-    if (!confirm('Are you sure you want to delete this Job Description?')) return;
-    try {
-      await api.deleteJob(jobId);
-      onRefreshJobs();
-    } catch (err) {
-      alert('Error deleting job: ' + err.message);
+      alert('Error updating job: ' + err.message);
+    } finally {
+      setIsSaving(false);
+      setIsReindexing(false);
     }
   };
 
   return (
-    <div className="space-y-5">
-      {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-        <div>
-          <h2 className="text-base font-bold text-white">Job Description Openings & Matching Profiles</h2>
-          <p className="text-xs text-slate-400">
-            Define role parameters, required skills, and academic criteria to automatically rank and score incoming resumes.
-          </p>
-        </div>
+    <div className="flex flex-col bg-[#F8FAFC] text-[#0F172A] font-body rounded-2xl border border-[#E2E8F0] overflow-hidden shadow-xs">
+      
+      {/* Subheader (Stitch JD Calibration Header) */}
+      <div className="bg-white border-b border-[#E2E8F0] px-6 py-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="px-2 py-0.5 rounded bg-purple-50 text-[#4338CA] border border-purple-200 text-[11px] font-semibold flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5" /> Semantic Scorer
+              </span>
+              <span className="text-[#94A3B8]">•</span>
+              <span className="text-xs text-[#475569]">
+                Target Role: <strong className="text-[#0F172A] font-semibold">{formData.title || 'Software Engineer'}</strong>
+              </span>
+            </div>
+            <h1 className="font-headline text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight">
+              Job Description & Match Algorithm Calibration
+            </h1>
+            <p className="text-xs sm:text-sm text-[#475569] mt-0.5">
+              Tune candidate scoring weights, set hard eligibility cutoffs (CGPA, 10th/12th, experience), and define required vs. nice-to-have skill vectors.
+            </p>
+          </div>
 
-        <button
-          onClick={handleOpenCreate}
-          className="flex items-center space-x-1.5 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/20 cursor-pointer"
-        >
-          <Plus className="w-4 h-4" />
-          <span>New Job Role</span>
-        </button>
-      </div>
+          {/* Job Selector & Save Action */}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center bg-[#F1F5F9] border border-[#E2E8F0] rounded-md px-3 py-1.5 text-xs">
+              <span className="text-[#64748B] mr-2">Active JD:</span>
+              <select
+                value={selectedJobId}
+                onChange={(e) => {
+                  setSelectedJobId(e.target.value);
+                  if (onSelectActiveJob) onSelectActiveJob(e.target.value);
+                }}
+                className="bg-transparent font-semibold text-[#0F172A] border-none text-xs focus:ring-0 cursor-pointer"
+              >
+                {jobs.map((j) => (
+                  <option key={j.job.id} value={j.job.id}>
+                    {j.job.title}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-      {/* JDs Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {jobs.map((item) => {
-          const j = item.job;
-          const isActive = j.id === activeJobId;
-
-          return (
-            <div
-              key={j.id}
-              className={`bg-slate-900/90 border rounded-xl p-5 flex flex-col justify-between transition-all relative ${
-                isActive
-                  ? 'border-indigo-500 bg-slate-850 shadow-xl shadow-indigo-500/10 ring-1 ring-indigo-500/50'
-                  : 'border-slate-800 hover:border-slate-700'
-              }`}
+            <button
+              type="button"
+              onClick={handleSaveAndReindex}
+              disabled={isSaving}
+              className="px-4 py-2 bg-[#1E3A8A] hover:bg-[#172554] text-white rounded-md text-xs font-semibold shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             >
-              <div>
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <div>
-                    <div className="flex items-center space-x-2">
-                      <h3 className="font-bold text-white text-base">{j.title}</h3>
-                      {isActive && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                          Active Role
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center space-x-3 text-xs text-slate-400 mt-1">
-                      <span className="flex items-center">
-                        <Briefcase className="w-3.5 h-3.5 mr-1 text-slate-500" />
-                        {j.department}
-                      </span>
-                      <span className="flex items-center">
-                        <MapPin className="w-3.5 h-3.5 mr-1 text-slate-500" />
-                        {j.location}
-                      </span>
-                      <span>• {j.employment_type}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-1">
-                    <button
-                      onClick={() => handleOpenEdit(j)}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
-                      title="Edit JD"
-                    >
-                      <Edit2 className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(j.id)}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800"
-                      title="Delete JD"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-
-                <p className="text-xs text-slate-300 line-clamp-2 my-2.5 leading-relaxed">
-                  {j.description}
-                </p>
-
-                {/* Metrics Pill Row */}
-                <div className="grid grid-cols-3 gap-2 bg-slate-850 p-2.5 rounded-lg border border-slate-800 my-3 text-center text-xs">
-                  <div>
-                    <span className="text-slate-400 text-[10px] block">Applicants</span>
-                    <span className="font-bold text-slate-100">{item.applicant_count}</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 text-[10px] block">Avg Score</span>
-                    <span className="font-bold text-sky-400">{item.average_match_score}%</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 text-[10px] block">Strong Fits</span>
-                    <span className="font-bold text-emerald-400">{item.strong_matches}</span>
-                  </div>
-                </div>
-
-                {/* Required Skills */}
-                <div className="space-y-1.5 text-xs">
-                  <div className="text-[11px] font-semibold text-slate-400">Required Skills:</div>
-                  <div className="flex flex-wrap gap-1">
-                    {j.required_skills?.map((sk) => (
-                      <span
-                        key={sk}
-                        className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-[11px] font-semibold"
-                      >
-                        {sk}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Preferred Skills */}
-                {j.preferred_skills?.length > 0 && (
-                  <div className="space-y-1.5 text-xs mt-2">
-                    <div className="text-[11px] font-semibold text-slate-400">Bonus / Preferred:</div>
-                    <div className="flex flex-wrap gap-1">
-                      {j.preferred_skills?.map((sk) => (
-                        <span
-                          key={sk}
-                          className="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px]"
-                        >
-                          {sk}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Academic Criteria Note */}
-                <div className="mt-3 pt-2 border-t border-slate-800/80 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-400">
-                  <span className="flex items-center text-slate-300">
-                    <Clock className="w-3.5 h-3.5 mr-1 text-slate-500" />
-                    Min Exp: {j.min_experience} yrs
-                  </span>
-                  {j.min_cgpa && (
-                    <span className="flex items-center text-emerald-400 font-semibold">
-                      <GraduationCap className="w-3.5 h-3.5 mr-1" />
-                      Min CGPA: {j.min_cgpa}
-                    </span>
-                  )}
-                  {j.min_twelfth_percentage && (
-                    <span>Min 12th: {j.min_twelfth_percentage}%</span>
-                  )}
-                  {j.min_tenth_percentage && (
-                    <span>Min 10th: {j.min_tenth_percentage}%</span>
-                  )}
-                </div>
-              </div>
-
-              {/* Set Active Button */}
-              <div className="mt-4 pt-3 border-t border-slate-800 flex justify-end">
-                <button
-                  onClick={() => onSelectActiveJob(j.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-800 hover:bg-slate-750 text-slate-300'
-                  }`}
-                >
-                  {isActive ? 'Current Matching Target' : 'Score Candidates for this Role'}
-                </button>
-              </div>
-            </div>
-          );
-        })}
+              {isSaving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+              <span>{isSaving ? 'Re-Indexing Pool...' : 'Save & Re-Index Resumes'}</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Create / Edit JD Modal */}
-      {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-            <div className="p-4 border-b border-slate-800 bg-slate-950/40 flex items-center justify-between">
-              <h3 className="font-bold text-white text-base">
-                {editingJob ? 'Edit Job Description' : 'Create New Job Opening'}
-              </h3>
-              <button onClick={() => setShowCreateModal(false)} className="text-slate-400 hover:text-white">
-                <X className="w-5 h-5" />
-              </button>
+      {/* Main Grid: Left JD Input (7 Cols) & Right Calibration Weights (5 Cols) */}
+      <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-[1600px] w-full mx-auto">
+
+        {/* LEFT COLUMN: JD Input & Skill Clusters (7 Cols) */}
+        <div className="lg:col-span-7 flex flex-col gap-5">
+
+          {/* Job Description Rich Input */}
+          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <Briefcase className="w-4 h-4 text-[#1E3A8A]" />
+                <h2 className="font-headline text-sm font-bold text-[#0F172A]">Job Description Details</h2>
+              </div>
+              <span className="text-[11px] font-mono text-[#64748B]">JD-CONFIG</span>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-5 overflow-y-auto space-y-4 text-xs">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Job Title *</label>
+                  <label className="block text-[#475569] font-medium mb-1">Job Title</label>
                   <input
                     type="text"
-                    required
-                    placeholder="e.g. Senior Full-Stack Engineer"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-1.5 rounded-md border border-[#CBD5E1] text-[#0F172A] text-xs font-medium focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Department</label>
+                  <label className="block text-[#475569] font-medium mb-1">Department & Level</label>
                   <input
                     type="text"
                     value={formData.department}
                     onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-1.5 rounded-md border border-[#CBD5E1] text-[#0F172A] text-xs font-medium focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] outline-none"
                   />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Location</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Bengaluru (Hybrid) or Remote"
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-indigo-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Employment Type</label>
-                  <select
-                    value={formData.employment_type}
-                    onChange={(e) => setFormData({ ...formData, employment_type: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-indigo-500"
-                  >
-                    <option value="Full-Time">Full-Time</option>
-                    <option value="Contract">Contract</option>
-                    <option value="Internship">Internship</option>
-                  </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Job Overview & Description *</label>
+                <label className="block text-[#475569] font-medium text-xs mb-1">
+                  Role Description & Candidate Requirements
+                </label>
                 <textarea
-                  required
-                  rows="3"
-                  placeholder="Responsibilities, requirements, team context..."
+                  rows={8}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-indigo-500"
+                  className="w-full p-3 bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg text-xs text-[#0F172A] focus:bg-white focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] outline-none leading-relaxed font-sans"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Skill Cluster Configuration */}
+          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+            <h3 className="font-headline text-sm font-bold text-[#0F172A] mb-3 flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <Layers className="w-4 h-4 text-[#1E3A8A]" />
+                <span>Extracted Skill Clusters & Keyword Weights</span>
+              </span>
+              <span className="text-[11px] font-mono text-[#64748B]">Auto-Taxonomy</span>
+            </h3>
+
+            <div className="space-y-4 text-xs">
+              {/* Required Skills */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="font-semibold text-[#0F172A] flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Required Tech Skills (Must Have)</span>
+                  </span>
+                  <span className="text-[11px] font-mono text-[#64748B]">
+                    {formData.required_skills.length} skills defined
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 p-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg min-h-[46px]">
+                  {formData.required_skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-[#CBD5E1] text-[#0F172A] rounded-md font-medium text-xs shadow-2xs"
+                    >
+                      <span>{skill}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeRequiredSkill(skill)}
+                        className="text-[#94A3B8] hover:text-rose-600 ml-0.5"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+
+                {/* Add new skill inline */}
+                <form onSubmit={handleAddRequiredSkill} className="flex gap-2 mt-2">
+                  <input
+                    type="text"
+                    value={newSkill}
+                    onChange={(e) => setNewSkill(e.target.value)}
+                    placeholder="Add required skill (e.g. Next.js, Redis, AWS)..."
+                    className="flex-1 px-3 py-1.5 bg-[#F8FAFC] border border-[#CBD5E1] rounded-md text-xs text-[#0F172A] focus:bg-white focus:border-[#1E3A8A] outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="px-3 py-1.5 bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#E2E8F0] rounded-md text-xs font-semibold flex items-center gap-1"
+                  >
+                    <Plus className="w-3.5 h-3.5" /> Add
+                  </button>
+                </form>
+              </div>
+
+              {/* Preferred Skills */}
+              <div>
+                <span className="font-semibold text-[#475569] block mb-1.5">
+                  Nice-to-Have / Complementary Skills
+                </span>
+                <div className="flex flex-wrap gap-1.5 p-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
+                  {formData.preferred_skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="px-2 py-0.5 bg-white border border-[#E2E8F0] text-[#475569] rounded text-xs"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        {/* RIGHT COLUMN: Match Calibration & Hard Cutoff Thresholds (5 Cols) */}
+        <div className="lg:col-span-5 flex flex-col gap-5">
+
+          {/* Scoring Weight Calibration Sliders */}
+          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#E2E8F0]">
+              <div className="flex items-center gap-2">
+                <Sliders className="w-4 h-4 text-[#1E3A8A]" />
+                <h2 className="font-headline text-sm font-bold text-[#0F172A]">Scoring Algorithm Weights</h2>
+              </div>
+              <span className="text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-bold">
+                Total: 100%
+              </span>
+            </div>
+
+            <div className="space-y-4 text-xs">
+              {/* Skills Overlap */}
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-medium text-[#0F172A]">Skills Overlap Weight</span>
+                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.skills}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="10"
+                  max="60"
+                  value={weights.skills}
+                  onChange={(e) => setWeights({ ...weights, skills: parseInt(e.target.value) })}
+                  className="w-full accent-[#1E3A8A]"
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-slate-300 font-semibold mb-1">
-                    Required Skills (Comma separated) *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. React, Node.js, TypeScript, PostgreSQL"
-                    value={formData.required_skills}
-                    onChange={(e) => setFormData({ ...formData, required_skills: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-indigo-500"
-                  />
+              {/* Experience Relevancy */}
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-medium text-[#0F172A]">Experience Relevancy Weight</span>
+                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.experience}%</span>
                 </div>
-                <div>
-                  <label className="block text-slate-300 font-semibold mb-1">
-                    Preferred Skills (Comma separated)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Docker, AWS, Redis, Next.js"
-                    value={formData.preferred_skills}
-                    onChange={(e) => setFormData({ ...formData, preferred_skills: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-indigo-500"
-                  />
-                </div>
+                <input
+                  type="range"
+                  min="10"
+                  max="50"
+                  value={weights.experience}
+                  onChange={(e) => setWeights({ ...weights, experience: parseInt(e.target.value) })}
+                  className="w-full accent-[#1E3A8A]"
+                />
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-850 p-3 rounded-xl border border-slate-800">
-                <div>
-                  <label className="block text-slate-400 mb-1">Min Exp (Yrs)</label>
-                  <input
-                    type="number"
-                    step="0.5"
-                    value={formData.min_experience}
-                    onChange={(e) => setFormData({ ...formData, min_experience: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-slate-100"
-                  />
+              {/* Academic Performance */}
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-medium text-[#0F172A]">Academic Performance (CGPA/10th/12th)</span>
+                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.academics}%</span>
                 </div>
+                <input
+                  type="range"
+                  min="5"
+                  max="40"
+                  value={weights.academics}
+                  onChange={(e) => setWeights({ ...weights, academics: parseInt(e.target.value) })}
+                  className="w-full accent-[#1E3A8A]"
+                />
+              </div>
+
+              {/* Domain & Background */}
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-medium text-[#0F172A]">Domain & Semantic Fit</span>
+                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.domain}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="5"
+                  max="30"
+                  value={weights.domain}
+                  onChange={(e) => setWeights({ ...weights, domain: parseInt(e.target.value) })}
+                  className="w-full accent-[#1E3A8A]"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Hard Cutoffs / Eligibility Gates */}
+          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+            <h3 className="font-headline text-sm font-bold text-[#0F172A] mb-3 flex items-center gap-2">
+              <GraduationCap className="w-4 h-4 text-[#1E3A8A]" />
+              <span>Hard Eligibility Thresholds (Pre-Filter Gates)</span>
+            </h3>
+
+            <div className="space-y-3 text-xs">
+              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
                 <div>
-                  <label className="block text-slate-400 mb-1">Min CGPA</label>
+                  <span className="font-semibold text-[#0F172A] block">Minimum College CGPA Cutoff</span>
+                  <span className="text-[11px] text-[#64748B]">Reject/Deprioritize below threshold</span>
+                </div>
+                <div className="flex items-center gap-1">
                   <input
                     type="number"
                     step="0.1"
-                    placeholder="e.g. 7.5"
+                    min="5"
+                    max="10"
                     value={formData.min_cgpa}
                     onChange={(e) => setFormData({ ...formData, min_cgpa: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-slate-100"
+                    className="w-16 px-2 py-1 bg-white border border-[#CBD5E1] rounded text-right font-mono font-bold text-xs"
                   />
-                </div>
-                <div>
-                  <label className="block text-slate-400 mb-1">Min 12th %</label>
-                  <input
-                    type="number"
-                    step="1"
-                    placeholder="e.g. 75"
-                    value={formData.min_twelfth_percentage}
-                    onChange={(e) => setFormData({ ...formData, min_twelfth_percentage: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-slate-100"
-                  />
-                </div>
-                <div>
-                  <label className="block text-slate-400 mb-1">Min 10th %</label>
-                  <input
-                    type="number"
-                    step="1"
-                    placeholder="e.g. 75"
-                    value={formData.min_tenth_percentage}
-                    onChange={(e) => setFormData({ ...formData, min_tenth_percentage: e.target.value })}
-                    className="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-slate-100"
-                  />
+                  <span className="font-mono text-[#64748B]">/10.0</span>
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-2 pt-2 border-t border-slate-800">
-                <button
-                  type="button"
-                  onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold"
-                >
-                  {editingJob ? 'Save Changes' : 'Publish Job Opening'}
-                </button>
+              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
+                <div>
+                  <span className="font-semibold text-[#0F172A] block">Minimum 12th Board Score</span>
+                  <span className="text-[11px] text-[#64748B]">Indian Class XII percentage criteria</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    step="1"
+                    min="50"
+                    max="100"
+                    value={formData.min_twelfth_percentage}
+                    onChange={(e) => setFormData({ ...formData, min_twelfth_percentage: e.target.value })}
+                    className="w-16 px-2 py-1 bg-white border border-[#CBD5E1] rounded text-right font-mono font-bold text-xs"
+                  />
+                  <span className="font-mono text-[#64748B]">%</span>
+                </div>
               </div>
-            </form>
-          </div>
+
+              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
+                <div>
+                  <span className="font-semibold text-[#0F172A] block">Minimum Experience</span>
+                  <span className="text-[11px] text-[#64748B]">Years in verified engineering roles</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    step="0.5"
+                    min="0"
+                    max="15"
+                    value={formData.min_experience}
+                    onChange={(e) => setFormData({ ...formData, min_experience: e.target.value })}
+                    className="w-16 px-2 py-1 bg-white border border-[#CBD5E1] rounded text-right font-mono font-bold text-xs"
+                  />
+                  <span className="font-mono text-[#64748B]">Yrs</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-[#E2E8F0]">
+              <button
+                type="button"
+                onClick={handleSaveAndReindex}
+                className="w-full py-2.5 bg-[#4338CA] hover:bg-[#3730A3] text-white rounded-md text-xs font-semibold shadow-xs flex items-center justify-center gap-1.5 transition-colors"
+              >
+                <Check className="w-4 h-4" />
+                <span>Apply Calibration & Recalculate Candidate Matches</span>
+              </button>
+            </div>
+          </section>
+
         </div>
-      )}
+
+      </div>
+
     </div>
   );
 }

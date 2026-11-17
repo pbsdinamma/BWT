@@ -13,7 +13,7 @@ import BulkEmailModal from './components/BulkEmailModal';
 import { api } from './api';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('kanban'); // 'kanban' | 'candidates' | 'jobs' | 'duplicates' | 'email'
+  const [activeTab, setActiveTab] = useState('kanban'); // 'kanban' | 'candidates' | 'upload' | 'jobs' | 'duplicates' | 'email'
   const [jobs, setJobs] = useState([]);
   const [activeJobId, setActiveJobId] = useState('');
   const [candidates, setCandidates] = useState([]);
@@ -219,7 +219,7 @@ export default function App() {
   const activeJob = jobs.find((j) => j.job.id === activeJobId)?.job || jobs[0]?.job;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-body">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-body antialiased selection:bg-[#1E3A8A]/10 selection:text-[#1E3A8A]">
       {/* Top Global Navigation Bar (Stitch MCP Style) */}
       <Navbar
         activeTab={activeTab}
@@ -238,23 +238,27 @@ export default function App() {
         onResetDemo={handleResetDemo}
         isResetting={isResetting}
         onOpenCreateJob={() => setActiveTab('jobs')}
+        searchTerm={filters.search}
+        onSearchChange={(val) => handleFilterChange('search', val)}
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Job Context Header & Quick Metric Strip (Stitch MCP Style) */}
-        <DashboardStats
-          stats={stats}
-          activeJob={activeJob}
-          jobs={jobs}
-          onSelectJob={(id) => {
-            setActiveJobId(id);
-            setSelectedCandidateIds([]);
-          }}
-          onStageClick={(stage) => {
-            handleFilterChange('stage', stage);
-          }}
-        />
+      <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 py-6">
+        {/* Job Context Header & Metric Strip (Shown on Kanban and Candidates view) */}
+        {(activeTab === 'kanban' || activeTab === 'candidates') && (
+          <DashboardStats
+            stats={stats}
+            activeJob={activeJob}
+            jobs={jobs}
+            onSelectJob={(id) => {
+              setActiveJobId(id);
+              setSelectedCandidateIds([]);
+            }}
+            onStageClick={(stage) => {
+              handleFilterChange('stage', stage);
+            }}
+          />
+        )}
 
         {/* Smart Sourcing Filter Bar (Criteria & Cutoffs) */}
         {(activeTab === 'kanban' || activeTab === 'candidates') && (
@@ -298,20 +302,32 @@ export default function App() {
           />
         )}
 
-        {/* Tab 3: AI Job Openings Manager */}
+        {/* Tab 3: Bulk Resume Ingestion & Parsing Studio */}
+        {activeTab === 'upload' && (
+          <ResumeUploader
+            isFullPage={true}
+            jobs={jobs}
+            activeJobId={activeJobId}
+            onUploadSuccess={() => {
+              loadJobsAndStats();
+              loadCandidates();
+            }}
+          />
+        )}
+
+        {/* Tab 4: AI Job Openings Manager & Match Calibration */}
         {activeTab === 'jobs' && (
           <JobDescriptionManager
             jobs={jobs}
             activeJobId={activeJobId}
             onSelectActiveJob={(id) => {
               setActiveJobId(id);
-              setActiveTab('kanban');
             }}
             onRefreshJobs={loadJobsAndStats}
           />
         )}
 
-        {/* Tab 4: Duplicates Detection Center */}
+        {/* Tab 5: Duplicates Detection Center */}
         {activeTab === 'duplicates' && (
           <DuplicateManagerModal
             onRefresh={() => {
@@ -321,7 +337,7 @@ export default function App() {
           />
         )}
 
-        {/* Tab 5: Bulk Email Campaigns */}
+        {/* Tab 6: Bulk Email Campaigns */}
         {activeTab === 'email' && (
           <BulkEmailModal
             candidates={candidates}
@@ -330,7 +346,7 @@ export default function App() {
         )}
       </main>
 
-      {/* Candidate Full AI Detail Modal */}
+      {/* Candidate Full AI Detail Modal (Stitch Candidate Dossier & Resume Previewer) */}
       {detailCandidateData && (
         <CandidateDetailModal
           candidateData={detailCandidateData}
@@ -351,7 +367,7 @@ export default function App() {
         />
       )}
 
-      {/* Bulk Resume Uploader Modal */}
+      {/* Bulk Resume Uploader Modal (When triggered from top Navbar button) */}
       <ResumeUploader
         isOpen={isUploadOpen}
         onClose={() => setIsUploadOpen(false)}

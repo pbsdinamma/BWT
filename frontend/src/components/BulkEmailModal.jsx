@@ -8,18 +8,22 @@ import {
   Clock,
   ChevronDown,
   Eye,
-  FileText
+  FileText,
+  Calendar,
+  Link as LinkIcon,
+  Check,
+  X
 } from 'lucide-react';
 import { api } from '../api';
 
-export default function BulkEmailModal({ candidates = [], activeJob }) {
+export default function BulkEmailModal({ candidates = [], activeJob, onClose }) {
   const [activeTab, setActiveTab] = useState('compose'); // 'compose' | 'history'
   const [templates, setTemplates] = useState({});
   const [selectedTemplateKey, setSelectedTemplateKey] = useState('shortlisted');
   const [selectedCandidateIds, setSelectedCandidateIds] = useState([]);
   const [subject, setSubject] = useState('');
   const [bodyTemplate, setBodyTemplate] = useState('');
-  const [companyName, setCompanyName] = useState('HireSwift Technologies');
+  const [companyName, setCompanyName] = useState('HireSwift Engineering');
   const [interviewDate, setInterviewDate] = useState('Thursday at 2:30 PM IST');
   const [interviewLink, setInterviewLink] = useState('https://meet.google.com/hsw-ats-tech');
   const [sentHistory, setSentHistory] = useState([]);
@@ -98,141 +102,263 @@ export default function BulkEmailModal({ candidates = [], activeJob }) {
     setSendSuccessMsg('');
 
     try {
-      const payload = {
-        candidate_ids: selectedCandidateIds,
-        template_type: selectedTemplateKey,
+      const res = await api.sendBulkEmail(
+        selectedCandidateIds,
         subject,
-        body_template: bodyTemplate,
-        job_title: activeJob?.title || 'Software Engineer',
-        company_name: companyName,
-        interview_date: interviewDate,
-        interview_link: interviewLink
-      };
-
-      const res = await api.sendBulkEmail(payload);
-      setSendSuccessMsg(`Successfully delivered ${res.total_sent} personalized emails!`);
+        bodyTemplate,
+        companyName,
+        interviewDate,
+        interviewLink
+      );
+      setSendSuccessMsg(`Successfully sent ${res.sent_count} personalized outreach emails!`);
       loadHistory();
-    } catch (e) {
-      alert('Error sending emails: ' + e.message);
+    } catch (err) {
+      alert('Error sending emails: ' + err.message);
     } finally {
       setIsSending(false);
     }
   };
 
-  // Preview interpolation for first selected candidate
-  const previewCandidate = candidates.find((c) => selectedCandidateIds.includes(c.candidate.id))?.candidate || candidates[0]?.candidate;
+  const previewCandidate = candidates.find((c) =>
+    selectedCandidateIds.includes(c.candidate.id)
+  )?.candidate || candidates[0]?.candidate;
 
-  const renderPreview = (text) => {
-    if (!previewCandidate) return text;
+  const getPersonalizedPreview = (text) => {
+    if (!text || !previewCandidate) return text || '';
+    const firstName = previewCandidate.name.split(' ')[0];
+    const topSkill = previewCandidate.skills?.[0] || 'Software Engineering';
     return text
-      .replace(/\{\{\s*name\s*\}\}/g, previewCandidate.name)
-      .replace(/\{\{\s*job_title\s*\}\}/g, activeJob?.title || 'Software Engineer')
-      .replace(/\{\{\s*company\s*\}\}/g, companyName)
-      .replace(/\{\{\s*skills\s*\}\}/g, previewCandidate.skills?.slice(0, 4).join(', ') || 'Engineering')
-      .replace(/\{\{\s*experience\s*\}\}/g, `${previewCandidate.years_of_experience} years`)
-      .replace(/\{\{\s*interview_date\s*\}\}/g, interviewDate)
-      .replace(/\{\{\s*interview_link\s*\}\}/g, interviewLink)
-      .replace(/\{\{\s*missing_skills\s*\}\}/g, 'cloud containerization');
+      .replace(/{{first_name}}/g, firstName)
+      .replace(/{{candidate_name}}/g, previewCandidate.name)
+      .replace(/{{top_skill}}/g, topSkill)
+      .replace(/{{job_title}}/g, activeJob?.title || 'Full-Stack Engineer')
+      .replace(/{{company_name}}/g, companyName)
+      .replace(/{{interview_date}}/g, interviewDate)
+      .replace(/{{interview_link}}/g, interviewLink)
+      .replace(/{{schedule_link}}/g, interviewLink);
   };
 
   return (
-    <div className="space-y-4">
-      {/* Header Banner */}
-      <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <div className="flex items-center space-x-2">
-            <Mail className="w-5 h-5 text-indigo-400" />
-            <h2 className="text-base font-bold text-white">Bulk Candidate Communications</h2>
+    <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl shadow-xl overflow-hidden flex flex-col font-body text-[#0F172A]">
+      
+      {/* Modal / Panel Header (Stitch Header) */}
+      <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between bg-white">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-md bg-blue-50 text-[#1E3A8A] flex items-center justify-center font-bold">
+            <Mail className="w-5 h-5" />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Send dynamic, personalized updates to shortlisted, interview, or rejected candidates using customizable templates.
-          </p>
+          <div>
+            <h1 className="font-headline text-lg sm:text-xl font-bold text-[#0F172A]">
+              Bulk Candidate Outreach & Automated Interview Dispatch
+            </h1>
+            <p className="text-xs text-[#475569]">
+              Personalized automated invitation sequence for <strong>{selectedCandidateIds.length} Selected Candidates</strong>
+            </p>
+          </div>
         </div>
 
-        {/* Tab buttons */}
-        <div className="flex items-center space-x-1 bg-slate-800 p-1 rounded-lg border border-slate-700 text-xs">
-          <button
-            onClick={() => setActiveTab('compose')}
-            className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
-              activeTab === 'compose' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            Compose Campaign
-          </button>
-          <button
-            onClick={() => setActiveTab('history')}
-            className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
-              activeTab === 'history' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            Sent Outbox ({sentHistory.length})
-          </button>
+        {/* Tab switch & close */}
+        <div className="flex items-center gap-2">
+          <div className="flex bg-[#F1F5F9] p-0.5 rounded-lg border border-[#E2E8F0] text-xs font-semibold">
+            <button
+              onClick={() => setActiveTab('compose')}
+              className={`px-3 py-1 rounded-md transition-colors ${
+                activeTab === 'compose' ? 'bg-white text-[#1E3A8A] shadow-2xs' : 'text-[#64748B]'
+              }`}
+            >
+              Compose
+            </button>
+            <button
+              onClick={() => setActiveTab('history')}
+              className={`px-3 py-1 rounded-md transition-colors ${
+                activeTab === 'history' ? 'bg-white text-[#1E3A8A] shadow-2xs' : 'text-[#64748B]'
+              }`}
+            >
+              History ({sentHistory.length})
+            </button>
+          </div>
         </div>
       </div>
 
-      {activeTab === 'compose' ? (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 text-xs">
-          {/* Left Column: Recipients & Template Settings (5 cols) */}
-          <div className="lg:col-span-5 space-y-4">
-            {/* Quick Selection Buttons */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
-              <span className="font-bold text-slate-200 block text-xs uppercase tracking-wide">
-                1. Select Recipients ({selectedCandidateIds.length} Selected)
-              </span>
+      {sendSuccessMsg && (
+        <div className="bg-emerald-50 border-b border-emerald-200 px-6 py-2.5 text-xs text-[#047857] flex items-center gap-2 font-medium">
+          <CheckCircle className="w-4 h-4 shrink-0" />
+          <span>{sendSuccessMsg}</span>
+        </div>
+      )}
 
-              <div className="flex flex-wrap gap-1.5">
+      {activeTab === 'compose' ? (
+        <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#F8FAFC]">
+          
+          {/* Left Column: Template & Message Editor (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            
+            {/* Communication Template Buttons */}
+            <div className="bg-white border border-[#E2E8F0] rounded-xl p-4 shadow-xs">
+              <label className="block text-xs font-bold text-[#0F172A] mb-2">Communication Template</label>
+              <div className="grid grid-cols-3 gap-2.5 text-xs">
                 <button
                   type="button"
-                  onClick={() => selectStageGroup('Shortlisted')}
-                  className="px-2.5 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-[11px] font-semibold"
+                  onClick={() => handleTemplateChange('shortlisted')}
+                  className={`p-2.5 rounded-lg text-left transition-all border ${
+                    selectedTemplateKey === 'shortlisted'
+                      ? 'border-[#1E3A8A] bg-blue-50/50 text-[#1E3A8A] font-semibold'
+                      : 'border-[#E2E8F0] bg-[#F8FAFC] text-[#475569] hover:border-[#94A3B8]'
+                  }`}
                 >
-                  All Shortlisted
+                  <div className="flex items-center justify-between">
+                    <span>Round 1 Invite</span>
+                    {selectedTemplateKey === 'shortlisted' && <Check className="w-3.5 h-3.5 text-[#1E3A8A]" />}
+                  </div>
+                  <p className="text-[11px] text-[#64748B] font-normal mt-0.5">Tech interview + link</p>
                 </button>
+
                 <button
                   type="button"
-                  onClick={() => selectStageGroup('Interview')}
-                  className="px-2.5 py-1 rounded-lg bg-violet-500/15 hover:bg-violet-500/25 text-violet-300 border border-violet-500/30 text-[11px] font-semibold"
+                  onClick={() => handleTemplateChange('interview')}
+                  className={`p-2.5 rounded-lg text-left transition-all border ${
+                    selectedTemplateKey === 'interview'
+                      ? 'border-[#1E3A8A] bg-blue-50/50 text-[#1E3A8A] font-semibold'
+                      : 'border-[#E2E8F0] bg-[#F8FAFC] text-[#475569] hover:border-[#94A3B8]'
+                  }`}
                 >
-                  All In Interview
+                  <div className="flex items-center justify-between font-medium">
+                    <span>Assignment / Tech</span>
+                    {selectedTemplateKey === 'interview' && <Check className="w-3.5 h-3.5 text-[#1E3A8A]" />}
+                  </div>
+                  <p className="text-[11px] text-[#64748B] font-normal mt-0.5">Take-home code test</p>
                 </button>
+
                 <button
                   type="button"
-                  onClick={() => selectStageGroup('Offer')}
-                  className="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-[11px] font-semibold"
+                  onClick={() => handleTemplateChange('rejection')}
+                  className={`p-2.5 rounded-lg text-left transition-all border ${
+                    selectedTemplateKey === 'rejection'
+                      ? 'border-[#1E3A8A] bg-blue-50/50 text-[#1E3A8A] font-semibold'
+                      : 'border-[#E2E8F0] bg-[#F8FAFC] text-[#475569] hover:border-[#94A3B8]'
+                  }`}
                 >
-                  All Offers
-                </button>
-                <button
-                  type="button"
-                  onClick={() => selectStageGroup('all')}
-                  className="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-[11px]"
-                >
-                  Select All
+                  <div className="flex items-center justify-between font-medium">
+                    <span>Gentle Reject</span>
+                    {selectedTemplateKey === 'rejection' && <Check className="w-3.5 h-3.5 text-[#1E3A8A]" />}
+                  </div>
+                  <p className="text-[11px] text-[#64748B] font-normal mt-0.5">Warm talent pool note</p>
                 </button>
               </div>
+            </div>
 
-              {/* Candidates Scrollable Checkbox List */}
-              <div className="max-h-48 overflow-y-auto space-y-1 pr-1 border border-slate-800 rounded-lg p-2 bg-slate-850">
-                {candidates.map((item) => {
-                  const c = item.candidate;
-                  const isChecked = selectedCandidateIds.includes(c.id);
+            {/* Subject Line */}
+            <div className="bg-white border border-[#E2E8F0] rounded-xl p-4 shadow-xs">
+              <label className="block text-xs font-semibold text-[#475569] mb-1">Subject Line</label>
+              <input
+                type="text"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                className="w-full px-3 py-2 bg-[#F8FAFC] border border-[#CBD5E1] rounded-md text-xs font-medium text-[#0F172A] focus:bg-white focus:border-[#1E3A8A] outline-none"
+              />
+            </div>
 
+            {/* Message Body with Tag Chips */}
+            <div className="bg-white border border-[#E2E8F0] rounded-xl p-4 shadow-xs">
+              <div className="flex flex-wrap items-center justify-between mb-1.5 gap-2">
+                <label className="text-xs font-semibold text-[#475569]">Message Body</label>
+                <div className="flex items-center gap-1 text-[11px] font-mono text-[#1E3A8A]">
+                  <span>Tags:</span>
+                  {['{{first_name}}', '{{top_skill}}', '{{interview_link}}'].map((tag) => (
+                    <span
+                      key={tag}
+                      onClick={() => setBodyTemplate((b) => b + ' ' + tag)}
+                      className="px-1.5 py-0.5 rounded bg-[#F1F5F9] border border-[#E2E8F0] cursor-pointer hover:bg-[#E2E8F0]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <textarea
+                rows={9}
+                value={bodyTemplate}
+                onChange={(e) => setBodyTemplate(e.target.value)}
+                className="w-full p-3 bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg text-xs text-[#0F172A] focus:bg-white focus:border-[#1E3A8A] outline-none leading-relaxed font-sans"
+              />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 pt-3 border-t border-[#E2E8F0] text-xs">
+                <div>
+                  <label className="block text-[11px] text-[#64748B] mb-0.5 font-medium">Interview Slot / Date</label>
+                  <input
+                    type="text"
+                    value={interviewDate}
+                    onChange={(e) => setInterviewDate(e.target.value)}
+                    className="w-full px-2.5 py-1.5 bg-[#F8FAFC] border border-[#CBD5E1] rounded text-xs text-[#0F172A]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] text-[#64748B] mb-0.5 font-medium">Meeting / Calendly Link</label>
+                  <input
+                    type="text"
+                    value={interviewLink}
+                    onChange={(e) => setInterviewLink(e.target.value)}
+                    className="w-full px-2.5 py-1.5 bg-[#F8FAFC] border border-[#CBD5E1] rounded text-xs text-[#0F172A]"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: Audience Selector & Live Preview (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
+
+            {/* Recipient Audience Filter */}
+            <div className="bg-white border border-[#E2E8F0] rounded-xl p-4 shadow-xs">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-[#1E3A8A]" />
+                  <span>Target Recipients ({selectedCandidateIds.length})</span>
+                </span>
+                <span className="text-[11px] text-[#64748B]">{candidates.length} pool total</span>
+              </div>
+
+              {/* Stage Quick Filter Chips */}
+              <div className="flex flex-wrap gap-1.5 mb-2.5">
+                {['all', 'Shortlisted', 'Interview', 'Applied'].map((st) => (
+                  <button
+                    key={st}
+                    type="button"
+                    onClick={() => selectStageGroup(st)}
+                    className="px-2 py-0.5 rounded text-[11px] font-medium bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#475569] border border-[#E2E8F0]"
+                  >
+                    {st === 'all' ? 'All Candidates' : st}
+                  </button>
+                ))}
+              </div>
+
+              {/* Candidate Selection List */}
+              <div className="max-h-44 overflow-y-auto space-y-1 pr-1">
+                {candidates.map((c) => {
+                  const isChecked = selectedCandidateIds.includes(c.candidate.id);
                   return (
                     <label
-                      key={c.id}
-                      className="flex items-center justify-between p-1.5 rounded hover:bg-slate-800 cursor-pointer"
+                      key={c.candidate.id}
+                      className={`flex items-center justify-between p-2 rounded border cursor-pointer text-xs ${
+                        isChecked ? 'bg-blue-50/60 border-blue-200' : 'bg-[#F8FAFC] border-[#E2E8F0]'
+                      }`}
                     >
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center gap-2 truncate">
                         <input
                           type="checkbox"
                           checked={isChecked}
-                          onChange={() => toggleSelect(c.id)}
-                          className="accent-indigo-500 rounded"
+                          onChange={() => toggleSelect(c.candidate.id)}
+                          className="rounded text-[#1E3A8A] border-[#CBD5E1]"
                         />
-                        <span className="font-medium text-slate-200">{c.name}</span>
+                        <div className="truncate">
+                          <span className="font-semibold text-[#0F172A] block truncate">{c.candidate.name}</span>
+                          <span className="text-[10px] text-[#64748B] font-mono block truncate">{c.candidate.email}</span>
+                        </div>
                       </div>
-                      <span className="text-[10px] text-slate-400 font-semibold px-1.5 py-0.2 rounded bg-slate-800">
-                        {c.stage}
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-white border border-[#E2E8F0] text-[#475569] font-medium ml-2 shrink-0">
+                        {c.candidate.stage}
                       </span>
                     </label>
                   );
@@ -240,195 +366,89 @@ export default function BulkEmailModal({ candidates = [], activeJob }) {
               </div>
             </div>
 
-            {/* Template Selector */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
-              <span className="font-bold text-slate-200 block text-xs uppercase tracking-wide">
-                2. Choose Email Template
-              </span>
-
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { key: 'shortlisted', label: 'Shortlisted' },
-                  { key: 'interview', label: 'Interview Invitation' },
-                  { key: 'offer', label: 'Job Offer' },
-                  { key: 'rejection', label: 'Polite Rejection' }
-                ].map((tpl) => (
-                  <button
-                    key={tpl.key}
-                    type="button"
-                    onClick={() => handleTemplateChange(tpl.key)}
-                    className={`p-2.5 rounded-lg border text-left font-semibold transition-all ${
-                      selectedTemplateKey === tpl.key
-                        ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/50 shadow-md shadow-indigo-600/10'
-                        : 'bg-slate-850 text-slate-400 border-slate-800 hover:text-white'
-                    }`}
-                  >
-                    {tpl.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Dynamic Inputs for variables */}
-              <div className="pt-2 border-t border-slate-800 space-y-2">
-                <div>
-                  <label className="block text-slate-400 text-[11px] mb-1">Company Name:</label>
-                  <input
-                    type="text"
-                    value={companyName}
-                    onChange={(e) => setCompanyName(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-200"
-                  />
-                </div>
-                {selectedTemplateKey === 'interview' && (
-                  <>
-                    <div>
-                      <label className="block text-slate-400 text-[11px] mb-1">Interview Date & Time:</label>
-                      <input
-                        type="text"
-                        value={interviewDate}
-                        onChange={(e) => setInterviewDate(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-200"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-slate-400 text-[11px] mb-1">Meeting Link:</label>
-                      <input
-                        type="text"
-                        value={interviewLink}
-                        onChange={(e) => setInterviewLink(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-200"
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Editor & Live Interpolated Preview (7 cols) */}
-          <div className="lg:col-span-7 space-y-4">
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
-              <span className="font-bold text-slate-200 block text-xs uppercase tracking-wide">
-                3. Subject & Template Editor
-              </span>
-
-              <div>
-                <label className="block text-slate-400 text-[11px] mb-1">Subject Line:</label>
-                <input
-                  type="text"
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-indigo-500 font-medium"
-                />
-              </div>
-
-              <div>
-                <label className="block text-slate-400 text-[11px] mb-1">Email Body:</label>
-                <textarea
-                  rows="9"
-                  value={bodyTemplate}
-                  onChange={(e) => setBodyTemplate(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-slate-100 font-mono text-xs focus:outline-none focus:border-indigo-500 leading-relaxed"
-                />
-              </div>
-
-              <div className="text-[11px] text-slate-500 flex flex-wrap gap-1 items-center">
-                <span>Available Placeholders:</span>
-                {['{{name}}', '{{job_title}}', '{{company}}', '{{skills}}', '{{interview_date}}', '{{interview_link}}'].map((pl) => (
-                  <span key={pl} className="px-1.5 py-0.2 rounded bg-slate-800 text-indigo-300 font-mono text-[10px]">
-                    {pl}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Live Preview Box */}
-            <div className="bg-slate-850 border border-slate-800 rounded-xl p-4 space-y-2">
-              <div className="flex items-center justify-between text-xs font-bold text-slate-300">
-                <span className="flex items-center space-x-1.5">
-                  <Eye className="w-4 h-4 text-sky-400" />
-                  <span>Live Rendered Preview (Previewing for {previewCandidate?.name || 'Candidate'})</span>
+            {/* Live Personalized Preview Card */}
+            <div className="bg-white border border-[#E2E8F0] rounded-xl p-4 shadow-xs">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
+                  <Eye className="w-4 h-4 text-[#4338CA]" />
+                  <span>Live Render Preview</span>
                 </span>
-                <span className="text-[10px] text-slate-500">Variables Replaced</span>
+                <span className="text-[11px] font-mono text-[#64748B]">
+                  For: {previewCandidate?.name || 'Candidate'}
+                </span>
               </div>
 
-              <div className="bg-slate-950 p-3.5 rounded-lg border border-slate-800 font-sans text-xs space-y-2 text-slate-200">
-                <div className="font-bold text-white border-b border-slate-800 pb-1.5">
-                  Subject: {renderPreview(subject)}
+              <div className="p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg text-xs space-y-1.5 font-sans">
+                <div className="font-semibold text-[#0F172A] border-b border-[#E2E8F0] pb-1">
+                  Subject: {getPersonalizedPreview(subject)}
                 </div>
-                <div className="whitespace-pre-wrap leading-relaxed text-slate-300">
-                  {renderPreview(bodyTemplate)}
+                <div className="text-[#334155] whitespace-pre-wrap leading-relaxed text-[11px] max-h-36 overflow-y-auto">
+                  {getPersonalizedPreview(bodyTemplate)}
                 </div>
               </div>
 
-              {/* Send Button & Status */}
-              <div className="pt-2 flex items-center justify-between">
-                {sendSuccessMsg && (
-                  <div className="text-emerald-400 font-bold flex items-center space-x-1 text-xs">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>{sendSuccessMsg}</span>
-                  </div>
-                )}
-                <div className="ml-auto">
-                  <button
-                    onClick={handleSend}
-                    disabled={selectedCandidateIds.length === 0 || isSending}
-                    className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                      selectedCandidateIds.length > 0 && !isSending
-                        ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30'
-                        : 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                    }`}
-                  >
-                    <Send className="w-4 h-4" />
-                    <span>
-                      {isSending
-                        ? 'Delivering...'
-                        : `Send to ${selectedCandidateIds.length} Candidate(s)`}
-                    </span>
-                  </button>
-                </div>
-              </div>
+              {/* Action Button */}
+              <button
+                type="button"
+                onClick={handleSend}
+                disabled={isSending || selectedCandidateIds.length === 0}
+                className="w-full mt-4 py-2.5 bg-[#1E3A8A] hover:bg-[#172554] text-white rounded-md text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+              >
+                <Send className="w-4 h-4" />
+                <span>
+                  {isSending
+                    ? 'Dispatching Emails...'
+                    : `Send Outreach Campaign (${selectedCandidateIds.length} Recipients)`}
+                </span>
+              </button>
             </div>
+
           </div>
+
         </div>
       ) : (
-        /* Sent History Tab */
-        <div className="space-y-3 text-xs">
-          {sentHistory.length === 0 ? (
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-12 text-center text-slate-500">
-              No emails sent yet in this session.
-            </div>
-          ) : (
-            sentHistory.map((rec) => (
-              <div
-                key={rec.id}
-                className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 space-y-2 shadow-md"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex items-center space-x-2">
-                    <span className="font-bold text-white">{rec.candidate_name}</span>
-                    <span className="text-slate-400">({rec.candidate_email})</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                      {rec.status}
-                    </span>
-                    <span className="text-slate-500 text-[11px]">
-                      {new Date(rec.sent_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="text-slate-300 font-semibold">{rec.subject}</div>
-
-                <div className="bg-slate-950 p-2.5 rounded border border-slate-800/80 font-mono text-[11px] text-slate-400 whitespace-pre-wrap max-h-24 overflow-y-auto">
-                  {rec.body}
-                </div>
-              </div>
-            ))
-          )}
+        /* History Tab */
+        <div className="p-6 bg-[#F8FAFC]">
+          <div className="border border-[#E2E8F0] rounded-xl bg-white overflow-hidden shadow-xs">
+            <table className="w-full text-left text-xs">
+              <thead>
+                <tr className="bg-[#F8FAFC] border-b border-[#E2E8F0] text-[#475569]">
+                  <th className="py-2.5 px-4 font-semibold text-[#0F172A]">Recipient</th>
+                  <th className="py-2.5 px-3 font-semibold text-[#0F172A]">Subject</th>
+                  <th className="py-2.5 px-3 font-semibold text-[#0F172A]">Time</th>
+                  <th className="py-2.5 px-4 font-semibold text-[#0F172A] text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#E2E8F0]">
+                {sentHistory.length > 0 ? (
+                  sentHistory.map((item, idx) => (
+                    <tr key={idx} className="hover:bg-[#F8FAFC]">
+                      <td className="py-2.5 px-4">
+                        <span className="font-semibold text-[#0F172A]">{item.recipient_name}</span>
+                        <span className="block text-[11px] text-[#64748B] font-mono">{item.recipient_email}</span>
+                      </td>
+                      <td className="py-2.5 px-3 max-w-[200px] truncate text-[#334155]">{item.subject}</td>
+                      <td className="py-2.5 px-3 text-[#64748B] font-mono">{new Date(item.sent_at).toLocaleTimeString()}</td>
+                      <td className="py-2.5 px-4 text-right">
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-[#047857] border border-emerald-200 text-[11px] font-semibold">
+                          Sent
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={4} className="py-8 text-center text-[#64748B]">
+                      No previous outreach emails recorded in this session.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
+
     </div>
   );
 }

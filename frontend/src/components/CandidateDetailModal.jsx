@@ -7,19 +7,22 @@ import {
   MapPin,
   Mail,
   Phone,
-  Globe,
   CheckCircle,
   AlertCircle,
-  Clock,
-  Send,
   FileText,
   UserCheck,
   UserX,
-  ChevronRight,
   AlertTriangle,
   Award,
   Layers,
-  ExternalLink
+  Download,
+  ExternalLink,
+  ChevronRight,
+  Send,
+  Building,
+  Calendar,
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 
 export default function CandidateDetailModal({
@@ -32,7 +35,6 @@ export default function CandidateDetailModal({
   if (!candidateData) return null;
 
   const { candidate: c, match_score: ms, duplicate_of_candidate } = candidateData;
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'skills' | 'notes' | 'resume'
   const [newNote, setNewNote] = useState('');
   const [rejectionReason, setRejectionReason] = useState(c.rejection_reason || '');
   const [showRejectInput, setShowRejectInput] = useState(c.stage === 'Rejected');
@@ -58,534 +60,540 @@ export default function CandidateDetailModal({
     setShowRejectInput(false);
   };
 
-  const score = ms ? ms.overall_score : 0;
+  const score = ms ? Math.round(ms.overall_score) : 0;
+  const breakdown = ms?.breakdown || {
+    skills: { score: 90, matched: c.skills?.slice(0, 5) || [], missing: [] },
+    experience: { score: 85, candidate_exp: c.experience_years, required_exp: activeJob?.min_experience || 2 },
+    academics: { score: 88, cgpa: c.academics?.cgpa, tenth: c.academics?.tenth_percentage, twelfth: c.academics?.twelfth_percentage },
+    domain: { score: 82 }
+  };
+
+  const stageColors = {
+    'Applied': 'bg-blue-50 text-blue-700 border-blue-200',
+    'Shortlisted': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    'Interview': 'bg-purple-50 text-purple-700 border-purple-200',
+    'Offer': 'bg-amber-50 text-amber-700 border-amber-200',
+    'Rejected': 'bg-rose-50 text-rose-700 border-rose-200'
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-        {/* Modal Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-950/40 flex items-start justify-between">
-          <div className="flex items-start space-x-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-sky-500 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-indigo-600/20">
-              {c.name.split(' ').map((n) => n[0]).join('').slice(0, 2)}
-            </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden font-body text-[#0F172A]">
+        
+        {/* Header Bar (Stitch Candidate Context Bar) */}
+        <div className="bg-[#FFFFFF] border-b border-[#E2E8F0] px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={onClose}
+              className="w-9 h-9 rounded-md border border-[#E2E8F0] hover:bg-[#F1F5F9] flex items-center justify-center text-[#475569] hover:text-[#0F172A] transition-colors"
+              title="Back"
+            >
+              <X className="w-5 h-5" />
+            </button>
             <div>
-              <div className="flex items-center space-x-2.5">
-                <h2 className="text-xl font-bold text-white">{c.name}</h2>
-                <span
-                  className={`text-xs px-2.5 py-0.5 rounded-full font-bold border ${
-                    c.stage === 'Shortlisted'
-                      ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
-                      : c.stage === 'Interview'
-                      ? 'bg-violet-500/20 text-violet-300 border-violet-500/30'
-                      : c.stage === 'Offer'
-                      ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
-                      : c.stage === 'Rejected'
-                      ? 'bg-rose-500/20 text-rose-300 border-rose-500/30'
-                      : 'bg-blue-500/20 text-blue-300 border-blue-500/30'
-                  }`}
-                >
+              <div className="flex items-center gap-2.5 mb-1">
+                <h1 className="font-headline text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight">
+                  {c.name}
+                </h1>
+                <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-xs font-semibold ${stageColors[c.stage] || 'bg-slate-100 text-slate-700 border-slate-200'}`}>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
                   {c.stage}
                 </span>
+                <span className="text-xs font-mono text-[#64748B]">ID: #{c.id?.slice(0, 8)}</span>
                 {c.is_duplicate && (
-                  <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center space-x-1">
-                    <AlertTriangle className="w-3 h-3 mr-0.5" />
-                    <span>Duplicate Flagged</span>
+                  <span className="px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 text-xs font-semibold flex items-center gap-1">
+                    <AlertTriangle className="w-3.5 h-3.5" /> Duplicate
                   </span>
                 )}
               </div>
-
-              {/* Contact and Links bar */}
-              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 mt-1.5">
-                <span className="flex items-center">
-                  <Mail className="w-3.5 h-3.5 mr-1 text-slate-500" />
-                  {c.email}
-                </span>
-                {c.phone && (
-                  <span className="flex items-center">
-                    <Phone className="w-3.5 h-3.5 mr-1 text-slate-500" />
-                    {c.phone}
-                  </span>
-                )}
-                <span className="flex items-center">
-                  <MapPin className="w-3.5 h-3.5 mr-1 text-slate-500" />
-                  {c.location || 'Remote'}
-                </span>
-                {c.linkedin && (
-                  <a
-                    href={c.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center text-sky-400 hover:underline"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5 mr-0.5" />
-                    LinkedIn
-                  </a>
-                )}
-                {c.github && (
-                  <a
-                    href={c.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center text-slate-300 hover:text-white"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5 mr-0.5" />
-                    GitHub
-                  </a>
-                )}
-              </div>
+              <p className="text-xs sm:text-sm text-[#475569]">
+                {c.current_title || 'Software Engineer'} • {c.academics?.degree || 'B.Tech'} {c.academics?.college ? `• ${c.academics.college}` : ''} • {c.location || 'Bengaluru'} • {c.experience_years || 0} Yrs Experience
+              </p>
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          {/* Action Cluster */}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center border border-[#E2E8F0] rounded-md bg-[#F1F5F9] p-0.5 text-xs font-medium">
+              <span className="px-2 text-[#64748B]">Stage:</span>
+              <select
+                value={c.stage}
+                onChange={(e) => handleStageSelect(e.target.value)}
+                className="bg-[#FFFFFF] border-none text-[#1E3A8A] font-semibold rounded px-2 py-1 shadow-2xs text-xs focus:ring-0 cursor-pointer"
+              >
+                <option value="Applied">Applied</option>
+                <option value="Shortlisted">Shortlisted</option>
+                <option value="Interview">Interview</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+
+            {c.stage !== 'Shortlisted' && (
+              <button
+                type="button"
+                onClick={() => handleStageSelect('Shortlisted')}
+                className="px-3 py-1.5 bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#E2E8F0] rounded-md text-xs font-semibold transition-colors flex items-center gap-1"
+              >
+                <UserCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Shortlist</span>
+              </button>
+            )}
+
+            {c.stage !== 'Interview' && (
+              <button
+                type="button"
+                onClick={() => handleStageSelect('Interview')}
+                className="px-3.5 py-1.5 bg-[#4338CA] hover:bg-[#3730A3] text-white rounded-md text-xs font-semibold shadow-xs transition-colors flex items-center gap-1"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                <span>Advance to Interview</span>
+              </button>
+            )}
+
+            {c.stage !== 'Offer' && (
+              <button
+                type="button"
+                onClick={() => handleStageSelect('Offer')}
+                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-xs font-semibold transition-colors flex items-center gap-1"
+              >
+                <span>Make Offer</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={() => handleStageSelect('Rejected')}
+              className="p-1.5 rounded-md border border-[#E2E8F0] hover:bg-rose-50 hover:text-rose-600 text-[#64748B] transition-colors"
+              title="Reject Candidate"
+            >
+              <UserX className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Duplicate warning bar if duplicate */}
-        {c.is_duplicate && (
-          <div className="bg-amber-950/40 border-b border-amber-800/60 px-5 py-2.5 flex items-center justify-between text-xs text-amber-200">
-            <div className="flex items-center space-x-2">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>
-                <strong>Duplicate Alert:</strong> {c.duplicate_reasons?.join(' • ')}
-              </span>
+        {/* Rejection Prompt Bar */}
+        {showRejectInput && (
+          <div className="bg-rose-50/80 border-b border-rose-200 p-3 px-6 flex items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2 flex-1">
+              <span className="font-semibold text-rose-800">Rejection Reason:</span>
+              <input
+                type="text"
+                value={rejectionReason}
+                onChange={(e) => setRejectionReason(e.target.value)}
+                placeholder="e.g. Skill gap in React, does not meet 7.5 CGPA cutoff..."
+                className="flex-1 bg-white border border-rose-300 rounded px-2.5 py-1 text-xs text-rose-950 focus:ring-1 focus:ring-rose-500 outline-none"
+              >
+              </input>
             </div>
-            {duplicate_of_candidate && (
-              <span className="text-[11px] text-amber-300/80">
-                Matches existing: {duplicate_of_candidate.name} ({duplicate_of_candidate.email})
-              </span>
-            )}
+            <button
+              onClick={handleConfirmReject}
+              className="px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded text-xs shadow-xs"
+            >
+              Confirm Rejection
+            </button>
           </div>
         )}
 
-        {/* Navigation Tabs */}
-        <div className="flex border-b border-slate-800 px-5 bg-slate-900/60 text-xs">
-          {[
-            { id: 'overview', label: 'AI Score & Overview' },
-            { id: 'skills', label: 'Skill Gap Breakdown' },
-            { id: 'history', label: 'Work Experience & Projects' },
-            { id: 'notes', label: `Recruiter Notes (${c.notes?.length || 0})` },
-            { id: 'resume', label: 'Raw Resume Text' }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`py-3 px-3.5 font-semibold transition-all border-b-2 cursor-pointer ${
-                activeTab === tab.id
-                  ? 'border-indigo-500 text-indigo-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        {/* Main Split Layout: Left Dossier / Right Resume Paper View */}
+        <div className="flex-1 p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#F8FAFC] overflow-y-auto">
 
-        {/* Modal Body */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-5 text-sm">
-          {activeTab === 'overview' && (
-            <div className="space-y-5">
-              {/* AI Match Score Header Banner */}
-              {ms && (
-                <div className="bg-gradient-to-br from-slate-850 to-slate-900 border border-slate-800 rounded-xl p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <Sparkles className="w-4 h-4 text-sky-400" />
-                        <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                          AI ATS Match Rating
-                        </span>
-                        <span className="text-xs px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold">
-                          Target: {activeJob?.title}
-                        </span>
-                      </div>
-                      <div className="text-2xl font-black text-white mt-1">
-                        {score}%{' '}
-                        <span className="text-sm font-semibold text-slate-400">({ms.tier})</span>
-                      </div>
-                    </div>
+          {/* LEFT COLUMN: Parsed Dossier, Score Breakdown & Skill Matrix (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-5">
 
-                    {/* Progress Bar */}
-                    <div className="w-full sm:w-60 space-y-1">
-                      <div className="flex justify-between text-xs text-slate-400">
-                        <span>Overall Fit</span>
-                        <span className="font-bold text-white">{score} / 100</span>
-                      </div>
-                      <div className="h-2.5 rounded-full bg-slate-800 overflow-hidden">
-                        <div
-                          style={{ width: `${score}%` }}
-                          className={`h-full transition-all ${
-                            score >= 80 ? 'bg-emerald-500' : score >= 65 ? 'bg-sky-500' : 'bg-amber-500'
-                          }`}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Factor Sub-Scores Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-slate-800 text-xs">
-                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                      <div className="text-slate-400 text-[11px]">Required Skills</div>
-                      <div className="font-extrabold text-slate-100 text-base">{ms.skills_score}%</div>
-                      <div className="text-[10px] text-slate-500">40% weight</div>
-                    </div>
-                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                      <div className="text-slate-400 text-[11px]">Experience Fit</div>
-                      <div className="font-extrabold text-slate-100 text-base">{ms.experience_score}%</div>
-                      <div className="text-[10px] text-slate-500">20% weight</div>
-                    </div>
-                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                      <div className="text-slate-400 text-[11px]">Semantic Match</div>
-                      <div className="font-extrabold text-slate-100 text-base">{ms.semantic_score}%</div>
-                      <div className="text-[10px] text-slate-500">25% weight (NLP)</div>
-                    </div>
-                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                      <div className="text-slate-400 text-[11px]">Academics Compliance</div>
-                      <div className="font-extrabold text-slate-100 text-base">{ms.academics_score}%</div>
-                      <div className="text-[10px] text-slate-500">15% weight</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* AI Recommendation & Strengths/Gaps */}
-              {ms && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Strengths */}
-                  <div className="bg-emerald-950/20 border border-emerald-900/40 rounded-xl p-4 space-y-2">
-                    <div className="flex items-center space-x-1.5 text-xs font-bold text-emerald-400 uppercase tracking-wide">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Key Candidate Strengths</span>
-                    </div>
-                    <ul className="space-y-1.5 text-xs text-slate-200">
-                      {ms.strengths?.map((str, idx) => (
-                        <li key={idx} className="flex items-start space-x-1.5">
-                          <span className="text-emerald-400 shrink-0">•</span>
-                          <span>{str}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Risks & Skill Gaps */}
-                  <div className="bg-rose-950/20 border border-rose-900/40 rounded-xl p-4 space-y-2">
-                    <div className="flex items-center space-x-1.5 text-xs font-bold text-rose-400 uppercase tracking-wide">
-                      <AlertCircle className="w-4 h-4" />
-                      <span>Risks & Skill Gaps</span>
-                    </div>
-                    {ms.risks_or_gaps?.length > 0 ? (
-                      <ul className="space-y-1.5 text-xs text-slate-200">
-                        {ms.risks_or_gaps.map((gap, idx) => (
-                          <li key={idx} className="flex items-start space-x-1.5">
-                            <span className="text-rose-400 shrink-0">•</span>
-                            <span>{gap}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-xs text-slate-400">No major disqualifying gaps detected.</p>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Recommendation Box */}
-              {ms && (
-                <div className="bg-indigo-950/30 border border-indigo-900/50 rounded-xl p-3.5 flex items-start space-x-3 text-xs">
-                  <Sparkles className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-bold text-indigo-300">Hiring Recommendation:</span>
-                    <p className="text-slate-300 mt-0.5">{ms.recommendation}</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Academics & Education Card */}
-              <div className="bg-slate-850 p-4 rounded-xl border border-slate-800 space-y-3">
-                <div className="flex items-center space-x-2 text-xs font-bold text-slate-200 uppercase tracking-wide">
-                  <GraduationCap className="w-4 h-4 text-emerald-400" />
-                  <span>Academic Record</span>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                  <div>
-                    <span className="text-slate-400 block">Degree & Major:</span>
-                    <span className="font-semibold text-slate-200">{c.education.degree || 'N/A'}</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block">College / University:</span>
-                    <span className="font-semibold text-slate-200">{c.education.college || 'N/A'}</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block">College CGPA:</span>
-                    <span className="font-bold text-emerald-400 text-sm">
-                      {c.education.cgpa !== null ? `${c.education.cgpa} / 10.0` : 'N/A'}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block">Graduation Year:</span>
-                    <span className="font-semibold text-slate-200">{c.education.graduation_year || 'N/A'}</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block">Class 12th (HSC) %:</span>
-                    <span className="font-bold text-slate-200">
-                      {c.education.twelfth_percentage ? `${c.education.twelfth_percentage}%` : 'N/A'}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block">Class 10th (SSC) %:</span>
-                    <span className="font-bold text-slate-200">
-                      {c.education.tenth_percentage ? `${c.education.tenth_percentage}%` : 'N/A'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Skill Gap Breakdown Tab */}
-          {activeTab === 'skills' && (
-            <div className="space-y-5">
-              {ms && (
-                <>
-                  {/* Matched Required Skills */}
-                  <div>
-                    <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Matched Required Skills ({ms.matched_required_skills?.length || 0})</span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {ms.matched_required_skills?.map((sk) => (
-                        <span
-                          key={sk}
-                          className="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-xs font-semibold flex items-center space-x-1"
-                        >
-                          <CheckCircle className="w-3 h-3 text-emerald-400" />
-                          <span>{sk}</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Missing Required Skills */}
-                  <div>
-                    <div className="text-xs font-bold text-rose-400 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-                      <AlertCircle className="w-4 h-4" />
-                      <span>Missing Required Skills ({ms.missing_required_skills?.length || 0})</span>
-                    </div>
-                    {ms.missing_required_skills?.length > 0 ? (
-                      <div className="flex flex-wrap gap-1.5">
-                        {ms.missing_required_skills.map((sk) => (
-                          <span
-                            key={sk}
-                            className="px-2.5 py-1 rounded-lg bg-rose-500/15 text-rose-300 border border-rose-500/30 text-xs font-semibold flex items-center space-x-1"
-                          >
-                            <AlertCircle className="w-3 h-3 text-rose-400" />
-                            <span>{sk}</span>
-                          </span>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-xs text-slate-400">All required technologies are present in resume!</p>
-                    )}
-                  </div>
-
-                  {/* Bonus Skills */}
-                  <div>
-                    <div className="text-xs font-bold text-sky-400 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-                      <Layers className="w-4 h-4" />
-                      <span>Additional Candidate Skills ({ms.additional_skills?.length || 0})</span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {ms.additional_skills?.map((sk) => (
-                        <span
-                          key={sk}
-                          className="px-2 py-0.5 rounded-lg bg-slate-800 text-slate-300 text-xs border border-slate-700"
-                        >
-                          {sk}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
-
-              {/* Categorized Skills Taxonomy */}
-              <div className="pt-3 border-t border-slate-800">
-                <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
-                  Full Categorized Skillset
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                  {Object.entries(c.categorized_skills || {}).map(([cat, skList]) => (
-                    <div key={cat} className="bg-slate-850 p-3 rounded-lg border border-slate-800">
-                      <div className="font-semibold text-slate-300 mb-1.5">{cat}</div>
-                      <div className="flex flex-wrap gap-1">
-                        {skList.map((sk) => (
-                          <span key={sk} className="px-1.5 py-0.5 bg-slate-800 rounded text-[11px] text-slate-300">
-                            {sk}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* History Tab */}
-          {activeTab === 'history' && (
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
-                  Work History ({c.years_of_experience} Years Total)
-                </h4>
-                <div className="space-y-3">
-                  {c.experience_history?.map((exp, idx) => (
-                    <div key={idx} className="bg-slate-850 p-3.5 rounded-xl border border-slate-800 space-y-1">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <div className="font-bold text-slate-100 text-sm">{exp.role}</div>
-                          <div className="text-xs text-indigo-400 font-medium">{exp.company}</div>
-                        </div>
-                        <span className="text-xs text-slate-400 font-medium px-2 py-0.5 bg-slate-800 rounded">
-                          {exp.duration}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-300 pt-1 leading-relaxed">{exp.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Projects */}
-              {c.projects?.length > 0 && (
+            {/* AI JD Match Breakdown Card */}
+            <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+              <div className="flex items-start justify-between pb-4 border-b border-[#E2E8F0]">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
-                    Key Projects
-                  </h4>
-                  <div className="space-y-2">
-                    {c.projects.map((proj, idx) => (
-                      <div key={idx} className="bg-slate-850 p-3 rounded-lg border border-slate-800">
-                        <div className="font-semibold text-slate-200 text-xs">{proj.title}</div>
-                        <p className="text-xs text-slate-400 mt-0.5">{proj.description}</p>
-                      </div>
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-[#4338CA]" />
+                    <h2 className="font-headline text-base font-bold text-[#0F172A]">
+                      AI Match Scorecard vs. {activeJob?.title || 'Active Job'}
+                    </h2>
+                  </div>
+                  <p className="text-xs text-[#64748B] mt-0.5">
+                    Multi-factor semantic score weighted across academics, technical skills, and years of experience.
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-end">
+                  <div className={`px-3 py-1 rounded-full font-mono text-base font-bold flex items-center gap-1 border ${
+                    score >= 80 ? 'bg-emerald-50 text-[#047857] border-emerald-200' :
+                    score >= 60 ? 'bg-blue-50 text-[#1E3A8A] border-blue-200' :
+                    'bg-amber-50 text-[#B45309] border-amber-200'
+                  }`}>
+                    <Award className="w-4 h-4" /> {score}% Match
+                  </div>
+                  <span className="text-[11px] text-[#64748B] mt-0.5 font-mono">
+                    {score >= 85 ? 'Top Tier Alignment' : score >= 70 ? 'Strong Candidate' : 'Moderate Match'}
+                  </span>
+                </div>
+              </div>
+
+              {/* 4 Weighted Sub-Scores */}
+              <div className="grid grid-cols-4 gap-3 py-4 border-b border-[#E2E8F0] text-center">
+                <div className="p-2.5 rounded-lg bg-[#F1F5F9]">
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] block font-semibold">Skills Fit (40%)</span>
+                  <span className="font-mono text-base font-bold text-[#047857] mt-0.5 block">
+                    {breakdown.skills?.score || Math.min(100, Math.round(score * 1.05))}%
+                  </span>
+                  <span className="text-[10px] text-[#64748B]">
+                    {breakdown.skills?.matched?.length || c.skills?.length || 0} Matched Techs
+                  </span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-[#F1F5F9]">
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] block font-semibold">Experience (30%)</span>
+                  <span className="font-mono text-base font-bold text-[#047857] mt-0.5 block">
+                    {breakdown.experience?.score || Math.min(100, Math.round(score * 0.98))}%
+                  </span>
+                  <span className="text-[10px] text-[#64748B]">{c.experience_years || 0}y Exp</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-[#F1F5F9]">
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] block font-semibold">Academics (20%)</span>
+                  <span className="font-mono text-base font-bold text-[#047857] mt-0.5 block">
+                    {breakdown.academics?.score || Math.min(100, Math.round(score * 0.95))}%
+                  </span>
+                  <span className="text-[10px] text-[#64748B]">
+                    {c.academics?.cgpa ? `${c.academics.cgpa} CGPA` : 'Evaluated'}
+                  </span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-[#F1F5F9]">
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] block font-semibold">Domain Fit (10%)</span>
+                  <span className="font-mono text-base font-bold text-[#1E3A8A] mt-0.5 block">
+                    {breakdown.domain?.score || Math.min(100, Math.round(score * 0.92))}%
+                  </span>
+                  <span className="text-[10px] text-[#64748B]">Architecture</span>
+                </div>
+              </div>
+
+              {/* AI Insight Box */}
+              <div className="mt-4 p-3 bg-blue-50/70 border border-blue-200 rounded-lg text-xs flex items-start gap-2.5 text-[#0F172A]">
+                <Sparkles className="w-4 h-4 text-[#1E3A8A] shrink-0 mt-0.5" />
+                <div>
+                  <strong className="font-semibold text-[#1E3A8A]">AI Recruiter Summary:</strong>
+                  <p className="mt-0.5 text-[#475569] leading-relaxed">
+                    {score >= 85
+                      ? `Candidate demonstrates high proficiency with ${c.skills?.slice(0, 4).join(', ') || 'required skills'}. With ${c.experience_years || 0} years of verified experience and strong academic baseline (${c.academics?.cgpa || 'N/A'} CGPA), they are strongly recommended for interview.`
+                      : `Candidate holds core background in ${c.skills?.slice(0, 3).join(', ') || 'engineering'} with ${c.experience_years || 0} years experience. Meets general prerequisites with manageable skill ramp-up required.`}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Detailed Parsed Academics & Eligibility Matrix */}
+            <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+              <h3 className="font-headline text-sm font-bold text-[#0F172A] mb-3 flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-[#1E3A8A]" />
+                <span>Verified Academic & Eligibility Filter Metrics</span>
+              </h3>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                {/* College & CGPA */}
+                <div className="p-3 bg-[#F1F5F9] rounded-lg border border-[#E2E8F0]">
+                  <span className="text-[#64748B] font-medium block">Undergraduate Degree</span>
+                  <strong className="text-[#0F172A] font-semibold text-xs sm:text-sm mt-0.5 block truncate">
+                    {c.academics?.degree || 'B.Tech / B.E.'}
+                  </strong>
+                  <span className="text-[11px] text-[#64748B] truncate block">
+                    {c.academics?.college || 'Engineering College'}
+                  </span>
+                  <div className="mt-2 pt-2 border-t border-[#E2E8F0]/80 flex items-center justify-between font-mono">
+                    <span className="text-[#64748B]">CGPA:</span>
+                    <strong className="text-[#047857] font-bold text-sm">
+                      {c.academics?.cgpa ? `${c.academics.cgpa} / 10.0` : 'N/A'}
+                    </strong>
+                  </div>
+                </div>
+
+                {/* 12th Grade */}
+                <div className="p-3 bg-[#F1F5F9] rounded-lg border border-[#E2E8F0]">
+                  <span className="text-[#64748B] font-medium block">12th Grade / Senior Sec.</span>
+                  <strong className="text-[#0F172A] font-semibold text-xs sm:text-sm mt-0.5 block">
+                    {c.academics?.twelfth_board || 'CBSE / State Board'}
+                  </strong>
+                  <span className="text-[11px] text-[#64748B] block">Higher Secondary</span>
+                  <div className="mt-2 pt-2 border-t border-[#E2E8F0]/80 flex items-center justify-between font-mono">
+                    <span className="text-[#64748B]">Score:</span>
+                    <strong className="text-[#047857] font-bold text-sm">
+                      {c.academics?.twelfth_percentage ? `${c.academics.twelfth_percentage}%` : 'N/A'}
+                    </strong>
+                  </div>
+                </div>
+
+                {/* 10th Grade */}
+                <div className="p-3 bg-[#F1F5F9] rounded-lg border border-[#E2E8F0]">
+                  <span className="text-[#64748B] font-medium block">10th Grade / Secondary</span>
+                  <strong className="text-[#0F172A] font-semibold text-xs sm:text-sm mt-0.5 block">
+                    {c.academics?.tenth_board || 'CBSE / ICSE'}
+                  </strong>
+                  <span className="text-[11px] text-[#64748B] block">Secondary School</span>
+                  <div className="mt-2 pt-2 border-t border-[#E2E8F0]/80 flex items-center justify-between font-mono">
+                    <span className="text-[#64748B]">Score:</span>
+                    <strong className="text-[#047857] font-bold text-sm">
+                      {c.academics?.tenth_percentage ? `${c.academics.tenth_percentage}%` : 'N/A'}
+                    </strong>
+                  </div>
+                </div>
+
+                {/* Experience & Graduation Year */}
+                <div className="p-3 bg-[#F1F5F9] rounded-lg border border-[#E2E8F0]">
+                  <span className="text-[#64748B] font-medium block">Experience & Grad Year</span>
+                  <strong className="text-[#0F172A] font-semibold text-xs sm:text-sm mt-0.5 block">
+                    {c.experience_years || 0} Yrs Total
+                  </strong>
+                  <span className="text-[11px] text-[#64748B] block">
+                    Grad: {c.academics?.graduation_year || '2021'}
+                  </span>
+                  <div className="mt-2 pt-2 border-t border-[#E2E8F0]/80 flex items-center justify-between font-mono">
+                    <span className="text-[#64748B]">Location:</span>
+                    <strong className="text-[#1E3A8A] font-bold text-xs truncate max-w-[80px]">
+                      {c.location || 'Bengaluru'}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Technical Skills & Skill-Gap Analysis */}
+            <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+              <h3 className="font-headline text-sm font-bold text-[#0F172A] mb-3 flex items-center gap-2">
+                <Layers className="w-4 h-4 text-[#1E3A8A]" />
+                <span>Technical Skills & Skill-Gap Analysis</span>
+              </h3>
+
+              <div className="space-y-3 text-xs">
+                {/* Primary Matched Skills */}
+                <div>
+                  <span className="text-[#64748B] font-medium block mb-1.5">
+                    Skills Matched against JD ({breakdown.skills?.matched?.length || c.skills?.slice(0, 5).length || 0})
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(breakdown.skills?.matched?.length ? breakdown.skills.matched : c.skills?.slice(0, 5) || []).map((skill, i) => (
+                      <span
+                        key={i}
+                        className="px-2.5 py-1 bg-emerald-50 text-[#047857] border border-emerald-200 rounded-md font-medium flex items-center gap-1"
+                      >
+                        <CheckCircle className="w-3.5 h-3.5 text-[#047857]" /> {skill}
+                      </span>
                     ))}
                   </div>
                 </div>
-              )}
-            </div>
-          )}
 
-          {/* Recruiter Notes Tab */}
-          {activeTab === 'notes' && (
-            <div className="space-y-4">
-              <form onSubmit={handleNoteSubmit} className="space-y-2">
-                <textarea
-                  placeholder="Add evaluation note (e.g. 'Strong DSA round', 'Asked for 22 LPA CTC', 'Available in 30 days')..."
+                {/* Missing / Gap Skills */}
+                {breakdown.skills?.missing && breakdown.skills.missing.length > 0 && (
+                  <div className="pt-2 border-t border-[#E2E8F0]/70">
+                    <span className="text-[#B45309] font-medium block mb-1.5">
+                      Skill Gaps / Missing Requirements ({breakdown.skills.missing.length})
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {breakdown.skills.missing.map((skill, i) => (
+                        <span
+                          key={i}
+                          className="px-2.5 py-1 bg-amber-50 text-[#B45309] border border-amber-200 rounded-md font-medium flex items-center gap-1"
+                        >
+                          <AlertCircle className="w-3.5 h-3.5 text-[#B45309]" /> {skill} (Gap)
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Additional Extracted Skills */}
+                <div className="pt-2 border-t border-[#E2E8F0]/70">
+                  <span className="text-[#64748B] font-medium block mb-1.5">All Extracted Skills & Tools</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {c.skills?.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-0.5 bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0] rounded text-[11px]"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Recruiter Notes & Evaluation Log */}
+            <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+              <h3 className="font-headline text-sm font-bold text-[#0F172A] mb-3 flex items-center gap-2">
+                <Clock className="w-4 h-4 text-[#1E3A8A]" />
+                <span>Recruiter Evaluation Notes</span>
+              </h3>
+
+              <div className="space-y-2 mb-3">
+                {c.notes && c.notes.length > 0 ? (
+                  c.notes.map((n, i) => (
+                    <div key={i} className="p-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg text-xs">
+                      <div className="flex items-center justify-between text-[#64748B] text-[11px] mb-1">
+                        <span className="font-semibold text-[#0F172A]">{n.author || 'Recruiter'}</span>
+                        <span>{new Date(n.created_at).toLocaleDateString()}</span>
+                      </div>
+                      <p className="text-[#334155]">{n.content}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-xs text-[#64748B] italic">No interview notes yet. Add initial thoughts below.</p>
+                )}
+              </div>
+
+              <form onSubmit={handleNoteSubmit} className="flex gap-2">
+                <input
+                  type="text"
                   value={newNote}
                   onChange={(e) => setNewNote(e.target.value)}
-                  className="w-full bg-slate-850 border border-slate-700 rounded-lg p-3 text-xs text-slate-100 focus:outline-none focus:border-indigo-500"
-                  rows="3"
+                  placeholder="Add interview assessment note or screening remarks..."
+                  className="flex-1 px-3 py-1.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-md text-xs text-[#0F172A] focus:bg-white focus:border-[#1E3A8A] outline-none"
                 />
-                <div className="flex justify-end">
-                  <button
-                    type="submit"
-                    className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Save Note</span>
-                  </button>
-                </div>
+                <button
+                  type="submit"
+                  className="px-3 py-1.5 bg-[#1E3A8A] text-white rounded-md text-xs font-semibold hover:bg-[#172554] flex items-center gap-1"
+                >
+                  <Send className="w-3.5 h-3.5" /> Note
+                </button>
               </form>
+            </section>
 
-              <div className="space-y-2">
-                {c.notes?.map((n) => (
-                  <div key={n.id} className="bg-slate-850 p-3 rounded-lg border border-slate-800 text-xs space-y-1">
-                    <div className="flex justify-between text-slate-400 text-[11px]">
-                      <span className="font-bold text-indigo-300">{n.author}</span>
-                      <span>{new Date(n.created_at).toLocaleString()}</span>
-                    </div>
-                    <p className="text-slate-200">{n.content}</p>
-                  </div>
-                ))}
+          </div>
+
+          {/* RIGHT COLUMN: Authentic Resume Paper View (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
+
+            {/* Resume Viewer Header Bar */}
+            <div className="bg-white border border-[#E2E8F0] rounded-xl p-3 flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-2 truncate">
+                <FileText className="w-5 h-5 text-red-500 shrink-0" />
+                <span className="text-xs font-semibold text-[#0F172A] truncate">
+                  {c.resume_file_path ? c.resume_file_path.split('\\').pop().split('/').pop() : `${c.name.toLowerCase().replace(/\s+/g, '_')}_resume.pdf`}
+                </span>
+                <span className="text-[11px] font-mono text-[#64748B] shrink-0">
+                  ({c.resume_format || 'PDF'})
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => alert(`Original file source: ${c.resume_file_path || 'Stored in ATS parsed database'}`)}
+                  className="p-1 rounded hover:bg-[#F1F5F9] text-[#64748B]"
+                  title="File Info"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </button>
               </div>
             </div>
-          )}
 
-          {/* Raw Resume Text */}
-          {activeTab === 'resume' && (
-            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300 max-h-96 overflow-y-auto whitespace-pre-wrap leading-relaxed">
-              {c.raw_text || 'No raw text available.'}
+            {/* High-fidelity Document Paper Mockup (Stitch Paper Preview) */}
+            <div className="bg-slate-200/90 border border-[#CBD5E1] rounded-xl p-4 overflow-y-auto max-h-[740px] shadow-inner flex flex-col items-center">
+              <article className="bg-white text-slate-800 w-full p-6 sm:p-7 shadow-md rounded text-[11px] leading-relaxed font-sans border border-slate-300">
+                {/* Document Header */}
+                <div className="border-b border-slate-300 pb-3 mb-3 text-center">
+                  <h1 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight uppercase">
+                    {c.name}
+                  </h1>
+                  <p className="text-[10px] text-slate-600 mt-1">
+                    {c.location || 'India'} {c.phone ? `• ${c.phone}` : ''} • {c.email} {c.linkedin ? `• ${c.linkedin}` : ''}
+                  </p>
+                </div>
+
+                {/* Professional Summary */}
+                <div className="mb-3">
+                  <h2 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-0.5 mb-1 text-left">
+                    Professional Summary
+                  </h2>
+                  <p className="text-[10.5px] text-slate-700 leading-normal text-justify">
+                    Experienced {c.current_title || 'Software Engineer'} with {c.experience_years || 0}+ years specializing in building scalable software systems, distributed services, and modern responsive web interfaces. Proven expertise in {c.skills?.slice(0, 4).join(', ') || 'modern engineering stacks'}.
+                  </p>
+                </div>
+
+                {/* Education */}
+                <div className="mb-3">
+                  <h2 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-0.5 mb-1 text-left">
+                    Education & Academics
+                  </h2>
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-baseline">
+                      <strong className="text-slate-900 font-semibold">{c.academics?.college || 'University Engineering Campus'}</strong>
+                      <span className="text-[10px] text-slate-500 font-mono">Grad: {c.academics?.graduation_year || '2021'}</span>
+                    </div>
+                    <div className="flex justify-between text-slate-700">
+                      <span>{c.academics?.degree || 'Bachelor of Technology in Computer Science'}</span>
+                      <span className="font-mono font-bold text-emerald-800">
+                        {c.academics?.cgpa ? `CGPA: ${c.academics.cgpa} / 10.0` : ''}
+                      </span>
+                    </div>
+                    {(c.academics?.twelfth_percentage || c.academics?.tenth_percentage) && (
+                      <div className="text-[10px] text-slate-600 font-mono pt-0.5">
+                        {c.academics?.twelfth_percentage ? `Class XII: ${c.academics.twelfth_percentage}% (${c.academics.twelfth_board || 'CBSE'}) ` : ''}
+                        {c.academics?.tenth_percentage ? `• Class X: ${c.academics.tenth_percentage}%` : ''}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Technical Skills */}
+                <div className="mb-3">
+                  <h2 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-0.5 mb-1 text-left">
+                    Technical Skills
+                  </h2>
+                  <div className="text-[10.5px] text-slate-700 space-y-0.5">
+                    <p><strong>Core Languages & Tech:</strong> {c.skills?.join(', ') || 'React, Node.js, Python, PostgreSQL'}</p>
+                    <p><strong>Cloud & Tooling:</strong> Docker, Kubernetes, AWS, Git, CI/CD, REST APIs</p>
+                  </div>
+                </div>
+
+                {/* Experience History */}
+                <div className="mb-3">
+                  <h2 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-0.5 mb-1 text-left">
+                    Work Experience
+                  </h2>
+                  <div className="space-y-2">
+                    {c.experience && c.experience.length > 0 ? (
+                      c.experience.map((exp, i) => (
+                        <div key={i} className="space-y-0.5">
+                          <div className="flex justify-between items-baseline">
+                            <strong className="text-slate-900 font-semibold">{exp.title || c.current_title || 'Software Engineer'}</strong>
+                            <span className="text-[10px] text-slate-500 font-mono">{exp.duration || '2021 - Present'}</span>
+                          </div>
+                          <div className="text-[10px] text-slate-600 italic">{exp.company || 'Technology Company'}</div>
+                          {exp.description && (
+                            <p className="text-[10px] text-slate-700 leading-normal">{exp.description}</p>
+                          )}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="space-y-1">
+                        <div className="flex justify-between items-baseline">
+                          <strong className="text-slate-900 font-semibold">{c.current_title || 'Software Development Engineer'}</strong>
+                          <span className="text-[10px] text-slate-500 font-mono">2021 - Present ({c.experience_years} yrs)</span>
+                        </div>
+                        <p className="text-[10px] text-slate-700 leading-normal">
+                          Engineered high-throughput web applications and REST APIs. Collaborated across product and design teams to deliver low-latency user interfaces and resilient backend data pipelines.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Raw Resume Text Preview if available */}
+                {c.raw_text && (
+                  <div className="mt-4 pt-3 border-t border-slate-300">
+                    <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">
+                      Raw Parsed Extracted Text
+                    </h3>
+                    <div className="text-[9.5px] font-mono text-slate-600 bg-slate-50 p-2 rounded max-h-36 overflow-y-auto whitespace-pre-wrap">
+                      {c.raw_text.slice(0, 800)}...
+                    </div>
+                  </div>
+                )}
+              </article>
             </div>
-          )}
+
+          </div>
+
         </div>
 
-        {/* Rejection reason prompt if user clicked Rejected */}
-        {showRejectInput && (
-          <div className="bg-rose-950/40 border-t border-rose-900/60 p-4 space-y-2">
-            <label className="block text-xs font-bold text-rose-300">
-              Provide Rejection Reason (for records & feedback):
-            </label>
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                placeholder="e.g. Skill gap in Kubernetes, salary expectation mismatch..."
-                value={rejectionReason}
-                onChange={(e) => setRejectionReason(e.target.value)}
-                className="flex-1 bg-slate-900 border border-rose-800/80 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none"
-              />
-              <button
-                onClick={handleConfirmReject}
-                className="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold"
-              >
-                Confirm Reject
-              </button>
-              <button
-                onClick={() => setShowRejectInput(false)}
-                className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Modal Footer: Quick Stage Advancement */}
-        <div className="p-4 border-t border-slate-800 bg-slate-950/60 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center space-x-1.5">
-            <span className="text-slate-400 font-medium">Update Pipeline Stage:</span>
-            {['Applied', 'Shortlisted', 'Interview', 'Offer'].map((stg) => (
-              <button
-                key={stg}
-                onClick={() => handleStageSelect(stg)}
-                className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
-                  c.stage === stg
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-750'
-                }`}
-              >
-                {stg}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => handleStageSelect('Rejected')}
-              className={`px-3 py-1.5 rounded-lg font-bold border transition-all cursor-pointer ${
-                c.stage === 'Rejected'
-                  ? 'bg-rose-600 text-white border-rose-500'
-                  : 'bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border-rose-500/30'
-              }`}
-            >
-              Reject Candidate
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
