@@ -143,43 +143,43 @@ export default function JobDescriptionManager({
   };
 
   return (
-    <div className="flex flex-col bg-[#F8FAFC] text-[#0F172A] font-body rounded-2xl border border-[#E2E8F0] overflow-hidden shadow-xs">
+    <div className="flex flex-col bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC] font-body rounded-2xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden shadow-xs transition-colors duration-150">
       
       {/* Subheader (Stitch JD Calibration Header) */}
-      <div className="bg-white border-b border-[#E2E8F0] px-6 py-4">
+      <div className="bg-white dark:bg-[#1E293B] border-b border-[#E2E8F0] dark:border-[#334155] px-6 py-4">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2 py-0.5 rounded bg-purple-50 text-[#4338CA] border border-purple-200 text-[11px] font-semibold flex items-center gap-1">
+              <span className="px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-[#4338CA] dark:text-purple-300 border border-purple-200 dark:border-purple-800 text-[11px] font-semibold flex items-center gap-1">
                 <Sparkles className="w-3.5 h-3.5" /> Semantic Scorer
               </span>
               <span className="text-[#94A3B8]">•</span>
-              <span className="text-xs text-[#475569]">
-                Target Role: <strong className="text-[#0F172A] font-semibold">{formData.title || 'Software Engineer'}</strong>
+              <span className="text-xs text-[#475569] dark:text-[#94A3B8]">
+                Target Role: <strong className="text-[#0F172A] dark:text-[#F8FAFC] font-semibold">{formData.title || 'Software Engineer'}</strong>
               </span>
             </div>
-            <h1 className="font-headline text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight">
+            <h1 className="font-headline text-xl sm:text-2xl font-bold text-[#0F172A] dark:text-[#F8FAFC] tracking-tight">
               Job Description & Match Algorithm Calibration
             </h1>
-            <p className="text-xs sm:text-sm text-[#475569] mt-0.5">
+            <p className="text-xs sm:text-sm text-[#475569] dark:text-[#94A3B8] mt-0.5">
               Tune candidate scoring weights, set hard eligibility cutoffs (CGPA, 10th/12th, experience), and define required vs. nice-to-have skill vectors.
             </p>
           </div>
 
           {/* Job Selector & Save Action */}
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center bg-[#F1F5F9] border border-[#E2E8F0] rounded-md px-3 py-1.5 text-xs">
-              <span className="text-[#64748B] mr-2">Active JD:</span>
+            <div className="flex items-center bg-[#F1F5F9] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-md px-3 py-1.5 text-xs">
+              <span className="text-[#64748B] dark:text-[#94A3B8] mr-2">Active JD:</span>
               <select
                 value={selectedJobId}
                 onChange={(e) => {
                   setSelectedJobId(e.target.value);
                   if (onSelectActiveJob) onSelectActiveJob(e.target.value);
                 }}
-                className="bg-transparent font-semibold text-[#0F172A] border-none text-xs focus:ring-0 cursor-pointer"
+                className="bg-transparent font-semibold text-[#0F172A] dark:text-[#F8FAFC] border-none text-xs focus:ring-0 cursor-pointer"
               >
                 {jobs.map((j) => (
-                  <option key={j.job.id} value={j.job.id}>
+                  <option key={j.job.id} value={j.job.id} className="bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC]">
                     {j.job.title}
                   </option>
                 ))}
@@ -190,7 +190,7 @@ export default function JobDescriptionManager({
               type="button"
               onClick={handleSaveAndReindex}
               disabled={isSaving}
-              className="px-4 py-2 bg-[#1E3A8A] hover:bg-[#172554] text-white rounded-md text-xs font-semibold shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-4 py-2 bg-[#1E3A8A] dark:bg-blue-600 hover:bg-[#172554] dark:hover:bg-blue-500 text-white rounded-md text-xs font-semibold shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               {isSaving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
               <span>{isSaving ? 'Re-Indexing Pool...' : 'Save & Re-Index Resumes'}</span>
@@ -206,78 +206,78 @@ export default function JobDescriptionManager({
         <div className="lg:col-span-7 flex flex-col gap-5">
 
           {/* Job Description Rich Input */}
-          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
+          <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-5 shadow-xs">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <Briefcase className="w-4 h-4 text-[#1E3A8A]" />
-                <h2 className="font-headline text-sm font-bold text-[#0F172A]">Job Description Details</h2>
+                <Briefcase className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
+                <h2 className="font-headline text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC]">Job Description Details</h2>
               </div>
-              <span className="text-[11px] font-mono text-[#64748B]">JD-CONFIG</span>
+              <span className="text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8]">JD-CONFIG</span>
             </div>
 
             <div className="space-y-3.5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="block text-[#475569] font-medium mb-1">Job Title</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] font-medium mb-1">Job Title</label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full px-3 py-1.5 rounded-md border border-[#CBD5E1] text-[#0F172A] text-xs font-medium focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] outline-none"
+                    className="w-full px-3 py-1.5 rounded-md border border-[#CBD5E1] dark:border-[#334155] bg-white dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC] text-xs font-medium focus:border-[#1E3A8A] dark:focus:border-blue-500 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#475569] font-medium mb-1">Department & Level</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] font-medium mb-1">Department & Level</label>
                   <input
                     type="text"
                     value={formData.department}
                     onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full px-3 py-1.5 rounded-md border border-[#CBD5E1] text-[#0F172A] text-xs font-medium focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] outline-none"
+                    className="w-full px-3 py-1.5 rounded-md border border-[#CBD5E1] dark:border-[#334155] bg-white dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC] text-xs font-medium focus:border-[#1E3A8A] dark:focus:border-blue-500 outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[#475569] font-medium text-xs mb-1">
+                <label className="block text-[#475569] dark:text-[#94A3B8] font-medium text-xs mb-1">
                   Role Description & Candidate Requirements
                 </label>
                 <textarea
                   rows={8}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full p-3 bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg text-xs text-[#0F172A] focus:bg-white focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] outline-none leading-relaxed font-sans"
+                  className="w-full p-3 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#CBD5E1] dark:border-[#334155] rounded-lg text-xs text-[#0F172A] dark:text-[#F8FAFC] focus:bg-white dark:focus:bg-[#0F172A] focus:border-[#1E3A8A] dark:focus:border-blue-500 outline-none leading-relaxed font-sans"
                 />
               </div>
             </div>
           </section>
 
           {/* Skill Cluster Configuration */}
-          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
-            <h3 className="font-headline text-sm font-bold text-[#0F172A] mb-3 flex items-center justify-between">
+          <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-5 shadow-xs">
+            <h3 className="font-headline text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center justify-between">
               <span className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-[#1E3A8A]" />
+                <Layers className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
                 <span>Extracted Skill Clusters & Keyword Weights</span>
               </span>
-              <span className="text-[11px] font-mono text-[#64748B]">Auto-Taxonomy</span>
+              <span className="text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8]">Auto-Taxonomy</span>
             </h3>
 
             <div className="space-y-4 text-xs">
               {/* Required Skills */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-semibold text-[#0F172A] flex items-center gap-1.5">
+                  <span className="font-semibold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                     <span>Required Tech Skills (Must Have)</span>
                   </span>
-                  <span className="text-[11px] font-mono text-[#64748B]">
+                  <span className="text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8]">
                     {formData.required_skills.length} skills defined
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-1.5 p-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg min-h-[46px]">
+                <div className="flex flex-wrap gap-1.5 p-2 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-lg min-h-[46px]">
                   {formData.required_skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-[#CBD5E1] text-[#0F172A] rounded-md font-medium text-xs shadow-2xs"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] text-[#0F172A] dark:text-[#F8FAFC] rounded-md font-medium text-xs shadow-2xs"
                     >
                       <span>{skill}</span>
                       <button
@@ -298,11 +298,11 @@ export default function JobDescriptionManager({
                     value={newSkill}
                     onChange={(e) => setNewSkill(e.target.value)}
                     placeholder="Add required skill (e.g. Next.js, Redis, AWS)..."
-                    className="flex-1 px-3 py-1.5 bg-[#F8FAFC] border border-[#CBD5E1] rounded-md text-xs text-[#0F172A] focus:bg-white focus:border-[#1E3A8A] outline-none"
+                    className="flex-1 px-3 py-1.5 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#CBD5E1] dark:border-[#334155] rounded-md text-xs text-[#0F172A] dark:text-[#F8FAFC] focus:bg-white dark:focus:bg-[#0F172A] focus:border-[#1E3A8A] outline-none"
                   />
                   <button
                     type="submit"
-                    className="px-3 py-1.5 bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#E2E8F0] rounded-md text-xs font-semibold flex items-center gap-1"
+                    className="px-3 py-1.5 bg-[#F1F5F9] dark:bg-[#334155] hover:bg-[#E2E8F0] text-[#0F172A] dark:text-[#F8FAFC] border border-[#E2E8F0] dark:border-[#334155] rounded-md text-xs font-semibold flex items-center gap-1 cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" /> Add
                   </button>
@@ -311,14 +311,14 @@ export default function JobDescriptionManager({
 
               {/* Preferred Skills */}
               <div>
-                <span className="font-semibold text-[#475569] block mb-1.5">
+                <span className="font-semibold text-[#475569] dark:text-[#94A3B8] block mb-1.5">
                   Nice-to-Have / Complementary Skills
                 </span>
-                <div className="flex flex-wrap gap-1.5 p-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
+                <div className="flex flex-wrap gap-1.5 p-2 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-lg">
                   {formData.preferred_skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="px-2 py-0.5 bg-white border border-[#E2E8F0] text-[#475569] rounded text-xs"
+                      className="px-2 py-0.5 bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] text-[#475569] dark:text-[#CBD5E1] rounded text-xs"
                     >
                       {skill}
                     </span>
@@ -334,13 +334,13 @@ export default function JobDescriptionManager({
         <div className="lg:col-span-5 flex flex-col gap-5">
 
           {/* Scoring Weight Calibration Sliders */}
-          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#E2E8F0]">
+          <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-5 shadow-xs">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
               <div className="flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-[#1E3A8A]" />
-                <h2 className="font-headline text-sm font-bold text-[#0F172A]">Scoring Algorithm Weights</h2>
+                <Sliders className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
+                <h2 className="font-headline text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC]">Scoring Algorithm Weights</h2>
               </div>
-              <span className="text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-bold">
+              <span className="text-[11px] font-mono text-[#047857] dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 font-bold">
                 Total: 100%
               </span>
             </div>
@@ -349,8 +349,8 @@ export default function JobDescriptionManager({
               {/* Skills Overlap */}
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="font-medium text-[#0F172A]">Skills Overlap Weight</span>
-                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.skills}%</span>
+                  <span className="font-medium text-[#0F172A] dark:text-[#F8FAFC]">Skills Overlap Weight</span>
+                  <span className="font-mono font-bold text-[#1E3A8A] dark:text-blue-400">{weights.skills}%</span>
                 </div>
                 <input
                   type="range"
@@ -358,15 +358,15 @@ export default function JobDescriptionManager({
                   max="60"
                   value={weights.skills}
                   onChange={(e) => setWeights({ ...weights, skills: parseInt(e.target.value) })}
-                  className="w-full accent-[#1E3A8A]"
+                  className="w-full accent-[#1E3A8A] dark:accent-blue-500 cursor-pointer"
                 />
               </div>
 
               {/* Experience Relevancy */}
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="font-medium text-[#0F172A]">Experience Relevancy Weight</span>
-                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.experience}%</span>
+                  <span className="font-medium text-[#0F172A] dark:text-[#F8FAFC]">Experience Relevancy Weight</span>
+                  <span className="font-mono font-bold text-[#1E3A8A] dark:text-blue-400">{weights.experience}%</span>
                 </div>
                 <input
                   type="range"
@@ -374,15 +374,15 @@ export default function JobDescriptionManager({
                   max="50"
                   value={weights.experience}
                   onChange={(e) => setWeights({ ...weights, experience: parseInt(e.target.value) })}
-                  className="w-full accent-[#1E3A8A]"
+                  className="w-full accent-[#1E3A8A] dark:accent-blue-500 cursor-pointer"
                 />
               </div>
 
               {/* Academic Performance */}
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="font-medium text-[#0F172A]">Academic Performance (CGPA/10th/12th)</span>
-                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.academics}%</span>
+                  <span className="font-medium text-[#0F172A] dark:text-[#F8FAFC]">Academic Performance (CGPA/10th/12th)</span>
+                  <span className="font-mono font-bold text-[#1E3A8A] dark:text-blue-400">{weights.academics}%</span>
                 </div>
                 <input
                   type="range"
@@ -390,15 +390,15 @@ export default function JobDescriptionManager({
                   max="40"
                   value={weights.academics}
                   onChange={(e) => setWeights({ ...weights, academics: parseInt(e.target.value) })}
-                  className="w-full accent-[#1E3A8A]"
+                  className="w-full accent-[#1E3A8A] dark:accent-blue-500 cursor-pointer"
                 />
               </div>
 
               {/* Domain & Background */}
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="font-medium text-[#0F172A]">Domain & Semantic Fit</span>
-                  <span className="font-mono font-bold text-[#1E3A8A]">{weights.domain}%</span>
+                  <span className="font-medium text-[#0F172A] dark:text-[#F8FAFC]">Domain & Semantic Fit</span>
+                  <span className="font-mono font-bold text-[#1E3A8A] dark:text-blue-400">{weights.domain}%</span>
                 </div>
                 <input
                   type="range"
@@ -406,24 +406,24 @@ export default function JobDescriptionManager({
                   max="30"
                   value={weights.domain}
                   onChange={(e) => setWeights({ ...weights, domain: parseInt(e.target.value) })}
-                  className="w-full accent-[#1E3A8A]"
+                  className="w-full accent-[#1E3A8A] dark:accent-blue-500 cursor-pointer"
                 />
               </div>
             </div>
           </section>
 
           {/* Hard Cutoffs / Eligibility Gates */}
-          <section className="bg-white border border-[#E2E8F0] rounded-xl p-5 shadow-xs">
-            <h3 className="font-headline text-sm font-bold text-[#0F172A] mb-3 flex items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-[#1E3A8A]" />
+          <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-5 shadow-xs">
+            <h3 className="font-headline text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2">
+              <GraduationCap className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
               <span>Hard Eligibility Thresholds (Pre-Filter Gates)</span>
             </h3>
 
             <div className="space-y-3 text-xs">
-              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
+              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-lg">
                 <div>
-                  <span className="font-semibold text-[#0F172A] block">Minimum College CGPA Cutoff</span>
-                  <span className="text-[11px] text-[#64748B]">Reject/Deprioritize below threshold</span>
+                  <span className="font-semibold text-[#0F172A] dark:text-[#F8FAFC] block">Minimum College CGPA Cutoff</span>
+                  <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8]">Reject/Deprioritize below threshold</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <input
@@ -433,16 +433,16 @@ export default function JobDescriptionManager({
                     max="10"
                     value={formData.min_cgpa}
                     onChange={(e) => setFormData({ ...formData, min_cgpa: e.target.value })}
-                    className="w-16 px-2 py-1 bg-white border border-[#CBD5E1] rounded text-right font-mono font-bold text-xs"
+                    className="w-16 px-2 py-1 bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] rounded text-right font-mono font-bold text-xs text-[#0F172A] dark:text-[#F8FAFC]"
                   />
-                  <span className="font-mono text-[#64748B]">/10.0</span>
+                  <span className="font-mono text-[#64748B] dark:text-[#94A3B8]">/10.0</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
+              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-lg">
                 <div>
-                  <span className="font-semibold text-[#0F172A] block">Minimum 12th Board Score</span>
-                  <span className="text-[11px] text-[#64748B]">Indian Class XII percentage criteria</span>
+                  <span className="font-semibold text-[#0F172A] dark:text-[#F8FAFC] block">Minimum 12th Board Score</span>
+                  <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8]">Indian Class XII percentage criteria</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <input
@@ -452,16 +452,16 @@ export default function JobDescriptionManager({
                     max="100"
                     value={formData.min_twelfth_percentage}
                     onChange={(e) => setFormData({ ...formData, min_twelfth_percentage: e.target.value })}
-                    className="w-16 px-2 py-1 bg-white border border-[#CBD5E1] rounded text-right font-mono font-bold text-xs"
+                    className="w-16 px-2 py-1 bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] rounded text-right font-mono font-bold text-xs text-[#0F172A] dark:text-[#F8FAFC]"
                   />
-                  <span className="font-mono text-[#64748B]">%</span>
+                  <span className="font-mono text-[#64748B] dark:text-[#94A3B8]">%</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg">
+              <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-lg">
                 <div>
-                  <span className="font-semibold text-[#0F172A] block">Minimum Experience</span>
-                  <span className="text-[11px] text-[#64748B]">Years in verified engineering roles</span>
+                  <span className="font-semibold text-[#0F172A] dark:text-[#F8FAFC] block">Minimum Experience</span>
+                  <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8]">Years in verified engineering roles</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <input
@@ -471,18 +471,18 @@ export default function JobDescriptionManager({
                     max="15"
                     value={formData.min_experience}
                     onChange={(e) => setFormData({ ...formData, min_experience: e.target.value })}
-                    className="w-16 px-2 py-1 bg-white border border-[#CBD5E1] rounded text-right font-mono font-bold text-xs"
+                    className="w-16 px-2 py-1 bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] rounded text-right font-mono font-bold text-xs text-[#0F172A] dark:text-[#F8FAFC]"
                   />
-                  <span className="font-mono text-[#64748B]">Yrs</span>
+                  <span className="font-mono text-[#64748B] dark:text-[#94A3B8]">Yrs</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-[#E2E8F0]">
+            <div className="mt-4 pt-3 border-t border-[#E2E8F0] dark:border-[#334155]">
               <button
                 type="button"
                 onClick={handleSaveAndReindex}
-                className="w-full py-2.5 bg-[#4338CA] hover:bg-[#3730A3] text-white rounded-md text-xs font-semibold shadow-xs flex items-center justify-center gap-1.5 transition-colors"
+                className="w-full py-2.5 bg-[#4338CA] dark:bg-indigo-600 hover:bg-[#3730A3] dark:hover:bg-indigo-500 text-white rounded-md text-xs font-semibold shadow-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Check className="w-4 h-4" />
                 <span>Apply Calibration & Recalculate Candidate Matches</span>

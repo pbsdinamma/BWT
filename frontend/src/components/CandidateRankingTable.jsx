@@ -21,33 +21,33 @@ export default function CandidateRankingTable({
   activeJob
 }) {
   const getScoreBadge = (score) => {
-    if (score >= 80) return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30';
-    if (score >= 65) return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
-    if (score >= 50) return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
-    return 'bg-rose-500/15 text-rose-400 border-rose-500/30';
+    if (score >= 80) return 'bg-emerald-50 dark:bg-emerald-950/60 text-[#047857] dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
+    if (score >= 65) return 'bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 border-blue-200 dark:border-blue-800';
+    if (score >= 50) return 'bg-amber-50 dark:bg-amber-950/60 text-[#B45309] dark:text-amber-300 border-amber-200 dark:border-amber-800';
+    return 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800';
   };
 
   const getStageBadge = (stage) => {
     switch (stage) {
       case 'Shortlisted':
-        return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
+        return 'bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 border-blue-200 dark:border-blue-800';
       case 'Interview':
-        return 'bg-purple-500/15 text-purple-400 border-purple-500/30';
+        return 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800';
       case 'Offer':
-        return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30';
+        return 'bg-emerald-50 dark:bg-emerald-950/60 text-[#047857] dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
       case 'Rejected':
-        return 'bg-rose-500/15 text-rose-400 border-rose-500/30';
+        return 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800';
       default:
-        return 'bg-slate-500/15 text-slate-300 border-slate-700';
+        return 'bg-[#F1F5F9] dark:bg-[#334155] text-[#475569] dark:text-[#CBD5E1] border-[#E2E8F0] dark:border-[#334155]';
     }
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 font-body transition-colors duration-150">
       {/* Table Sorting Control Strip */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900 border border-slate-800 p-3 rounded-xl text-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] p-3 rounded-xl text-xs shadow-xs">
         <div className="flex items-center space-x-2">
-          <span className="font-semibold text-slate-300 uppercase tracking-wider text-[11px]">
+          <span className="font-semibold text-[#0F172A] dark:text-[#F8FAFC] uppercase tracking-wider text-[11px]">
             Sort Ranked Profiles:
           </span>
           <select
@@ -56,7 +56,7 @@ export default function CandidateRankingTable({
               const [sb, so] = e.target.value.split('-');
               onSortChange(sb, so);
             }}
-            className="bg-slate-850 border border-slate-750 rounded-lg px-2.5 py-1 text-slate-200 focus:outline-none focus:border-blue-500 cursor-pointer"
+            className="bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#CBD5E1] dark:border-[#334155] rounded-lg px-2.5 py-1 text-[#0F172A] dark:text-[#F8FAFC] focus:outline-none focus:border-[#1E3A8A] dark:focus:border-blue-500 cursor-pointer"
           >
             <option value="score-desc">AI Match Score: High to Low</option>
             <option value="score-asc">AI Match Score: Low to High</option>
@@ -68,9 +68,9 @@ export default function CandidateRankingTable({
           </select>
         </div>
 
-        <div className="text-slate-400">
+        <div className="text-[#64748B] dark:text-[#94A3B8]">
           {selectedIds.length > 0 ? (
-            <span className="text-blue-400 font-semibold">{selectedIds.length} candidate(s) selected for comparison</span>
+            <span className="text-[#1E3A8A] dark:text-blue-400 font-semibold">{selectedIds.length} candidate(s) selected for comparison</span>
           ) : (
             <span>Check boxes to select 2 to 4 candidates for Side-by-Side comparison</span>
           )}
@@ -78,11 +78,11 @@ export default function CandidateRankingTable({
       </div>
 
       {/* Recruiter Ranked Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+      <div className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-slate-950 text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-800 font-headline">
+              <tr className="bg-[#F8FAFC] dark:bg-[#0F172A] text-[#475569] dark:text-[#94A3B8] uppercase tracking-wider text-[11px] border-b border-[#E2E8F0] dark:border-[#334155] font-headline">
                 <th className="py-3 px-3 w-10 text-center">
                   <span className="sr-only">Select</span>
                 </th>
@@ -95,18 +95,18 @@ export default function CandidateRankingTable({
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#334155]">
               {candidates.map((item, index) => {
                 const c = item.candidate;
                 const ms = item.match_score;
                 const isSelected = selectedIds.includes(c.id);
-                const score = ms ? ms.overall_score : 0;
+                const score = ms ? Math.round(ms.overall_score) : 0;
 
                 return (
                   <tr
                     key={c.id}
-                    className={`hover:bg-slate-850/60 transition-colors ${
-                      isSelected ? 'bg-blue-950/20' : ''
+                    className={`hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A]/50 transition-colors ${
+                      isSelected ? 'bg-blue-50/50 dark:bg-blue-950/30' : ''
                     }`}
                   >
                     {/* Checkbox for side-by-side comparison */}
@@ -114,10 +114,10 @@ export default function CandidateRankingTable({
                       <button
                         type="button"
                         onClick={() => onToggleSelect(c.id)}
-                        className="text-slate-400 hover:text-blue-400 transition-colors cursor-pointer"
+                        className="text-[#94A3B8] hover:text-[#1E3A8A] dark:hover:text-blue-400 transition-colors cursor-pointer"
                       >
                         {isSelected ? (
-                          <CheckSquare className="w-4 h-4 text-blue-500" />
+                          <CheckSquare className="w-4 h-4 text-[#1E3A8A] dark:text-blue-500" />
                         ) : (
                           <Square className="w-4 h-4" />
                         )}
@@ -127,7 +127,7 @@ export default function CandidateRankingTable({
                     {/* Rank & Score Pill */}
                     <td className="py-3 px-3">
                       <div className="flex items-center space-x-2">
-                        <span className="text-slate-500 font-mono font-bold text-xs w-4">
+                        <span className="text-[#94A3B8] font-mono font-bold text-xs w-4">
                           #{index + 1}
                         </span>
                         <div
@@ -139,8 +139,8 @@ export default function CandidateRankingTable({
                           <span>{score}%</span>
                         </div>
                       </div>
-                      <div className="text-[10px] text-slate-400 mt-1 pl-6">
-                        {ms?.tier || 'Evaluated'}
+                      <div className="text-[10px] text-[#64748B] dark:text-[#94A3B8] mt-1 pl-6">
+                        {score >= 85 ? 'Top Match' : 'Evaluated'}
                       </div>
                     </td>
 
@@ -150,48 +150,48 @@ export default function CandidateRankingTable({
                         <div className="flex items-center space-x-1.5">
                           <span
                             onClick={() => onSelectCandidate(c.id)}
-                            className="font-headline font-bold text-white hover:text-blue-400 cursor-pointer text-sm transition-colors"
+                            className="font-headline font-bold text-[#0F172A] dark:text-[#F8FAFC] hover:text-[#1E3A8A] dark:hover:text-blue-400 cursor-pointer text-sm transition-colors"
                           >
                             {c.name}
                           </span>
                           {c.is_duplicate && (
-                            <span className="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40" title={c.duplicate_reasons?.join(', ')}>
+                            <span className="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-[#B45309] dark:text-amber-300 border border-amber-200 dark:border-amber-700/60" title={c.duplicate_reasons?.join(', ')}>
                               <AlertTriangle className="w-3 h-3 mr-0.5" />
                               Dup
                             </span>
                           )}
                         </div>
-                        <p className="text-slate-400 text-xs mt-0.5">{c.email}</p>
-                        <div className="flex items-center space-x-2 text-[11px] text-slate-500 mt-0.5">
+                        <p className="text-[#64748B] dark:text-[#94A3B8] text-xs mt-0.5">{c.email}</p>
+                        <div className="flex items-center space-x-2 text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-0.5">
                           <span className="flex items-center">
-                            <MapPin className="w-3 h-3 mr-0.5" />
+                            <MapPin className="w-3 h-3 mr-0.5 text-[#94A3B8]" />
                             {c.location || 'Remote'}
                           </span>
-                          {c.education.graduation_year && (
-                            <span>• Batch {c.education.graduation_year}</span>
+                          {c.academics?.graduation_year && (
+                            <span>• Batch {c.academics.graduation_year}</span>
                           )}
                         </div>
                       </div>
                     </td>
 
-                    {/* Academic Record Grid (Stitch MCP Style) */}
+                    {/* Academic Record Grid */}
                     <td className="py-3 px-4">
                       <div className="space-y-1">
                         <div className="flex items-center space-x-2">
-                          <span className="font-mono font-bold text-blue-400 text-xs">
-                            CGPA: {c.education.cgpa !== null ? `${c.education.cgpa} / 10` : 'N/A'}
+                          <span className="font-mono font-bold text-[#1E3A8A] dark:text-blue-400 text-xs">
+                            CGPA: {c.academics?.cgpa !== null && c.academics?.cgpa !== undefined ? `${c.academics.cgpa} / 10` : 'N/A'}
                           </span>
-                          {c.education.cgpa >= 8.5 && (
-                            <Award className="w-3.5 h-3.5 text-amber-400" title="High Academic Distinction" />
+                          {c.academics?.cgpa >= 8.5 && (
+                            <Award className="w-3.5 h-3.5 text-amber-500" title="High Academic Distinction" />
                           )}
                         </div>
-                        <div className="text-[11px] text-slate-400 font-mono">
-                          12th: <strong className="text-slate-200">{c.education.twelfth_percentage ? `${c.education.twelfth_percentage}%` : 'N/A'}</strong>
+                        <div className="text-[11px] text-[#64748B] dark:text-[#94A3B8] font-mono">
+                          12th: <strong className="text-[#0F172A] dark:text-[#F8FAFC]">{c.academics?.twelfth_percentage ? `${c.academics.twelfth_percentage}%` : 'N/A'}</strong>
                           {' • '}
-                          10th: <strong className="text-slate-200">{c.education.tenth_percentage ? `${c.education.tenth_percentage}%` : 'N/A'}</strong>
+                          10th: <strong className="text-[#0F172A] dark:text-[#F8FAFC]">{c.academics?.tenth_percentage ? `${c.academics.tenth_percentage}%` : 'N/A'}</strong>
                         </div>
-                        <p className="text-[10px] text-slate-400 truncate max-w-xs" title={c.education.college}>
-                          {c.education.college}
+                        <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] truncate max-w-xs" title={c.academics?.college}>
+                          {c.academics?.college}
                         </p>
                       </div>
                     </td>
@@ -199,11 +199,11 @@ export default function CandidateRankingTable({
                     {/* Experience & Past Role */}
                     <td className="py-3 px-4">
                       <div className="space-y-0.5">
-                        <span className="font-mono font-bold text-slate-200 block">
-                          {c.years_of_experience} yrs exp
+                        <span className="font-mono font-bold text-[#0F172A] dark:text-[#F8FAFC] block">
+                          {c.experience_years || 0} yrs exp
                         </span>
-                        <p className="text-[11px] text-slate-400 truncate max-w-[170px]" title={c.experience_history?.[0]?.role}>
-                          {c.experience_history?.[0]?.role || 'Software Engineer'}
+                        <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] truncate max-w-[170px]" title={c.current_title}>
+                          {c.current_title || 'Software Engineer'}
                         </p>
                       </div>
                     </td>
@@ -211,25 +211,25 @@ export default function CandidateRankingTable({
                     {/* Skills Chips */}
                     <td className="py-3 px-4">
                       <div className="flex flex-wrap gap-1 max-w-xs">
-                        {c.skills.slice(0, 4).map((sk) => {
+                        {c.skills?.slice(0, 4).map((sk) => {
                           const isReq = activeJob?.required_skills?.some(
                             (rs) => rs.toLowerCase() === sk.toLowerCase()
                           );
                           return (
                             <span
                               key={sk}
-                              className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${
+                              className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${
                                 isReq
-                                  ? 'bg-blue-500/15 text-blue-300 border border-blue-500/30 font-semibold'
-                                  : 'bg-slate-800 text-slate-300'
+                                  ? 'bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 border-blue-200 dark:border-blue-800 font-semibold'
+                                  : 'bg-[#F1F5F9] dark:bg-[#0F172A] text-[#334155] dark:text-[#CBD5E1] border-[#E2E8F0] dark:border-[#334155]'
                               }`}
                             >
                               {sk}
                             </span>
                           );
                         })}
-                        {c.skills.length > 4 && (
-                          <span className="text-[10px] text-slate-500 self-center">
+                        {c.skills?.length > 4 && (
+                          <span className="text-[10px] text-[#94A3B8] self-center">
                             +{c.skills.length - 4}
                           </span>
                         )}
@@ -245,11 +245,11 @@ export default function CandidateRankingTable({
                           c.stage
                         )}`}
                       >
-                        <option value="Applied" className="bg-slate-900 text-slate-200">Applied</option>
-                        <option value="Shortlisted" className="bg-slate-900 text-blue-300">Shortlisted</option>
-                        <option value="Interview" className="bg-slate-900 text-purple-300">Interview</option>
-                        <option value="Offer" className="bg-slate-900 text-emerald-300">Offer</option>
-                        <option value="Rejected" className="bg-slate-900 text-rose-300">Rejected</option>
+                        <option value="Applied" className="bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC]">Applied</option>
+                        <option value="Shortlisted" className="bg-white dark:bg-[#1E293B] text-[#1E3A8A] dark:text-blue-300">Shortlisted</option>
+                        <option value="Interview" className="bg-white dark:bg-[#1E293B] text-purple-700 dark:text-purple-300">Interview</option>
+                        <option value="Offer" className="bg-white dark:bg-[#1E293B] text-[#047857] dark:text-emerald-300">Offer</option>
+                        <option value="Rejected" className="bg-white dark:bg-[#1E293B] text-rose-700 dark:text-rose-300">Rejected</option>
                       </select>
                     </td>
 
@@ -257,7 +257,7 @@ export default function CandidateRankingTable({
                     <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => onSelectCandidate(c.id)}
-                        className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-blue-600/15 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 transition-all font-semibold cursor-pointer"
+                        className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-[#F1F5F9] dark:bg-[#0F172A] hover:bg-[#E2E8F0] dark:hover:bg-[#334155] text-[#1E3A8A] dark:text-blue-400 border border-[#E2E8F0] dark:border-[#334155] transition-all font-semibold cursor-pointer"
                       >
                         <span>Review</span>
                         <ChevronRight className="w-3.5 h-3.5" />

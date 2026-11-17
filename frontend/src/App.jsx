@@ -21,6 +21,27 @@ export default function App() {
   const [stats, setStats] = useState(null);
   const [duplicateCount, setDuplicateCount] = useState(0);
 
+  // Theme Management (Light Mode / Dark Mode)
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('hireswift_theme');
+    return saved === 'dark' ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
+    }
+    localStorage.setItem('hireswift_theme', theme);
+  }, [theme]);
+
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   // Modals & Panels
   const [selectedCandidateIds, setSelectedCandidateIds] = useState([]);
   const [detailCandidateData, setDetailCandidateData] = useState(null);
@@ -219,8 +240,8 @@ export default function App() {
   const activeJob = jobs.find((j) => j.job.id === activeJobId)?.job || jobs[0]?.job;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-body antialiased selection:bg-[#1E3A8A]/10 selection:text-[#1E3A8A]">
-      {/* Top Global Navigation Bar (Stitch MCP Style) */}
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC] flex flex-col font-body antialiased selection:bg-[#1E3A8A]/10 selection:text-[#1E3A8A] transition-colors duration-150">
+      {/* Top Global Navigation Bar (Stitch MCP Style with Theme Toggle) */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -240,6 +261,8 @@ export default function App() {
         onOpenCreateJob={() => setActiveTab('jobs')}
         searchTerm={filters.search}
         onSearchChange={(val) => handleFilterChange('search', val)}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* Main Container */}
