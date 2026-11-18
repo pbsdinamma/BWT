@@ -127,15 +127,16 @@ c:\PBS\BWT\
 │   ├── uploads/                  # Storage directory for newly uploaded resumes
 │   ├── data/                     # Persistent JSON database (ats_database.json)
 │   ├── generate_sample_resumes.py# Script to generate authentic PDF & DOCX test files
+│   ├── requirements.txt          # Python backend dependencies
 │   └── run_backend.py            # Standalone launcher for FastAPI backend
 ├── frontend/                     # Modern React + Vite + Tailwind CSS SPA
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Navbar.jsx                # Navigation, active JD switcher, action triggers
+│   │   │   ├── Navbar.jsx                # Navigation, active JD switcher, theme toggle, actions
 │   │   │   ├── DashboardStats.jsx        # Metrics, pipeline funnel bar, quick status cards
 │   │   │   ├── CandidateFilters.jsx      # Academic sliders, skills selector, exp range
 │   │   │   ├── CandidateRankingTable.jsx # Recruiter table & card views with sorting
-│   │   │   ├── CandidateDetailModal.jsx  # AI score breakdown, skill gap chips, notes
+│   │   │   ├── CandidateDetailModal.jsx  # AI score breakdown, skill gap chips, paper preview, notes
 │   │   │   ├── PipelineKanban.jsx        # 5-stage interactive hiring Kanban board
 │   │   │   ├── SideBySideComparison.jsx  # 2-4 candidate comparison matrix
 │   │   │   ├── ResumeUploader.jsx        # Bulk drag-and-drop uploader & sample downloader
@@ -143,10 +144,11 @@ c:\PBS\BWT\
 │   │   │   ├── DuplicateManagerModal.jsx # Duplicate review & merge center
 │   │   │   └── BulkEmailModal.jsx        # Templated email composer, preview & outbox
 │   │   ├── api.js                        # Client API communication service
-│   │   ├── App.jsx                       # Master state orchestrator
-│   │   └── index.css                     # Tailwind CSS & UI styling
+│   │   ├── App.jsx                       # Master state orchestrator & theme persistence
+│   │   └── index.css                     # Tailwind CSS v4 & Light/Dark Stitch design tokens
 │   ├── package.json
 │   └── vite.config.js
+├── stitch_export/                # Stitch UI design system spec & HTML screen references
 ├── tests/
 │   └── test_hireswift.py         # Comprehensive unit & integration test suite (8 tests)
 ├── start_hireswift.ps1           # 1-click PowerShell launcher
@@ -160,11 +162,11 @@ c:\PBS\BWT\
 
 ### Prerequisites
 - **Python**: 3.10+ (Tested with Python 3.13)
-- **Node.js**: v18+ (Tested with Node.js v26.8)
+- **Node.js**: v18+
 
 ### Step 1: Install Python Dependencies
 ```powershell
-py -m pip install fastapi "uvicorn[standard]" python-multipart pypdf python-docx scikit-learn reportlab
+pip install -r backend/requirements.txt
 ```
 
 ### Step 2: Install Frontend Dependencies & Build
@@ -224,6 +226,6 @@ py tests\test_hireswift.py
 | :--- | :--- |
 | **Filter Accuracy** | Precise sliders for **10th %**, **12th %**, **CGPA**, and **Graduation Year**; multi-select skills with *Match ANY* vs *Match ALL* modes; range slider for years of experience; location dropdown. |
 | **Parsing Quality** | `pypdf` and `python-docx` extract text reliably; regex & heuristic NER accurately extract contact info, academic scores, 150+ categorized skills, and work history. |
-| **UI / UX** | Modern, dark-mode glassmorphic interface built with Tailwind CSS and Lucide icons; intuitive recruiter table and card views; instant visual cues and color-coded score badges. |
+| **UI / UX** | Clean Stitch-inspired design system with persistent 1-click Light Mode & Dark Mode toggle, built with Tailwind CSS v4 and Lucide icons; interactive Kanban pipeline, ranked recruiter table, split dossier with paper resume viewer, and color-coded score badges. |
 | **Scalability** | Modular Python backend using FastAPI async endpoints, scikit-learn TF-IDF vectorization, persistent JSON/SQLite storage, and standalone frontend bundle. |
 | **Real-world Usability** | One-click demo data reset, side-by-side comparison matrix, interactive pipeline Kanban, bulk email campaigns with live preview, and duplicate detection & merge tools. |

@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HireSwift ATS — Bulk Email &amp; Candidate Outreach</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#1E3A8A',
+        'on-primary': '#FFFFFF',
+        'secondary': '#475569',
+        'on-secondary': '#FFFFFF',
+        'success': '#047857',
+        'on-success': '#FFFFFF',
+        'warning': '#B45309',
+        'on-warning': '#FFFFFF',
+        'error': '#B91C1C',
+        'on-error': '#FFFFFF',
+        'accent': '#4338CA',
+        'on-accent': '#FFFFFF',
+        'light-surface': '#F8FAFC',
+        'light-on-surface': '#0F172A',
+        'light-surface-card': '#FFFFFF',
+        'light-on-surface-card': '#1E293B',
+        'light-surface-subtle': '#F1F5F9',
+        'light-border': '#E2E8F0',
+        'dark-surface': '#0F172A',
+        'dark-on-surface': '#F8FAFC',
+        'dark-surface-card': '#1E293B',
+        'dark-on-surface-card': '#F1F5F9',
+        'dark-surface-subtle': '#334155',
+        'dark-border': '#334155',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '10px',
+        'lg': '14px',
+        'xl': '20px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '48px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Red Hat Text"', 'sans-serif'],
+        'headline': ['"Red Hat Text"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Spline Sans Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['36px', { lineHeight: '44px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['24px', { lineHeight: '30px', letterSpacing: '-0.25px', fontWeight: '600' }],
+        'headline-md': ['20px', { lineHeight: '26px', fontWeight: '600' }],
+        'headline-sm': ['16px', { lineHeight: '22px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+        'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }],
+        'label-md': ['13px', { lineHeight: '18px', fontWeight: '500' }],
+        'mono-sm': ['12px', { lineHeight: '16px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '200ms',
+        'surface-exit': '140ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'surface-exit': 'cubic-bezier(0.7, 0, 0.84, 0)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Red+Hat+Text:wght@500;600;700&amp;family=Spline+Sans+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body min-h-[1024px] flex flex-col antialiased selection:bg-primary/10 selection:text-primary" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Top Global Navigation Bar (Shared Shell) -->
+  <header class="border-b border-light-border bg-light-surface-card sticky top-0 z-30 px-6 py-2.5 flex items-center justify-between">
+    <div class="flex items-center gap-8">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-headline-sm shadow-xs">
+          H
+        </div>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-headline font-bold text-headline-sm tracking-tight text-light-on-surface">HireSwift</span>
+          <span class="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded bg-light-surface-subtle text-secondary border border-light-border">ATS</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+        <a href="../dashboard/RecruiterDashboard.html" class="px-3 py-1.5 rounded-md text-body-sm font-medium bg-light-surface-subtle text-light-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px] text-primary">view_kanban</span>
+          <span>Pipeline &amp; Jobs</span>
+        </a>
+        <a href="../candidate/CandidateProfile.html" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">group</span>
+          <span>Candidate Pool</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-light-border font-mono text-[11px]">142</span>
+        </a>
+        <a href="../upload/BulkResumeUpload.html" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+          <span>Bulk Ingestion</span>
+        </a>
+        <a href="../jobs/JobMatcherConfig.html" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">psychology</span>
+          <span>AI Match Engine</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-light-surface-subtle border border-light-border flex items-center justify-center font-headline font-semibold text-xs text-secondary">
+        HR
+      </div>
+    </div>
+  </header>
+
+  <!-- Focused Outreach Orchestrator Shell -->
+  <main class="flex-1 p-6 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs">
+
+    <!-- Modal Box Container -->
+    <div class="w-full max-w-4xl bg-light-surface-card border border-light-border rounded-xl shadow-2xl overflow-hidden flex flex-col">
+
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-light-border flex items-center justify-between bg-light-surface-card">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-md bg-primary/10 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">mark_email_read</span>
+          </div>
+          <div>
+            <h1 class="font-headline text-headline-sm font-bold text-light-on-surface">
+              Bulk Candidate Outreach &amp; Interview Dispatch
+            </h1>
+            <p class="text-body-sm text-secondary">
+              Personalized automated invitation sequence for <strong>18 Shortlisted Candidates</strong>
+            </p>
+          </div>
+        </div>
+
+        <a href="../dashboard/RecruiterDashboard.html" class="w-8 h-8 rounded-md hover:bg-light-surface-subtle flex items-center justify-center text-secondary hover:text-light-on-surface transition-colors" title="Close dialog">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </a>
+      </div>
+
+      <!-- Outreach Configuration Grid -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-6 bg-light-surface-card overflow-y-auto max-h-[640px]">
+
+        <!-- Left Setup (7 Cols) -->
+        <div class="md:col-span-7 space-y-4">
+
+          <!-- Template Selector -->
+          <div>
+            <label class="block text-label-md font-semibold text-light-on-surface mb-1.5">Communication Template</label>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <button type="button" class="p-2.5 rounded-lg border-2 border-primary bg-primary/5 text-primary font-semibold text-left transition-all">
+                <div class="flex items-center justify-between">
+                  <span>Round 1 Invite</span>
+                  <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                </div>
+                <p class="text-[11px] text-secondary font-normal mt-0.5">Tech interview + calendly</p>
+              </button>
+
+              <button type="button" class="p-2.5 rounded-lg border border-light-border bg-light-surface-subtle text-light-on-surface text-left hover:border-secondary transition-all">
+                <div class="flex items-center justify-between font-medium">
+                  <span>Assignment</span>
+                </div>
+                <p class="text-[11px] text-secondary font-normal mt-0.5">Take-home code test</p>
+              </button>
+
+              <button type="button" class="p-2.5 rounded-lg border border-light-border bg-light-surface-subtle text-light-on-surface text-left hover:border-secondary transition-all">
+                <div class="flex items-center justify-between font-medium">
+                  <span>Gentle Reject</span>
+                </div>
+                <p class="text-[11px] text-secondary font-normal mt-0.5">Warm talent pool note</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Email Subject Line with Tokens -->
+          <div>
+            <label class="block text-label-md font-medium text-secondary mb-1">Subject Line</label>
+            <input type="text" value="Invitation to Interview: Full-Stack Engineer at HireSwift ({{candidate_name}})" class="w-full px-3 py-2 bg-light-surface-card border border-light-border rounded-md text-body-sm font-medium text-light-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-hidden">
+          </div>
+
+          <!-- Rich Email Editor with Merge Tags -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="text-label-md font-medium text-secondary">Message Body</label>
+              <div class="flex items-center gap-1 text-[11px] font-mono text-primary">
+                <span>Available tags:</span>
+                <span class="px-1 py-0.2 rounded bg-light-surface-subtle border border-light-border cursor-pointer hover:bg-light-border">
+                  {{first_name}}
+                </span>
+                <span class="px-1 py-0.2 rounded bg-light-surface-subtle border border-light-border cursor-pointer hover:bg-light-border">
+                  {{top_skill}}
+                </span>
+                <span class="px-1 py-0.2 rounded bg-light-surface-subtle border border-light-border cursor-pointer hover:bg-light-border">
+                  {{schedule_link}}
+                </span>
+              </div>
+            </div>
+
+            <textarea rows="8" class="w-full p-3.5 bg-light-surface-subtle/50 border border-light-border rounded-lg text-body-sm text-light-on-surface focus:bg-light-surface-card focus:border-primary focus:ring-1 focus:ring-primary outline-hidden leading-relaxed font-sans">Hi {{first_name}},
+
+Our engineering leadership reviewed your resume and was thoroughly impressed by your background in {{top_skill}} and your academic track record.
+
+We would love to invite you to a 45-minute technical conversation to discuss our architecture and learn more about what you want to build next.
+
+Please pick a time that suits your schedule here:
+{{schedule_link}}
+
+Looking forward to connecting!
+
+Best regards,
+HireSwift Engineering Talent Team</textarea>
+          </div>
+
+          <!-- Sequence Options -->
+          <div class="p-3 bg-light-surface-subtle rounded-lg border border-light-border flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" checked class="rounded border-light-border text-primary focus:ring-primary">
+              <span class="text-light-on-surface font-medium">Auto-send gentle reminder if unbooked after 48 hours</span>
+            </div>
+            <span class="font-mono text-secondary">Recommended</span>
+          </div>
+
+        </div>
+
+        <!-- Right Recipient Review Strip (5 Cols) -->
+        <div class="md:col-span-5 flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <span class="text-label-md font-semibold text-light-on-surface">Recipient Queue (18)</span>
+            <span class="text-xs font-mono text-success font-semibold">100% Verified Emails</span>
+          </div>
+
+          <div class="border border-light-border rounded-lg bg-light-surface-subtle/40 overflow-y-auto max-h-[360px] divide-y divide-light-border text-xs">
+            <!-- Candidate 1 -->
+            <div class="p-3 flex items-center justify-between">
+              <div>
+                <strong class="text-light-on-surface font-semibold block">Aarav Mehta</strong>
+                <span class="text-secondary font-mono text-[11px]">aarav.m@gmail.com</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-[10px] font-bold">
+                96% Match
+              </span>
+            </div>
+
+            <!-- Candidate 2 -->
+            <div class="p-3 flex items-center justify-between">
+              <div>
+                <strong class="text-light-on-surface font-semibold block">Tanvi Kulkarni</strong>
+                <span class="text-secondary font-mono text-[11px]">tanvi.kulkarni@outlook.com</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-[10px] font-bold">
+                91% Match
+              </span>
+            </div>
+
+            <!-- Candidate 3 -->
+            <div class="p-3 flex items-center justify-between">
+              <div>
+                <strong class="text-light-on-surface font-semibold block">Rohan Gupta</strong>
+                <span class="text-secondary font-mono text-[11px]">rohan.g@gmail.com</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-[10px] font-bold">
+                94% Match
+              </span>
+            </div>
+
+            <!-- Candidate 4 -->
+            <div class="p-3 flex items-center justify-between">
+              <div>
+                <strong class="text-light-on-surface font-semibold block">Sneha Patel</strong>
+                <span class="text-secondary font-mono text-[11px]">sneha.p@gmail.com</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-[10px] font-semibold">
+                89% Match
+              </span>
+            </div>
+
+            <!-- Candidate 5 -->
+            <div class="p-3 flex items-center justify-between">
+              <div>
+                <strong class="text-light-on-surface font-semibold block">Vikram Aditya</strong>
+                <span class="text-secondary font-mono text-[11px]">vikram.aditya@techlead.in</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-[10px] font-semibold">
+                93% Match
+              </span>
+            </div>
+          </div>
+
+          <!-- Pipeline Stage Transition Notification -->
+          <div class="p-3 bg-purple-50/70 border border-purple-200 rounded-lg text-xs text-accent">
+            <span class="font-semibold block flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">auto_mode</span> Automated Pipeline Action:
+            </span>
+            <p class="text-secondary mt-0.5">
+              All 18 candidates will automatically advance from <strong>Shortlisted</strong> to <strong>Interview</strong> stage upon dispatch.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-light-border bg-light-surface-subtle/60 flex items-center justify-between">
+        <span class="text-xs text-secondary font-mono">
+          Sending via SendGrid Verified Domain (hr@hireswift.io)
+        </span>
+        <div class="flex items-center gap-2">
+          <a href="../dashboard/RecruiterDashboard.html" class="px-3.5 py-2 bg-light-surface-card border border-light-border rounded-md text-xs font-medium text-light-on-surface hover:bg-light-surface-subtle">
+            Cancel
+          </a>
+          <button type="button" class="px-4 py-2 bg-primary text-on-primary rounded-md text-xs font-medium hover:opacity-95 shadow-xs flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">send</span>
+            <span>Send 18 Personalized Invites</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+</body></html>

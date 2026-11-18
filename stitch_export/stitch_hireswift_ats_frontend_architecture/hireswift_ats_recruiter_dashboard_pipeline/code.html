@@ -1,0 +1,810 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HireSwift ATS — Recruiter Dashboard &amp; Pipeline</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#1E3A8A',
+        'on-primary': '#FFFFFF',
+        'secondary': '#475569',
+        'on-secondary': '#FFFFFF',
+        'success': '#047857',
+        'on-success': '#FFFFFF',
+        'warning': '#B45309',
+        'on-warning': '#FFFFFF',
+        'error': '#B91C1C',
+        'on-error': '#FFFFFF',
+        'accent': '#4338CA',
+        'on-accent': '#FFFFFF',
+        'light-surface': '#F8FAFC',
+        'light-on-surface': '#0F172A',
+        'light-surface-card': '#FFFFFF',
+        'light-on-surface-card': '#1E293B',
+        'light-surface-subtle': '#F1F5F9',
+        'light-border': '#E2E8F0',
+        'dark-surface': '#0F172A',
+        'dark-on-surface': '#F8FAFC',
+        'dark-surface-card': '#1E293B',
+        'dark-on-surface-card': '#F1F5F9',
+        'dark-surface-subtle': '#334155',
+        'dark-border': '#334155',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '10px',
+        'lg': '14px',
+        'xl': '20px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '48px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Red Hat Text"', 'sans-serif'],
+        'headline': ['"Red Hat Text"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Spline Sans Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['36px', { lineHeight: '44px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['24px', { lineHeight: '30px', letterSpacing: '-0.25px', fontWeight: '600' }],
+        'headline-md': ['20px', { lineHeight: '26px', fontWeight: '600' }],
+        'headline-sm': ['16px', { lineHeight: '22px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+        'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }],
+        'label-md': ['13px', { lineHeight: '18px', fontWeight: '500' }],
+        'mono-sm': ['12px', { lineHeight: '16px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '200ms',
+        'surface-exit': '140ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'surface-exit': 'cubic-bezier(0.7, 0, 0.84, 0)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Red+Hat+Text:wght@500;600;700&amp;family=Spline+Sans+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body min-h-[1024px] flex flex-col antialiased selection:bg-primary/10 selection:text-primary" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Top Global Navigation Bar -->
+  <header class="border-b border-light-border bg-light-surface-card sticky top-0 z-30 px-6 py-2.5 flex items-center justify-between">
+    <div class="flex items-center gap-8">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-headline-sm shadow-xs">
+          H
+        </div>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-headline font-bold text-headline-sm tracking-tight text-light-on-surface">HireSwift</span>
+          <span class="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded bg-light-surface-subtle text-secondary border border-light-border">ATS</span>
+        </div>
+      </div>
+
+      <!-- Main Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+        <a href="#pipeline" class="px-3 py-1.5 rounded-md text-body-sm font-medium bg-light-surface-subtle text-light-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px] text-primary">view_kanban</span>
+          <span>Pipeline &amp; Jobs</span>
+        </a>
+        <a href="#candidates" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">group</span>
+          <span>Candidate Pool</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-light-border font-mono text-[11px]">142</span>
+        </a>
+        <a href="#matcher" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">psychology</span>
+          <span>AI Match Engine</span>
+        </a>
+        <a href="#analytics" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">bar_chart</span>
+          <span>Analytics</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Right Header Actions -->
+    <div class="flex items-center gap-3">
+      <!-- Search Trigger -->
+      <div class="relative w-64 hidden lg:block">
+        <span class="material-symbols-outlined absolute left-2.5 top-2 text-secondary text-[18px]" aria-hidden="true">search</span>
+        <input type="search" placeholder="Filter skills, CGPA, name..." class="w-full pl-8 pr-12 py-1.5 bg-light-surface-subtle border border-light-border rounded-md text-body-sm text-light-on-surface placeholder:text-secondary/60 focus:bg-light-surface-card focus:border-primary focus:ring-1 focus:ring-primary outline-hidden text-xs">
+        <span class="absolute right-2 top-1.5 px-1 py-0.5 rounded border border-light-border bg-light-surface-card text-[10px] font-mono text-secondary">⌘K</span>
+      </div>
+
+      <!-- Ingest Dropdown Trigger -->
+      <button type="button" id="btn-bulk-upload" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-light-surface-card border border-light-border rounded-md text-body-sm font-medium text-light-on-surface hover:bg-light-surface-subtle shadow-2xs transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-[16px] text-primary" aria-hidden="true">cloud_upload</span>
+        <span>Bulk Upload</span>
+      </button>
+
+      <!-- Primary Action -->
+      <button type="button" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-primary text-on-primary rounded-md text-body-sm font-medium hover:opacity-95 shadow-xs transition-opacity cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">add</span>
+        <span>Create Job</span>
+      </button>
+
+      <!-- Recruiter Avatar -->
+      <div class="w-8 h-8 rounded-full bg-light-surface-subtle border border-light-border flex items-center justify-center font-headline font-semibold text-xs text-secondary ml-1">
+        HR
+      </div>
+    </div>
+  </header>
+
+  <!-- Job Context Header & Metric Strip -->
+  <div class="bg-light-surface-card border-b border-light-border px-6 py-4">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="px-2 py-0.5 rounded bg-emerald-50 text-success border border-emerald-200 text-[11px] font-medium flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-success"></span> Active Hiring
+          </span>
+          <span class="text-secondary text-body-sm">•</span>
+          <span class="text-body-sm text-secondary">Job ID: <strong class="font-mono font-medium text-light-on-surface">JD-2026-ENG4</strong></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <h1 class="font-headline text-headline-lg font-bold text-light-on-surface tracking-tight">
+            Full-Stack Software Engineer (React / Node / Cloud)
+          </h1>
+          <!-- Job switcher dropdown pill -->
+          <button type="button" class="text-secondary hover:text-light-on-surface p-1 rounded hover:bg-light-surface-subtle" title="Switch Job">
+            <span class="material-symbols-outlined text-[20px]">unfold_more</span>
+          </button>
+        </div>
+        <p class="text-body-sm text-secondary mt-0.5">
+          Engineering &amp; Product • Remote (India) • Min. 7.5 CGPA • 2-5 yrs exp • 142 total parsed resumes
+        </p>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="flex items-center gap-3">
+        <!-- Metric 1 -->
+        <div class="px-3.5 py-2 rounded-lg bg-light-surface-subtle border border-light-border flex flex-col">
+          <span class="text-[11px] text-secondary font-medium uppercase tracking-wider">Top AI Match</span>
+          <div class="flex items-baseline gap-1 mt-0.5">
+            <span class="font-mono text-headline-sm font-bold text-success">96%</span>
+            <span class="text-[11px] text-secondary font-mono">/ 14 candidates &gt;90%</span>
+          </div>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="px-3.5 py-2 rounded-lg bg-light-surface-subtle border border-light-border flex flex-col">
+          <span class="text-[11px] text-secondary font-medium uppercase tracking-wider">Screening Speed</span>
+          <div class="flex items-baseline gap-1 mt-0.5">
+            <span class="font-mono text-headline-sm font-bold text-light-on-surface">1.4s</span>
+            <span class="text-[11px] text-secondary font-mono">per resume parsed</span>
+          </div>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="px-3.5 py-2 rounded-lg bg-light-surface-subtle border border-light-border flex flex-col">
+          <span class="text-[11px] text-secondary font-medium uppercase tracking-wider">Duplicates Cleared</span>
+          <div class="flex items-baseline gap-1 mt-0.5">
+            <span class="font-mono text-headline-sm font-bold text-warning">8</span>
+            <span class="text-[11px] text-secondary font-mono">auto-merged</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Smart Sourcing Filter Bar (Criteria & Cutoffs) -->
+  <section class="bg-light-surface border-b border-light-border px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-body-sm" aria-label="Recruiter Filters">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="text-secondary font-medium text-[12px] flex items-center gap-1 mr-1">
+        <span class="material-symbols-outlined text-[16px]">filter_list</span> Cutoff Filters:
+      </span>
+
+      <!-- CGPA Threshold Filter -->
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-light-surface-card border border-light-border rounded-md text-xs font-medium text-light-on-surface shadow-2xs">
+        <span class="text-secondary">CGPA:</span>
+        <span class="font-mono font-semibold text-primary">≥ 7.5</span>
+        <button type="button" class="text-secondary hover:text-light-on-surface ml-0.5">
+          <span class="material-symbols-outlined text-[14px]">edit</span>
+        </button>
+      </div>
+
+      <!-- 10th / 12th Percentage Filter -->
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-light-surface-card border border-light-border rounded-md text-xs font-medium text-light-on-surface shadow-2xs">
+        <span class="text-secondary">10th / 12th:</span>
+        <span class="font-mono font-semibold text-light-on-surface">≥ 75%</span>
+      </div>
+
+      <!-- Experience Filter -->
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-light-surface-card border border-light-border rounded-md text-xs font-medium text-light-on-surface shadow-2xs">
+        <span class="text-secondary">Exp:</span>
+        <span class="font-mono font-semibold text-light-on-surface">2.0 - 5.0 yrs</span>
+      </div>
+
+      <!-- Skills Chip Filter -->
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-light-surface-card border border-light-border rounded-md text-xs font-medium text-light-on-surface shadow-2xs">
+        <span class="text-secondary">Key Skills:</span>
+        <span class="px-1.5 py-0.2 rounded bg-light-surface-subtle font-medium text-primary">React</span>
+        <span class="px-1.5 py-0.2 rounded bg-light-surface-subtle font-medium text-primary">Node.js</span>
+        <span class="px-1.5 py-0.2 rounded bg-light-surface-subtle font-medium text-primary">PostgreSQL</span>
+      </div>
+
+      <!-- Location / Grad Year Filter -->
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-light-surface-card border border-light-border rounded-md text-xs font-medium text-secondary hover:text-light-on-surface cursor-pointer shadow-2xs">
+        <span class="material-symbols-outlined text-[15px]">add</span>
+        <span>Grad Year (2020-2024)</span>
+      </div>
+    </div>
+
+    <!-- View Mode Switcher & Bulk Actions -->
+    <div class="flex items-center gap-2">
+      <!-- Pipeline vs Table Toggle -->
+      <div class="bg-light-surface-subtle p-0.5 border border-light-border rounded-md flex items-center">
+        <button type="button" id="btn-view-pipeline" class="px-2.5 py-1 rounded text-xs font-medium bg-light-surface-card text-light-on-surface shadow-xs flex items-center gap-1">
+          <span class="material-symbols-outlined text-[15px] text-primary">view_kanban</span>
+          <span>Pipeline (4 Stages)</span>
+        </button>
+        <button type="button" id="btn-view-table" class="px-2.5 py-1 rounded text-xs font-medium text-secondary hover:text-light-on-surface flex items-center gap-1">
+          <span class="material-symbols-outlined text-[15px]">table_rows</span>
+          <span>Ranked Table</span>
+        </button>
+      </div>
+
+      <span class="h-4 w-px bg-light-border"></span>
+
+      <!-- Side-by-Side Compare CTA -->
+      <button type="button" id="btn-compare" class="inline-flex items-center gap-1.5 px-3 py-1 bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 rounded-md text-xs font-medium transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-[15px]">compare</span>
+        <span>Compare Selected (2)</span>
+      </button>
+
+      <!-- Bulk Email -->
+      <button type="button" class="inline-flex items-center gap-1.5 px-3 py-1 bg-light-surface-card border border-light-border hover:bg-light-surface-subtle text-light-on-surface rounded-md text-xs font-medium transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-[15px] text-primary">mail</span>
+        <span>Bulk Email</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Pipeline Content Area (Kanban Grid) -->
+  <main class="flex-1 p-6 overflow-x-auto bg-light-surface">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-5 min-w-[1100px] h-full items-start">
+
+      <!-- STAGE 1: APPLIED (Parsed Resumes) -->
+      <div class="flex flex-col bg-light-surface-subtle/60 rounded-xl border border-light-border p-3 min-h-[640px]">
+        <!-- Stage Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-light-border px-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+            <h2 class="font-headline font-semibold text-headline-sm text-light-on-surface">Applied</h2>
+            <span class="px-2 py-0.5 rounded-full bg-light-surface-card border border-light-border font-mono text-[11px] font-medium text-secondary">
+              64
+            </span>
+          </div>
+          <button type="button" aria-label="Stage actions" class="text-secondary hover:text-light-on-surface p-1 rounded">
+            <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+          </button>
+        </div>
+
+        <div class="text-[11px] text-secondary py-2 px-1 flex items-center justify-between font-mono">
+          <span>Sorted by: AI Match Score</span>
+          <span class="text-primary font-medium cursor-pointer">Auto-filter (80%+)</span>
+        </div>
+
+        <!-- Cards List -->
+        <div class="flex flex-col gap-3 mt-1">
+
+          <!-- Candidate 1: Rohan Gupta -->
+          <article data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="bg-light-surface-card border border-light-border rounded-lg p-3.5 shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all cursor-pointer group">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 data-design-text-token="headline-sm" class="font-headline text-headline-sm font-semibold text-light-on-surface group-hover:text-primary transition-colors">
+                    Rohan Gupta
+                  </h3>
+                  <input type="checkbox" checked class="rounded border-light-border text-primary focus:ring-primary w-3.5 h-3.5" title="Select for comparison">
+                </div>
+                <p data-design-text-token="body-sm" class="text-body-sm text-secondary">
+                  Full Stack Dev • 3.2 yrs exp
+                </p>
+              </div>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-semibold">
+                <span class="material-symbols-outlined text-[13px]">auto_awesome</span> 94%
+              </span>
+            </div>
+
+            <!-- Qualification Metrics -->
+            <div class="grid grid-cols-3 gap-1 py-1.5 px-2 bg-light-surface-subtle/70 rounded text-[11px] font-mono text-secondary mb-2">
+              <div><span class="text-[10px] uppercase text-secondary/70 block">CGPA</span><strong class="text-light-on-surface">8.9</strong>/10</div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">12th</span><strong class="text-light-on-surface">91.4%</strong></div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">Grad</span><strong class="text-light-on-surface">2022</strong></div>
+            </div>
+
+            <!-- Parsed Skills -->
+            <div class="flex flex-wrap gap-1 mb-2.5">
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">React</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">Node.js</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">PostgreSQL</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">AWS</span>
+            </div>
+
+            <!-- Card Bottom Bar -->
+            <div class="pt-2 border-t border-light-border/60 flex items-center justify-between text-[11px] text-secondary">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">location_on</span> Bengaluru
+              </span>
+              <button type="button" class="px-2 py-0.5 rounded bg-primary text-on-primary font-medium hover:opacity-95 text-xs flex items-center gap-1">
+                <span>Shortlist</span>
+                <span class="material-symbols-outlined text-[12px]">arrow_forward</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Candidate 2: Sneha Patel -->
+          <article data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="bg-light-surface-card border border-light-border rounded-lg p-3.5 shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all cursor-pointer group">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 data-design-text-token="headline-sm" class="font-headline text-headline-sm font-semibold text-light-on-surface group-hover:text-primary transition-colors">
+                    Sneha Patel
+                  </h3>
+                  <input type="checkbox" class="rounded border-light-border text-primary focus:ring-primary w-3.5 h-3.5" title="Select for comparison">
+                </div>
+                <p data-design-text-token="body-sm" class="text-body-sm text-secondary">
+                  Frontend Software Eng • 2.6 yrs exp
+                </p>
+              </div>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-semibold">
+                <span class="material-symbols-outlined text-[13px]">auto_awesome</span> 89%
+              </span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1 py-1.5 px-2 bg-light-surface-subtle/70 rounded text-[11px] font-mono text-secondary mb-2">
+              <div><span class="text-[10px] uppercase text-secondary/70 block">CGPA</span><strong class="text-light-on-surface">8.4</strong>/10</div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">12th</span><strong class="text-light-on-surface">88.0%</strong></div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">Grad</span><strong class="text-light-on-surface">2023</strong></div>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mb-2.5">
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">React</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">TypeScript</span>
+              <span class="px-1.5 py-0.5 bg-amber-50 text-warning border border-amber-200 rounded text-[11px] font-medium">+Docker (Gap)</span>
+            </div>
+
+            <div class="pt-2 border-t border-light-border/60 flex items-center justify-between text-[11px] text-secondary">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">location_on</span> Pune (Remote)
+              </span>
+              <button type="button" class="px-2 py-0.5 rounded bg-primary text-on-primary font-medium hover:opacity-95 text-xs flex items-center gap-1">
+                <span>Shortlist</span>
+                <span class="material-symbols-outlined text-[12px]">arrow_forward</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- STAGE 2: SHORTLISTED -->
+      <div class="flex flex-col bg-light-surface-subtle/60 rounded-xl border border-light-border p-3 min-h-[640px]">
+        <!-- Stage Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-light-border px-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+            <h2 class="font-headline font-semibold text-headline-sm text-light-on-surface">Shortlisted</h2>
+            <span class="px-2 py-0.5 rounded-full bg-light-surface-card border border-light-border font-mono text-[11px] font-medium text-secondary">
+              18
+            </span>
+          </div>
+          <button type="button" aria-label="Stage actions" class="text-secondary hover:text-light-on-surface p-1 rounded">
+            <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+          </button>
+        </div>
+
+        <div class="text-[11px] text-secondary py-2 px-1 flex items-center justify-between font-mono">
+          <span>Ready for scheduling</span>
+          <span class="text-primary font-medium cursor-pointer">Invite All</span>
+        </div>
+
+        <!-- Cards List -->
+        <div class="flex flex-col gap-3 mt-1">
+
+          <!-- Candidate 3: Aarav Mehta -->
+          <article data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="bg-light-surface-card border-2 border-primary/30 rounded-lg p-3.5 shadow-xs hover:shadow-sm transition-all cursor-pointer group">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 data-design-text-token="headline-sm" class="font-headline text-headline-sm font-semibold text-light-on-surface group-hover:text-primary transition-colors">
+                    Aarav Mehta
+                  </h3>
+                  <input type="checkbox" checked class="rounded border-light-border text-primary focus:ring-primary w-3.5 h-3.5" title="Select for comparison">
+                </div>
+                <p data-design-text-token="body-sm" class="text-body-sm text-secondary">
+                  Senior Full-Stack • 4.5 yrs exp
+                </p>
+              </div>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-bold">
+                <span class="material-symbols-outlined text-[13px]">auto_awesome</span> 96%
+              </span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1 py-1.5 px-2 bg-light-surface-subtle/70 rounded text-[11px] font-mono text-secondary mb-2">
+              <div><span class="text-[10px] uppercase text-secondary/70 block">CGPA</span><strong class="text-light-on-surface">9.2</strong>/10</div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">12th</span><strong class="text-light-on-surface">94.5%</strong></div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">Grad</span><strong class="text-light-on-surface">2021</strong></div>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mb-2.5">
+              <span class="px-1.5 py-0.5 bg-blue-50 text-primary border border-blue-200 rounded text-[11px] font-medium">React</span>
+              <span class="px-1.5 py-0.5 bg-blue-50 text-primary border border-blue-200 rounded text-[11px] font-medium">Node.js</span>
+              <span class="px-1.5 py-0.5 bg-blue-50 text-primary border border-blue-200 rounded text-[11px] font-medium">Kubernetes</span>
+              <span class="px-1.5 py-0.5 bg-blue-50 text-primary border border-blue-200 rounded text-[11px] font-medium">PostgreSQL</span>
+            </div>
+
+            <div class="pt-2 border-t border-light-border/60 flex items-center justify-between text-[11px] text-secondary">
+              <span class="text-primary font-medium flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">mail</span> 1-click Invite
+              </span>
+              <button type="button" class="px-2 py-0.5 rounded bg-accent text-on-accent font-medium hover:opacity-95 text-xs flex items-center gap-1">
+                <span>Schedule Interview</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Candidate 4: Tanvi Kulkarni -->
+          <article data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="bg-light-surface-card border border-light-border rounded-lg p-3.5 shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all cursor-pointer group">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 data-design-text-token="headline-sm" class="font-headline text-headline-sm font-semibold text-light-on-surface group-hover:text-primary transition-colors">
+                    Tanvi Kulkarni
+                  </h3>
+                  <input type="checkbox" class="rounded border-light-border text-primary focus:ring-primary w-3.5 h-3.5" title="Select for comparison">
+                </div>
+                <p data-design-text-token="body-sm" class="text-body-sm text-secondary">
+                  Backend Engineer • 3.0 yrs exp
+                </p>
+              </div>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-semibold">
+                <span class="material-symbols-outlined text-[13px]">auto_awesome</span> 91%
+              </span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1 py-1.5 px-2 bg-light-surface-subtle/70 rounded text-[11px] font-mono text-secondary mb-2">
+              <div><span class="text-[10px] uppercase text-secondary/70 block">CGPA</span><strong class="text-light-on-surface">8.7</strong>/10</div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">12th</span><strong class="text-light-on-surface">89.2%</strong></div>
+              <div><span class="text-[10px] uppercase text-secondary/70 block">Grad</span><strong class="text-light-on-surface">2022</strong></div>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mb-2.5">
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">Node.js</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">Go</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">PostgreSQL</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">Docker</span>
+            </div>
+
+            <div class="pt-2 border-t border-light-border/60 flex items-center justify-between text-[11px] text-secondary">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">location_on</span> Hyderabad
+              </span>
+              <button type="button" class="px-2 py-0.5 rounded bg-accent text-on-accent font-medium hover:opacity-95 text-xs flex items-center gap-1">
+                <span>Schedule</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- STAGE 3: INTERVIEW -->
+      <div class="flex flex-col bg-light-surface-subtle/60 rounded-xl border border-light-border p-3 min-h-[640px]">
+        <!-- Stage Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-light-border px-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-accent"></span>
+            <h2 class="font-headline font-semibold text-headline-sm text-light-on-surface">Interview</h2>
+            <span class="px-2 py-0.5 rounded-full bg-light-surface-card border border-light-border font-mono text-[11px] font-medium text-secondary">
+              6
+            </span>
+          </div>
+          <button type="button" aria-label="Stage actions" class="text-secondary hover:text-light-on-surface p-1 rounded">
+            <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+          </button>
+        </div>
+
+        <div class="text-[11px] text-secondary py-2 px-1 flex items-center justify-between font-mono">
+          <span>Technical + System Design</span>
+          <span class="text-secondary font-medium">Round 2 of 3</span>
+        </div>
+
+        <!-- Cards List -->
+        <div class="flex flex-col gap-3 mt-1">
+
+          <!-- Candidate 5: Vikram Aditya -->
+          <article data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="bg-light-surface-card border border-light-border rounded-lg p-3.5 shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all cursor-pointer group">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div>
+                <h3 data-design-text-token="headline-sm" class="font-headline text-headline-sm font-semibold text-light-on-surface group-hover:text-primary transition-colors">
+                  Vikram Aditya
+                </h3>
+                <p data-design-text-token="body-sm" class="text-body-sm text-secondary">
+                  Tech Lead / Architect • 5.1 yrs exp
+                </p>
+              </div>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-semibold">
+                93%
+              </span>
+            </div>
+
+            <div class="py-1 px-2 bg-purple-50 border border-purple-200 rounded text-[11px] text-accent font-medium mb-2 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[14px]">event</span>
+              <span>System Design: Today, 4:30 PM</span>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mb-2.5">
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">Microservices</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">React</span>
+              <span class="px-1.5 py-0.5 bg-light-surface-subtle border border-light-border rounded text-[11px] font-medium text-light-on-surface">Kafka</span>
+            </div>
+
+            <div class="pt-2 border-t border-light-border/60 flex items-center justify-between text-[11px] text-secondary">
+              <span class="text-success font-medium">Scorecard: 4.8 / 5.0</span>
+              <button type="button" class="px-2 py-0.5 rounded bg-emerald-700 text-on-success font-medium hover:opacity-95 text-xs flex items-center gap-1">
+                <span>Make Offer</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- STAGE 4: OFFER / REJECTED -->
+      <div class="flex flex-col bg-light-surface-subtle/60 rounded-xl border border-light-border p-3 min-h-[640px]">
+        <!-- Stage Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-light-border px-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-success"></span>
+            <h2 class="font-headline font-semibold text-headline-sm text-light-on-surface">Offer / Closed</h2>
+            <span class="px-2 py-0.5 rounded-full bg-light-surface-card border border-light-border font-mono text-[11px] font-medium text-secondary">
+              4
+            </span>
+          </div>
+          <button type="button" aria-label="Stage actions" class="text-secondary hover:text-light-on-surface p-1 rounded">
+            <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+          </button>
+        </div>
+
+        <div class="text-[11px] text-secondary py-2 px-1 flex items-center justify-between font-mono">
+          <span>3 Offers • 1 Rejected</span>
+          <span class="text-success font-medium">75% Acceptance</span>
+        </div>
+
+        <!-- Cards List -->
+        <div class="flex flex-col gap-3 mt-1">
+
+          <!-- Candidate 6: Neha Deshmukh -->
+          <article data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="bg-light-surface-card border border-emerald-200 rounded-lg p-3.5 shadow-2xs hover:shadow-xs transition-all cursor-pointer group">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div>
+                <h3 data-design-text-token="headline-sm" class="font-headline text-headline-sm font-semibold text-light-on-surface group-hover:text-primary transition-colors">
+                  Neha Deshmukh
+                </h3>
+                <p data-design-text-token="body-sm" class="text-body-sm text-secondary">
+                  Full Stack Engineer • 3.8 yrs exp
+                </p>
+              </div>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-bold">
+                95%
+              </span>
+            </div>
+
+            <div class="p-2 bg-emerald-50/70 border border-emerald-200 rounded text-[11px] text-success font-medium mb-2 flex items-center justify-between">
+              <span>Offer Letter Released</span>
+              <span class="font-mono font-bold">₹28 LPA</span>
+            </div>
+
+            <div class="pt-2 border-t border-light-border/60 flex items-center justify-between text-[11px] text-secondary">
+              <span class="flex items-center gap-1 text-secondary">
+                <span class="material-symbols-outlined text-[13px]">timer</span> Expires in 3 days
+              </span>
+              <span class="text-emerald-700 font-semibold text-xs">Pending Signature</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Side-by-Side Candidate Comparison Modal / Drawer Component -->
+  <aside id="comparison-drawer" class="fixed inset-y-0 right-0 w-[580px] bg-light-surface-card border-l border-light-border shadow-2xl z-50 flex flex-col transform transition-transform duration-200 ease-out" aria-label="Side-by-side Candidate Comparison">
+    <!-- Drawer Header -->
+    <div class="px-6 py-4 border-b border-light-border flex items-center justify-between bg-light-surface-card">
+      <div class="flex items-center gap-2.5">
+        <span class="p-1.5 rounded-md bg-accent/10 text-accent">
+          <span class="material-symbols-outlined text-[20px]">compare_arrows</span>
+        </span>
+        <div>
+          <h2 class="font-headline text-headline-sm font-bold text-light-on-surface">Candidate Side-by-Side Match</h2>
+          <p class="text-[12px] text-secondary">Benchmarking against: Full-Stack Engineer JD</p>
+        </div>
+      </div>
+      <button type="button" id="btn-close-drawer" class="w-8 h-8 rounded-md hover:bg-light-surface-subtle flex items-center justify-center text-secondary hover:text-light-on-surface" aria-label="Close drawer">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Comparison Body (Grid layout) -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+
+      <!-- Candidate Headers -->
+      <div class="grid grid-cols-2 gap-4 pb-4 border-b border-light-border">
+        <!-- Candidate A -->
+        <div class="p-3.5 rounded-lg border border-light-border bg-light-surface-subtle/40">
+          <span class="text-[10px] font-mono text-secondary uppercase font-semibold">Candidate A</span>
+          <h3 class="font-headline text-headline-sm font-bold text-light-on-surface mt-1">Aarav Mehta</h3>
+          <p class="text-body-sm text-secondary">IIT Bombay • 4.5y Exp</p>
+          <div class="mt-2 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-bold">
+              96% JD Fit
+            </span>
+            <span class="text-[11px] text-secondary">Shortlisted</span>
+          </div>
+        </div>
+
+        <!-- Candidate B -->
+        <div class="p-3.5 rounded-lg border border-light-border bg-light-surface-subtle/40">
+          <span class="text-[10px] font-mono text-secondary uppercase font-semibold">Candidate B</span>
+          <h3 class="font-headline text-headline-sm font-bold text-light-on-surface mt-1">Rohan Gupta</h3>
+          <p class="text-body-sm text-secondary">NIT Trichy • 3.2y Exp</p>
+          <div class="mt-2 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-emerald-50 text-success border border-emerald-200 font-mono text-mono-sm font-bold">
+              94% JD Fit
+            </span>
+            <span class="text-[11px] text-secondary">Applied</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cutoff Criteria Comparison Matrix -->
+      <div>
+        <h4 class="font-headline text-[13px] font-semibold text-secondary uppercase tracking-wider mb-2.5">
+          Academic &amp; Experience Cutoffs
+        </h4>
+        <div class="border border-light-border rounded-lg overflow-hidden text-xs">
+          <!-- Row: CGPA -->
+          <div class="grid grid-cols-3 p-2.5 bg-light-surface-subtle/40 border-b border-light-border items-center">
+            <span class="font-medium text-secondary">CGPA (Req: ≥ 7.5)</span>
+            <span class="font-mono font-bold text-success">9.2 / 10.0 (Pass)</span>
+            <span class="font-mono font-bold text-success">8.9 / 10.0 (Pass)</span>
+          </div>
+          <!-- Row: 12th % -->
+          <div class="grid grid-cols-3 p-2.5 border-b border-light-border items-center">
+            <span class="font-medium text-secondary">12th Grade % (Req: ≥ 75%)</span>
+            <span class="font-mono text-light-on-surface font-semibold">94.5%</span>
+            <span class="font-mono text-light-on-surface font-semibold">91.4%</span>
+          </div>
+          <!-- Row: 10th % -->
+          <div class="grid grid-cols-3 p-2.5 bg-light-surface-subtle/40 border-b border-light-border items-center">
+            <span class="font-medium text-secondary">10th Grade % (Req: ≥ 75%)</span>
+            <span class="font-mono text-light-on-surface">92.0%</span>
+            <span class="font-mono text-light-on-surface">88.6%</span>
+          </div>
+          <!-- Row: Experience -->
+          <div class="grid grid-cols-3 p-2.5 items-center">
+            <span class="font-medium text-secondary">Relevant Experience</span>
+            <span class="font-mono text-light-on-surface font-semibold">4.5 Years</span>
+            <span class="font-mono text-light-on-surface font-semibold">3.2 Years</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Skills Breakdown & Gap Insights -->
+      <div>
+        <h4 class="font-headline text-[13px] font-semibold text-secondary uppercase tracking-wider mb-2.5">
+          AI Skill-Gap Insights
+        </h4>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <!-- Candidate A Skills -->
+          <div class="space-y-2 p-3 bg-light-surface-subtle/30 rounded-lg border border-light-border">
+            <div class="text-[11px] font-semibold text-success flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">check_circle</span> 100% Core Skills Met
+            </div>
+            <div class="flex flex-wrap gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-emerald-50 text-success text-[10px]">React</span>
+              <span class="px-1.5 py-0.5 rounded bg-emerald-50 text-success text-[10px]">Node.js</span>
+              <span class="px-1.5 py-0.5 rounded bg-emerald-50 text-success text-[10px]">PostgreSQL</span>
+              <span class="px-1.5 py-0.5 rounded bg-emerald-50 text-success text-[10px]">Kubernetes</span>
+            </div>
+            <p class="text-[11px] text-secondary mt-1">Strong system architecture depth, zero skill gaps detected.</p>
+          </div>
+
+          <!-- Candidate B Skills -->
+          <div class="space-y-2 p-3 bg-light-surface-subtle/30 rounded-lg border border-light-border">
+            <div class="text-[11px] font-semibold text-warning flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">info</span> 1 Minor Gap Identified
+            </div>
+            <div class="flex flex-wrap gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-emerald-50 text-success text-[10px]">React</span>
+              <span class="px-1.5 py-0.5 rounded bg-emerald-50 text-success text-[10px]">Node.js</span>
+              <span class="px-1.5 py-0.5 rounded bg-emerald-50 text-success text-[10px]">AWS</span>
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-warning text-[10px]">GraphQL (Missing)</span>
+            </div>
+            <p class="text-[11px] text-secondary mt-1">Has AWS experience instead of raw Kubernetes container orchestration.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drawer Footer Actions -->
+    <div class="p-4 border-t border-light-border bg-light-surface-subtle/50 flex items-center justify-between">
+      <span class="text-xs text-secondary">2 Candidates selected for action</span>
+      <div class="flex items-center gap-2">
+        <button type="button" class="px-3 py-1.5 bg-light-surface-card border border-light-border rounded-md text-xs font-medium text-light-on-surface hover:bg-light-surface-subtle">
+          Export CSV Comparison
+        </button>
+        <button type="button" class="px-3 py-1.5 bg-primary text-on-primary rounded-md text-xs font-medium hover:opacity-95">
+          Advance Both to Interview
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Interactive Script for Toggle and Modal Demo -->
+  <script>
+    const drawer = document.getElementById('comparison-drawer');
+    const btnCompare = document.getElementById('btn-compare');
+    const btnCloseDrawer = document.getElementById('btn-close-drawer');
+
+    if (btnCompare && drawer && btnCloseDrawer) {
+      btnCompare.addEventListener('click', () => {
+        drawer.classList.remove('translate-x-full');
+      });
+      btnCloseDrawer.addEventListener('click', () => {
+        drawer.classList.add('translate-x-full');
+      });
+    }
+  </script>
+
+
+
+</body></html>

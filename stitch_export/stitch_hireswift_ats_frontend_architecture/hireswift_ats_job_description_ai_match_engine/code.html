@@ -1,0 +1,445 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HireSwift ATS — Job Description &amp; AI Match Engine</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#1E3A8A',
+        'on-primary': '#FFFFFF',
+        'secondary': '#475569',
+        'on-secondary': '#FFFFFF',
+        'success': '#047857',
+        'on-success': '#FFFFFF',
+        'warning': '#B45309',
+        'on-warning': '#FFFFFF',
+        'error': '#B91C1C',
+        'on-error': '#FFFFFF',
+        'accent': '#4338CA',
+        'on-accent': '#FFFFFF',
+        'light-surface': '#F8FAFC',
+        'light-on-surface': '#0F172A',
+        'light-surface-card': '#FFFFFF',
+        'light-on-surface-card': '#1E293B',
+        'light-surface-subtle': '#F1F5F9',
+        'light-border': '#E2E8F0',
+        'dark-surface': '#0F172A',
+        'dark-on-surface': '#F8FAFC',
+        'dark-surface-card': '#1E293B',
+        'dark-on-surface-card': '#F1F5F9',
+        'dark-surface-subtle': '#334155',
+        'dark-border': '#334155',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '10px',
+        'lg': '14px',
+        'xl': '20px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '48px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Red Hat Text"', 'sans-serif'],
+        'headline': ['"Red Hat Text"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Spline Sans Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['36px', { lineHeight: '44px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['24px', { lineHeight: '30px', letterSpacing: '-0.25px', fontWeight: '600' }],
+        'headline-md': ['20px', { lineHeight: '26px', fontWeight: '600' }],
+        'headline-sm': ['16px', { lineHeight: '22px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+        'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }],
+        'label-md': ['13px', { lineHeight: '18px', fontWeight: '500' }],
+        'mono-sm': ['12px', { lineHeight: '16px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '200ms',
+        'surface-exit': '140ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'surface-exit': 'cubic-bezier(0.7, 0, 0.84, 0)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Red+Hat+Text:wght@500;600;700&amp;family=Spline+Sans+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body min-h-[1024px] flex flex-col antialiased selection:bg-primary/10 selection:text-primary" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Top Global Navigation Bar (Shared Shell) -->
+  <header class="border-b border-light-border bg-light-surface-card sticky top-0 z-30 px-6 py-2.5 flex items-center justify-between">
+    <div class="flex items-center gap-8">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-headline-sm shadow-xs">
+          H
+        </div>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-headline font-bold text-headline-sm tracking-tight text-light-on-surface">HireSwift</span>
+          <span class="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded bg-light-surface-subtle text-secondary border border-light-border">ATS</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+        <a href="../dashboard/RecruiterDashboard.html" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">view_kanban</span>
+          <span>Pipeline &amp; Jobs</span>
+        </a>
+        <a href="../candidate/CandidateProfile.html" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">group</span>
+          <span>Candidate Pool</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-light-border font-mono text-[11px]">142</span>
+        </a>
+        <a href="../upload/BulkResumeUpload.html" class="px-3 py-1.5 rounded-md text-body-sm font-medium text-secondary hover:text-light-on-surface hover:bg-light-surface-subtle/60 transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+          <span>Bulk Ingestion</span>
+        </a>
+        <a href="#matcher" class="px-3 py-1.5 rounded-md text-body-sm font-medium bg-light-surface-subtle text-light-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px] text-accent">psychology</span>
+          <span>AI Match Engine</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Right Header Actions -->
+    <div class="flex items-center gap-3">
+      <div class="relative w-64 hidden lg:block">
+        <span class="material-symbols-outlined absolute left-2.5 top-2 text-secondary text-[18px]" aria-hidden="true">search</span>
+        <input type="search" placeholder="Filter skills, CGPA, name..." class="w-full pl-8 pr-12 py-1.5 bg-light-surface-subtle border border-light-border rounded-md text-body-sm text-light-on-surface placeholder:text-secondary/60 focus:bg-light-surface-card focus:border-primary focus:ring-1 focus:ring-primary outline-hidden text-xs">
+        <span class="absolute right-2 top-1.5 px-1 py-0.5 rounded border border-light-border bg-light-surface-card text-[10px] font-mono text-secondary">⌘K</span>
+      </div>
+
+      <button type="button" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-primary text-on-primary rounded-md text-body-sm font-medium hover:opacity-95 shadow-xs transition-opacity cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">save</span>
+        <span>Save &amp; Re-Index Resumes</span>
+      </button>
+
+      <div class="w-8 h-8 rounded-full bg-light-surface-subtle border border-light-border flex items-center justify-center font-headline font-semibold text-xs text-secondary ml-1">
+        HR
+      </div>
+    </div>
+  </header>
+
+  <!-- Subheader -->
+  <div class="bg-light-surface-card border-b border-light-border px-6 py-4">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="px-2 py-0.5 rounded bg-purple-50 text-accent border border-purple-200 text-[11px] font-semibold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px]">auto_awesome</span> Semantic Scorer
+          </span>
+          <span class="text-secondary text-body-sm">•</span>
+          <span class="text-body-sm text-secondary">Target Role: <strong class="text-light-on-surface font-medium">Full-Stack Software Engineer</strong></span>
+        </div>
+        <h1 class="font-headline text-headline-lg font-bold text-light-on-surface tracking-tight">
+          Job Description &amp; Match Algorithm Calibration
+        </h1>
+        <p class="text-body-sm text-secondary mt-0.5">
+          Tune candidate scoring weights, set hard eligibility cutoffs (CGPA, 10th/12th, experience), and define required vs. nice-to-have skill vectors.
+        </p>
+      </div>
+
+      <!-- Live Match Preview Pill -->
+      <div class="flex items-center gap-3 bg-light-surface-subtle border border-light-border rounded-lg p-3">
+        <div class="text-right">
+          <span class="text-[10px] font-mono uppercase text-secondary font-semibold block">Qualified Candidates</span>
+          <div class="flex items-baseline justify-end gap-1.5">
+            <strong class="font-mono text-headline-sm font-bold text-success">42 of 142</strong>
+            <span class="text-[11px] text-secondary font-mono">(&gt;80% fit)</span>
+          </div>
+        </div>
+        <button type="button" class="px-3 py-1.5 bg-accent text-on-accent rounded-md text-xs font-medium hover:opacity-90 shadow-2xs flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">refresh</span>
+          <span>Test JD Run</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Grid Layout: JD Editor (Left) & Scoring Weights Engine (Right) -->
+  <main class="flex-1 p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-light-surface max-w-[1600px] w-full mx-auto">
+
+    <!-- LEFT COLUMN: JD Input & Extracted Skill Taxonomy (7 Cols) -->
+    <div class="lg:col-span-7 flex flex-col gap-5">
+
+      <!-- Job Description Rich Input -->
+      <section class="bg-light-surface-card border border-light-border rounded-xl p-5 shadow-xs">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">description</span>
+            <h2 class="font-headline text-headline-sm font-semibold text-light-on-surface">Job Description Text</h2>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <button type="button" class="px-2.5 py-1 rounded bg-light-surface-subtle text-secondary hover:text-light-on-surface border border-light-border flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">upload_file</span> Paste from LinkedIn / PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="block text-secondary font-medium mb-1">Job Title</label>
+              <input type="text" value="Full-Stack Software Engineer (React / Node / Cloud)" class="w-full px-3 py-1.5 rounded-md border border-light-border text-light-on-surface text-body-sm font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-hidden">
+            </div>
+            <div>
+              <label class="block text-secondary font-medium mb-1">Department &amp; Level</label>
+              <input type="text" value="Engineering • Mid-to-Senior (L4/L5)" class="w-full px-3 py-1.5 rounded-md border border-light-border text-light-on-surface text-body-sm font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-hidden">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-secondary font-medium text-xs mb-1">Role Description &amp; Responsibilities</label>
+            <textarea rows="7" class="w-full p-3 bg-light-surface-subtle/50 border border-light-border rounded-lg text-body-sm text-light-on-surface focus:bg-light-surface-card focus:border-primary focus:ring-1 focus:ring-primary outline-hidden leading-relaxed">We are hiring a Full-Stack Engineer to scale our core B2B workflow platform.
+Requirements:
+- 2 to 5 years building scalable production web applications.
+- Strong hands-on proficiency in React, TypeScript, Node.js, and SQL databases (PostgreSQL preferred).
+- Hands-on experience with Docker, cloud infrastructure (AWS/GCP), and modern CI/CD.
+- Bachelor&#39;s degree in Computer Science or related STEM field with consistent academic rigor (minimum 7.5 CGPA or equivalent).
+- Fast learner who thrives in an autonomous, high-velocity startup environment.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Extracted Keywords & Skill Clusters -->
+      <section class="bg-light-surface-card border border-light-border rounded-xl p-5 shadow-xs">
+        <h3 class="font-headline text-headline-sm font-semibold text-light-on-surface mb-3 flex items-center justify-between">
+          <span class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">hub</span>
+            <span>AI Extracted Skill Clusters (Required vs Preferred)</span>
+          </span>
+          <span class="text-xs font-mono text-secondary">Auto-Parsed</span>
+        </h3>
+
+        <div class="space-y-4 text-xs">
+          <!-- Mandatory Skills -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-semibold text-emerald-800 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-success"></span> Mandatory Core Skills (Hard Fit)
+              </span>
+              <span class="text-secondary text-[11px]">Must be present in resume</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 bg-emerald-50 text-success border border-emerald-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>React.js</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+              <span class="px-2.5 py-1 bg-emerald-50 text-success border border-emerald-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>Node.js</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+              <span class="px-2.5 py-1 bg-emerald-50 text-success border border-emerald-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>TypeScript</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+              <span class="px-2.5 py-1 bg-emerald-50 text-success border border-emerald-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>PostgreSQL</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+              <button type="button" class="px-2 py-1 rounded border border-dashed border-light-border text-secondary hover:text-light-on-surface">
+                + Add Mandatory Skill
+              </button>
+            </div>
+          </div>
+
+          <!-- Nice to Have -->
+          <div class="pt-3 border-t border-light-border/60">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-semibold text-accent flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-accent"></span> Nice-to-Have Bonus Skills (Boost Score)
+              </span>
+              <span class="text-secondary text-[11px]">+5% match boost per match</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 bg-purple-50 text-accent border border-purple-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>Kubernetes</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+              <span class="px-2.5 py-1 bg-purple-50 text-accent border border-purple-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>GraphQL</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+              <span class="px-2.5 py-1 bg-purple-50 text-accent border border-purple-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>AWS ECS</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+              <span class="px-2.5 py-1 bg-purple-50 text-accent border border-purple-200 rounded-md font-medium flex items-center gap-1.5">
+                <span>Kafka</span>
+                <button type="button" class="hover:text-error"><span class="material-symbols-outlined text-[13px]">close</span></button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- RIGHT COLUMN: Cutoff Threshold Rules & Algorithm Weight Sliders (5 Cols) -->
+    <div class="lg:col-span-5 flex flex-col gap-5">
+
+      <!-- Hard Cutoff Eligibility Rules -->
+      <section class="bg-light-surface-card border border-light-border rounded-xl p-5 shadow-xs">
+        <h3 class="font-headline text-headline-sm font-semibold text-light-on-surface mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-warning text-[20px]">rule</span>
+          <span>Academic &amp; Experience Eligibility Gates</span>
+        </h3>
+        <p class="text-xs text-secondary mb-4">
+          Candidates failing any of these gates will be automatically flagged as &#34;Eligibility Warning&#34; in the pipeline.
+        </p>
+
+        <div class="space-y-3.5 text-xs">
+          <!-- CGPA Gate -->
+          <div class="p-3 bg-light-surface-subtle rounded-lg border border-light-border flex items-center justify-between">
+            <div>
+              <span class="font-semibold text-light-on-surface block">Minimum College CGPA</span>
+              <span class="text-secondary text-[11px]">Normalized to 10.0 scale</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="number" step="0.1" value="7.5" class="w-20 px-2 py-1 rounded bg-light-surface-card border border-light-border text-center font-mono font-bold text-light-on-surface">
+              <span class="text-secondary font-mono">/ 10.0</span>
+            </div>
+          </div>
+
+          <!-- 12th Percentage Gate -->
+          <div class="p-3 bg-light-surface-subtle rounded-lg border border-light-border flex items-center justify-between">
+            <div>
+              <span class="font-semibold text-light-on-surface block">12th Grade Cutoff</span>
+              <span class="text-secondary text-[11px]">CBSE, ICSE, or State Boards</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="number" value="75" class="w-20 px-2 py-1 rounded bg-light-surface-card border border-light-border text-center font-mono font-bold text-light-on-surface">
+              <span class="text-secondary font-mono">%</span>
+            </div>
+          </div>
+
+          <!-- Experience Gate -->
+          <div class="p-3 bg-light-surface-subtle rounded-lg border border-light-border flex items-center justify-between">
+            <div>
+              <span class="font-semibold text-light-on-surface block">Years of Experience Window</span>
+              <span class="text-secondary text-[11px]">Calculated from resume work timeline</span>
+            </div>
+            <div class="flex items-center gap-1.5 font-mono">
+              <input type="number" step="0.5" value="2.0" class="w-14 px-2 py-1 rounded bg-light-surface-card border border-light-border text-center font-bold">
+              <span class="text-secondary">to</span>
+              <input type="number" step="0.5" value="5.0" class="w-14 px-2 py-1 rounded bg-light-surface-card border border-light-border text-center font-bold">
+              <span class="text-secondary">yrs</span>
+            </div>
+          </div>
+
+          <!-- Graduation Year Gate -->
+          <div class="p-3 bg-light-surface-subtle rounded-lg border border-light-border flex items-center justify-between">
+            <div>
+              <span class="font-semibold text-light-on-surface block">Eligible Graduation Years</span>
+              <span class="text-secondary text-[11px]">Undergrad completion year</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="px-2 py-0.5 rounded bg-light-surface-card border border-light-border font-mono font-medium">2020 – 2024</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Score Weight Customizer (Sliders) -->
+      <section class="bg-light-surface-card border border-light-border rounded-xl p-5 shadow-xs">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="font-headline text-headline-sm font-semibold text-light-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+            <span>Match Formula Weights</span>
+          </h3>
+          <span class="px-2 py-0.5 rounded bg-emerald-50 text-success border border-emerald-200 font-mono text-[11px] font-bold">
+            Total 100%
+          </span>
+        </div>
+        <p class="text-xs text-secondary mb-4">
+          Adjust the importance of each parameter when calculating the overall candidate fit score.
+        </p>
+
+        <div class="space-y-4 text-xs">
+          <!-- Weight 1 -->
+          <div>
+            <div class="flex justify-between font-medium mb-1">
+              <span class="text-light-on-surface">1. Skills &amp; Tech Stack Alignment</span>
+              <span class="font-mono font-bold text-primary">40%</span>
+            </div>
+            <input type="range" min="10" max="70" value="40" class="w-full accent-primary h-1.5 bg-light-surface-subtle rounded-lg cursor-pointer">
+          </div>
+
+          <!-- Weight 2 -->
+          <div>
+            <div class="flex justify-between font-medium mb-1">
+              <span class="text-light-on-surface">2. Total Relevant Experience</span>
+              <span class="font-mono font-bold text-primary">30%</span>
+            </div>
+            <input type="range" min="10" max="50" value="30" class="w-full accent-primary h-1.5 bg-light-surface-subtle rounded-lg cursor-pointer">
+          </div>
+
+          <!-- Weight 3 -->
+          <div>
+            <div class="flex justify-between font-medium mb-1">
+              <span class="text-light-on-surface">3. Academic Performance (CGPA &amp; 12th)</span>
+              <span class="font-mono font-bold text-primary">20%</span>
+            </div>
+            <input type="range" min="5" max="40" value="20" class="w-full accent-primary h-1.5 bg-light-surface-subtle rounded-lg cursor-pointer">
+          </div>
+
+          <!-- Weight 4 -->
+          <div>
+            <div class="flex justify-between font-medium mb-1">
+              <span class="text-light-on-surface">4. College Tier &amp; Domain Fit</span>
+              <span class="font-mono font-bold text-primary">10%</span>
+            </div>
+            <input type="range" min="0" max="30" value="10" class="w-full accent-primary h-1.5 bg-light-surface-subtle rounded-lg cursor-pointer">
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+
+
+</body></html>
