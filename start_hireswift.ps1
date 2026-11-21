@@ -6,4 +6,4 @@ Write-Host "Starting HireSwift full-stack server on http://localhost:8000..." -F
 Write-Host "API Documentation available at: http://localhost:8000/docs" -ForegroundColor Gray
 Write-Host ""
 
-py backend\run_backend.py
+python backend\run_backend.py

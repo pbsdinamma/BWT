@@ -123,10 +123,10 @@ export default function ResumeUploader({
           status: 'success',
           candidate_id: c.id,
           candidate_name: c.name,
-          filename: c.resume_file_path?.split('\\').pop() || 'sample_resume.pdf',
-          experience_years: c.experience_years,
+          filename: c.file_name || c.resume_file_path?.split('\\').pop() || 'sample_resume.pdf',
+          experience_years: c.years_of_experience !== undefined ? c.years_of_experience : (c.experience_years || 0),
           skills: c.skills,
-          academics: c.academics,
+          academics: c.academics || c.education,
           match_score: c.match_score,
           is_duplicate: c.is_duplicate,
           reasons: c.duplicate_reasons
@@ -328,22 +328,26 @@ export default function ResumeUploader({
               <div>
                 <label className="block font-medium text-[#475569] dark:text-[#94A3B8] mb-1">Target Job Description</label>
                 <div className="flex items-center justify-between p-2.5 bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-md">
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
+                  <div className="flex items-center gap-2 w-full">
+                    <Briefcase className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400 shrink-0" />
                     <select
                       value={targetJobId}
                       onChange={(e) => setTargetJobId(e.target.value)}
-                      className="bg-transparent font-semibold text-[#0F172A] dark:text-[#F8FAFC] border-none text-xs focus:ring-0 cursor-pointer"
+                      className="bg-transparent font-semibold text-[#0F172A] dark:text-[#F8FAFC] border-none text-xs focus:ring-0 cursor-pointer w-full"
                     >
-                      {jobs.map((j) => (
-                        <option key={j.job.id} value={j.job.id} className="bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC]">
-                          {j.job.title}
-                        </option>
-                      ))}
+                      <option value="auto">⚡ Auto-Match & Route to Best Active Job (AI)</option>
+                      <optgroup label="Specific Job Requisitions">
+                        {jobs.map((j) => (
+                          <option key={j.job.id} value={j.job.id} className="bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC]">
+                            {j.job.title} ({j.job.department || 'Engineering'})
+                          </option>
+                        ))}
+                      </optgroup>
+                      <option value="pool">🏢 Company Talent Pool (General Sourcing - All Openings)</option>
                     </select>
                   </div>
-                  <span className="text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8]">
-                    {targetJob?.id ? `JD-${targetJob.id.slice(0, 6)}` : 'ACTIVE'}
+                  <span className="text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8] shrink-0 ml-2">
+                    {targetJobId === 'auto' ? 'AI-ROUTED' : targetJobId === 'pool' ? 'TALENT POOL' : (targetJob?.id ? `JD-${targetJob.id.slice(0, 6)}` : 'ACTIVE')}
                   </span>
                 </div>
               </div>
@@ -511,8 +515,13 @@ export default function ResumeUploader({
 
               <div className="flex items-center gap-3 text-xs text-[#64748B] dark:text-[#94A3B8] font-mono">
                 <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span> {uploadResult?.successful_parses || 0} Parsed
+                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span> {uploadResult?.successful ?? uploadResult?.successful_parses ?? 0} Parsed
                 </span>
+                {uploadResult?.results?.some(r => r.status === 'error') && (
+                  <span className="flex items-center gap-1 text-red-600 dark:text-red-400 font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-red-500"></span> {uploadResult.results.filter(r => r.status === 'error').length} Rejected
+                  </span>
+                )}
                 <span className="flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-amber-500"></span> {uploadResult?.duplicates_detected || 0} Duplicates
                 </span>
@@ -533,74 +542,117 @@ export default function ResumeUploader({
                 </thead>
                 <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#334155]">
                   {uploadResult?.results && uploadResult.results.length > 0 ? (
-                    uploadResult.results.map((res, i) => (
-                      <tr
-                        key={i}
-                        className={`hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A]/50 transition-colors ${
-                          res.is_duplicate ? 'bg-amber-50/50 dark:bg-amber-950/20' : ''
-                        }`}
-                      >
-                        <td className="py-3 px-4">
-                          <div className="font-semibold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-1.5">
-                            <span>{res.candidate_name || 'Candidate'}</span>
-                            {res.is_duplicate && (
-                              <span className="px-1.5 py-0.2 rounded bg-amber-100 dark:bg-amber-900/60 text-[#B45309] dark:text-amber-300 text-[10px] font-mono font-bold">
-                                DUPLICATE
+                    uploadResult.results.map((res, i) => {
+                      if (res.status === 'error') {
+                        return (
+                          <tr key={i} className="bg-red-50/60 dark:bg-red-950/30 border-l-4 border-l-red-500">
+                            <td className="py-3 px-4">
+                              <div className="font-semibold text-red-700 dark:text-red-400 flex items-center gap-1.5">
+                                <span>Upload Rejected</span>
+                                <span className="px-1.5 py-0.5 rounded bg-red-100 dark:bg-red-900/60 text-red-800 dark:text-red-300 text-[10px] font-mono font-bold">
+                                  NOT A RESUME
+                                </span>
+                              </div>
+                              <div className="text-[11px] text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1 font-mono mt-0.5">
+                                <FileText className="w-3.5 h-3.5 text-red-500 shrink-0" />
+                                <span className="truncate max-w-[200px]">{res.file_name || res.filename}</span>
+                              </div>
+                            </td>
+                            <td colSpan={4} className="py-3 px-3 text-xs text-red-700 dark:text-red-300 leading-normal font-medium">
+                              {res.error || 'This file is not a resume. Please upload a valid candidate resume/CV in PDF or DOCX format.'}
+                            </td>
+                            <td className="py-3 px-4 text-right">
+                              <span className="inline-flex items-center gap-1 text-red-600 dark:text-red-400 font-semibold text-xs">
+                                <X className="w-3.5 h-3.5" /> Rejected
                               </span>
-                            )}
-                          </div>
-                          <div className="text-[11px] text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1 font-mono">
-                            <FileText className="w-3.5 h-3.5 text-blue-500" />
-                            <span className="truncate max-w-[150px]">{res.filename}</span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-3">
-                          <div className="font-mono font-bold text-[#047857] dark:text-emerald-400">
-                            {res.academics?.cgpa ? `${res.academics.cgpa} CGPA` : 'N/A'}
-                          </div>
-                          <div className="text-[10px] font-mono text-[#64748B] dark:text-[#94A3B8]">
-                            {res.academics?.twelfth_percentage ? `12th: ${res.academics.twelfth_percentage}%` : ''}
-                            {res.academics?.tenth_percentage ? ` • 10th: ${res.academics.tenth_percentage}%` : ''}
-                          </div>
-                        </td>
-                        <td className="py-3 px-3">
-                          <div className="font-mono font-medium text-[#0F172A] dark:text-[#F8FAFC]">
-                            {res.experience_years || 0} Years
-                          </div>
-                          <div className="text-[10px] text-[#64748B] dark:text-[#94A3B8]">
-                            Grad: {res.academics?.graduation_year || '2021'}
-                          </div>
-                        </td>
-                        <td className="py-3 px-3">
-                          <div className="flex flex-wrap gap-1 max-w-[180px]">
-                            {res.skills?.slice(0, 3).map((s, idx) => (
-                              <span
-                                key={idx}
-                                className="px-1.5 py-0.2 bg-[#F1F5F9] dark:bg-[#0F172A] rounded text-[10px] font-medium text-[#334155] dark:text-[#CBD5E1]"
-                              >
-                                {s}
-                              </span>
-                            ))}
-                          </div>
-                        </td>
-                        <td className="py-3 px-3">
-                          <span
-                            className={`inline-flex items-center px-2 py-0.5 rounded-full font-mono text-[11px] font-bold border ${
-                              (res.match_score || 80) >= 80
-                                ? 'bg-emerald-50 dark:bg-emerald-950/60 text-[#047857] dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
-                                : 'bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 border-blue-200 dark:border-blue-800'
-                            }`}
-                          >
-                            {Math.round(res.match_score || 82)}%
-                          </span>
-                        </td>
-                        <td className="py-3 px-4 text-right">
-                          <span className="inline-flex items-center gap-1 text-[#047857] dark:text-emerald-400 font-medium text-xs">
-                            <Check className="w-3.5 h-3.5" /> Verified
-                          </span>
-                        </td>
-                      </tr>
-                    ))
+                            </td>
+                          </tr>
+                        );
+                      }
+
+                      const cand = res.candidate;
+                      const candName = res.candidate_name || cand?.name || 'Candidate';
+                      const fileName = res.filename || res.file_name || cand?.file_name;
+                      const academics = res.academics || cand?.education || cand?.academics;
+                      const expYears = res.experience_years !== undefined ? res.experience_years : (cand?.years_of_experience ?? 0);
+                      const skills = res.skills || cand?.skills || [];
+                      const matchScore = res.match_score || cand?.match_score || 85;
+                      const isDup = res.is_duplicate || cand?.is_duplicate;
+
+                      return (
+                        <tr
+                          key={i}
+                          className={`hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A]/50 transition-colors ${
+                            isDup ? 'bg-amber-50/50 dark:bg-amber-950/20' : ''
+                          }`}
+                        >
+                          <td className="py-3 px-4">
+                            <div className="font-semibold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-1.5">
+                              <span>{candName}</span>
+                              {isDup && (
+                                <span className="px-1.5 py-0.2 rounded bg-amber-100 dark:bg-amber-900/60 text-[#B45309] dark:text-amber-300 text-[10px] font-mono font-bold">
+                                  DUPLICATE
+                                </span>
+                              )}
+                              {res.auto_routed_to && (
+                                <span className="px-1.5 py-0.2 rounded bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-purple-300 text-[10px] font-semibold flex items-center gap-1">
+                                  ⚡ {res.auto_routed_to}
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-[11px] text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1 font-mono">
+                              <FileText className="w-3.5 h-3.5 text-blue-500" />
+                              <span className="truncate max-w-[150px]">{fileName}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-3">
+                            <div className="font-mono font-bold text-[#047857] dark:text-emerald-400">
+                              {academics?.cgpa ? `${academics.cgpa} CGPA` : 'N/A'}
+                            </div>
+                            <div className="text-[10px] font-mono text-[#64748B] dark:text-[#94A3B8]">
+                              {academics?.twelfth_percentage ? `12th: ${academics.twelfth_percentage}%` : ''}
+                              {academics?.tenth_percentage ? ` • 10th: ${academics.tenth_percentage}%` : ''}
+                            </div>
+                          </td>
+                          <td className="py-3 px-3">
+                            <div className="font-mono font-medium text-[#0F172A] dark:text-[#F8FAFC]">
+                              {expYears || 0} Years
+                            </div>
+                            <div className="text-[10px] text-[#64748B] dark:text-[#94A3B8]">
+                              Grad: {academics?.graduation_year || '2026'}
+                            </div>
+                          </td>
+                          <td className="py-3 px-3">
+                            <div className="flex flex-wrap gap-1 max-w-[180px]">
+                              {skills?.slice(0, 3).map((s, idx) => (
+                                <span
+                                  key={idx}
+                                  className="px-1.5 py-0.2 bg-[#F1F5F9] dark:bg-[#0F172A] rounded text-[10px] font-medium text-[#334155] dark:text-[#CBD5E1]"
+                                >
+                                  {s}
+                                </span>
+                              ))}
+                            </div>
+                          </td>
+                          <td className="py-3 px-3">
+                            <span
+                              className={`inline-flex items-center px-2 py-0.5 rounded-full font-mono text-[11px] font-bold border ${
+                                (matchScore || 80) >= 80
+                                  ? 'bg-emerald-50 dark:bg-emerald-950/60 text-[#047857] dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
+                                  : 'bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 border-blue-200 dark:border-blue-800'
+                              }`}
+                            >
+                              {Math.round(matchScore || 82)}%
+                            </span>
+                          </td>
+                          <td className="py-3 px-4 text-right">
+                            <span className="inline-flex items-center gap-1 text-[#047857] dark:text-emerald-400 font-medium text-xs">
+                              <Check className="w-3.5 h-3.5" /> Verified
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })
                   ) : (
                     <tr>
                       <td colSpan={6} className="py-12 text-center text-[#64748B] dark:text-[#94A3B8]">

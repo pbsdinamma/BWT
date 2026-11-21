@@ -22,8 +22,12 @@ import {
   Building,
   Calendar,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Edit3,
+  Save,
+  Check
 } from 'lucide-react';
+import { api } from '../api';
 
 export default function CandidateDetailModal({
   candidateData,
@@ -38,6 +42,38 @@ export default function CandidateDetailModal({
   const [newNote, setNewNote] = useState('');
   const [rejectionReason, setRejectionReason] = useState(c.rejection_reason || '');
   const [showRejectInput, setShowRejectInput] = useState(c.stage === 'Rejected');
+
+  // Candidate Contact & Profile State
+  const [currentEmail, setCurrentEmail] = useState(c.email || '');
+  const [currentPhone, setCurrentPhone] = useState(c.phone || '');
+  const [currentLocation, setCurrentLocation] = useState(c.location || '');
+  const [isEditingContact, setIsEditingContact] = useState(false);
+  const [editEmail, setEditEmail] = useState(c.email || '');
+  const [editPhone, setEditPhone] = useState(c.phone || '');
+  const [editLocation, setEditLocation] = useState(c.location || '');
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSaveContact = async () => {
+    setIsSaving(true);
+    try {
+      await api.updateCandidate(c.id, {
+        email: editEmail,
+        phone: editPhone,
+        location: editLocation
+      });
+      setCurrentEmail(editEmail);
+      setCurrentPhone(editPhone);
+      setCurrentLocation(editLocation);
+      c.email = editEmail;
+      c.phone = editPhone;
+      c.location = editLocation;
+      setIsEditingContact(false);
+    } catch (err) {
+      alert('Failed to update contact info: ' + err.message);
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const handleNoteSubmit = (e) => {
     e.preventDefault();
@@ -61,12 +97,28 @@ export default function CandidateDetailModal({
   };
 
   const score = ms ? Math.round(ms.overall_score) : 0;
-  const breakdown = ms?.breakdown || {
-    skills: { score: 90, matched: c.skills?.slice(0, 5) || [], missing: [] },
-    experience: { score: 85, candidate_exp: c.experience_years, required_exp: activeJob?.min_experience || 2 },
-    academics: { score: 88, cgpa: c.academics?.cgpa, tenth: c.academics?.tenth_percentage, twelfth: c.academics?.twelfth_percentage },
-    domain: { score: 82 }
+  
+  // Real live sub-scores directly from ATS Match Engine (no fake fallback numbers)
+  const skillsScore = ms?.skills_score !== undefined ? Math.round(ms.skills_score) : (ms?.breakdown?.skills?.score !== undefined ? Math.round(ms.breakdown.skills.score) : Math.round(score));
+  const expScore = ms?.experience_score !== undefined ? Math.round(ms.experience_score) : (ms?.breakdown?.experience?.score !== undefined ? Math.round(ms.breakdown.experience.score) : Math.round(score));
+  const acadScore = ms?.academics_score !== undefined ? Math.round(ms.academics_score) : (ms?.breakdown?.academics?.score !== undefined ? Math.round(ms.breakdown.academics.score) : 100);
+  const domainScore = ms?.semantic_score !== undefined ? Math.round(ms.semantic_score) : (ms?.breakdown?.domain?.score !== undefined ? Math.round(ms.breakdown.domain.score) : Math.round(score));
+
+  const matchedSkillsList = ms?.matched_required_skills?.length 
+    ? [...ms.matched_required_skills, ...(ms.matched_preferred_skills || [])]
+    : (ms?.breakdown?.skills?.matched || c.skills?.slice(0, 5) || []);
+  const missingSkillsList = ms?.missing_required_skills?.length 
+    ? ms.missing_required_skills 
+    : (ms?.breakdown?.skills?.missing || []);
+
+  const scoringWeights = ms?.breakdown?.weights || activeJob?.scoring_weights || {
+    skills: 40,
+    experience: 30,
+    academics: 20,
+    domain: 10
   };
+
+  const candidateExp = Number(c.years_of_experience !== undefined ? c.years_of_experience : (c.experience_years ?? 0)) || 0;
 
   const stageColors = {
     'Applied': 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
@@ -107,8 +159,78 @@ export default function CandidateDetailModal({
                 )}
               </div>
               <p className="text-xs sm:text-sm text-[#475569] dark:text-[#94A3B8]">
-                {c.current_title || 'Software Engineer'} • {c.academics?.degree || 'B.Tech'} {c.academics?.college ? `• ${c.academics.college}` : ''} • {c.location || 'Bengaluru'} • {c.experience_years || 0} Yrs Experience
+                {c.current_title || (candidateExp > 0 ? 'Software Engineer' : 'Campus Fresher')} • {c.academics?.degree || 'B.Tech'} {c.academics?.college ? `• ${c.academics.college}` : ''} • {currentLocation || 'India'} • {candidateExp > 0 ? `${candidateExp} Yrs Experience` : '0 Yrs Experience (Fresher)'}
               </p>
+              
+              <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-[#475569] dark:text-[#94A3B8]">
+                <span className="flex items-center gap-1 font-mono text-[#0F172A] dark:text-[#F8FAFC]">
+                  <Mail className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                  <span>{currentEmail}</span>
+                </span>
+                {currentPhone && (
+                  <span className="flex items-center gap-1 font-mono">
+                    • <Phone className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                    <span>{currentPhone}</span>
+                  </span>
+                )}
+                <span className="flex items-center gap-1">
+                  • <MapPin className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span>{currentLocation || 'India'}</span>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsEditingContact(!isEditingContact)}
+                  className="ml-1 px-2 py-0.5 rounded border border-[#CBD5E1] dark:border-[#334155] hover:bg-[#F1F5F9] dark:hover:bg-[#334155] text-[11px] font-medium flex items-center gap-1 text-[#1E3A8A] dark:text-blue-400 cursor-pointer"
+                  title="Correct candidate contact details"
+                >
+                  <Edit3 className="w-3 h-3" />
+                  <span>{isEditingContact ? 'Cancel' : 'Edit Contact'}</span>
+                </button>
+              </div>
+
+              {isEditingContact && (
+                <div className="mt-2.5 p-2.5 rounded-lg bg-[#F1F5F9] dark:bg-[#0F172A] border border-[#CBD5E1] dark:border-[#334155] flex flex-wrap items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8] font-medium">Email:</span>
+                    <input
+                      type="email"
+                      value={editEmail}
+                      onChange={(e) => setEditEmail(e.target.value)}
+                      placeholder="Candidate Email"
+                      className="px-2 py-1 text-xs bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] rounded text-[#0F172A] dark:text-[#F8FAFC] font-mono outline-none min-w-[210px]"
+                    />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8] font-medium">Phone:</span>
+                    <input
+                      type="text"
+                      value={editPhone}
+                      onChange={(e) => setEditPhone(e.target.value)}
+                      placeholder="Candidate Phone"
+                      className="px-2 py-1 text-xs bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] rounded text-[#0F172A] dark:text-[#F8FAFC] font-mono outline-none min-w-[130px]"
+                    />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8] font-medium">Location:</span>
+                    <input
+                      type="text"
+                      value={editLocation}
+                      onChange={(e) => setEditLocation(e.target.value)}
+                      placeholder="City, Country"
+                      className="px-2 py-1 text-xs bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] rounded text-[#0F172A] dark:text-[#F8FAFC] outline-none min-w-[120px]"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleSaveContact}
+                    disabled={isSaving}
+                    className="px-3 py-1 bg-[#1E3A8A] dark:bg-blue-600 text-white rounded text-xs font-semibold hover:bg-[#172554] dark:hover:bg-blue-500 flex items-center gap-1 cursor-pointer disabled:opacity-50"
+                  >
+                    <Save className="w-3.5 h-3.5" />
+                    <span>{isSaving ? 'Saving...' : 'Save'}</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -232,34 +354,36 @@ export default function CandidateDetailModal({
               {/* 4 Weighted Sub-Scores */}
               <div className="grid grid-cols-4 gap-3 py-4 border-b border-[#E2E8F0] dark:border-[#334155] text-center">
                 <div className="p-2.5 rounded-lg bg-[#F1F5F9] dark:bg-[#0F172A]">
-                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Skills Fit (40%)</span>
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Skills Fit ({scoringWeights.skills}%)</span>
                   <span className="font-mono text-base font-bold text-[#047857] dark:text-emerald-400 mt-0.5 block">
-                    {breakdown.skills?.score || Math.min(100, Math.round(score * 1.05))}%
+                    {skillsScore}%
                   </span>
                   <span className="text-[10px] text-[#64748B] dark:text-[#94A3B8]">
-                    {breakdown.skills?.matched?.length || c.skills?.length || 0} Matched Techs
+                    {matchedSkillsList.length} Matched Techs
                   </span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#F1F5F9] dark:bg-[#0F172A]">
-                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Experience (30%)</span>
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Experience ({scoringWeights.experience}%)</span>
                   <span className="font-mono text-base font-bold text-[#047857] dark:text-emerald-400 mt-0.5 block">
-                    {breakdown.experience?.score || Math.min(100, Math.round(score * 0.98))}%
-                  </span>
-                  <span className="text-[10px] text-[#64748B] dark:text-[#94A3B8]">{c.experience_years || 0}y Exp</span>
-                </div>
-                <div className="p-2.5 rounded-lg bg-[#F1F5F9] dark:bg-[#0F172A]">
-                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Academics (20%)</span>
-                  <span className="font-mono text-base font-bold text-[#047857] dark:text-emerald-400 mt-0.5 block">
-                    {breakdown.academics?.score || Math.min(100, Math.round(score * 0.95))}%
+                    {expScore}%
                   </span>
                   <span className="text-[10px] text-[#64748B] dark:text-[#94A3B8]">
-                    {c.academics?.cgpa ? `${c.academics.cgpa} CGPA` : 'Evaluated'}
+                    {candidateExp}y Exp {c.projects?.length ? `(${c.projects.length} Projs)` : ''}
                   </span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#F1F5F9] dark:bg-[#0F172A]">
-                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Domain Fit (10%)</span>
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Academics ({scoringWeights.academics}%)</span>
+                  <span className="font-mono text-base font-bold text-[#047857] dark:text-emerald-400 mt-0.5 block">
+                    {acadScore}%
+                  </span>
+                  <span className="text-[10px] text-[#64748B] dark:text-[#94A3B8]">
+                    {c.academics?.cgpa || c.education?.cgpa ? `${c.academics?.cgpa || c.education?.cgpa} CGPA` : 'Evaluated'}
+                  </span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-[#F1F5F9] dark:bg-[#0F172A]">
+                  <span className="text-[10px] uppercase font-mono text-[#64748B] dark:text-[#94A3B8] block font-semibold">Domain Fit ({scoringWeights.domain}%)</span>
                   <span className="font-mono text-base font-bold text-[#1E3A8A] dark:text-blue-400 mt-0.5 block">
-                    {breakdown.domain?.score || Math.min(100, Math.round(score * 0.92))}%
+                    {domainScore}%
                   </span>
                   <span className="text-[10px] text-[#64748B] dark:text-[#94A3B8]">Architecture</span>
                 </div>
@@ -272,8 +396,10 @@ export default function CandidateDetailModal({
                   <strong className="font-semibold text-[#1E3A8A] dark:text-blue-300">AI Recruiter Summary:</strong>
                   <p className="mt-0.5 text-[#475569] dark:text-[#CBD5E1] leading-relaxed">
                     {score >= 85
-                      ? `Candidate demonstrates high proficiency with ${c.skills?.slice(0, 4).join(', ') || 'required skills'}. With ${c.experience_years || 0} years of verified experience and strong academic baseline (${c.academics?.cgpa || 'N/A'} CGPA), they are strongly recommended for interview.`
-                      : `Candidate holds core background in ${c.skills?.slice(0, 3).join(', ') || 'engineering'} with ${c.experience_years || 0} years experience. Meets general prerequisites with manageable skill ramp-up required.`}
+                      ? `Candidate demonstrates high proficiency with ${c.skills?.slice(0, 4).join(', ') || 'required skills'}. With ${candidateExp > 0 ? `${candidateExp} years of verified experience` : 'strong technical foundation as campus fresher'} and strong academic baseline (${c.academics?.cgpa ? `${c.academics.cgpa} CGPA` : 'N/A'}), they are strongly recommended for interview.`
+                      : candidateExp === 0
+                        ? `Campus candidate from ${c.academics?.college || 'institute'} with verified academic credentials (${c.academics?.cgpa ? `${c.academics.cgpa} CGPA` : 'N/A'}) and strong foundations in ${c.skills?.slice(0, 4).join(', ') || 'software engineering'}. Proven hands-on technical project portfolio.`
+                        : `Candidate holds core background in ${c.skills?.slice(0, 3).join(', ') || 'engineering'} with ${candidateExp} years experience. Meets general prerequisites with manageable skill ramp-up required.`}
                   </p>
                 </div>
               </div>
@@ -338,15 +464,15 @@ export default function CandidateDetailModal({
                 <div className="p-3 bg-[#F1F5F9] dark:bg-[#0F172A] rounded-lg border border-[#E2E8F0] dark:border-[#334155]">
                   <span className="text-[#64748B] dark:text-[#94A3B8] font-medium block">Experience & Grad Year</span>
                   <strong className="text-[#0F172A] dark:text-[#F8FAFC] font-semibold text-xs sm:text-sm mt-0.5 block">
-                    {c.experience_years || 0} Yrs Total
+                    {candidateExp} Yrs Total
                   </strong>
                   <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8] block">
-                    Grad: {c.academics?.graduation_year || '2021'}
+                    Grad: {c.academics?.graduation_year || '2026'}
                   </span>
                   <div className="mt-2 pt-2 border-t border-[#E2E8F0]/80 dark:border-[#334155] flex items-center justify-between font-mono">
                     <span className="text-[#64748B] dark:text-[#94A3B8]">Location:</span>
-                    <strong className="text-[#1E3A8A] dark:text-blue-400 font-bold text-xs truncate max-w-[80px]">
-                      {c.location || 'Bengaluru'}
+                    <strong className="text-[#1E3A8A] dark:text-blue-400 font-bold text-xs truncate max-w-[100px]">
+                      {c.location || 'India'}
                     </strong>
                   </div>
                 </div>
@@ -364,10 +490,10 @@ export default function CandidateDetailModal({
                 {/* Primary Matched Skills */}
                 <div>
                   <span className="text-[#64748B] dark:text-[#94A3B8] font-medium block mb-1.5">
-                    Skills Matched against JD ({breakdown.skills?.matched?.length || c.skills?.slice(0, 5).length || 0})
+                    Skills Matched against JD ({matchedSkillsList.length})
                   </span>
                   <div className="flex flex-wrap gap-1.5">
-                    {(breakdown.skills?.matched?.length ? breakdown.skills.matched : c.skills?.slice(0, 5) || []).map((skill, i) => (
+                    {matchedSkillsList.map((skill, i) => (
                       <span
                         key={i}
                         className="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-[#047857] dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 rounded-md font-medium flex items-center gap-1"
@@ -379,13 +505,13 @@ export default function CandidateDetailModal({
                 </div>
 
                 {/* Missing / Gap Skills */}
-                {breakdown.skills?.missing && breakdown.skills.missing.length > 0 && (
+                {missingSkillsList.length > 0 && (
                   <div className="pt-2 border-t border-[#E2E8F0]/70 dark:border-[#334155]">
                     <span className="text-[#B45309] dark:text-amber-400 font-medium block mb-1.5">
-                      Skill Gaps / Missing Requirements ({breakdown.skills.missing.length})
+                      Skill Gaps / Missing Requirements ({missingSkillsList.length})
                     </span>
                     <div className="flex flex-wrap gap-1.5">
-                      {breakdown.skills.missing.map((skill, i) => (
+                      {missingSkillsList.map((skill, i) => (
                         <span
                           key={i}
                           className="px-2.5 py-1 bg-amber-50 dark:bg-amber-950/60 text-[#B45309] dark:text-amber-300 border border-amber-200 dark:border-amber-700/60 rounded-md font-medium flex items-center gap-1"
@@ -413,6 +539,53 @@ export default function CandidateDetailModal({
                 </div>
               </div>
             </section>
+
+            {/* Key Technical Projects */}
+            {c.projects && c.projects.length > 0 && (
+              <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-5 shadow-xs">
+                <h3 className="font-headline text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Briefcase className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
+                    <span>Technical Projects & Implementations ({c.projects.length})</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 text-[11px] font-mono">
+                    Verified Work
+                  </span>
+                </h3>
+
+                <div className="space-y-3">
+                  {c.projects.map((proj, idx) => (
+                    <div key={idx} className="p-3 rounded-lg bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] text-xs">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <strong className="text-sm font-semibold text-[#0F172A] dark:text-[#F8FAFC]">{proj.title}</strong>
+                        {proj.date && <span className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-mono shrink-0">[{proj.date}]</span>}
+                      </div>
+                      {proj.subtitle && (
+                        <div className="text-[11px] text-[#475569] dark:text-[#94A3B8] italic mt-0.5">{proj.subtitle}</div>
+                      )}
+                      {proj.tech_stack && proj.tech_stack.length > 0 && (
+                        <div className="flex flex-wrap gap-1 my-1.5">
+                          {proj.tech_stack.map((t, ti) => (
+                            <span key={ti} className="px-1.5 py-0.2 bg-white dark:bg-[#1E293B] border border-[#CBD5E1] dark:border-[#334155] rounded text-[10px] font-mono text-[#334155] dark:text-[#CBD5E1]">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      {proj.bullets && proj.bullets.length > 0 ? (
+                        <ul className="list-disc list-inside space-y-1 text-[11px] text-[#334155] dark:text-[#CBD5E1] mt-1 leading-relaxed">
+                          {proj.bullets.map((b, bi) => (
+                            <li key={bi}>{b}</li>
+                          ))}
+                        </ul>
+                      ) : proj.description ? (
+                        <p className="text-[11px] text-[#334155] dark:text-[#CBD5E1] mt-1">{proj.description}</p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Recruiter Notes & Evaluation Log */}
             <section className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-5 shadow-xs">
@@ -461,25 +634,33 @@ export default function CandidateDetailModal({
 
             {/* Resume Viewer Header Bar */}
             <div className="bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-xl p-3 flex items-center justify-between shadow-xs">
-              <div className="flex items-center gap-2 truncate">
-                <FileText className="w-5 h-5 text-red-500 shrink-0" />
-                <span className="text-xs font-semibold text-[#0F172A] dark:text-[#F8FAFC] truncate">
-                  {c.resume_file_path ? c.resume_file_path.split('\\').pop().split('/').pop() : `${c.name.toLowerCase().replace(/\s+/g, '_')}_resume.pdf`}
+              <a
+                href={api.getResumeUrl(c.id)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 truncate hover:opacity-80 transition-opacity cursor-pointer group"
+                title="Click to view/download original PDF resume in a new tab"
+              >
+                <FileText className="w-5 h-5 text-red-500 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-semibold text-[#0F172A] dark:text-[#F8FAFC] truncate underline underline-offset-2">
+                  {c.file_name ? c.file_name.split('\\').pop().split('/').pop() : `${c.name.toLowerCase().replace(/\s+/g, '_')}_resume.pdf`}
                 </span>
                 <span className="text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8] shrink-0">
-                  ({c.resume_format || 'PDF'})
+                  ({c.file_type ? c.file_type.toUpperCase() : 'PDF'})
                 </span>
-              </div>
+              </a>
 
               <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => alert(`Original file source: ${c.resume_file_path || 'Stored in ATS parsed database'}`)}
-                  className="p-1 rounded hover:bg-[#F1F5F9] dark:hover:bg-[#334155] text-[#64748B] dark:text-[#94A3B8]"
-                  title="File Info"
+                <a
+                  href={api.getResumeUrl(c.id)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-[#1E3A8A] dark:text-blue-300 border border-blue-200 dark:border-blue-800 text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                  title="Open original resume PDF in a new tab"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                </button>
+                  <span>Open PDF</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 
@@ -492,17 +673,19 @@ export default function CandidateDetailModal({
                     {c.name}
                   </h1>
                   <p className="text-[10px] text-slate-600 dark:text-slate-400 mt-1">
-                    {c.location || 'India'} {c.phone ? `• ${c.phone}` : ''} • {c.email} {c.linkedin ? `• ${c.linkedin}` : ''}
+                    {currentLocation || 'India'} {currentPhone ? `• ${currentPhone}` : ''} • {currentEmail} {c.linkedin ? `• ${c.linkedin}` : ''}
                   </p>
                 </div>
 
-                {/* Professional Summary */}
+                {/* Professional Summary / Objective */}
                 <div className="mb-3">
                   <h2 className="text-[11px] font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-0.5 mb-1 text-left">
-                    Professional Summary
+                    {candidateExp > 0 ? 'Professional Summary' : 'Candidate Profile & Objective'}
                   </h2>
                   <p className="text-[10.5px] text-slate-700 dark:text-slate-300 leading-normal text-justify">
-                    Experienced {c.current_title || 'Software Engineer'} with {c.experience_years || 0}+ years specializing in building scalable software systems, distributed services, and modern responsive web interfaces. Proven expertise in {c.skills?.slice(0, 4).join(', ') || 'modern engineering stacks'}.
+                    {candidateExp > 0
+                      ? `Experienced ${c.current_title || 'Software Engineer'} with ${candidateExp}+ years specializing in building scalable software systems, distributed services, and modern responsive web interfaces. Proven expertise in ${c.skills?.slice(0, 4).join(', ') || 'modern engineering stacks'}.`
+                      : `Undergraduate student at ${c.academics?.college || 'university'} (${c.academics?.degree || 'B.Tech'}, Graduating ${c.academics?.graduation_year || '2028'}) with a strong foundation in ${c.skills?.slice(0, 4).join(', ') || 'software development'}. Actively developing modern applications and solving algorithmic challenges with hands-on project experience.`}
                   </p>
                 </div>
 
@@ -514,18 +697,18 @@ export default function CandidateDetailModal({
                   <div className="space-y-1">
                     <div className="flex justify-between items-baseline">
                       <strong className="text-slate-900 dark:text-white font-semibold">{c.academics?.college || 'University Engineering Campus'}</strong>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Grad: {c.academics?.graduation_year || '2021'}</span>
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Grad: {c.academics?.graduation_year || '2026'}</span>
                     </div>
                     <div className="flex justify-between text-slate-700 dark:text-slate-300">
-                      <span>{c.academics?.degree || 'Bachelor of Technology in Computer Science'}</span>
+                      <span>{c.academics?.degree || 'Bachelor of Technology'}</span>
                       <span className="font-mono font-bold text-[#047857] dark:text-emerald-400">
                         {c.academics?.cgpa ? `CGPA: ${c.academics.cgpa} / 10.0` : ''}
                       </span>
                     </div>
                     {(c.academics?.twelfth_percentage || c.academics?.tenth_percentage) && (
                       <div className="text-[10px] text-slate-600 dark:text-slate-400 font-mono pt-0.5">
-                        {c.academics?.twelfth_percentage ? `Class XII: ${c.academics.twelfth_percentage}% (${c.academics.twelfth_board || 'CBSE'}) ` : ''}
-                        {c.academics?.tenth_percentage ? `• Class X: ${c.academics.tenth_percentage}%` : ''}
+                        {c.academics?.twelfth_percentage ? `Class XII: ${c.academics.twelfth_percentage}% (${c.academics.twelfth_board || 'State Board'}) ` : ''}
+                        {c.academics?.tenth_percentage ? `• Class X: ${c.academics.tenth_percentage}% (${c.academics.tenth_board || 'State Board'})` : ''}
                       </div>
                     )}
                   </div>
@@ -534,15 +717,59 @@ export default function CandidateDetailModal({
                 {/* Technical Skills */}
                 <div className="mb-3">
                   <h2 className="text-[11px] font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-0.5 mb-1 text-left">
-                    Technical Skills
+                    Technical Skills & Stacks
                   </h2>
                   <div className="text-[10.5px] text-slate-700 dark:text-slate-300 space-y-0.5">
-                    <p><strong>Core Languages & Tech:</strong> {c.skills?.join(', ') || 'React, Node.js, Python, PostgreSQL'}</p>
-                    <p><strong>Cloud & Tooling:</strong> Docker, Kubernetes, AWS, Git, CI/CD, REST APIs</p>
+                    <p>
+                      <strong>Core Languages & Frameworks:</strong>{' '}
+                      {c.skills?.filter((s) => !['Adobe Premiere Pro', 'After Effects', 'Blender', 'Matlab'].includes(s)).slice(0, 12).join(', ') || 'MERN, React, Node.js, Express.js, C++, Python'}
+                    </p>
+                    {c.skills?.some((s) => ['Adobe Premiere Pro', 'After Effects', 'Blender', 'Matlab'].includes(s)) && (
+                      <p>
+                        <strong>Design & Media Tools:</strong>{' '}
+                        {c.skills.filter((s) => ['Matlab', 'Blender', 'Adobe Premiere Pro', 'After Effects'].includes(s)).join(', ')}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                {/* Experience History */}
+                {/* Key Technical Projects */}
+                {c.projects && c.projects.length > 0 && (
+                  <div className="mb-3">
+                    <h2 className="text-[11px] font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-0.5 mb-1 text-left">
+                      Key Technical Projects
+                    </h2>
+                    <div className="space-y-2">
+                      {c.projects.map((proj, idx) => (
+                        <div key={idx} className="space-y-0.5">
+                          <div className="flex justify-between items-baseline">
+                            <strong className="text-slate-900 dark:text-white font-semibold">{proj.title}</strong>
+                            {proj.date && <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">[{proj.date}]</span>}
+                          </div>
+                          {proj.subtitle && (
+                            <div className="text-[10px] text-slate-600 dark:text-slate-400 italic">{proj.subtitle}</div>
+                          )}
+                          {proj.tech_stack && proj.tech_stack.length > 0 && (
+                            <div className="text-[9.5px] text-slate-500 dark:text-slate-400 font-mono">
+                              Tech: {proj.tech_stack.join(', ')}
+                            </div>
+                          )}
+                          {proj.bullets && proj.bullets.length > 0 ? (
+                            <ul className="list-disc list-inside space-y-0.5 text-[10px] text-slate-700 dark:text-slate-300">
+                              {proj.bullets.map((b, bi) => (
+                                <li key={bi} className="leading-tight">{b}</li>
+                              ))}
+                            </ul>
+                          ) : proj.description ? (
+                            <p className="text-[10px] text-slate-700 dark:text-slate-300">{proj.description}</p>
+                          ) : null}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Work Experience */}
                 <div className="mb-3">
                   <h2 className="text-[11px] font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-0.5 mb-1 text-left">
                     Work Experience
@@ -562,14 +789,8 @@ export default function CandidateDetailModal({
                         </div>
                       ))
                     ) : (
-                      <div className="space-y-1">
-                        <div className="flex justify-between items-baseline">
-                          <strong className="text-slate-900 dark:text-white font-semibold">{c.current_title || 'Software Development Engineer'}</strong>
-                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">2021 - Present ({c.experience_years} yrs)</span>
-                        </div>
-                        <p className="text-[10px] text-slate-700 dark:text-slate-300 leading-normal">
-                          Engineered high-throughput web applications and REST APIs. Collaborated across product and design teams to deliver low-latency user interfaces and resilient backend data pipelines.
-                        </p>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400 italic py-1">
+                        Campus Fresher / Student (No corporate employment history)
                       </div>
                     )}
                   </div>

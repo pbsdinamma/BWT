@@ -18,6 +18,10 @@ class TestHireSwiftATS(unittest.TestCase):
         cls.client = TestClient(app)
         # Reset to pristine demo data
         cls.client.post("/api/system/reset-demo")
+        # Authenticate as Demo Company
+        login_res = cls.client.post("/api/auth/login", json={"work_email": "hr@acme.com", "password": "demo123"})
+        token = login_res.json()["token"]
+        cls.client.headers["Authorization"] = f"Bearer {token}"
 
     def test_01_health_and_stats(self):
         """Test dashboard stats endpoint."""
@@ -204,6 +208,52 @@ class TestHireSwiftATS(unittest.TestCase):
         self.assertEqual(hist_res.status_code, 200)
         self.assertGreaterEqual(len(hist_res.json()["emails"]), 1)
         print("✓ test_08_bulk_email_campaigns passed")
+
+    def test_09_company_registration_and_login(self):
+        """Test company registration and authentication endpoints."""
+        from backend.app.main import register_company, login_company
+        from backend.app.models import CompanyRegisterRequest, CompanyLoginRequest
+        
+        # Test registration
+        req_reg = CompanyRegisterRequest(
+            company_name="FinTech Dynamics",
+            work_email="talent@fintechdynamics.com",
+            password="secretpassword123",
+            recruiter_name="Emma Stone"
+        )
+        res_reg = register_company(req_reg)
+        self.assertEqual(res_reg["status"], "success")
+        self.assertEqual(res_reg["company"]["company_name"], "FinTech Dynamics")
+        self.assertTrue(bool(res_reg["token"]))
+
+        # Test login
+        req_login = CompanyLoginRequest(
+            work_email="talent@fintechdynamics.com",
+            password="secretpassword123"
+        )
+        res_login = login_company(req_login)
+        self.assertEqual(res_login["status"], "success")
+        self.assertEqual(res_login["company"]["work_email"], "talent@fintechdynamics.com")
+        self.assertTrue(bool(res_login["token"]))
+        print("✓ test_09_company_registration_and_login passed")
+
+    def test_10_job_status_and_deadline_extension(self):
+        """Test closing applications and extending deadline for a job."""
+        from backend.app.main import update_job_status, extend_job_deadline
+        from backend.app.models import JobStatusUpdateRequest, JobExtendDeadlineRequest
+        from backend.app.db import db
+
+        job = db.get_jobs()[0]
+        # Close applications
+        res_st = update_job_status(job.id, JobStatusUpdateRequest(status="Closed"))
+        self.assertEqual(res_st["status"], "success")
+        self.assertEqual(res_st["job"].status, "Closed")
+
+        # Extend deadline
+        res_dl = extend_job_deadline(job.id, JobExtendDeadlineRequest(application_deadline="2027-03-31"))
+        self.assertEqual(res_dl["status"], "success")
+        self.assertEqual(res_dl["job"].application_deadline, "2027-03-31")
+        print("✓ test_10_job_status_and_deadline_extension passed")
 
 if __name__ == "__main__":
     unittest.main()

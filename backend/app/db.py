@@ -1,24 +1,37 @@
 import os
 import json
+import hashlib
+import secrets
 from typing import List, Dict, Optional, Any
-from .models import Candidate, JobDescription, SentEmailRecord, MatchScore
+from .models import Candidate, JobDescription, SentEmailRecord, MatchScore, Company
 from .sample_data import SAMPLE_JOBS, SAMPLE_CANDIDATES
 from .matcher import MatcherEngine
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 DB_FILE = os.path.join(DATA_DIR, "ats_database.json")
+DEMO_COMPANY_ID = "comp-acme-corp"
+
+def hash_password(password: str) -> str:
+    return hashlib.sha256(f"salt_{password}_hireswift".encode("utf-8")).hexdigest()
+
+def verify_password(password: str, hashed: str) -> bool:
+    return hash_password(password) == hashed
 
 class Database:
     def __init__(self):
         os.makedirs(DATA_DIR, exist_ok=True)
         self.candidates: Dict[str, Candidate] = {}
         self.jobs: Dict[str, JobDescription] = {}
+        self.companies: Dict[str, Company] = {}
+        self.sessions: Dict[str, str] = {} # token -> company_id
         self.sent_emails: List[SentEmailRecord] = []
         self.load_from_disk()
         
-        # If database is empty, automatically seed initial sample data
+        # If database is empty or missing default data, automatically seed
         if not self.candidates and not self.jobs:
             self.seed_default_data()
+        elif not self.companies or DEMO_COMPANY_ID not in self.companies:
+            self.seed_default_data(force=False)
 
     def load_from_disk(self):
         if not os.path.exists(DB_FILE):
@@ -26,9 +39,27 @@ class Database:
         try:
             with open(DB_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                self.jobs = {item["id"]: JobDescription(**item) for item in data.get("jobs", [])}
-                self.candidates = {item["id"]: Candidate(**item) for item in data.get("candidates", [])}
+                self.companies = {item["id"]: Company(**item) for item in data.get("companies", [])}
+                self.sessions = data.get("sessions", {})
+                
+                # Load jobs & ensure demo jobs have company_id=comp-acme-corp
+                self.jobs = {}
+                for item in data.get("jobs", []):
+                    if not item.get("company_id"):
+                        item["company_id"] = DEMO_COMPANY_ID
+                    self.jobs[item["id"]] = JobDescription(**item)
+
+                # Load candidates & ensure demo candidates have company_id=comp-acme-corp
+                self.candidates = {}
+                for item in data.get("candidates", []):
+                    if not item.get("company_id"):
+                        item["company_id"] = DEMO_COMPANY_ID
+                    self.candidates[item["id"]] = Candidate(**item)
+
                 self.sent_emails = [SentEmailRecord(**item) for item in data.get("sent_emails", [])]
+                
+            # Persist back so company_ids are permanently saved
+            self.save_to_disk()
         except Exception as e:
             print(f"Error loading database from disk: {e}")
 
@@ -37,6 +68,8 @@ class Database:
             payload = {
                 "jobs": [j.model_dump() for j in self.jobs.values()],
                 "candidates": [c.model_dump() for c in self.candidates.values()],
+                "companies": [co.model_dump() for co in self.companies.values()],
+                "sessions": self.sessions,
                 "sent_emails": [e.model_dump() for e in self.sent_emails]
             }
             with open(DB_FILE, "w", encoding="utf-8") as f:
@@ -46,32 +79,101 @@ class Database:
 
     def seed_default_data(self, force: bool = False):
         if force:
-            self.candidates.clear()
-            self.jobs.clear()
-            self.sent_emails.clear()
+            # Preserve registered external companies; only clear demo data
+            demo_cand_ids = [c_id for c_id, c in self.candidates.items() if c.company_id == DEMO_COMPANY_ID]
+            for c_id in demo_cand_ids:
+                del self.candidates[c_id]
+            demo_job_ids = [j_id for j_id, j in self.jobs.items() if j.company_id == DEMO_COMPANY_ID]
+            for j_id in demo_job_ids:
+                del self.jobs[j_id]
 
-        # Load sample jobs
+        # Seed Demo Company (Acme Technologies)
+        demo_company = Company(
+            id=DEMO_COMPANY_ID,
+            company_name="Acme Technologies",
+            work_email="hr@acme.com",
+            password_hash=hash_password("demo123"),
+            recruiter_name="Sarah Jenkins",
+            company_size="51-200",
+            industry="Software & Cloud Services",
+            website="https://acme.tech"
+        )
+        self.companies[demo_company.id] = demo_company
+
+        # Load sample jobs for Demo Company
         for job_dict in SAMPLE_JOBS:
             if job_dict["id"] not in self.jobs or force:
-                self.jobs[job_dict["id"]] = JobDescription(**job_dict)
+                job_data = dict(job_dict)
+                if "application_deadline" not in job_data:
+                    job_data["application_deadline"] = "2026-12-31"
+                job_data["company_id"] = DEMO_COMPANY_ID
+                self.jobs[job_dict["id"]] = JobDescription(**job_data)
 
-        # Load sample candidates
+        # Load sample candidates for Demo Company
         for cand_dict in SAMPLE_CANDIDATES:
             if cand_dict["id"] not in self.candidates or force:
-                self.candidates[cand_dict["id"]] = Candidate(**cand_dict)
+                cand_data = dict(cand_dict)
+                cand_data["company_id"] = DEMO_COMPANY_ID
+                self.candidates[cand_dict["id"]] = Candidate(**cand_data)
 
         self.save_to_disk()
 
-    # --- Candidates CRUD ---
-    def get_candidates(self) -> List[Candidate]:
+    # --- Companies & Auth ---
+    def get_company_by_email(self, email: str) -> Optional[Company]:
+        normalized = email.strip().lower()
+        for c in self.companies.values():
+            if c.work_email.strip().lower() == normalized:
+                return c
+        return None
+
+    def get_company(self, company_id: str) -> Optional[Company]:
+        return self.companies.get(company_id)
+
+    def add_company(self, company: Company) -> Company:
+        self.companies[company.id] = company
+        self.save_to_disk()
+        return company
+
+    def create_session(self, company_id: str) -> str:
+        token = secrets.token_urlsafe(32)
+        self.sessions[token] = company_id
+        self.save_to_disk()
+        return token
+
+    def get_company_by_token(self, token: str) -> Optional[Company]:
+        if not token:
+            return None
+        # Check explicit demo-token
+        if token == "demo-token" and DEMO_COMPANY_ID in self.companies:
+            return self.companies[DEMO_COMPANY_ID]
+
+        company_id = self.sessions.get(token)
+        if not company_id:
+            return None
+        return self.companies.get(company_id)
+
+    def delete_session(self, token: str):
+        if token in self.sessions:
+            del self.sessions[token]
+            self.save_to_disk()
+
+    # --- Candidates CRUD (Multi-tenant) ---
+    def get_candidates(self, company_id: Optional[str] = None) -> List[Candidate]:
+        if company_id:
+            company_job_ids = {j.id for j in self.jobs.values() if j.company_id == company_id}
+            return [
+                c for c in self.candidates.values()
+                if c.company_id == company_id or (c.applied_job_id and c.applied_job_id in company_job_ids)
+            ]
         return list(self.candidates.values())
 
     def get_candidate(self, cand_id: str) -> Optional[Candidate]:
         return self.candidates.get(cand_id)
 
-    def add_candidate(self, candidate: Candidate) -> Candidate:
+    def add_candidate(self, candidate: Candidate, auto_save: bool = True) -> Candidate:
         self.candidates[candidate.id] = candidate
-        self.save_to_disk()
+        if auto_save:
+            self.save_to_disk()
         return candidate
 
     def update_candidate(self, cand_id: str, updates: Dict[str, Any]) -> Optional[Candidate]:
@@ -91,8 +193,10 @@ class Database:
             return True
         return False
 
-    # --- Jobs CRUD ---
-    def get_jobs(self) -> List[JobDescription]:
+    # --- Jobs CRUD (Multi-tenant) ---
+    def get_jobs(self, company_id: Optional[str] = None) -> List[JobDescription]:
+        if company_id:
+            return [j for j in self.jobs.values() if j.company_id == company_id]
         return list(self.jobs.values())
 
     def get_job(self, job_id: str) -> Optional[JobDescription]:

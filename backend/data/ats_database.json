@@ -5,6 +5,7 @@
       "title": "Senior Full-Stack Engineer",
       "department": "Core Product",
       "location": "Bengaluru (Hybrid)",
+      "workplace_mode": "Hybrid",
       "employment_type": "Full-Time",
       "description": "Looking for an experienced Senior Full Stack Engineer to architect high-performance web applications. You will drive front-end UI and microservice back-end systems, mentor junior engineers, and participate in technical strategy.",
       "min_experience": 4.0,
@@ -33,14 +34,23 @@
         2020,
         2021
       ],
+      "scoring_weights": {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+      },
       "status": "Active",
-      "created_at": "2026-11-18T16:51:10.399962+00:00"
+      "application_deadline": "2026-12-19",
+      "company_id": "comp-acme-corp",
+      "created_at": "2026-11-19T02:39:37.627017+00:00"
     },
     {
       "id": "job-frontend-jr",
       "title": "Frontend Developer (React & Next.js)",
       "department": "Design Systems",
       "location": "Remote",
+      "workplace_mode": "Hybrid",
       "employment_type": "Full-Time",
       "description": "We are seeking a talented frontend specialist with sharp eye for UI/UX to build interactive web apps using React, Next.js, and modern CSS. Excellent opportunity for fast learning and immediate product impact.",
       "min_experience": 1.5,
@@ -69,14 +79,23 @@
         2023,
         2024
       ],
+      "scoring_weights": {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+      },
       "status": "Active",
-      "created_at": "2026-11-18T16:51:10.399983+00:00"
+      "application_deadline": "2026-12-31",
+      "company_id": "comp-acme-corp",
+      "created_at": "2026-11-19T02:39:37.627017+00:00"
     },
     {
       "id": "job-backend-python",
       "title": "Python / Backend Engineer",
       "department": "Platform & API",
       "location": "Hyderabad, India",
+      "workplace_mode": "Hybrid",
       "employment_type": "Full-Time",
       "description": "Build high-throughput RESTful APIs, distributed microservices, and asynchronous background pipelines using Python, FastAPI, and PostgreSQL. Focus on data modeling, latency optimization, and reliability.",
       "min_experience": 3.0,
@@ -105,14 +124,23 @@
         2021,
         2022
       ],
+      "scoring_weights": {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+      },
       "status": "Active",
-      "created_at": "2026-11-18T16:51:10.399990+00:00"
+      "application_deadline": "2026-12-31",
+      "company_id": "comp-acme-corp",
+      "created_at": "2026-11-19T02:39:37.627017+00:00"
     },
     {
       "id": "job-devops-cloud",
       "title": "DevOps & Cloud Infrastructure Engineer",
       "department": "SRE & Infra",
       "location": "Pune (Hybrid)",
+      "workplace_mode": "Hybrid",
       "employment_type": "Full-Time",
       "description": "Own our cloud deployment topology, automated CI/CD pipelines, container orchestration, and system observability. Ensure 99.99% uptime across multi-region AWS and Kubernetes clusters.",
       "min_experience": 3.0,
@@ -142,14 +170,23 @@
         2021,
         2022
       ],
+      "scoring_weights": {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+      },
       "status": "Active",
-      "created_at": "2026-11-18T16:51:10.399996+00:00"
+      "application_deadline": "2026-12-31",
+      "company_id": "comp-acme-corp",
+      "created_at": "2026-11-19T02:39:37.627017+00:00"
     },
     {
       "id": "job-campus-fresher",
       "title": "Software Engineer (Campus Fresher / Graduate)",
       "department": "Early Career Hub",
       "location": "Bengaluru, India",
+      "workplace_mode": "Hybrid",
       "employment_type": "Full-Time",
       "description": "Graduate program for high-achieving CS/IT students. Build strong engineering foundations across data structures, algorithms, web development, and cloud services.",
       "min_experience": 0.0,
@@ -176,8 +213,158 @@
         2024,
         2025
       ],
+      "scoring_weights": {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+      },
       "status": "Active",
-      "created_at": "2026-11-18T16:51:10.400001+00:00"
+      "application_deadline": "2026-12-31",
+      "company_id": "comp-acme-corp",
+      "created_at": "2026-11-19T02:39:37.627017+00:00"
+    },
+    {
+      "id": "4769f60b-3e91-418f-8838-b7d09bd852aa",
+      "title": "Senior LLM Research Engineer",
+      "department": "Core AI",
+      "location": "Bengaluru (Hybrid)",
+      "workplace_mode": "Hybrid",
+      "employment_type": "Full-Time",
+      "description": "Pioneering transformer and reasoning architectures.",
+      "min_experience": 3.0,
+      "max_experience": 7.0,
+      "required_skills": [
+        "PyTorch",
+        "Transformers",
+        "Distributed Training"
+      ],
+      "preferred_skills": [],
+      "min_tenth_percentage": null,
+      "min_twelfth_percentage": null,
+      "min_cgpa": 8.5,
+      "preferred_grad_years": [],
+      "scoring_weights": {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+      },
+      "status": "Active",
+      "application_deadline": "2026-12-31",
+      "company_id": "dadeb13e-2ee1-4cbc-ab82-141db698cc87",
+      "created_at": "2026-11-19T03:19:25.838629+00:00"
+    },
+    {
+      "id": "4884727d-9aa3-4838-b7c2-7743ce80dcee",
+      "title": "UI/ UX Designer",
+      "department": "Engineering",
+      "location": "Bengaluru (Hybrid)",
+      "workplace_mode": "Hybrid",
+      "employment_type": "Full-Time",
+      "description": "We are hiring a UI/ UX Designer to improve the User Interface and experience of Our websites. \nRequirements: \n-Strong fundamentals of UI / UX design \n-Strong knowledge of modern technologies like Figma etc \n-Must be able to use AI efficiently for tasks and inspiration",
+      "min_experience": 0.0,
+      "max_experience": 5.0,
+      "required_skills": [
+        "Figma",
+        "UI/UX design"
+      ],
+      "preferred_skills": [
+        "AWS",
+        "Next.js",
+        "Tailwind CSS",
+        "Redis",
+        "GraphQL"
+      ],
+      "min_tenth_percentage": 70.0,
+      "min_twelfth_percentage": 75.0,
+      "min_cgpa": 6.0,
+      "preferred_grad_years": [],
+      "scoring_weights": {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+      },
+      "status": "Active",
+      "application_deadline": "2026-12-31",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "created_at": "2026-11-19T03:37:29.124986+00:00"
+    },
+    {
+      "id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
+      "title": "Software Engineer (Campus Fresher / Graduate)",
+      "department": "Early Career Hub",
+      "location": "Bengaluru, India",
+      "workplace_mode": "On-site",
+      "employment_type": "Full-Time",
+      "description": "We are hiring passionate early-career software engineering graduates. Candidates should demonstrate strong problem-solving fundamentals, core CS knowledge, and hands-on coding projects.\nRequirements:\n- Strong foundation in Data Structures, Algorithms, and OOP\n- Hands-on project portfolio in modern web or systems development\n- Strong academic performance",
+      "min_experience": 0.0,
+      "max_experience": 1.0,
+      "required_skills": [
+        "Data Structures and Algorithms",
+        "JavaScript",
+        "Python",
+        "Git",
+        "C++"
+      ],
+      "preferred_skills": [
+        "React",
+        "SQL",
+        "Node.js",
+        "Linux"
+      ],
+      "min_tenth_percentage": 75.0,
+      "min_twelfth_percentage": 80.0,
+      "min_cgpa": 7.0,
+      "preferred_grad_years": [],
+      "scoring_weights": {
+        "skills": 59.0,
+        "experience": 7.0,
+        "academics": 6.0,
+        "domain": 28.0
+      },
+      "status": "Active",
+      "application_deadline": "2026-12-03",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "created_at": "2026-11-19T08:43:02.968579+00:00"
+    },
+    {
+      "id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "title": "Software Engineering - 2",
+      "department": "Engineering",
+      "location": "Bengaluru, India",
+      "workplace_mode": "On-site",
+      "employment_type": "Full-Time",
+      "description": "We are hiring for the role of Software Engineer-2 at HappyWave to build and scale modern web applications and microservices.\nRequirements:\n- Strong DSA and problem-solving skills.\n- Strong fundamentals of OS, DBMS, Computer Networks and System Design, Object Oriented Programming\n- We are looking for persons with atleast 2-3 years of Experience",
+      "min_experience": 2.0,
+      "max_experience": 3.0,
+      "required_skills": [
+        "OS",
+        "DBMS",
+        "System Design",
+        "OOPS",
+        "Computer Networks"
+      ],
+      "preferred_skills": [
+        "AWS",
+        "JavaScript",
+        "Docker"
+      ],
+      "min_tenth_percentage": 70.0,
+      "min_twelfth_percentage": 75.0,
+      "min_cgpa": 7.0,
+      "preferred_grad_years": [],
+      "scoring_weights": {
+        "skills": 43.0,
+        "experience": 30.0,
+        "academics": 4.0,
+        "domain": 23.0
+      },
+      "status": "Active",
+      "application_deadline": "2026-11-30",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "created_at": "2026-11-20T10:59:26.697737+00:00"
     }
   ],
   "candidates": [
@@ -196,21 +383,24 @@
         "cgpa": 8.85,
         "tenth_percentage": 93.4,
         "twelfth_percentage": 91.8,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2020
       },
       "skills": [
-        "React",
-        "TypeScript",
-        "Node.js",
-        "Express",
-        "PostgreSQL",
-        "Docker",
         "AWS",
-        "Redis",
-        "Next.js",
+        "Docker",
+        "Express",
         "Git",
+        "Kubernetes",
+        "Next.js",
+        "Node.js",
+        "PostgreSQL",
         "REST API",
-        "Tailwind CSS"
+        "React",
+        "Redis",
+        "Tailwind CSS",
+        "TypeScript"
       ],
       "categorized_skills": {
         "Frontend": [
@@ -234,7 +424,7 @@
           "Git"
         ]
       },
-      "years_of_experience": 4.5,
+      "years_of_experience": 5.0,
       "experience_history": [
         {
           "company": "Razorpay Payments",
@@ -256,11 +446,14 @@
       "projects": [
         {
           "title": "Distributed Task Scheduler",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "Node.js",
             "Redis",
             "Docker"
           ],
+          "bullets": [],
           "description": "High-throughput asynchronous queuing engine with 10k ops/sec."
         }
       ],
@@ -274,11 +467,43 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400046+00:00",
-      "updated_at": "2026-11-18T16:51:10.400048+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "Indian Institute of Technology (IIT) Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": 93.4,
+        "twelfth_percentage": 91.8,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2020
+      },
+      "experience_years": 5.0,
+      "experience": [
+        {
+          "company": "Razorpay Payments",
+          "role": "Senior Software Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Engineered high-scale merchant dashboard with React, TypeScript and Node.js. Scaled PostgreSQL read replicas."
+        },
+        {
+          "company": "Swiggy Tech Labs",
+          "role": "Software Developer",
+          "duration": "2020 - 2022",
+          "start_year": null,
+          "end_year": null,
+          "description": "Built reactive checkout frontend and order tracking services using React and Docker."
+        }
+      ],
+      "current_title": "Senior Software Engineer",
+      "current_company": "Razorpay Payments"
     },
     {
       "id": "cand-02",
@@ -295,6 +520,8 @@
         "cgpa": 8.4,
         "tenth_percentage": 89.0,
         "twelfth_percentage": 88.5,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2022
       },
       "skills": [
@@ -303,12 +530,12 @@
         "JavaScript",
         "TypeScript",
         "Tailwind CSS",
-        "Redux",
-        "HTML5",
+        "Git",
         "CSS3",
         "Figma",
+        "HTML5",
         "Jest",
-        "Git"
+        "Redux"
       ],
       "categorized_skills": {
         "Frontend": [
@@ -341,11 +568,14 @@
       "projects": [
         {
           "title": "Open Source Design System",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "React",
             "TypeScript",
             "Tailwind CSS"
           ],
+          "bullets": [],
           "description": "Modular component library with 1200+ GitHub stars."
         }
       ],
@@ -357,11 +587,35 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400063+00:00",
-      "updated_at": "2026-11-18T16:51:10.400065+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech in Information Technology",
+        "college": "National Institute of Technology (NIT) Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": 89.0,
+        "twelfth_percentage": 88.5,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2022
+      },
+      "experience_years": 2.5,
+      "experience": [
+        {
+          "company": "Flipkart Internet",
+          "role": "Frontend Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Architected accessible UI components in React and Tailwind CSS. Reduced bundle size by 38% using Vite and Next.js."
+        }
+      ],
+      "current_title": "Frontend Engineer",
+      "current_company": "Flipkart Internet"
     },
     {
       "id": "cand-03",
@@ -378,18 +632,20 @@
         "cgpa": 7.9,
         "tenth_percentage": 84.5,
         "twelfth_percentage": 82.0,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2021
       },
       "skills": [
         "Python",
-        "FastAPI",
-        "Django",
         "PostgreSQL",
-        "Redis",
         "Docker",
-        "REST API",
-        "Microservices",
         "Git",
+        "FastAPI",
+        "Microservices",
+        "REST API",
+        "Redis",
+        "Django",
         "Linux"
       ],
       "categorized_skills": {
@@ -424,12 +680,15 @@
       "projects": [
         {
           "title": "Realtime Geofencing Service",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "Python",
             "FastAPI",
             "Redis",
             "PostgreSQL"
           ],
+          "bullets": [],
           "description": "Sub-millisecond driver geofencing API."
         }
       ],
@@ -437,15 +696,39 @@
       "raw_text": "Rohan Deshmukh | BITS Pilani | Python Backend Developer with 3.5 years of experience in Python, FastAPI, Django, PostgreSQL, Redis, Docker. 10th: 84.5%, 12th: 82.0%, CGPA: 7.9.",
       "file_name": "Rohan_Deshmukh_Backend.pdf",
       "file_type": "pdf",
-      "stage": "Applied",
+      "stage": "Rejected",
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400078+00:00",
-      "updated_at": "2026-11-18T16:51:10.400079+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": 84.5,
+        "twelfth_percentage": 82.0,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2021
+      },
+      "experience_years": 3.5,
+      "experience": [
+        {
+          "company": "Zomato Ltd",
+          "role": "Backend Engineer",
+          "duration": "2021 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Constructed asynchronous delivery allocation service using FastAPI and PostgreSQL handling 50k requests/min."
+        }
+      ],
+      "current_title": "Backend Engineer",
+      "current_company": "Zomato Ltd"
     },
     {
       "id": "cand-04",
@@ -462,20 +745,22 @@
         "cgpa": 8.1,
         "tenth_percentage": 88.0,
         "twelfth_percentage": 86.5,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2020
       },
       "skills": [
+        "Python",
+        "AWS",
         "Docker",
         "Kubernetes",
-        "AWS",
-        "Terraform",
         "CI/CD",
         "Linux",
         "GitHub Actions",
-        "Prometheus",
         "Grafana",
-        "Python",
-        "Nginx"
+        "Nginx",
+        "Prometheus",
+        "Terraform"
       ],
       "categorized_skills": {
         "Cloud & DevOps": [
@@ -508,11 +793,14 @@
       "projects": [
         {
           "title": "Automated Canary Deployer",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "Kubernetes",
             "Terraform",
             "GitHub Actions"
           ],
+          "bullets": [],
           "description": "Automated zero-downtime progressive rollouts with automated rollbacks."
         }
       ],
@@ -527,11 +815,35 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400091+00:00",
-      "updated_at": "2026-11-18T16:51:10.400092+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "Delhi Technological University (DTU)",
+        "cgpa": 8.1,
+        "tenth_percentage": 88.0,
+        "twelfth_percentage": 86.5,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2020
+      },
+      "experience_years": 4.0,
+      "experience": [
+        {
+          "company": "Paytm Labs",
+          "role": "DevOps Engineer",
+          "duration": "2020 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Architected multi-region Kubernetes clusters on AWS EKS with automated Terraform GitOps pipelines."
+        }
+      ],
+      "current_title": "DevOps Engineer",
+      "current_company": "Paytm Labs"
     },
     {
       "id": "cand-05",
@@ -548,20 +860,22 @@
         "cgpa": 9.42,
         "tenth_percentage": 95.8,
         "twelfth_percentage": 94.2,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2024
       },
       "skills": [
-        "Java",
         "Python",
+        "C++",
+        "Algorithms",
+        "Java",
+        "Data Structures",
         "SQL",
+        "CSS",
+        "HTML",
         "Git",
         "Problem Solving",
-        "C++",
-        "Spring Boot",
-        "Data Structures",
-        "Algorithms",
-        "HTML",
-        "CSS"
+        "Spring Boot"
       ],
       "categorized_skills": {
         "Backend": [
@@ -595,10 +909,13 @@
       "projects": [
         {
           "title": "Algorithmic Trading Bot",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "Python",
             "SQL"
           ],
+          "bullets": [],
           "description": "Backtested mean-reversion strategies with Pandas."
         }
       ],
@@ -610,11 +927,35 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400103+00:00",
-      "updated_at": "2026-11-18T16:51:10.400105+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": 95.8,
+        "twelfth_percentage": 94.2,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2024
+      },
+      "experience_years": 0.5,
+      "experience": [
+        {
+          "company": "Amazon India",
+          "role": "Software Engineering Intern",
+          "duration": "Jan 2024 - Jun 2024",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed telemetry pipeline in Java and SQL for internal inventory management."
+        }
+      ],
+      "current_title": "Software Engineering Intern",
+      "current_company": "Amazon India"
     },
     {
       "id": "cand-06",
@@ -631,17 +972,19 @@
         "cgpa": 6.8,
         "tenth_percentage": 68.5,
         "twelfth_percentage": 67.0,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2020
       },
       "skills": [
-        "PHP",
-        "Laravel",
-        "MySQL",
         "JavaScript",
-        "HTML",
+        "MySQL",
         "CSS",
-        "jQuery",
-        "Git"
+        "HTML",
+        "Git",
+        "Laravel",
+        "PHP",
+        "jQuery"
       ],
       "categorized_skills": {
         "Backend": [
@@ -680,11 +1023,35 @@
       "rejection_reason": "Skill gap: Lacks React, Node.js and modern cloud technologies required for Senior Full-Stack role.",
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400115+00:00",
-      "updated_at": "2026-11-18T16:51:10.400116+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.E. Computer Engineering",
+        "college": "Mumbai University",
+        "cgpa": 6.8,
+        "tenth_percentage": 68.5,
+        "twelfth_percentage": 67.0,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2020
+      },
+      "experience_years": 4.0,
+      "experience": [
+        {
+          "company": "Apex Web Solutions",
+          "role": "Web Developer",
+          "duration": "2020 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Built e-commerce portals using Laravel and MySQL."
+        }
+      ],
+      "current_title": "Web Developer",
+      "current_company": "Apex Web Solutions"
     },
     {
       "id": "cand-07",
@@ -701,18 +1068,20 @@
         "cgpa": 8.7,
         "tenth_percentage": 92.0,
         "twelfth_percentage": 90.5,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2019
       },
       "skills": [
-        "React",
         "Node.js",
+        "React",
         "TypeScript",
         "PostgreSQL",
-        "Docker",
         "AWS",
+        "Docker",
+        "Kubernetes",
         "GraphQL",
         "Microservices",
-        "Kubernetes",
         "Redis",
         "Jest"
       ],
@@ -761,11 +1130,14 @@
       "projects": [
         {
           "title": "GraphQL Gateway",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "Node.js",
             "GraphQL",
             "Docker"
           ],
+          "bullets": [],
           "description": "Federated gateway aggregating 12 backend microservices."
         }
       ],
@@ -779,11 +1151,43 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400129+00:00",
-      "updated_at": "2026-11-18T16:51:10.400130+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": 92.0,
+        "twelfth_percentage": 90.5,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2019
+      },
+      "experience_years": 5.5,
+      "experience": [
+        {
+          "company": "Ola Electric",
+          "role": "Lead Full Stack Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Led team of 6 engineers building fleet management console using React, Node.js, and AWS IoT."
+        },
+        {
+          "company": "Infosys Ltd",
+          "role": "Senior Developer",
+          "duration": "2019 - 2022",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed microservices with PostgreSQL and Docker for European banking clients."
+        }
+      ],
+      "current_title": "Lead Full Stack Engineer",
+      "current_company": "Ola Electric"
     },
     {
       "id": "cand-08",
@@ -800,18 +1204,20 @@
         "cgpa": 7.6,
         "tenth_percentage": 78.5,
         "twelfth_percentage": 77.0,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2021
       },
       "skills": [
+        "Python",
+        "AWS",
         "Docker",
         "Kubernetes",
-        "AWS",
-        "Linux",
-        "CI/CD",
         "Git",
-        "Terraform",
+        "CI/CD",
+        "Linux",
         "Bash",
-        "Python"
+        "Terraform"
       ],
       "categorized_skills": {
         "Cloud & DevOps": [
@@ -841,11 +1247,14 @@
       "projects": [
         {
           "title": "Automated Backup & DR Engine",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "AWS",
             "Terraform",
             "Python"
           ],
+          "bullets": [],
           "description": "Disaster recovery automation tool."
         }
       ],
@@ -859,11 +1268,35 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400142+00:00",
-      "updated_at": "2026-11-18T16:51:10.400143+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "Anna University",
+        "cgpa": 7.6,
+        "tenth_percentage": 78.5,
+        "twelfth_percentage": 77.0,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2021
+      },
+      "experience_years": 3.2,
+      "experience": [
+        {
+          "company": "Freshworks Inc",
+          "role": "Cloud DevOps Engineer",
+          "duration": "2021 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Managed infrastructure as code with Terraform across 15+ microservices in AWS."
+        }
+      ],
+      "current_title": "Cloud DevOps Engineer",
+      "current_company": "Freshworks Inc"
     },
     {
       "id": "cand-09",
@@ -880,6 +1313,8 @@
         "cgpa": 8.6,
         "tenth_percentage": 91.0,
         "twelfth_percentage": 89.0,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2023
       },
       "skills": [
@@ -887,11 +1322,11 @@
         "JavaScript",
         "TypeScript",
         "Tailwind CSS",
-        "HTML5",
+        "Git",
         "CSS3",
-        "Redux",
+        "HTML5",
         "Jest",
-        "Git"
+        "Redux"
       ],
       "categorized_skills": {
         "Frontend": [
@@ -922,10 +1357,13 @@
       "projects": [
         {
           "title": "Component Library",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "React",
             "Tailwind CSS"
           ],
+          "bullets": [],
           "description": "Reusable UI library."
         }
       ],
@@ -937,11 +1375,35 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400154+00:00",
-      "updated_at": "2026-11-18T16:51:10.400155+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "Jaypee Institute of Information Technology",
+        "cgpa": 8.6,
+        "tenth_percentage": 91.0,
+        "twelfth_percentage": 89.0,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2023
+      },
+      "experience_years": 1.8,
+      "experience": [
+        {
+          "company": "Urban Company",
+          "role": "Frontend Developer",
+          "duration": "2023 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed customer web portals with React and Tailwind CSS."
+        }
+      ],
+      "current_title": "Frontend Developer",
+      "current_company": "Urban Company"
     },
     {
       "id": "cand-10",
@@ -958,18 +1420,20 @@
         "cgpa": 8.3,
         "tenth_percentage": 88.0,
         "twelfth_percentage": 85.5,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2021
       },
       "skills": [
         "Python",
+        "PostgreSQL",
+        "Docker",
+        "Git",
+        "FastAPI",
         "Machine Learning",
         "Pandas",
         "NumPy",
-        "Scikit-Learn",
-        "FastAPI",
-        "PostgreSQL",
-        "Docker",
-        "Git"
+        "Scikit-Learn"
       ],
       "categorized_skills": {
         "AI & Data Science": [
@@ -1004,11 +1468,14 @@
       "projects": [
         {
           "title": "Automated Churn Predictor",
+          "subtitle": null,
+          "date": null,
           "tech_stack": [
             "Python",
             "Scikit-Learn",
             "FastAPI"
           ],
+          "bullets": [],
           "description": "End-to-end ML classification pipeline."
         }
       ],
@@ -1020,91 +1487,35 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400167+00:00",
-      "updated_at": "2026-11-18T16:51:10.400168+00:00"
-    },
-    {
-      "id": "cand-duplicate-01",
-      "name": "Aarav Sharma (Updated 2024)",
-      "email": "aarav.sharma@example.com",
-      "phone": "+91 98201 12345",
-      "location": "Bengaluru, India",
-      "linkedin": "https://linkedin.com/in/aarav-sharma-tech",
-      "github": "",
-      "portfolio": "",
-      "education": {
-        "degree": "B.Tech in Computer Science and Engineering",
-        "college": "Indian Institute of Technology (IIT) Delhi",
-        "cgpa": 8.85,
-        "tenth_percentage": 93.4,
-        "twelfth_percentage": 91.8,
-        "graduation_year": 2020
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech in Computer Engineering",
+        "college": "VJTI Mumbai",
+        "cgpa": 8.3,
+        "tenth_percentage": 88.0,
+        "twelfth_percentage": 85.5,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2021
       },
-      "skills": [
-        "React",
-        "TypeScript",
-        "Node.js",
-        "Express",
-        "PostgreSQL",
-        "Docker",
-        "AWS",
-        "Redis",
-        "Next.js",
-        "Kubernetes"
-      ],
-      "categorized_skills": {
-        "Frontend": [
-          "React",
-          "TypeScript",
-          "Next.js"
-        ],
-        "Backend": [
-          "Node.js",
-          "Express"
-        ],
-        "Databases": [
-          "PostgreSQL",
-          "Redis"
-        ],
-        "Cloud & DevOps": [
-          "Docker",
-          "AWS",
-          "Kubernetes"
-        ]
-      },
-      "years_of_experience": 5.0,
-      "experience_history": [
+      "experience_years": 3.0,
+      "experience": [
         {
-          "company": "Razorpay Payments",
-          "role": "Staff Software Engineer",
-          "duration": "2022 - Present",
+          "company": "Fractal Analytics",
+          "role": "Data Scientist & ML Engineer",
+          "duration": "2021 - Present",
           "start_year": null,
           "end_year": null,
-          "description": "Promoted to Staff Engineer. Leading payments orchestration engine."
+          "description": "Built predictive customer churn models and deployed serving APIs with FastAPI and Docker."
         }
       ],
-      "projects": [],
-      "certifications": [
-        "AWS Certified Solutions Architect"
-      ],
-      "raw_text": "Aarav Sharma | IIT Delhi | Updated Profile 2024 | Senior Full Stack Developer. React, TypeScript, Node.js, PostgreSQL, Docker, AWS, Kubernetes.",
-      "file_name": "Aarav_Sharma_Updated_2024.pdf",
-      "file_type": "pdf",
-      "stage": "Applied",
-      "rejection_reason": null,
-      "notes": [],
-      "applied_job_id": null,
-      "is_duplicate": true,
-      "duplicate_reasons": [
-        "Identical email address (aarav.sharma@example.com) matching existing candidate 'Aarav Sharma'",
-        "Identical phone number (+91 98201 12345) matching 'Aarav Sharma'"
-      ],
-      "duplicate_of_id": "cand-01",
-      "created_at": "2026-11-18T16:51:10.400179+00:00",
-      "updated_at": "2026-11-18T16:51:10.400181+00:00"
+      "current_title": "Data Scientist & ML Engineer",
+      "current_company": "Fractal Analytics"
     },
     {
       "id": "cand-11",
@@ -1121,16 +1532,18 @@
         "cgpa": 7.8,
         "tenth_percentage": 82.0,
         "twelfth_percentage": 80.5,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2022
       },
       "skills": [
-        "React",
         "Node.js",
+        "React",
         "TypeScript",
         "PostgreSQL",
         "Tailwind CSS",
-        "REST API",
-        "Git"
+        "Git",
+        "REST API"
       ],
       "categorized_skills": {
         "Frontend": [
@@ -1169,11 +1582,35 @@
       "rejection_reason": null,
       "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400192+00:00",
-      "updated_at": "2026-11-18T16:51:10.400193+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "Vellore Institute of Technology (VIT)",
+        "cgpa": 7.8,
+        "tenth_percentage": 82.0,
+        "twelfth_percentage": 80.5,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2022
+      },
+      "experience_years": 2.2,
+      "experience": [
+        {
+          "company": "Fintech Startup",
+          "role": "Full Stack Developer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Developed React dashboard and Node.js REST APIs with PostgreSQL."
+        }
+      ],
+      "current_title": "Full Stack Developer",
+      "current_company": "Fintech Startup"
     },
     {
       "id": "cand-12",
@@ -1190,21 +1627,23 @@
         "cgpa": 8.95,
         "tenth_percentage": 94.0,
         "twelfth_percentage": 93.0,
+        "tenth_board": null,
+        "twelfth_board": null,
         "graduation_year": 2018
       },
       "skills": [
-        "React",
         "Node.js",
+        "React",
+        "Next.js",
         "TypeScript",
         "PostgreSQL",
-        "Docker",
         "AWS",
-        "Redis",
+        "Docker",
         "Kubernetes",
-        "Next.js",
-        "Microservices",
         "CI/CD",
-        "GraphQL"
+        "GraphQL",
+        "Microservices",
+        "Redis"
       ],
       "categorized_skills": {
         "Frontend": [
@@ -1254,150 +1693,542 @@
       "raw_text": "Nikhil Agarwal | IIT Kharagpur | Principal Full Stack Engineer with 6.5 years experience in React, Node.js, TypeScript, PostgreSQL, Docker, AWS, Kubernetes, Redis. 10th: 94.0%, 12th: 93.0%, CGPA: 8.95.",
       "file_name": "Nikhil_Agarwal_Principal_Resume.pdf",
       "file_type": "pdf",
-      "stage": "Rejected",
-      "rejection_reason": "Salary expectation mismatch",
-      "notes": [
-        {
-          "id": "f572dd0e-1b7b-48fd-8413-868f3e32c32e",
-          "author": "Lead Recruiter",
-          "content": "Strong system design skills demonstrated in Round 1",
-          "created_at": "2026-11-18T16:51:10.667460+00:00"
-        }
-      ],
+      "stage": "Offer",
+      "rejection_reason": null,
+      "notes": [],
       "applied_job_id": null,
+      "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
       "duplicate_of_id": null,
-      "created_at": "2026-11-18T16:51:10.400205+00:00",
-      "updated_at": "2026-11-18T16:51:10.400206+00:00"
+      "created_at": "2026-11-19T02:39:37.627017+00:00",
+      "updated_at": "2026-11-19T02:39:37.627017+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "Indian Institute of Technology (IIT) Kharagpur",
+        "cgpa": 8.95,
+        "tenth_percentage": 94.0,
+        "twelfth_percentage": 93.0,
+        "tenth_board": null,
+        "twelfth_board": null,
+        "graduation_year": 2018
+      },
+      "experience_years": 6.5,
+      "experience": [
+        {
+          "company": "Atlassian",
+          "role": "Principal Software Engineer",
+          "duration": "2022 - Present",
+          "start_year": null,
+          "end_year": null,
+          "description": "Architected collaborative editing services handling millions of concurrent users using React and microservices."
+        },
+        {
+          "company": "InMobi",
+          "role": "Senior Engineer",
+          "duration": "2018 - 2022",
+          "start_year": null,
+          "end_year": null,
+          "description": "Built low-latency ad serving systems using Node.js and AWS."
+        }
+      ],
+      "current_title": "Principal Software Engineer",
+      "current_company": "Atlassian"
     },
     {
-      "id": "429c46cb-5739-4ceb-a842-cdfde4364092",
-      "name": "Aditya Verma",
-      "email": "aditya.verma@example.com",
-      "phone": "+91 98112 45678",
-      "location": "Delhi, India",
-      "linkedin": "https://linkedin.com/in/aditya-verma-cloud",
-      "github": "https://github.com/adityaverma",
+      "id": "8558449b-a207-491e-8f7c-2bfe0705086e",
+      "name": "Pillalamarri Revanth",
+      "email": "revanthp2313.24@kgpian.iitkgp.ac.in",
+      "phone": "",
+      "location": "Kharagpur, India",
+      "linkedin": "",
+      "github": "",
       "portfolio": "https://B.Tech",
       "education": {
-        "degree": "B.Tech Computer Science",
-        "college": "B.Tech Computer Science | Delhi Technological University (DT",
-        "cgpa": 8.1,
-        "tenth_percentage": 88.0,
-        "twelfth_percentage": 86.5,
-        "graduation_year": 2020
+        "degree": "B.Tech.(Hons.) in ELECTRONICS AND ELECTRICAL COMMUNICATION ENGINEERING",
+        "college": "IIT Kharagpur",
+        "cgpa": 7.58,
+        "tenth_percentage": 93.1,
+        "twelfth_percentage": 97.2,
+        "tenth_board": "SSC (State Board)",
+        "twelfth_board": "Intermediate (State Board)",
+        "graduation_year": 2028
       },
       "skills": [
-        "AWS",
-        "CI/CD",
-        "Docker",
-        "GitHub Actions",
-        "Grafana",
-        "Helm",
-        "Kubernetes",
-        "Linux",
-        "Nginx",
-        "Prometheus",
+        "MERN",
+        "Node.js",
+        "React",
+        "Express.js",
+        "Data Structures and Algorithms",
+        "JavaScript",
         "Python",
-        "Terraform"
+        "C++",
+        "Algorithms",
+        "Java",
+        "Data Structures",
+        "CSS",
+        "HTML",
+        "OOP",
+        "Object-Oriented Programming",
+        "Vite",
+        "Git",
+        "GitHub",
+        "JWT",
+        "OAuth 2.0",
+        "OAuth",
+        "Mongoose",
+        "bcrypt",
+        "Chrome APIs",
+        "Competitive Programming",
+        "STL",
+        "Llama 3.3",
+        "Llama",
+        "Groq API",
+        "Groq",
+        "Graph Algorithms",
+        "Sorting Algorithms",
+        "Dijkstra",
+        "BFS",
+        "A* Search",
+        "Floyd-Warshall",
+        "Shadow DOM",
+        "C",
+        "Chrome Extensions",
+        "DOM Scraper",
+        "FloydWarshall",
+        "Nodemailer",
+        "SMTP",
+        "Matlab",
+        "Blender",
+        "Adobe Premiere Pro",
+        "After Effects"
       ],
       "categorized_skills": {
-        "Backend": [
-          "Python"
+        "Languages": [
+          "C",
+          "C++",
+          "Java",
+          "Python",
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Matlab"
+        ],
+        "Frontend": [
+          "React",
+          "Vite",
+          "Shadow DOM",
+          "DOM Scraper"
+        ],
+        "Backend & APIs": [
+          "Node.js",
+          "Express.js",
+          "JWT",
+          "bcrypt",
+          "OAuth 2.0",
+          "OAuth",
+          "Nodemailer",
+          "SMTP"
+        ],
+        "Databases & ORM": [
+          "Mongoose",
+          "MERN"
         ],
         "Cloud & DevOps": [
-          "Docker",
-          "Kubernetes",
-          "AWS",
-          "Terraform",
-          "CI/CD",
-          "Linux",
-          "GitHub Actions",
-          "Nginx",
-          "Helm",
-          "Prometheus",
-          "Grafana"
+          "Git",
+          "GitHub"
         ],
-        "Tools & Testing": [
-          "Terraform",
-          "Docker",
-          "GitHub Actions",
-          "Nginx",
-          "AWS",
-          "Helm",
-          "Kubernetes",
-          "CI/CD",
-          "Grafana",
-          "Linux",
-          "Python",
-          "Prometheus"
+        "AI, ML & Data": [
+          "Llama 3.3",
+          "Llama",
+          "Groq API",
+          "Groq"
+        ],
+        "Core Competencies": [
+          "Data Structures and Algorithms",
+          "Data Structures",
+          "Algorithms",
+          "Object-Oriented Programming",
+          "STL",
+          "Graph Algorithms",
+          "BFS",
+          "Dijkstra",
+          "A* Search",
+          "Sorting Algorithms",
+          "Competitive Programming"
+        ],
+        "Tools & Platforms": [
+          "Chrome APIs",
+          "Blender",
+          "Adobe Premiere Pro",
+          "After Effects"
         ]
       },
-      "years_of_experience": 4.0,
+      "years_of_experience": 0.0,
+      "experience_history": [],
+      "projects": [
+        {
+          "title": "LeetNote",
+          "subtitle": "Chrome Extension (Self Project)",
+          "date": "Dec'2025",
+          "tech_stack": [
+            "CSS",
+            "Chrome APIs",
+            "OAuth",
+            "OAuth 2.0",
+            "React",
+            "Shadow DOM",
+            "Vite"
+          ],
+          "bullets": [
+            "Developed a React-based Chrome extension to bookmark LeetCode problems using content scripts, popup UI, and Chrome APIs",
+            "Developed a DOM scraper that detects SPA routing to automatically extract problem details and code without requiring page reloads",
+            "Implemented Chrome Message Passing APIs to enable secure and seamless real-time communication between the extension components",
+            "Implemented Google OAuth 2.0 authentication and React state management for persistent sessions and real-time folder management",
+            "Injected the React widget via a Shadow DOM for CSS style isolation, utilizing a custom Vite build pipeline to comply with strict Manifest V3 rules"
+          ],
+          "description": "Developed a React-based Chrome extension to bookmark LeetCode problems using content scripts, popup UI, and Chrome APIs Developed a DOM scraper that detects SPA routing to automatically extract problem details and code without requiring page reloads Implemented Chrome Message Passing APIs to enable secure and seamless real-time communication between the extension components Implemented Google OAuth 2.0 authentication and React state management for persistent sessions and real-time folder management Injected the React widget via a Shadow DOM for CSS style isolation, utilizing a custom Vite build pipeline to comply with strict Manifest V3 rules"
+        },
+        {
+          "title": "WealthWise",
+          "subtitle": "AI-Powered Personal Finance Dashboard (Self Project)",
+          "date": "Jan'2026",
+          "tech_stack": [
+            "Groq",
+            "Groq API",
+            "JWT",
+            "Llama",
+            "Llama 3.3",
+            "MERN",
+            "Nodemailer",
+            "React",
+            "bcrypt"
+          ],
+          "bullets": [
+            "Built a full-stack personal finance dashboard using MERN stack enabling users to track, categorize, and analyze daily expenses",
+            "Developed a secure, stateless authentication system using JWT and bcrypt password hashing, protecting sensitive user financial data",
+            "Integrated Nodemailer and Gmail SMTP to automate secure password recovery emails with time-limited cryptographic reset tokens",
+            "Implemented complete CRUD functionality for expense tracking, budget management, transaction search, and financial analytics",
+            "Developed a responsive React Single Page Application using custom Hooks and state management for an interactive user experience",
+            "Integrated Llama 3.3 using the Groq API to generate personalized financial insights based on the user's spending patterns"
+          ],
+          "description": "Built a full-stack personal finance dashboard using MERN stack enabling users to track, categorize, and analyze daily expenses Developed a secure, stateless authentication system using JWT and bcrypt password hashing, protecting sensitive user financial data Integrated Nodemailer and Gmail SMTP to automate secure password recovery emails with time-limited cryptographic reset tokens Implemented complete CRUD functionality for expense tracking, budget management, transaction search, and financial analytics Developed a responsive React Single Page Application using custom Hooks and state management for an interactive user experience Integrated Llama 3.3 using the Groq API to generate personalized financial insights based on the user's spending patterns"
+        },
+        {
+          "title": "Metro Route Planner",
+          "subtitle": "C++, STL, Graph Algorithms, OOP (Self Project)",
+          "date": "Feb'2026",
+          "tech_stack": [
+            "BFS",
+            "C",
+            "Dijkstra",
+            "FloydWarshall",
+            "Graph Algorithms",
+            "OOP",
+            "STL"
+          ],
+          "bullets": [
+            "Built a metro route planner in C++ using an adjacency-list graph representation to efficiently model and traverse large transit networks",
+            "Implemented BFS, Dijkstra, A*, FloydWarshall, and Bidirectional BFS algorithms to compute shortest paths and for route optimization",
+            "Enhanced A* search efficiency by including Euclidean spatial distance heuristic, significantly reducing the number of nodes explored",
+            "Designed a routing engine supporting shortest-path, minimum travel time, nearby station discovery, and fare estimation",
+            "Developed an interactive CLI with station management, route search, and visualization using a modular object-oriented architecture"
+          ],
+          "description": "Built a metro route planner in C++ using an adjacency-list graph representation to efficiently model and traverse large transit networks Implemented BFS, Dijkstra, A*, FloydWarshall, and Bidirectional BFS algorithms to compute shortest paths and for route optimization Enhanced A* search efficiency by including Euclidean spatial distance heuristic, significantly reducing the number of nodes explored Designed a routing engine supporting shortest-path, minimum travel time, nearby station discovery, and fare estimation Developed an interactive CLI with station management, route search, and visualization using a modular object-oriented architecture"
+        },
+        {
+          "title": "Sort It",
+          "subtitle": "Sorting Algorithm Visualizer (Self Project)",
+          "date": "Apr'2026",
+          "tech_stack": [
+            "CSS",
+            "JavaScript",
+            "React",
+            "Sorting Algorithms"
+          ],
+          "bullets": [
+            "Built a web application to visualize the execution of sorting algorithms (Bubble, Merge, Quick, Heap, Counting, and Radix) in real time",
+            "Developed an animation engine using recursive JavaScript timeouts, enabling pause, resume, and dynamic speed control during sorting",
+            "Implemented a live statistics dashboard displaying algorithm metrics (comparisons, swaps, array accesses) and CPU vs. visual execution time",
+            "Built a responsive UI using React Hooks (useState, useEffect, useRef) to cleanly separate the complex sorting logic from the DOM rendering",
+            "Designed a modern UI using Vanilla CSS, leveraging Flexbox, CSS Grid, and CSS variables for consistent and reusable styling"
+          ],
+          "description": "Built a web application to visualize the execution of sorting algorithms (Bubble, Merge, Quick, Heap, Counting, and Radix) in real time Developed an animation engine using recursive JavaScript timeouts, enabling pause, resume, and dynamic speed control during sorting Implemented a live statistics dashboard displaying algorithm metrics (comparisons, swaps, array accesses) and CPU vs. visual execution time Built a responsive UI using React Hooks (useState, useEffect, useRef) to cleanly separate the complex sorting logic from the DOM rendering Designed a modern UI using Vanilla CSS, leveraging Flexbox, CSS Grid, and CSS variables for consistent and reusable styling"
+        }
+      ],
+      "certifications": [],
+      "raw_text": "PILLALAMARRI REVANTH  |  24EC10114\nB.Tech.(Hons.) in ELECTRONICS AND ELECTRICAL COMMUNICATION ENGINEERING\nEDUCATION\nYear Degree/Exam Institute CGPA/Marks\n2028 B.TECH IIT Kharagpur 7.58 / 10\n2024 Intermediate Public Examination New Vision Junior College 97.2%\n2022 Secondary School Certificate Public\nExaminations\nNew Vision High School 9.8 / 10\nPROJECTS\nLeetNote | Chrome Extension (Self Project) \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0[Dec'2025]\n\u2022Developed a React-based Chrome extension to bookmark LeetCode problems using content scripts, popup UI, and Chrome APIs\u00a0\n\u2022Developed a DOM scraper that detects SPA routing to automatically extract problem details and code without requiring page reloads\n\u2022Implemented Chrome Message Passing APIs to enable secure and seamless real-time communication between the extension components\n\u2022Implemented Google OAuth 2.0 authentication and React state management for persistent sessions and real-time folder management\n\u2022Injected the React widget via a Shadow DOM for CSS style isolation, utilizing a custom Vite build pipeline to comply with strict Manifest V3 rules\nWealthWise | AI-Powered Personal Finance Dashboard (Self Project) \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0[Jan'2026]\n\u2022Built a full-stack personal finance dashboard using MERN stack enabling users to track, categorize, and analyze daily expenses\n\u2022Developed a secure, stateless authentication system using JWT and bcrypt password hashing, protecting sensitive user financial data\n\u2022Integrated Nodemailer and Gmail SMTP to automate secure password recovery emails with time-limited cryptographic reset tokens\n\u2022Implemented complete CRUD functionality for expense tracking, budget management, transaction search, and financial analytics\n\u2022Developed a responsive React Single Page Application using custom Hooks and state management for an interactive user experience\n\u2022Integrated Llama 3.3 using the Groq API to generate personalized financial insights based on the user's spending patterns\nMetro Route Planner | C++, STL, Graph Algorithms, OOP (Self Project) \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0[Feb'2026]\n\u2022Built a metro route planner in C++ using an adjacency-list graph representation to efficiently model and traverse large transit networks\n\u2022Implemented BFS, Dijkstra, A*, FloydWarshall, and Bidirectional BFS algorithms to compute shortest paths and for route optimization\u00a0\n\u2022Enhanced A* search efficiency by including Euclidean spatial distance heuristic, significantly reducing the number of nodes explored\n\u2022Designed a routing engine supporting shortest-path, minimum travel time, nearby station discovery, and fare estimation\u00a0\n\u2022Developed an interactive CLI with station management, route search, and visualization using a modular object-oriented architecture\nSort It | Sorting Algorithm Visualizer (Self Project) \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0[Apr'2026]\n\u2022Built a web application to visualize the execution of sorting algorithms (Bubble, Merge, Quick, Heap, Counting, and Radix) in real time\n\u2022Developed an animation engine using recursive JavaScript timeouts, enabling pause, resume, and dynamic speed control during sorting\n\u2022Implemented a live statistics dashboard displaying algorithm metrics (comparisons, swaps, array accesses) and CPU vs. visual execution time\n\u2022Built a responsive UI using React Hooks (useState, useEffect, useRef) to cleanly separate the complex sorting logic from the DOM rendering\n\u2022Designed a modern UI using Vanilla CSS, leveraging Flexbox, CSS Grid, and CSS variables for consistent and reusable styling\nAWARDS AND ACHIEVEMENTS\n\u2022Achieved a peak rating of 1184 on Codeforces (Handle: p._.revanth), showcasing decent skills in competitive programming\n\u2022Secured an excellent rank of 2263 in Codeforces Round 1105 Div2 out of 16,000+ participants\nCOURSEWORK INFORMATION\nE &ECE: Network Theory | Electronic Systems | Electro Magnetic Engineering | Probability and Stochastic Processes | Signals and Systems\n|Analog Electronic Circuits | Semiconductor Devices | Digital Electronic Circuits | Systems and Control\u00a0\nOther Courses: Advanced Calculus | Linear Algebra, Numerical and Complex Analysis | Programming and Data Structures\nSKILLS AND EXPERTISE\nProgramming Languages: Proficient: C | C++ | JavaScript | HTML | CSS \u00a0Familiar: Python | Java\nLibraries / Frameworks: React | Express.js | Node.js | Mongoose\nSoftwares / Tools: Matlab | Git | GitHub\nCore Competencies: Data Structures and Algorithms | Object-Oriented Programming\nPOSITIONS OF RESPONSIBILITY\nAssociate Member | Shaurya, IIT Kharagpur \u00a0(Inter-Collegiate Sports Festival) \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0[Sept'24 - Jun'25]\n\u2022Coordinated the smooth execution of Table Tennis competitions during Shaurya, ensuring seamless event operations\n\u00a0\nDesign Sub-Head | Shaurya, IIT Kharagpur \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0 \u00a0 \u00a0 \u00a0\u00a0[Jul'25 - Jun'26]\u00a0\n\u2022Designed and built event artifacts displayed across the Shaurya Arena during the festival\n\u2022Produced high-quality promotional content using Adobe Premiere Pro, After Effects, and Blender for Shaurya's official social media.\n\u2022Delivered promotional reels under tight deadlines without compromise in quality, showing capability to work under pressure\nEXTRA CURRICULAR ACTIVITIES\n\u2022Member of the JCB Hall Illumination Team, contributing to the hall securing 4th position out of 20+ competing halls at IIT Kharagpur\n\u2022Completed a two-year training stint with NSO Badminton (2024 - 2026), involving regular practice sessions and inter-group matches\n!Self declared by the student, CDC could not verify the relevant documents. Created On.:Sat Jul 04 19:36:40 IST 2026\n",
+      "file_name": "AdmFilePDF.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [
+        {
+          "id": "8bf4d3bb-2eb9-44d2-a3dd-e0e624f2fe22",
+          "author": "Recruiter",
+          "content": "Doing good ",
+          "created_at": "2026-11-21T08:18:49.560616+00:00"
+        }
+      ],
+      "applied_job_id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-20T12:06:41.777607+00:00",
+      "updated_at": "2026-11-20T12:06:41.777607+00:00",
+      "academics": {
+        "degree": "B.Tech.(Hons.) in ELECTRONICS AND ELECTRICAL COMMUNICATION ENGINEERING",
+        "college": "IIT Kharagpur",
+        "cgpa": 7.58,
+        "tenth_percentage": 93.1,
+        "twelfth_percentage": 97.2,
+        "tenth_board": "SSC (State Board)",
+        "twelfth_board": "Intermediate (State Board)",
+        "graduation_year": 2028
+      },
+      "experience_years": 0.0,
+      "experience": [],
+      "current_title": "Fresher / Graduate",
+      "current_company": ""
+    },
+    {
+      "id": "8e68ab3c-bb4d-43b5-8d67-54250d524c70",
+      "name": "Candidate (Software Engineer)",
+      "email": "candidatesoftwareengineer@applicant.hub",
+      "phone": "",
+      "location": "India",
+      "linkedin": "",
+      "github": "",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech",
+        "college": "Engineering Institute",
+        "cgpa": null,
+        "tenth_percentage": null,
+        "twelfth_percentage": null,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2026
+      },
+      "skills": [
+        "Java",
+        "Linux",
+        "C",
+        "C#",
+        "Operating Systems",
+        "SDLC",
+        "Software Architecture"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "C",
+          "Java",
+          "C#"
+        ],
+        "Cloud & DevOps": [
+          "Linux"
+        ],
+        "Core Competencies": [
+          "Software Architecture",
+          "SDLC",
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 7.3,
       "experience_history": [
         {
-          "company": "Tech Innovations Pvt Ltd",
-          "role": "pipelines. Certified CKA and AWS Solutions Architect.",
-          "duration": "2021 - Present",
+          "company": "BlueTech Software \u2022 Los Angeles, California",
+          "role": "Software Engineer",
+          "duration": "Duration",
           "start_year": null,
           "end_year": null,
           "description": ""
         },
         {
-          "company": "Tech Innovations Pvt Ltd",
-          "role": "DevOps Engineer \u2014 Paytm Labs (2020 - Present)",
-          "duration": "2021 - Present",
+          "company": "Technology Services",
+          "role": "Web Developer",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Engineer",
+          "duration": "Duration",
           "start_year": null,
           "end_year": null,
           "description": ""
         }
       ],
-      "projects": [
-        {
-          "title": "Cloud-Native Enterprise Platform",
-          "tech_stack": [
-            "React",
-            "Node.js",
-            "PostgreSQL",
-            "Docker"
-          ],
-          "description": "Architected high-throughput microservice backend and responsive web client."
-        }
-      ],
-      "certifications": [
-        "CKA"
-      ],
-      "raw_text": "Aditya Verma\nSenior DevOps & Cloud Engineer | Delhi, India | aditya.verma@example.com | +91 98112 45678\nLinkedIn: https://linkedin.com/in/aditya-verma-cloud | GitHub: https://github.com/adityaverma\nProfessional Summary\nDevOps Engineer with 4.0 years of experience managing Kubernetes clusters, AWS infrastructure, and automated CI/CD\npipelines. Certified CKA and AWS Solutions Architect.\nTechnical Skills\nKey Technologies: Docker, Kubernetes, AWS, Terraform, CI/CD, Linux, GitHub Actions, Prometheus, Grafana, Python,\nNginx, Helm\nEducation & Academic Background\nB.Tech Computer Science | Delhi Technological University (DTU) (2016 - 2020)\n\u007f CGPA: 8.1 / 10.0\n\u007f Class XII: 86.5%\n\u007f Class X: 88.0%\nWork Experience\nDevOps Engineer \u2014 Paytm Labs (2020 - Present)\n\u007f Designed multi-region AWS EKS clusters with Terraform GitOps workflows. Reduced deployment cycle time from 40 mins to\n4 mins.\nKey Projects\nCanary Deployer [Kubernetes, GitHub Actions]\n\u007f Custom Kubernetes controller managing traffic splits during canary releases.\n\n",
-      "file_name": "Aditya_Verma_Upload_Test.pdf",
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Summary\nCompetent software engineer, able to work effectively in a fast-paced, agile environment, and passionate about\ndeveloping software architecture for primarily web applications.\nExperience\nSoftware Engineer\nBlueTech Software \u2022 Los Angeles, California\n07/2019 - Present\nResearched and created a new application to be used by the company, resulting in a 1.3x increase in sales\nCreated a new software development framework to develop applications faster and more ef\ufb01ciently\nDeveloped the process of testing and recording the results of the test, thereby increasing the number of tests\ncompleted per day by 10%\nDeveloped a new technique for reducing the time it takes to \ufb01x crashes by 20%\nWeb Developer\nMezzanine \u2022 Los Angeles, California\n05/2018\nDeveloped a collaborative environment for all team members, creating a strong sense of community and\nempowerment\nDesigned a new web application to increase collaboration among design, engineering and sales teams, resulting in a\n10% increase in revenue in one quarter\nBuilt a custom web application for a major client, successfully delivering an integrated CRM system in just 2 weeks\nMaintained a clean, professional and creative web presence for the company to convey the professional image of the\norganization\nUsed Adobe InDesign to design, edit and layout the company's print & digital collateral\nSoftware Engineer\nGeeks 4 Nerds \u2022 Los Angeles, California\n10/2016\nDesigned and implemented a new cloud-based mobile POS platform, resulting in a 50% increase in customer\nretention\nCollaborated with hardware and software development teams to ensure seamless integration of the new POS system\nContinued to develop specialty skills related to his expertise in mobile POS and payment technologies\nDeveloped and continuously improved an internal knowledge base of best practices for software development\nSkills\nC, Java, Sdlc, Software Development, Linux, C#, Communication Skills\nEducation\nBachelor's Degree in Computer Science\nZirkel College \u2022 Los Angeles, California\n",
+      "file_name": "Software Engineer Resume.pdf",
       "file_type": "pdf",
       "stage": "Applied",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
-      "is_duplicate": true,
-      "duplicate_reasons": [
-        "Identical email address (aditya.verma@example.com) matching existing candidate 'Aditya Verma'",
-        "Identical phone number (+91 98112 45678) matching 'Aditya Verma'",
-        "Identical LinkedIn profile link matching 'Aditya Verma'",
-        "Same candidate name 'Aditya Verma' with matching academic history (B.Tech Computer Science | Delhi Technological University (DT)"
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-20T12:06:42.043998+00:00",
+      "updated_at": "2026-11-20T12:06:42.043998+00:00",
+      "academics": {
+        "degree": "B.Tech",
+        "college": "Engineering Institute",
+        "cgpa": null,
+        "tenth_percentage": null,
+        "twelfth_percentage": null,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2026
+      },
+      "experience_years": 7.3,
+      "experience": [
+        {
+          "company": "BlueTech Software \u2022 Los Angeles, California",
+          "role": "Software Engineer",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Web Developer",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Engineer",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
       ],
-      "duplicate_of_id": "cand-04",
-      "created_at": "2026-11-18T16:51:10.527119+00:00",
-      "updated_at": "2026-11-18T16:51:10.527131+00:00"
+      "current_title": "Software Engineer",
+      "current_company": "BlueTech Software \u2022 Los Angeles, California"
     }
   ],
+  "companies": [
+    {
+      "id": "comp-acme-corp",
+      "company_name": "Acme Technologies",
+      "work_email": "hr@acme.com",
+      "password_hash": "d515986ff48ba310c3e25ec4e1f730660b61ce5d4bd38c97a1e853baec96c3f6",
+      "recruiter_name": "Sarah Jenkins",
+      "company_size": "51-200",
+      "industry": "Software & Cloud Services",
+      "website": "https://acme.tech",
+      "created_at": "2026-11-19T02:39:37.627017+00:00"
+    },
+    {
+      "id": "8830af43-495c-4439-be20-93f405f59dc2",
+      "company_name": "Test Labs",
+      "work_email": "recruiter@testlabs.com",
+      "password_hash": "5976bf86fc222da72d3253d5552e246658a598e074437f99e74a3746f912ade2",
+      "recruiter_name": "Dave",
+      "company_size": "11-50",
+      "industry": "Technology",
+      "website": "",
+      "created_at": "2026-11-19T02:39:56.292741+00:00"
+    },
+    {
+      "id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "company_name": "HappyWave",
+      "work_email": "revanthp2313.24@kgpian.iitkgp.ac.in",
+      "password_hash": "9cfb4fe696fdb7670e92a571b160374e8a0bf57fdb915c63acd940388852bd4b",
+      "recruiter_name": "Talent Lead",
+      "company_size": "11-50",
+      "industry": "Software & Technology",
+      "website": "",
+      "created_at": "2026-11-19T02:53:44.643141+00:00"
+    },
+    {
+      "id": "dadeb13e-2ee1-4cbc-ab82-141db698cc87",
+      "company_name": "QuantumAI Labs",
+      "work_email": "lead_84b9e8@quantumai.org",
+      "password_hash": "93a94cfcbedb593ef94b2581faf547f9078c6e99f035af36a17d21aa6da1fbba",
+      "recruiter_name": "Rohan Varma",
+      "company_size": "11-50",
+      "industry": "Artificial Intelligence",
+      "website": "",
+      "created_at": "2026-11-19T03:19:25.835234+00:00"
+    }
+  ],
+  "sessions": {
+    "4Ka0J3A-jFsljxLE-HcuqWn1cdbuf5m8_E7e0CnRSKU": "comp-acme-corp",
+    "6V82nQ8bHXWqT7eSm9Ew_RJDjSxpQYKhTYopIk5V31s": "dadeb13e-2ee1-4cbc-ab82-141db698cc87",
+    "n1wCh5KRCpVHv8VxupU0_ikFCp4qQbOnjOmh4IpMTlU": "4c7a3289-ff18-424a-90a5-021b3dfb35fa"
+  },
   "sent_emails": [
     {
-      "id": "0d6112be-f1a7-4d18-a6f3-52c79e5f698e",
-      "candidate_id": "cand-12",
-      "candidate_name": "Nikhil Agarwal",
-      "candidate_email": "nikhil.agarwal@example.com",
-      "subject": "Interview Invitation: Senior Full-Stack Engineer at HireSwift",
-      "body": "Dear Nikhil Agarwal,\n\nYou are invited for an interview at HireSwift for Senior Full-Stack Engineer on Friday at 4:00 PM IST.",
-      "template_type": "interview",
+      "id": "b5f8662d-f20e-4963-87d6-c981cc800bac",
+      "candidate_id": "8558449b-a207-491e-8f7c-2bfe0705086e",
+      "candidate_name": "Pillalamarri Revanth",
+      "candidate_email": "revanthp2313.24@kgpian.iitkgp.ac.in",
+      "company_id": null,
+      "job_id": null,
+      "job_title": null,
+      "campaign_scope": "role",
+      "subject": "Important Recruitment Update from HappyWave",
+      "body": "Dear Pillalamarri Revanth,\n\nWe are writing with a general hiring update regarding your application for Software Engineer (Campus Fresher / Graduate) at HappyWave.\n\nOur recruitment team is actively processing submissions for all open roles. We appreciate your patience as we finalize our scheduling rounds. If additional details or portfolio links are required, a recruiter will reach out directly.\n\nBest regards,\nTalent Operations\nHappyWave",
+      "template_type": "general_announcement",
       "status": "Delivered",
-      "sent_at": "2026-11-18T16:51:10.739822+00:00"
+      "sent_at": "2026-11-21T10:49:59.824407+00:00"
+    },
+    {
+      "id": "50e3f2db-e88c-4cd0-bf1a-e9640563f6f3",
+      "candidate_id": "8e68ab3c-bb4d-43b5-8d67-54250d524c70",
+      "candidate_name": "Candidate (Software Engineer)",
+      "candidate_email": "candidatesoftwareengineer@applicant.hub",
+      "company_id": null,
+      "job_id": null,
+      "job_title": null,
+      "campaign_scope": "role",
+      "subject": "Important Recruitment Update from HappyWave",
+      "body": "Dear Candidate (Software Engineer),\n\nWe are writing with a general hiring update regarding your application for Software Engineering - 2 at HappyWave.\n\nOur recruitment team is actively processing submissions for all open roles. We appreciate your patience as we finalize our scheduling rounds. If additional details or portfolio links are required, a recruiter will reach out directly.\n\nBest regards,\nTalent Operations\nHappyWave",
+      "template_type": "general_announcement",
+      "status": "Delivered",
+      "sent_at": "2026-11-21T10:49:59.824407+00:00"
+    },
+    {
+      "id": "edea82af-eb00-4f05-8e95-7d74ed70c195",
+      "candidate_id": "8558449b-a207-491e-8f7c-2bfe0705086e",
+      "candidate_name": "Pillalamarri Revanth",
+      "candidate_email": "revanthp2313.24@kgpian.iitkgp.ac.in",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "job_id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
+      "job_title": "Software Engineer (Campus Fresher / Graduate)",
+      "campaign_scope": "global",
+      "subject": "HappyWave Talent Network: Future Engineering Opportunities",
+      "body": "Hi Pillalamarri Revanth,\n\nWe wanted to stay in touch and thank you again for your interest in HappyWave for the Software Engineer (Campus Fresher / Graduate) opening.\n\nOur engineering and product teams are actively expanding. As new roles open up in MERN, Node.js, React, Express.js and related disciplines, our recruiting team will prioritize reviewing profiles in our active community network.\n\nThank you for being part of our talent community!\n\nWarm regards,\nRecruitment Team\nHappyWave",
+      "template_type": "talent_pool",
+      "status": "Delivered",
+      "sent_at": "2026-11-21T11:29:46.409439+00:00"
+    },
+    {
+      "id": "7eb460d9-10be-4e50-bd5d-27e5f28b0098",
+      "candidate_id": "8e68ab3c-bb4d-43b5-8d67-54250d524c70",
+      "candidate_name": "Candidate (Software Engineer)",
+      "candidate_email": "candidatesoftwareengineer@applicant.hub",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "HappyWave Talent Network: Future Engineering Opportunities",
+      "body": "Hi Candidate (Software Engineer),\n\nWe wanted to stay in touch and thank you again for your interest in HappyWave for the Software Engineering - 2 opening.\n\nOur engineering and product teams are actively expanding. As new roles open up in Java, Linux, C, C# and related disciplines, our recruiting team will prioritize reviewing profiles in our active community network.\n\nThank you for being part of our talent community!\n\nWarm regards,\nRecruitment Team\nHappyWave",
+      "template_type": "talent_pool",
+      "status": "Delivered",
+      "sent_at": "2026-11-21T11:29:46.409439+00:00"
     }
   ]
 }

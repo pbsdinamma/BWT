@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 from typing import List, Optional, Dict, Any
 from datetime import datetime, timezone
 import uuid
@@ -12,6 +12,8 @@ class EducationDetail(BaseModel):
     cgpa: Optional[float] = None
     tenth_percentage: Optional[float] = None
     twelfth_percentage: Optional[float] = None
+    tenth_board: Optional[str] = None
+    twelfth_board: Optional[str] = None
     graduation_year: Optional[int] = None
 
 class ExperienceEntry(BaseModel):
@@ -24,7 +26,10 @@ class ExperienceEntry(BaseModel):
 
 class ProjectEntry(BaseModel):
     title: Optional[str] = None
+    subtitle: Optional[str] = None
+    date: Optional[str] = None
     tech_stack: Optional[List[str]] = []
+    bullets: Optional[List[str]] = []
     description: Optional[str] = None
 
 class CandidateNote(BaseModel):
@@ -66,6 +71,7 @@ class Candidate(BaseModel):
     rejection_reason: Optional[str] = None
     notes: List[CandidateNote] = []
     applied_job_id: Optional[str] = None
+    company_id: Optional[str] = None
     
     # Duplicate detection flag
     is_duplicate: bool = False
@@ -75,12 +81,42 @@ class Candidate(BaseModel):
     created_at: str = Field(default_factory=get_utc_now)
     updated_at: str = Field(default_factory=get_utc_now)
 
+    @computed_field
+    @property
+    def academics(self) -> EducationDetail:
+        return self.education
+
+    @computed_field
+    @property
+    def experience_years(self) -> float:
+        return self.years_of_experience
+
+    @computed_field
+    @property
+    def experience(self) -> List[ExperienceEntry]:
+        return self.experience_history
+
+    @computed_field
+    @property
+    def current_title(self) -> str:
+        if self.experience_history and len(self.experience_history) > 0 and self.experience_history[0].role:
+            return self.experience_history[0].role
+        return "Software Engineer" if self.years_of_experience > 0 else "Fresher / Graduate"
+
+    @computed_field
+    @property
+    def current_company(self) -> str:
+        if self.experience_history and len(self.experience_history) > 0 and self.experience_history[0].company:
+            return self.experience_history[0].company
+        return ""
+
 class JobDescription(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
     department: str = "Engineering"
-    location: str = "Remote"
-    employment_type: str = "Full-Time"
+    location: str = "Bengaluru, India"
+    workplace_mode: Optional[str] = "Hybrid" # Remote, Hybrid, On-site
+    employment_type: str = "Full-Time" # Full-Time, Part-Time, Contract, Internship
     description: str
     
     # Matching Criteria
@@ -95,7 +131,17 @@ class JobDescription(BaseModel):
     min_cgpa: Optional[float] = None
     preferred_grad_years: Optional[List[int]] = []
     
+    # Dynamic Scoring Algorithm Weights (Sum to 100)
+    scoring_weights: Optional[Dict[str, float]] = Field(default_factory=lambda: {
+        "skills": 40.0,
+        "experience": 30.0,
+        "academics": 20.0,
+        "domain": 10.0
+    })
+    
     status: str = "Active"  # Active, Closed, Draft
+    application_deadline: Optional[str] = "2026-12-31"
+    company_id: Optional[str] = None
     created_at: str = Field(default_factory=get_utc_now)
 
 class MatchScore(BaseModel):
@@ -121,6 +167,7 @@ class MatchScore(BaseModel):
     recommendation: str = ""
     academic_passed: bool = True
     academic_flags: List[str] = []
+    breakdown: Optional[Dict[str, Any]] = None
 
 class CandidateFilterParams(BaseModel):
     job_id: Optional[str] = None
@@ -140,6 +187,14 @@ class CandidateFilterParams(BaseModel):
     sort_by: Optional[str] = "score" # score, exp, cgpa, name, date
     sort_order: Optional[str] = "desc"
 
+class UpdateCandidateProfileRequest(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    location: Optional[str] = None
+    skills: Optional[List[str]] = None
+    years_of_experience: Optional[float] = None
+
 class UpdateStageRequest(BaseModel):
     stage: str
     rejection_reason: Optional[str] = None
@@ -150,19 +205,27 @@ class AddNoteRequest(BaseModel):
 
 class BulkEmailRequest(BaseModel):
     candidate_ids: List[str]
-    template_type: str # interview, shortlisted, offer, rejection, custom
+    template_type: str = "custom" # interview, shortlisted, offer, rejection, assessment, global_rejection, talent_pool, custom
     subject: str
     body_template: str
+    job_id: Optional[str] = None
     job_title: Optional[str] = None
     company_name: Optional[str] = "HireSwift"
     interview_date: Optional[str] = None
     interview_link: Optional[str] = None
+    assessment_link: Optional[str] = None
+    assessment_deadline: Optional[str] = None
+    campaign_scope: Optional[str] = "role" # role or global
 
 class SentEmailRecord(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     candidate_id: str
     candidate_name: str
     candidate_email: str
+    company_id: Optional[str] = None
+    job_id: Optional[str] = None
+    job_title: Optional[str] = None
+    campaign_scope: Optional[str] = "role" # role or global
     subject: str
     body: str
     template_type: str
@@ -173,3 +236,38 @@ class DuplicateResolutionRequest(BaseModel):
     candidate_id: str
     action: str # "merge", "keep_both", "delete"
     target_candidate_id: Optional[str] = None
+
+class Company(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    company_name: str
+    work_email: str
+    password_hash: str
+    recruiter_name: Optional[str] = ""
+    company_size: Optional[str] = "11-50"
+    industry: Optional[str] = "Technology"
+    website: Optional[str] = ""
+    created_at: str = Field(default_factory=get_utc_now)
+
+class CompanyRegisterRequest(BaseModel):
+    company_name: str
+    work_email: str
+    password: str
+    recruiter_name: Optional[str] = ""
+    company_size: Optional[str] = "11-50"
+    industry: Optional[str] = "Technology"
+    website: Optional[str] = ""
+
+class CompanyLoginRequest(BaseModel):
+    work_email: str
+    password: str
+
+class JobStatusUpdateRequest(BaseModel):
+    status: str # Active, Closed, Draft
+    application_deadline: Optional[str] = None
+
+class JobExtendDeadlineRequest(BaseModel):
+    application_deadline: str
+
+class LoadSampleResumesRequest(BaseModel):
+    applied_job_id: Optional[str] = None
+

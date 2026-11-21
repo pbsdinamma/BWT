@@ -1,216 +1,208 @@
 import React from 'react';
 import {
-  Kanban,
+  Briefcase,
   Users,
-  BrainCircuit,
   Copy,
   Mail,
   UploadCloud,
   Plus,
-  Search,
-  Columns,
+  ArrowLeft,
   RotateCcw,
   Sun,
-  Moon
+  Moon,
+  LogOut,
+  Building2,
+  Kanban,
+  Table,
+  Sparkles,
+  ChevronRight
 } from 'lucide-react';
 
 export default function Navbar({
-  activeTab,
-  setActiveTab,
-  jobs = [],
-  activeJobId,
+  company,
+  currentView, // 'dashboard' | 'job_workspace' | 'duplicates' | 'email'
+  setCurrentView,
+  activeJob,
+  onBackToJobs,
+  jobViewTab, // 'shortlist' | 'kanban' | 'upload'
+  setJobViewTab,
+  duplicateCount = 0,
   selectedCount = 0,
   onOpenCompare,
   onOpenUpload,
-  duplicateCount = 0,
-  totalCandidateCount = 0,
+  onOpenCreateJob,
   onResetDemo,
   isResetting,
-  onOpenCreateJob,
-  searchTerm = '',
-  onSearchChange,
   theme = 'light',
-  onToggleTheme
+  onToggleTheme,
+  onLogout,
+  onOpenGlobalEmail
 }) {
   return (
-    <header className="border-b border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] sticky top-0 z-30 px-4 sm:px-6 py-2.5 flex items-center justify-between shadow-2xs font-body transition-colors duration-150">
-      <div className="flex items-center space-x-7">
-        {/* Brand Logo (Stitch MCP Design) */}
-        <div
-          className="flex items-center space-x-2.5 cursor-pointer"
-          onClick={() => setActiveTab('kanban')}
-        >
-          <div className="w-8 h-8 rounded-md bg-[#1E3A8A] dark:bg-blue-600 flex items-center justify-center text-white font-headline font-bold text-base shadow-xs">
-            H
+    <header className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1E293B] sticky top-0 z-30 px-4 sm:px-6 py-2.5 flex items-center justify-between shadow-2xs font-body transition-colors duration-150">
+      {/* Left: Brand or Breadcrumb */}
+      <div className="flex items-center space-x-4">
+        {currentView === 'job_workspace' && activeJob ? (
+          /* Breadcrumb navigation when inside a Job Workspace */
+          <div className="flex items-center space-x-2">
+            <button
+              type="button"
+              onClick={onBackToJobs}
+              className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>All Jobs</span>
+            </button>
+            <span className="text-slate-400">/</span>
+            <div className="flex items-center space-x-2">
+              <span className="font-headline font-bold text-sm text-slate-900 dark:text-white truncate max-w-xs">
+                {activeJob.title}
+              </span>
+              <span className="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                {activeJob.status || 'Active'}
+              </span>
+            </div>
           </div>
-          <div className="flex items-baseline space-x-1.5">
-            <span className="font-headline font-bold text-lg tracking-tight text-[#0F172A] dark:text-[#F8FAFC]">
-              HireSwift
-            </span>
-            <span className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded bg-[#F1F5F9] dark:bg-[#334155] text-[#475569] dark:text-[#CBD5E1] border border-[#E2E8F0] dark:border-[#334155]">
-              ATS
-            </span>
+        ) : (
+          /* Standard Company Branding */
+          <div
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={() => setCurrentView('dashboard')}
+          >
+            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-headline font-bold text-base shadow-xs">
+              H
+            </div>
+            <div>
+              <div className="flex items-center space-x-1.5">
+                <span className="font-headline font-bold text-base tracking-tight text-slate-900 dark:text-white">
+                  HireSwift
+                </span>
+                <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                  ATS
+                </span>
+              </div>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center">
+                <Building2 className="w-3 h-3 mr-1 text-slate-400" />
+                <span>{company?.company_name || 'Company Portal'}</span>
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Main Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+        {/* Breadcrumb end */}
+      </div>
+
+      {/* Center Navigation Links (When on Dashboard / Global Mode) */}
+      {currentView !== 'job_workspace' && (
+        <nav className="hidden lg:flex items-center space-x-1">
           <button
-            onClick={() => setActiveTab('kanban')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-2 transition-colors cursor-pointer ${
-              activeTab === 'kanban'
-                ? 'bg-[#F1F5F9] dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] font-semibold'
-                : 'text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] hover:bg-[#F1F5F9]/60 dark:hover:bg-[#334155]/60'
+            type="button"
+            onClick={() => setCurrentView('dashboard')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-colors cursor-pointer ${
+              currentView === 'dashboard'
+                ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white'
+                : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
             }`}
           >
-            <Kanban className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
-            <span>Pipeline &amp; Jobs</span>
+            <Briefcase className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+            <span>Job Openings</span>
           </button>
 
           <button
-            onClick={() => setActiveTab('candidates')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-2 transition-colors cursor-pointer ${
-              activeTab === 'candidates'
-                ? 'bg-[#F1F5F9] dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] font-semibold'
-                : 'text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] hover:bg-[#F1F5F9]/60 dark:hover:bg-[#334155]/60'
+            type="button"
+            onClick={() => setCurrentView('duplicates')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-colors cursor-pointer ${
+              currentView === 'duplicates'
+                ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white'
+                : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
             }`}
           >
-            <Users className="w-4 h-4 text-[#64748B] dark:text-[#94A3B8]" />
-            <span>Candidate Pool</span>
-            <span className="px-1.5 py-0.2 rounded-full bg-[#E2E8F0] dark:bg-[#334155] font-mono text-[11px] font-semibold text-[#334155] dark:text-[#F8FAFC]">
-              {totalCandidateCount}
-            </span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('upload')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-2 transition-colors cursor-pointer ${
-              activeTab === 'upload'
-                ? 'bg-[#F1F5F9] dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] font-semibold'
-                : 'text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] hover:bg-[#F1F5F9]/60 dark:hover:bg-[#334155]/60'
-            }`}
-          >
-            <UploadCloud className="w-4 h-4 text-[#64748B] dark:text-[#94A3B8]" />
-            <span>Bulk Ingestion</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('jobs')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-2 transition-colors cursor-pointer ${
-              activeTab === 'jobs'
-                ? 'bg-[#F1F5F9] dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] font-semibold'
-                : 'text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] hover:bg-[#F1F5F9]/60 dark:hover:bg-[#334155]/60'
-            }`}
-          >
-            <BrainCircuit className="w-4 h-4 text-[#64748B] dark:text-[#94A3B8]" />
-            <span>AI Match Engine</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('duplicates')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-1.5 transition-colors cursor-pointer ${
-              activeTab === 'duplicates'
-                ? 'bg-[#F1F5F9] dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] font-semibold'
-                : 'text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] hover:bg-[#F1F5F9]/60 dark:hover:bg-[#334155]/60'
-            }`}
-          >
-            <Copy className="w-4 h-4 text-[#B45309] dark:text-amber-400" />
-            <span>Duplicates</span>
+            <Copy className="w-3.5 h-3.5 text-amber-500" />
+            <span>Duplicate Hub</span>
             {duplicateCount > 0 && (
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-[#B45309] dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
+              <span className="px-1.5 py-0.2 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 text-[10px] font-bold">
                 {duplicateCount}
               </span>
             )}
           </button>
 
           <button
-            onClick={() => setActiveTab('email')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-2 transition-colors cursor-pointer ${
-              activeTab === 'email'
-                ? 'bg-[#F1F5F9] dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] font-semibold'
-                : 'text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] hover:bg-[#F1F5F9]/60 dark:hover:bg-[#334155]/60'
+            type="button"
+            onClick={onOpenGlobalEmail ? onOpenGlobalEmail : () => setCurrentView('email')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-colors cursor-pointer ${
+              currentView === 'email'
+                ? 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800'
+                : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
             }`}
+            title="Global Cross-Job Outreach & Campaigns"
           >
-            <Mail className="w-4 h-4 text-[#64748B] dark:text-[#94A3B8]" />
-            <span>Bulk Outreach</span>
+            <Mail className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+            <span>Email Campaigns</span>
           </button>
         </nav>
-      </div>
+      )}
 
-      {/* Right Header Actions */}
-      <div className="flex items-center space-x-2.5">
-        {/* Search Input */}
-        <div className="relative w-56 hidden md:block">
-          <Search className="w-4 h-4 absolute left-2.5 top-1/2 -translate-y-1/2 text-[#94A3B8]" />
-          <input
-            type="search"
-            placeholder="Filter skills, CGPA, name..."
-            value={searchTerm}
-            onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
-            className="w-full pl-8 pr-10 py-1.5 bg-[#F1F5F9] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] rounded-md text-xs text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-[#64748B] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#0F172A] focus:border-[#1E3A8A] dark:focus:border-blue-500 focus:ring-1 focus:ring-[#1E3A8A] dark:focus:ring-blue-500 outline-none"
-          />
-          <span className="absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.5 rounded border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] text-[10px] font-mono text-[#64748B] dark:text-[#94A3B8]">
-            ⌘K
-          </span>
-        </div>
+      {/* Right: Actions, Utilities & Profile */}
+      <div className="flex items-center space-x-2 sm:space-x-3">
+        {/* Upload Resumes Button */}
+        <button
+          type="button"
+          onClick={onOpenUpload}
+          className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition-colors cursor-pointer"
+        >
+          <UploadCloud className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+          <span className="hidden sm:inline">Upload Resumes</span>
+        </button>
 
-        {/* Compare CTA */}
-        {selectedCount > 0 && (
+        {/* Demo Data Refresh Button - Only visible for Acme Demo workspace */}
+        {(company?.id === 'comp-acme-corp' || company?.work_email?.toLowerCase() === 'hr@acme.com') && (
           <button
-            onClick={onOpenCompare}
-            className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-[#1E3A8A] dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/60 rounded-md text-xs font-medium transition-colors cursor-pointer"
+            type="button"
+            onClick={onResetDemo}
+            disabled={isResetting}
+            title="Reload Demo Candidates & Jobs"
+            className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
-            <Columns className="w-3.5 h-3.5" />
-            <span>Compare ({selectedCount})</span>
+            <RotateCcw className={`w-3.5 h-3.5 ${isResetting ? 'animate-spin text-blue-600' : ''}`} />
           </button>
         )}
 
-        {/* Bulk Upload Button */}
-        <button
-          onClick={onOpenUpload}
-          className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-md text-xs font-medium text-[#0F172A] dark:text-[#F8FAFC] hover:bg-[#F1F5F9] dark:hover:bg-[#334155] shadow-2xs transition-colors cursor-pointer"
-        >
-          <UploadCloud className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400" />
-          <span>Bulk Upload</span>
-        </button>
-
-        {/* Create Job Primary Button */}
-        <button
-          onClick={onOpenCreateJob}
-          className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-[#1E3A8A] dark:bg-blue-600 text-white rounded-md text-xs font-medium hover:opacity-95 shadow-xs transition-opacity cursor-pointer"
-        >
-          <Plus className="w-4 h-4" />
-          <span className="hidden sm:inline">Create Job</span>
-        </button>
-
-        {/* Theme Mode Toggle (Light / Dark) */}
+        {/* Theme Toggle (Light / Dark) */}
         <button
           type="button"
           onClick={onToggleTheme}
-          className="p-2 rounded-md border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] text-[#475569] dark:text-[#CBD5E1] hover:bg-[#F1F5F9] dark:hover:bg-[#334155] shadow-2xs transition-colors cursor-pointer"
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          aria-label="Toggle Theme Mode"
+          className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-400" />
+            <Sun className="w-3.5 h-3.5 text-amber-400" />
           ) : (
-            <Moon className="w-4 h-4 text-[#1E3A8A]" />
+            <Moon className="w-3.5 h-3.5 text-slate-600" />
           )}
         </button>
 
-        {/* Reset Demo Button */}
-        <button
-          onClick={onResetDemo}
-          disabled={isResetting}
-          className="p-1.5 rounded-md text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] hover:bg-[#F1F5F9] dark:hover:bg-[#334155] transition-colors cursor-pointer"
-          title="Reset Demo Data"
-        >
-          <RotateCcw className={`w-3.5 h-3.5 ${isResetting ? 'animate-spin text-[#1E3A8A] dark:text-blue-400' : ''}`} />
-        </button>
+        {/* Recruiter Profile / Logout */}
+        <div className="flex items-center space-x-2 pl-2 border-l border-slate-200 dark:border-slate-800">
+          <div className="w-7 h-7 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-2xs">
+            {(company?.recruiter_name?.[0] || company?.company_name?.[0] || 'C').toUpperCase()}
+          </div>
+          <div className="hidden xl:block text-left text-xs">
+            <span className="font-semibold text-slate-800 dark:text-slate-200 block truncate max-w-[110px]">
+              {company?.recruiter_name || 'Recruiter'}
+            </span>
+            <span className="text-[10px] text-slate-400 block truncate max-w-[110px]">
+              {company?.work_email || 'hr@company.com'}
+            </span>
+          </div>
 
-        {/* Recruiter Avatar */}
-        <div className="w-8 h-8 rounded-full bg-[#F1F5F9] dark:bg-[#334155] border border-[#E2E8F0] dark:border-[#334155] flex items-center justify-center font-headline font-semibold text-xs text-[#475569] dark:text-[#F8FAFC] ml-1">
-          HR
+          <button
+            type="button"
+            onClick={onLogout}
+            title="Log Out of Company Workspace"
+            className="p-1.5 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors cursor-pointer ml-1"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+          </button>
         </div>
       </div>
     </header>

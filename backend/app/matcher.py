@@ -13,22 +13,31 @@ class MatcherEngine:
         matched_req, missing_req, req_score = cls._score_skills(candidate.skills, job.required_skills)
         matched_pref, missing_pref, pref_score = cls._score_skills(candidate.skills, job.preferred_skills)
         
-        # Combined skills score: required skills are weighted 75%, preferred skills 25%
-        if job.required_skills and job.preferred_skills:
-            skills_score = round(req_score * 0.75 + pref_score * 0.25, 1)
-        elif job.required_skills:
-            skills_score = round(req_score, 1)
-        elif job.preferred_skills:
-            skills_score = round(pref_score, 1)
-        else:
-            skills_score = 80.0
-
         # Additional skills candidate has beyond JD
         req_and_pref_lower = {s.lower() for s in (job.required_skills + job.preferred_skills)}
         additional_skills = [s for s in candidate.skills if s.lower() not in req_and_pref_lower]
 
-        # 2. Experience Matching
-        exp_score = cls._score_experience(candidate.years_of_experience, job.min_experience, job.max_experience)
+        # Combined skills score: required skills are weighted 85%, preferred skills 15% (bonus)
+        # Plus bonus for additional technical skills (e.g. C++, Python, DSA, Algorithms)
+        if job.required_skills and job.preferred_skills:
+            base_skills = req_score * 0.85 + pref_score * 0.15
+        elif job.required_skills:
+            base_skills = req_score
+        elif job.preferred_skills:
+            base_skills = pref_score
+        else:
+            base_skills = 80.0
+
+        extra_skills_bonus = min(10.0, len(additional_skills) * 1.5)
+        skills_score = round(min(100.0, base_skills + extra_skills_bonus), 1)
+
+        # 2. Experience Matching (recognizing hands-on projects for campus candidates)
+        exp_score = cls._score_experience(
+            candidate.years_of_experience,
+            job.min_experience,
+            job.max_experience,
+            projects_count=len(candidate.projects or [])
+        )
 
         # 3. Academics Compliance & Score
         acad_score, acad_passed, acad_flags = cls._score_academics(candidate.education, job)
@@ -37,16 +46,23 @@ class MatcherEngine:
         semantic_score = cls._compute_semantic_similarity(candidate, job)
 
         # 5. Composite ATS Overall Score (0 - 100)
-        # Weights:
-        # Skills: 40%
-        # Experience: 20%
-        # Semantic Content Relevance: 25%
-        # Academics: 15%
+        # Use job custom scoring weights if calibrated, otherwise standard 40/30/20/10
+        raw_weights = getattr(job, "scoring_weights", None) or {
+            "skills": 40.0,
+            "experience": 30.0,
+            "academics": 20.0,
+            "domain": 10.0
+        }
+        w_skills = float(raw_weights.get("skills", 40.0)) / 100.0
+        w_exp = float(raw_weights.get("experience", 30.0)) / 100.0
+        w_acad = float(raw_weights.get("academics", 20.0)) / 100.0
+        w_domain = float(raw_weights.get("domain", 10.0)) / 100.0
+
         overall_score = round(
-            skills_score * 0.40 +
-            exp_score * 0.20 +
-            semantic_score * 0.25 +
-            acad_score * 0.15,
+            skills_score * w_skills +
+            exp_score * w_exp +
+            acad_score * w_acad +
+            semantic_score * w_domain,
             1
         )
         overall_score = max(0.0, min(100.0, overall_score))
@@ -75,6 +91,36 @@ class MatcherEngine:
             acad_flags=acad_flags
         )
 
+        breakdown = {
+            "skills": {
+                "score": skills_score,
+                "matched": matched_req + matched_pref,
+                "missing": missing_req,
+                "additional": additional_skills[:8]
+            },
+            "experience": {
+                "score": exp_score,
+                "candidate_exp": candidate.years_of_experience,
+                "required_exp": job.min_experience,
+                "projects_count": len(candidate.projects or [])
+            },
+            "academics": {
+                "score": acad_score,
+                "cgpa": candidate.education.cgpa,
+                "tenth": candidate.education.tenth_percentage,
+                "twelfth": candidate.education.twelfth_percentage
+            },
+            "domain": {
+                "score": semantic_score
+            },
+            "weights": {
+                "skills": round(w_skills * 100),
+                "experience": round(w_exp * 100),
+                "academics": round(w_acad * 100),
+                "domain": round(w_domain * 100)
+            }
+        }
+
         return MatchScore(
             candidate_id=candidate.id,
             job_id=job.id,
@@ -93,7 +139,8 @@ class MatcherEngine:
             risks_or_gaps=insights["risks_or_gaps"],
             recommendation=insights["recommendation"],
             academic_passed=acad_passed,
-            academic_flags=acad_flags
+            academic_flags=acad_flags,
+            breakdown=breakdown
         )
 
     @staticmethod
@@ -102,32 +149,98 @@ class MatcherEngine:
             return [], [], 100.0
             
         cand_lower = {s.lower().strip() for s in candidate_skills}
+
+        # Stacks that encompass underlying technologies
+        encompassing_stacks = {
+            "mern": {"react", "node.js", "nodejs", "node", "express.js", "express", "mongodb", "mongoose", "mern", "javascript"},
+            "mean": {"angular", "node.js", "nodejs", "express.js", "mongodb", "mean", "javascript"},
+            "full-stack": {"react", "node.js", "frontend", "backend", "full-stack", "html", "css", "javascript"},
+            "lamp": {"linux", "apache", "mysql", "php", "sql"}
+        }
+
+        # Skill transferability / strong affinity mapping
+        transferable = {
+            "typescript": {"javascript", "js", "react", "node.js"},
+            "javascript": {"typescript", "ts"},
+            "postgresql": {"sql", "mysql", "mongodb", "mongoose", "database", "sqlite"},
+            "mysql": {"sql", "postgresql", "mongodb", "database"},
+            "mongodb": {"postgresql", "mysql", "sql", "mongoose"},
+            "docker": {"containers", "kubernetes", "devops"},
+            "aws": {"cloud", "azure", "gcp"},
+            "c++": {"c", "cpp", "stl", "oop", "c++"},
+            "c#": {".net", "dotnet", "java", "c++", "c", "csharp"},
+            "algorithms": {"data structures and algorithms", "dsa", "graph algorithms", "sorting algorithms", "algorithms"},
+            "data structures and algorithms": {"algorithms", "data structures", "dsa", "competitive programming"},
+
+            # Core Computer Science Fundamentals & Curriculum Ontologies
+            "oops": {"java", "c++", "c#", "python", "oop", "oops", "object-oriented programming", "csharp"},
+            "oop": {"java", "c++", "c#", "python", "oop", "oops", "object-oriented programming", "csharp"},
+            "object-oriented programming": {"java", "c++", "c#", "python", "oop", "oops", "csharp"},
+
+            "os": {"linux", "unix", "ubuntu", "windows", "posix", "operating systems", "bash", "shell", "os"},
+            "operating systems": {"linux", "unix", "ubuntu", "windows", "posix", "operating systems", "os", "bash", "shell"},
+
+            "dbms": {"sql", "mysql", "postgresql", "mongodb", "database", "rdbms", "sqlite", "nosql", "dynamodb", "redis", "dbms"},
+            "database": {"sql", "mysql", "postgresql", "mongodb", "rdbms", "sqlite", "nosql", "dbms", "database"},
+
+            "system design": {"software architecture", "architecture", "distributed systems", "microservices", "scalable", "system design", "sdlc", "backend", "cloud", "rest api", "apis"},
+            "software architecture": {"system design", "architecture", "distributed systems", "microservices", "sdlc", "backend", "software architecture"},
+
+            "computer networks": {"networking", "tcp/ip", "http", "rest", "rest api", "api", "restful", "websockets", "computer networks", "network"},
+            "networking": {"computer networks", "tcp/ip", "http", "rest", "rest api", "api", "restful", "websockets", "network"}
+        }
+
         matched = []
         missing = []
-        
+        total_points = 0.0
+
         for skill in target_skills:
             sk_clean = skill.lower().strip()
-            # Direct or substring match
-            if sk_clean in cand_lower or any(sk_clean in c or c in sk_clean for c in cand_lower):
+            # 1. Exact or direct substring match
+            if sk_clean in cand_lower or any(sk_clean == c or (len(sk_clean) > 2 and sk_clean in c) or (len(c) > 2 and c in sk_clean) for c in cand_lower):
                 matched.append(skill)
-            else:
-                missing.append(skill)
-                
-        score = (len(matched) / len(target_skills)) * 100.0
-        return matched, missing, round(score, 1)
+                total_points += 1.0
+                continue
+            
+            # 2. Check if candidate has an encompassing stack
+            has_stack = False
+            for cand_skill in cand_lower:
+                if cand_skill in encompassing_stacks and sk_clean in encompassing_stacks[cand_skill]:
+                    matched.append(skill)
+                    total_points += 1.0
+                    has_stack = True
+                    break
+            if has_stack:
+                continue
+
+            # 3. Check transferable skill affinity (e.g. JavaScript for TypeScript, or MongoDB for PostgreSQL)
+            if sk_clean in transferable and any(t in cand_lower for t in transferable[sk_clean]):
+                matched.append(skill)
+                total_points += 0.85
+                continue
+
+            missing.append(skill)
+
+        score = (total_points / len(target_skills)) * 100.0
+        return matched, missing, min(100.0, round(score, 1))
 
     @staticmethod
-    def _score_experience(cand_exp: float, min_exp: float, max_exp: float = None) -> float:
+    def _score_experience(cand_exp: float, min_exp: float, max_exp: float = None, projects_count: int = 0) -> float:
         if min_exp <= 0.0:
             return 100.0
         if cand_exp >= min_exp:
-            # Overqualification penalty if max_exp set and candidate exceeds by >5 years
             if max_exp and cand_exp > max_exp + 5:
                 return 85.0
             return 100.0
-        else:
-            ratio = cand_exp / min_exp
-            return round(ratio * 90.0, 1) # slight penalty for falling short
+        
+        # When candidate has lower corporate years (especially campus students / freshers):
+        # Technical projects provide hands-on practical software implementation experience.
+        # Verified engineering projects provide credit toward practical experience.
+        proj_credit = min(40.0, projects_count * 10.0)
+        corp_ratio = (cand_exp / min_exp) * 50.0
+        base_credit = 45.0 if projects_count >= 2 else (30.0 if projects_count >= 1 else 15.0)
+        score = min(92.0, base_credit + corp_ratio + proj_credit)
+        return round(score, 1)
 
     @staticmethod
     def _score_academics(edu, job: JobDescription) -> Tuple[float, bool, List[str]]:
@@ -177,18 +290,21 @@ class MatcherEngine:
             # Build representative corpus for Job Description
             jd_corpus = f"{job.title} {job.department} {job.description} {' '.join(job.required_skills)} {' '.join(job.preferred_skills)}"
             
-            # Build representative corpus for Candidate
+            # Build representative corpus for Candidate including projects
             cand_skills_text = " ".join(candidate.skills)
             cand_exp_text = " ".join([f"{e.role} {e.company} {e.description}" for e in candidate.experience_history])
-            cand_corpus = f"{candidate.raw_text} {cand_skills_text} {cand_exp_text}"
+            cand_projects_text = " ".join([
+                f"{p.title} {p.subtitle or ''} {' '.join(p.tech_stack or [])} {' '.join(p.bullets or [])} {p.description or ''}"
+                for p in (candidate.projects or [])
+            ])
+            cand_corpus = f"{candidate.raw_text} {cand_skills_text} {cand_exp_text} {cand_projects_text}"
 
             vectorizer = TfidfVectorizer(stop_words='english', max_features=1000, ngram_range=(1, 2))
             tfidf_matrix = vectorizer.fit_transform([jd_corpus, cand_corpus])
             sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
             
-            # Scale cosine similarity (typical raw cosine for resume-to-JD ranges 0.15 - 0.75)
-            # We scale it to 0-100 range gracefully
-            scaled = min(100.0, max(20.0, sim * 140.0 + 15.0))
+            # Scale cosine similarity (typical raw cosine for resume-to-JD ranges 0.10 - 0.60)
+            scaled = min(100.0, max(50.0, sim * 100.0 + 55.0))
             return round(scaled, 1)
         except Exception as e:
             print(f"Error computing semantic similarity: {e}")
