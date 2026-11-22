@@ -65,26 +65,12 @@ export default function App() {
   const [stats, setStats] = useState(null);
   const [duplicateCount, setDuplicateCount] = useState(0);
 
-  // Theme Management (Light Mode / Dark Mode)
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('hireswift_theme');
-    return saved === 'dark' ? 'dark' : 'light';
-  });
-
+  // Permanently lock to Clean Light Mode
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      document.body.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.classList.remove('dark');
-    }
-    localStorage.setItem('hireswift_theme', theme);
-  }, [theme]);
-
-  const handleToggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+    document.documentElement.classList.remove('dark');
+    document.body.classList.remove('dark');
+    localStorage.removeItem('hireswift_theme');
+  }, []);
 
   // Modals & Panels
   const [selectedCandidateIds, setSelectedCandidateIds] = useState([]);
@@ -351,8 +337,6 @@ export default function App() {
         }}
         onResetDemo={handleResetDemo}
         isResetting={isResetting}
-        theme={theme}
-        onToggleTheme={handleToggleTheme}
         onLogout={handleLogout}
         onOpenGlobalEmail={() => {
           setEmailScope('global');

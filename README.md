@@ -1,175 +1,223 @@
 # HireSwift — Smart ATS for Small Teams 🚀
 
-> **Problem Statement 1**: Small companies and startups receive hundreds of resumes for a single role. HR teams scan them by hand, miss good candidates, and take weeks to shortlist.  
-> **Solution**: **HireSwift** — A small-scale, ultra-fast Applicant Tracking System that makes hiring structured, data-driven, and lightning-fast.
+> **Problem Statement 1 (Enginow Hackathon)**: Small companies and startups receive hundreds of resumes for a single role. HR teams scan them by hand, miss good candidates, and take weeks to shortlist.  
+> **Solution**: **HireSwift** — A small-scale, ultra-fast, and data-driven Applicant Tracking System that automates bulk resume parsing, calibrates multi-factor JD match scoring, manages hiring pipelines, and streamlines candidate outreach with zero manual screening overhead.
+
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/Frontend-React_19_%2B_Vite-61DAFB.svg?logo=react&logoColor=black)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind_CSS_v4-38B2AC.svg?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB.svg?logo=python&logoColor=white)](https://www.python.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
-## 🌟 Key Highlights & Features
+## 🌟 Executive Summary & Problem Statement Alignment
 
-### 1. 📂 Bulk Resume Ingestion & Deep Structured Parsing (PDF / DOCX)
-- **Multi-format Support**: Ingests batches of `.pdf` and `.docx` resumes simultaneously via drag-and-drop or file selector.
-- **Structured Profile Extraction**:
-  - **Candidate Contact**: Full Name, Email, Phone, Location, LinkedIn, GitHub, Portfolio links.
-  - **Academic Records**: High-precision extraction of **10th (SSC) percentage**, **12th (HSC) percentage**, **College / University**, **Degree & Major**, **College CGPA** (normalized to 10.0 scale), and **Graduation Year**.
-  - **Categorized Skills**: Automatically classifies 150+ technologies into *Frontend, Backend, Databases, Cloud & DevOps, AI & Data Science, Tools & Testing, and Soft Skills*. Normalizes aliases (e.g., `Postgres` ➔ `PostgreSQL`, `K8s` ➔ `Kubernetes`, `ReactJS` ➔ `React`).
-  - **Experience & Work History**: Computes total years of experience, extracts past company names, job titles, and duration dates.
-  - **Projects & Certifications**: Parses technical projects and cloud credentials (AWS Certified, CKA, etc.).
-  - **Raw Resume Text**: Preserved for full-text search and recruiter in-app document viewing.
-
----
-
-### 2. 🎯 Multi-Factor AI Resume-JD Matching Engine (0 - 100%)
-- **Dynamic Multi-Opening Scoring**: Create, edit, and switch between multiple Job Descriptions (*Senior Full-Stack, Frontend Specialist, Python Backend, DevOps Engineer, Campus Fresher*).
-- **Transparent Composite Score**:
-  - 🛠️ **Required Skills Fit (40%)**: Strict exact & semantic overlap against must-have skills.
-  - 🌟 **Preferred Skills Bonus (15%)**: Bonus score for supplementary tech stack competencies.
-  - 💼 **Experience Fit (20%)**: Evaluates candidate experience against role minimums with fair scaling.
-  - 🎓 **Academic Eligibility (15%)**: Checks candidate's CGPA, 10th, and 12th marks against JD cutoff thresholds.
-  - 🧠 **Semantic Relevance (10%)**: Uses TF-IDF vectorization and Cosine Similarity to compare candidate background context against job responsibilities.
-- **Tier Classification**: Instant badge tiers (*Strong Match >= 80%*, *Good Match 65-79%*, *Moderate Match 50-64%*, *Low Match < 50%*).
+| Problem Statement Requirement | HireSwift Implementation |
+| :--- | :--- |
+| **1. Bulk Resume Ingestion (PDF/DOCX)** | High-throughput parsing for batches of `.pdf` and `.docx` files. Extracts contact info, academics (CGPA, 10th %, 12th %, degree), work history, and 150+ categorized skills. |
+| **2. Dynamic Job Descriptions & Scoring** | Multi-opening management. Tunable recruiter scoring weights (Skills, Experience, Academics, Domain) with strict 100% total sum enforcement. Composite 0–100% match scores. |
+| **3. Multi-Faceted Recruiter Filtering** | Unified 36px control bar: Academic cutoff gates (CGPA, 10th/12th %), Experience dropdowns, Location filter, and **Role-Aware Contextual Skills** bar. |
+| **4. Hiring Pipeline Management** | 5-stage interactive workflow (`Applied` ➔ `Shortlisted` ➔ `Interview` ➔ `Offer` / `Rejected`) across both Kanban and Ranked Table views, complete with recruiter notes and structured rejection logs. |
+| **5. Recruiter Dashboard & Comparison** | Centralized Company Command Center with real-time applicant stats, combined with a **Side-by-Side Candidate Comparison Matrix** (2–4 candidates) highlighting skill overlaps and gaps. |
+| **Bonus: AI Matching & Insights** | Explainable AI pros, risks/gaps, and hiring recommendations generated per candidate against the active JD. |
+| **Bonus: Duplicate Detection** | Multi-attribute detection (Email, Phone, LinkedIn, Content Hash, Fuzzy Name + College) with a 1-click **Duplicate Management Hub** to review and merge profiles. |
+| **Bonus: Bulk Candidate Outreach** | Dual-Mode templated email dispatch (Interview Invites, Tech Assessments, Shortlist Notifications, Rejections) with dynamic variable interpolation and an auditable dispatch history. |
+| **Bonus: Skill-Gap Insights** | Visual color-coded chip breakdown showing matched must-have skills, missing required skills, and complementary bonus technologies. |
 
 ---
 
-### 3. 🔍 Multi-Faceted Recruiter Filtering & Global Search
-- **Academic Cutoff Sliders**:
-  - Filter candidates by minimum **10th (SSC) Percentage** (0% - 95%)
-  - Filter candidates by minimum **12th (HSC) Percentage** (0% - 95%)
-  - Filter candidates by minimum **College CGPA** (0.0 - 10.0)
-  - Graduation Year cutoff (e.g. 2021 or later)
-- **Skills Multi-Select**:
-  - Filter by required technologies with instant tag selection
-  - **Match Logic Toggle**: Match **ANY** selected skill vs. Match **ALL** selected skills
-- **Experience Range**: Slider for min & max years of experience
-- **Location Filter**: Bengaluru, Pune, Delhi, Mumbai, Hyderabad, Remote, etc.
-- **Pipeline Stage Filter**: Filter by Applied, Shortlisted, Interview, Offer, Rejected
-- **Minimum Score Cutoff**: Set an ATS score threshold (e.g. only show candidates >= 75%)
-- **Global Full-Text Search**: Real-time debounced query across candidate names, skills, college, and raw text.
-- **Multi-Parameter Sorting**: Sort by Match Score, Total Experience, CGPA, 12th %, 10th %, or Name.
+## 🏛️ System Architecture
+
+HireSwift is engineered as a clean, decoupled full-stack platform:
+
+```
+                                  ┌────────────────────────────────────────┐
+                                  │      HireSwift Full-Stack Web App      │
+                                  │       (React 19 + Vite + Tailwind)     │
+                                  └───────────────────┬────────────────────┘
+                                                      │ REST API (JSON)
+                                                      ▼
+                                  ┌────────────────────────────────────────┐
+                                  │          FastAPI Async Backend         │
+                                  │              (Port 8000)               │
+                                  └───────┬──────────────┬───────────┬─────┘
+                                          │              │           │
+            ┌─────────────────────────────┴────┐         │           └─────────────────────────────┐
+            ▼                                  ▼         ▼                                         ▼
+┌───────────────────────┐          ┌───────────────────────┐ ┌───────────────────────┐ ┌───────────────────────┐
+│ Resume Parsing Engine │          │  AI Matcher & Scorer  │ │   Duplicate Detector  │ │ Dual Outreach Engine  │
+│ - pypdf & docx text   │          │ - Recruiter Weights   │ │ - Exact Email/Phone   │ │ - Simulated Fast Mode │
+│ - Academic NER & CGPA │          │ - TF-IDF Vectorizer   │ │ - Content MD5 Hash    │ │ - Live SMTP (TLS)     │
+│ - 150+ Skills Taxon.  │          │ - Cosine Similarity   │ │ - Fuzzy Name + College│ │ - Dynamic Templating  │
+└───────────────────────┘          └───────────────────────┘ └───────────────────────┘ └───────────────────────┘
+```
 
 ---
 
-### 4. 📊 Hiring Pipeline Management
-- **Full Stage Progression**: `Applied` ➔ `Shortlisted` ➔ `Interview` ➔ `Offer` / `Rejected`
-- **Dual Recruiter Views**:
-  - **Interactive Kanban Board**: 5 visual stage columns with candidate count badges, quick stage advancement/retreat buttons, and rejection reason tracking.
-  - **High-Density Table View**: Screen dozens of candidates in seconds with inline stage selectors and status tags.
-- **Recruiter Notes**: Add timestamped evaluation notes (e.g., *"Passed technical screening; salary expectation 24 LPA"*) stored per candidate.
-- **Structured Rejection**: Record specific rejection reasons (*Skill gap in Kubernetes, Experience mismatch, etc.*) to ensure transparent feedback.
+## 🚀 Key Functional Modules
+
+### 1. 📂 Deep Resume Parsing Engine (PDF & DOCX)
+- **High-Precision Academic Extraction**:
+  - Automatically identifies college/university degrees (B.Tech, M.Tech, B.E., B.Sc, MBA, etc.).
+  - Extracts **College CGPA** (normalized to 10.0 scale, recognizing scales like 4.0 or 10.0).
+  - Captures **10th (SSC)** and **12th (HSC)** percentages across Indian State Boards and CBSE/ICSE patterns.
+  - Detects **Graduation Year** and education duration.
+- **Contextual Contact Extraction**: Isolates applicant email addresses from recruiter session credentials to prevent false identity attribution.
+- **Skill Taxonomy Normalization**: Standardizes 150+ skills into canonical forms (e.g. `Postgres` ➔ `PostgreSQL`, `K8s` ➔ `Kubernetes`, `ReactJS` ➔ `React`).
+
+---
+
+### 2. 🎛️ Recruiter Weight Calibration & Hard Eligibility Gates
+- **Interactive Scoring Calibration**:
+  - Recruiters customize importance sliders for each job: **Skills Overlap**, **Experience Relevancy**, **Academic Performance**, and **Domain / Semantic Fit**.
+  - Built-in sum constraints ensure total weights always equal **100%**.
+- **Hard Eligibility Cutoff Gates**:
+  - Enforce minimum CGPA cutoffs (e.g. Min 7.0 / 10.0).
+  - Enforce 12th board percentage criteria (e.g. Min 75%).
+  - Set required minimum engineering experience.
+- **Dynamic Skill Clusters**:
+  - Classify extracted skills into **Must-Have (Required)** vs. **Nice-to-Have (Complementary)**.
+
+---
+
+### 3. 🔍 Smart Sourcing & Filter Control Bar
+- **Unified 36px Control Bar**:
+  - **Search**: Real-time debounced query across candidate names, skills, and colleges with `⌘K` shortcut and 1-click clear.
+  - **Academic Cutoff Popover**: Floating menu with 1-click presets (`CGPA ≥ 6.0`, `7.0`, `8.0`, `8.5+`; `12th ≥ 70%`, `80%`, `90%`).
+  - **Experience Dropdown**: Filter by `Campus / Fresher (0 exp)`, `≥ 1 yr`, `≥ 2 yrs`, `≥ 3 yrs`, `≥ 5+ yrs`.
+  - **Location Dropdown**: Filter by major tech hubs (`Bengaluru`, `Pune`, `Delhi`, `Mumbai`, `Hyderabad`, `Remote`).
+  - **Match Score Threshold**: Filter by AI fit (`≥ 50%`, `≥ 70%`, `≥ 80%`, `≥ 90%`).
+- **Role-Aware Contextual Skills Bar**:
+  - Automatically displays target skills relevant to the active role:
+    - *UI / UX Designer*: `Figma`, `UI/UX design`, `Wireframing`, `Prototyping`, `Design Systems`, `User Research`.
+    - *Software Engineer*: `Data Structures and Algorithms`, `Python`, `JavaScript`, `C++`, `Git`, `React`.
+  - Click any skill chip to toggle filtering, or click **`+ Filter by Skill`** to search and filter by any custom technology.
+
+---
+
+### 4. 📊 Hiring Pipeline Kanban & Ranked Table
+- **5-Stage Pipeline Progression**:
+  - `Applied` ➔ `Shortlisted` ➔ `Interview` ➔ `Offer` / `Rejected`
+- **Dual Visualizations**:
+  - **Pipeline Kanban**: Horizontal stage columns with candidate count badges, quick stage advancement, and rejection logging.
+  - **Ranked Shortlist Table**: High-density recruiter table showing composite match scores, verified academics, total experience, and core skills.
+- **Audit Tracking**: Timestamped recruiter notes and structured rejection reasons saved per candidate.
 
 ---
 
 ### 5. 👥 Side-by-Side Candidate Comparison Matrix
-- Select **2, 3, or 4 candidates** using checkboxes and open the comparison matrix.
-- **Comparative Analysis**:
-  - **Match Score & Sub-scores**: Compare skills, experience, academics, and semantic relevance side-by-side.
-  - **Academic Benchmark Grid**: Compare 10th %, 12th %, CGPA, College, Degree, and Passing Year.
+- Check **2 to 4 candidates** and click the illuminated **`Compare (N)`** button to evaluate them side-by-side:
+  - **Benchmark Grid**: Compare 10th %, 12th %, CGPA, College, Degree, and Total Experience.
   - **Skill Overlap & Gap Matrix**:
-    - *Common Skills*: Shared by all selected candidates.
-    - *Unique Skills*: Competencies exclusive to Candidate A vs Candidate B.
-    - *Missing Required Skills*: Relative to the target Job Description.
-  - **AI Pros & Cons**: Strengths and potential risks compared head-to-head.
-  - **Direct Decision Buttons**: Advance to Interview or Extend Offer directly from the matrix.
+    - *Shared Competencies*: Skills common across all selected candidates.
+    - *Unique Strengths*: Skills exclusive to Candidate A vs. Candidate B.
+    - *Missing Required Skills*: Technology gaps relative to the job requirements.
+  - **AI Pros & Cons**: Head-to-head strengths and risks.
+  - **Direct Decision Actions**: Advance candidates to Interview or extend an Offer directly from the matrix.
 
 ---
 
-### 6. 🎁 Bonus Features Included
+### 6. 🛡️ Multi-Attribute Duplicate Detection & Merge Hub
+- Automatically scans incoming resumes using:
+  1. Exact normalized email address
+  2. Exact 10-digit phone number
+  3. LinkedIn profile URL
+  4. Document MD5 text hash
+  5. Fuzzy candidate name + matching college & graduation year
+- **Duplicate Management Hub**: Inspect side-by-side differences between the original candidate and duplicate submission with 1-click **Merge**, **Keep Both**, or **Discard** options.
 
-#### 🤖 AI Resume-JD Matching & Explainable Insights
-- Generates transparent, human-readable explanations of why a candidate scored high or low:
-  - **Key Strengths**: Specific highlights (e.g. *"Matches 5 core required technologies: React, TypeScript, Node.js, PostgreSQL"*).
-  - **Risks & Gaps**: Flagging missing skills or academic deficits (e.g. *"Missing required skill: Kubernetes"*).
-  - **Hiring Recommendation**: Concrete advice (*"Strong Hire: Fast-track to technical screening"*).
+---
 
-#### 🛡️ Duplicate Detection & Resolution Center
-- Automatically scans incoming resumes against existing candidates using:
-  - Exact normalized email match
-  - Exact normalized 10-digit phone number
-  - LinkedIn profile URL
-  - Exact document content MD5 hash
-  - Fuzzy candidate name + matching college / graduation year
-- **Duplicate Management Hub**: View flagged duplicates, inspect diff with original profile, and resolve with one click:
-  - **Merge**: Merges new skills and experience into original candidate.
-  - **Keep Both**: Retains both as distinct applicants.
-  - **Discard**: Removes the duplicate record.
-
-#### ✉️ Bulk Email Campaigns with Dynamic Templates
-- Pre-built templates:
-  - *Technical Interview Invitation* (with interview date and meeting link)
-  - *Application Shortlisted Notification*
-  - *Job Offer Letter*
-  - *Polite Rejection with Constructive Skill Gap Feedback*
-- **Dynamic Variable Interpolation**: `{{name}}`, `{{job_title}}`, `{{company}}`, `{{skills}}`, `{{experience}}`, `{{interview_date}}`, `{{interview_link}}`.
-- **Live Preview**: See exact rendered email for the selected candidate before sending.
-- **Sent Outbox**: Log of all dispatched emails with delivery status and timestamps.
-
-#### 💡 Skill-Gap Visualizer
-- Color-coded chips breaking down matched required skills (green), missing required skills (red), matched preferred skills (teal), and bonus skills (purple).
+### 7. ✉️ Dual-Mode Bulk Candidate Outreach Engine
+- **Dedicated Scopes**:
+  - **Role Outreach (Job Workspace)**: Scoped strictly to that role with technical assessment links, deadlines, interview bookings, and a job-isolated dispatch log.
+  - **Global Outreach (Navbar)**: Cross-job company announcements, warm talent pool notes, and company-wide rejection updates.
+- **Dynamic Variable Interpolation**:
+  - Supports `{{first_name}}`, `{{name}}`, `{{job_title}}`, `{{company}}`, `{{skills}}`, `{{assessment_link}}`, `{{assessment_deadline}}`, `{{interview_date}}`, `{{interview_link}}`.
+- **Dual Dispatch Modes**:
+  - **Mode 1: Simulated Fast Demo Mode (Default)**: Instant delivery with 0 network latency, 100% success rate, dynamic variable rendering, and persistent audit logging. Perfect for hackathon evaluation!
+  - **Mode 2: Plug-and-Play Live SMTP**: If credentials are configured in `backend/.env`, HireSwift automatically dispatches real MIME emails over TLS to actual inboxes.
 
 ---
 
 ## 📁 Repository Structure
 
 ```
-c:\PBS\BWT\
+BWT/
 ├── backend/
 │   ├── app/
 │   │   ├── __init__.py
-│   │   ├── main.py               # FastAPI application, routing, CORS, static mounting
+│   │   ├── main.py               # FastAPI application, routing, CORS & static bundle mount
 │   │   ├── parser.py             # PDF & DOCX text extraction, academic & skill heuristics
 │   │   ├── matcher.py            # AI multi-factor matching, TF-IDF cosine similarity, insights
 │   │   ├── duplicates.py         # Multi-attribute duplicate detection engine
-│   │   ├── models.py             # Pydantic v2 schemas for Candidates, JDs, Scores, Emails
-│   │   ├── db.py                 # Persistent database store & seeding mechanism
-│   │   ├── email_service.py      # Templated email rendering & outbox logger
-│   │   └── sample_data.py        # Realistic sample Job Descriptions & Candidate profiles
-│   ├── sample_resumes/           # Real generated .pdf and .docx test resumes
-│   ├── uploads/                  # Storage directory for newly uploaded resumes
+│   │   ├── models.py             # Pydantic v2 schemas for Candidates, Jobs, Scores, Emails
+│   │   ├── db.py                 # Multi-tenant persistent JSON storage engine
+│   │   ├── email_service.py      # Templated outreach, variable interpolation & SMTP engine
+│   │   └── pdf_generator.py      # On-the-fly authentic PDF resume generator
+│   ├── sample_resumes/           # Authentic .pdf and .docx sample test resumes
+│   ├── uploads/                  # Ephemeral upload storage for incoming applicant resumes
 │   ├── data/                     # Persistent JSON database (ats_database.json)
-│   ├── generate_sample_resumes.py# Script to generate authentic PDF & DOCX test files
+│   ├── .env.example              # Sample configuration for optional live SMTP
 │   ├── requirements.txt          # Python backend dependencies
 │   └── run_backend.py            # Standalone launcher for FastAPI backend
-├── frontend/                     # Modern React + Vite + Tailwind CSS SPA
+├── frontend/                     # Modern React 19 + Vite + Tailwind CSS SPA
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Navbar.jsx                # Navigation, active JD switcher, theme toggle, actions
-│   │   │   ├── DashboardStats.jsx        # Metrics, pipeline funnel bar, quick status cards
-│   │   │   ├── CandidateFilters.jsx      # Academic sliders, skills selector, exp range
-│   │   │   ├── CandidateRankingTable.jsx # Recruiter table & card views with sorting
-│   │   │   ├── CandidateDetailModal.jsx  # AI score breakdown, skill gap chips, paper preview, notes
+│   │   │   ├── Navbar.jsx                # Navigation, company branding, and global actions
+│   │   │   ├── CompanyJobsDashboard.jsx  # Company landing page with active position cards
+│   │   │   ├── CandidateFilters.jsx      # Unified 36px filter bar & role-aware skills
+│   │   │   ├── CandidateRankingTable.jsx # Recruiter table view with score badge tiers
+│   │   │   ├── CandidateDetailModal.jsx  # Candidate dossier with raw resume text viewer
 │   │   │   ├── PipelineKanban.jsx        # 5-stage interactive hiring Kanban board
 │   │   │   ├── SideBySideComparison.jsx  # 2-4 candidate comparison matrix
-│   │   │   ├── ResumeUploader.jsx        # Bulk drag-and-drop uploader & sample downloader
-│   │   │   ├── JobDescriptionManager.jsx # JD creator, editor, and criteria manager
-│   │   │   ├── DuplicateManagerModal.jsx # Duplicate review & merge center
-│   │   │   └── BulkEmailModal.jsx        # Templated email composer, preview & outbox
-│   │   ├── api.js                        # Client API communication service
-│   │   ├── App.jsx                       # Master state orchestrator & theme persistence
-│   │   └── index.css                     # Tailwind CSS v4 & Light/Dark Stitch design tokens
+│   │   │   ├── ResumeUploader.jsx        # Bulk drag-and-drop uploader & sample loader
+│   │   │   ├── JobDescriptionManager.jsx # JD creator, weight calibration & criteria editor
+│   │   │   ├── DuplicateManagerModal.jsx # Duplicate review & 1-click merge center
+│   │   │   ├── BulkEmailModal.jsx        # Templated email composer, preview & dispatch log
+│   │   │   └── ExtendDeadlineModal.jsx   # Quick job deadline extension modal
+│   │   ├── api.js                        # Authenticated API service layer
+│   │   ├── App.jsx                       # Master state orchestrator & view routing
+│   │   └── index.css                     # Tailwind CSS v4 & Google Stitch design tokens
 │   ├── package.json
 │   └── vite.config.js
-├── stitch_export/                # Stitch UI design system spec & HTML screen references
 ├── tests/
-│   └── test_hireswift.py         # Comprehensive unit & integration test suite (8 tests)
-├── start_hireswift.ps1           # 1-click PowerShell launcher
+│   └── test_hireswift.py         # Automated test suite for ATS capabilities
 ├── start_hireswift.bat           # 1-click Windows Batch launcher
-└── README.md                     # Complete documentation
+├── start_hireswift.ps1           # 1-click PowerShell launcher
+└── README.md                     # Comprehensive project documentation
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+## ⚡ Quick Start Guide (Run Locally)
 
 ### Prerequisites
-- **Python**: 3.10+ (Tested with Python 3.13)
-- **Node.js**: v18+
+- **Python**: 3.10+ (Tested with Python 3.12 / 3.13)
+- **Node.js**: v18+ (Only required if modifying frontend source)
 
-### Step 1: Install Python Dependencies
+### Method 1: One-Click Startup (Recommended for Windows)
+
+Simply double-click or run:
+```powershell
+.\start_hireswift.bat
+```
+*Or via PowerShell:*
+```powershell
+.\start_hireswift.ps1
+```
+
+---
+
+### Method 2: Manual Startup
+
+#### Step 1: Install Python Dependencies
 ```powershell
 pip install -r backend/requirements.txt
 ```
 
-### Step 2: Install Frontend Dependencies & Build
+#### Step 2: Build Frontend (Optional if pre-built)
 ```powershell
 cd frontend
 npm install
@@ -177,46 +225,23 @@ npm run build
 cd ..
 ```
 
-### Step 3: Launch HireSwift Full-Stack Application
-You can run the launcher script:
+#### Step 3: Launch the Full-Stack Server
 ```powershell
-.\start_hireswift.ps1
-```
-Or run directly with Python:
-```powershell
-py backend\run_backend.py
+python backend\run_backend.py
 ```
 
-### Step 4: Access the Application
+#### Step 4: Open in Browser
 - **Recruiter Web Application**: [http://localhost:8000](http://localhost:8000)
 - **Interactive OpenAPI / Swagger Documentation**: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-*(Optional for Frontend Hot-Reload Development)*:
-```powershell
-cd frontend
-npm run dev
-# Vite runs at http://localhost:5173 with API proxying to port 8000
-```
-
 ---
 
-## 🧪 Running the Automated Test Suite
+## 🧪 Demo Login Credentials
 
-To verify all system components (parsing, matching, filtering, stage progression, duplicates, comparison, emails):
-
-```powershell
-py tests\test_hireswift.py
-```
-
-**Test Coverage Summary**:
-- `test_01_health_and_stats`: Validates dashboard API & stage counters
-- `test_02_pdf_and_docx_parsing`: Verifies exact extraction of 10th %, 12th %, CGPA, and skills from real PDF and DOCX files
-- `test_03_bulk_upload_endpoint`: Tests bulk multipart upload and automatic duplicate detection
-- `test_04_filtering_by_academics_and_skills`: Tests multi-faceted filtering on CGPA (>=8.5), 12th (>=90%), and skills (AND/OR logic)
-- `test_05_ai_matching_engine`: Validates multi-factor composite scoring and AI insights generation
-- `test_06_pipeline_stage_transition`: Validates moving candidates across stages, adding recruiter notes, and recording rejection reasons
-- `test_07_side_by_side_comparison`: Validates side-by-side comparison matrix and skill overlap calculation
-- `test_08_bulk_email_campaigns`: Validates bulk templated email rendering with placeholder substitution and outbox logging
+HireSwift includes pre-seeded multi-tenant demo data:
+* **Email:** `revanthp2313.24@kgpian.iitkgp.ac.in`
+* **Password:** `revanth`
+* **Company:** `HappyWave`
 
 ---
 
@@ -224,8 +249,8 @@ py tests\test_hireswift.py
 
 | Criterion | Implementation in HireSwift |
 | :--- | :--- |
-| **Filter Accuracy** | Precise sliders for **10th %**, **12th %**, **CGPA**, and **Graduation Year**; multi-select skills with *Match ANY* vs *Match ALL* modes; range slider for years of experience; location dropdown. |
-| **Parsing Quality** | `pypdf` and `python-docx` extract text reliably; regex & heuristic NER accurately extract contact info, academic scores, 150+ categorized skills, and work history. |
-| **UI / UX** | Clean Stitch-inspired design system with persistent 1-click Light Mode & Dark Mode toggle, built with Tailwind CSS v4 and Lucide icons; interactive Kanban pipeline, ranked recruiter table, split dossier with paper resume viewer, and color-coded score badges. |
-| **Scalability** | Modular Python backend using FastAPI async endpoints, scikit-learn TF-IDF vectorization, persistent JSON/SQLite storage, and standalone frontend bundle. |
-| **Real-world Usability** | One-click demo data reset, side-by-side comparison matrix, interactive pipeline Kanban, bulk email campaigns with live preview, and duplicate detection & merge tools. |
+| **Filter Accuracy** | High-precision filters for **CGPA**, **12th %**, **10th %**, **Experience**, and **Location**. Dynamic role-aware skill chips with instant filtering. |
+| **Parsing Quality** | `pypdf` and `python-docx` extract text reliably; regex & heuristic NER accurately parse contact info, normalized CGPA, board marks, 150+ skills, and employment history. |
+| **UI / UX** | Clean Google Stitch-inspired design system permanently locked to Light Mode. Features a unified 36px control toolbar, interactive Kanban pipeline, split candidate dossier, and side-by-side comparison matrix. |
+| **Scalability** | Modular FastAPI async backend, scikit-learn TF-IDF vectorization, persistent JSON storage with multi-tenancy, and production-optimized React 19 bundle. |
+| **Real-world Usability** | 1-click demo data reset, side-by-side comparison matrix, interactive pipeline Kanban, bulk email campaigns with live preview, and duplicate detection & merge tools. |

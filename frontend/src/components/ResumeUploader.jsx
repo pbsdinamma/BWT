@@ -27,7 +27,7 @@ export default function ResumeUploader({
   isFullPage = false
 }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [targetJobId, setTargetJobId] = useState(activeJobId || '');
+  const [targetJobId, setTargetJobId] = useState(activeJobId || 'pool');
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadResult, setUploadResult] = useState(null);
@@ -335,19 +335,18 @@ export default function ResumeUploader({
                       onChange={(e) => setTargetJobId(e.target.value)}
                       className="bg-transparent font-semibold text-[#0F172A] dark:text-[#F8FAFC] border-none text-xs focus:ring-0 cursor-pointer w-full"
                     >
-                      <option value="auto">⚡ Auto-Match & Route to Best Active Job (AI)</option>
-                      <optgroup label="Specific Job Requisitions">
+                      <option value="pool">🏢 General Talent Pool (Cross-Job Sourcing)</option>
+                      <optgroup label="Specific Job Openings">
                         {jobs.map((j) => (
                           <option key={j.job.id} value={j.job.id} className="bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC]">
                             {j.job.title} ({j.job.department || 'Engineering'})
                           </option>
                         ))}
                       </optgroup>
-                      <option value="pool">🏢 Company Talent Pool (General Sourcing - All Openings)</option>
                     </select>
                   </div>
                   <span className="text-[11px] font-mono text-[#64748B] dark:text-[#94A3B8] shrink-0 ml-2">
-                    {targetJobId === 'auto' ? 'AI-ROUTED' : targetJobId === 'pool' ? 'TALENT POOL' : (targetJob?.id ? `JD-${targetJob.id.slice(0, 6)}` : 'ACTIVE')}
+                    {targetJobId === 'pool' ? 'TALENT POOL' : (targetJob?.id ? `JD-${targetJob.id.slice(0, 6)}` : 'ACTIVE')}
                   </span>
                 </div>
               </div>
@@ -592,11 +591,6 @@ export default function ResumeUploader({
                               {isDup && (
                                 <span className="px-1.5 py-0.2 rounded bg-amber-100 dark:bg-amber-900/60 text-[#B45309] dark:text-amber-300 text-[10px] font-mono font-bold">
                                   DUPLICATE
-                                </span>
-                              )}
-                              {res.auto_routed_to && (
-                                <span className="px-1.5 py-0.2 rounded bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-purple-300 text-[10px] font-semibold flex items-center gap-1">
-                                  ⚡ {res.auto_routed_to}
                                 </span>
                               )}
                             </div>

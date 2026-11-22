@@ -8,8 +8,6 @@ import {
   Plus,
   ArrowLeft,
   RotateCcw,
-  Sun,
-  Moon,
   LogOut,
   Building2,
   Kanban,
@@ -33,8 +31,6 @@ export default function Navbar({
   onOpenCreateJob,
   onResetDemo,
   isResetting,
-  theme = 'light',
-  onToggleTheme,
   onLogout,
   onOpenGlobalEmail
 }) {
@@ -166,20 +162,6 @@ export default function Navbar({
             <RotateCcw className={`w-3.5 h-3.5 ${isResetting ? 'animate-spin text-blue-600' : ''}`} />
           </button>
         )}
-
-        {/* Theme Toggle (Light / Dark) */}
-        <button
-          type="button"
-          onClick={onToggleTheme}
-          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-        >
-          {theme === 'dark' ? (
-            <Sun className="w-3.5 h-3.5 text-amber-400" />
-          ) : (
-            <Moon className="w-3.5 h-3.5 text-slate-600" />
-          )}
-        </button>
 
         {/* Recruiter Profile / Logout */}
         <div className="flex items-center space-x-2 pl-2 border-l border-slate-200 dark:border-slate-800">

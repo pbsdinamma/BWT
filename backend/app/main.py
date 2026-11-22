@@ -191,25 +191,12 @@ async def upload_resumes_bulk(
             # Parse resume into structured profile with contextual user email
             parsed_data = ResumeParser.parse_resume(content, file.filename, context_email=company.work_email)
             
-            # Determine target job assignment (Specific, AI Auto-Routed, or General Pool)
+            # Determine target job assignment (Specific chosen job opening or General Talent Pool)
             assigned_job_id = None
-            auto_routed_job_title = None
-
-            if applied_job_id and applied_job_id not in ("auto", "pool", "none", "null"):
-                assigned_job_id = applied_job_id
-            elif applied_job_id == "auto":
-                # AI Smart Routing: Find best matching active job for this resume
-                active_company_jobs = [j for j in db.get_jobs(company_id=company.id) if j.status != "Closed"]
-                if active_company_jobs:
-                    scored_jobs = []
-                    temp_cand = Candidate(**parsed_data, company_id=company.id)
-                    for j in active_company_jobs:
-                        ms = MatcherEngine.match_candidate_to_job(temp_cand, j)
-                        scored_jobs.append((j, ms.overall_score))
-                    scored_jobs.sort(key=lambda x: x[1], reverse=True)
-                    best_job, best_score = scored_jobs[0]
-                    assigned_job_id = best_job.id
-                    auto_routed_job_title = f"{best_job.title} ({round(best_score)}% Match)"
+            if applied_job_id and applied_job_id.strip() not in ("auto", "pool", "none", "null", ""):
+                job_obj = db.get_job(applied_job_id.strip())
+                if job_obj and job_obj.company_id == company.id:
+                    assigned_job_id = job_obj.id
 
             # Create Candidate instance scoped to current company
             candidate = Candidate(
@@ -292,17 +279,10 @@ def load_sample_resumes(
             parsed_data = ResumeParser.parse_resume(content, fname, context_email=company.work_email)
 
             assigned_job_id = None
-            if applied_job_id and applied_job_id not in ("auto", "pool", "none", "null"):
-                assigned_job_id = applied_job_id
-            elif applied_job_id == "auto" and active_company_jobs:
-                temp_cand = Candidate(**parsed_data, company_id=company.id)
-                scored_jobs = []
-                for j in active_company_jobs:
-                    ms = MatcherEngine.match_candidate_to_job(temp_cand, j)
-                    scored_jobs.append((j, ms.overall_score))
-                scored_jobs.sort(key=lambda x: x[1], reverse=True)
-                if scored_jobs:
-                    assigned_job_id = scored_jobs[0][0].id
+            if applied_job_id and applied_job_id.strip() not in ("auto", "pool", "none", "null", ""):
+                job_obj = db.get_job(applied_job_id.strip())
+                if job_obj and job_obj.company_id == company.id:
+                    assigned_job_id = job_obj.id
 
             cand = Candidate(
                 **parsed_data,

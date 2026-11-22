@@ -281,10 +281,10 @@
       "min_cgpa": 6.0,
       "preferred_grad_years": [],
       "scoring_weights": {
-        "skills": 40.0,
-        "experience": 30.0,
-        "academics": 20.0,
-        "domain": 10.0
+        "skills": 60.0,
+        "experience": 9.0,
+        "academics": 9.0,
+        "domain": 22.0
       },
       "status": "Active",
       "application_deadline": "2026-12-31",
@@ -389,16 +389,23 @@
       },
       "skills": [
         "AWS",
+        "CSS",
         "Docker",
         "Express",
+        "Express.js",
         "Git",
+        "GitHub",
+        "JavaScript",
+        "Jest",
         "Kubernetes",
+        "Microservices",
         "Next.js",
         "Node.js",
         "PostgreSQL",
         "REST API",
         "React",
         "Redis",
+        "System Design",
         "Tailwind CSS",
         "TypeScript"
       ],
@@ -424,7 +431,7 @@
           "Git"
         ]
       },
-      "years_of_experience": 5.0,
+      "years_of_experience": 6.8,
       "experience_history": [
         {
           "company": "Razorpay Payments",
@@ -466,7 +473,7 @@
       "stage": "Shortlisted",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -483,7 +490,7 @@
         "twelfth_board": null,
         "graduation_year": 2020
       },
-      "experience_years": 5.0,
+      "experience_years": 6.8,
       "experience": [
         {
           "company": "Razorpay Payments",
@@ -525,17 +532,19 @@
         "graduation_year": 2022
       },
       "skills": [
-        "React",
-        "Next.js",
-        "JavaScript",
-        "TypeScript",
-        "Tailwind CSS",
-        "Git",
+        "CSS",
         "CSS3",
         "Figma",
+        "Git",
+        "GitHub",
         "HTML5",
+        "JavaScript",
         "Jest",
-        "Redux"
+        "Next.js",
+        "React",
+        "Redux",
+        "Tailwind CSS",
+        "TypeScript"
       ],
       "categorized_skills": {
         "Frontend": [
@@ -554,7 +563,7 @@
           "Git"
         ]
       },
-      "years_of_experience": 2.5,
+      "years_of_experience": 4.8,
       "experience_history": [
         {
           "company": "Flipkart Internet",
@@ -586,7 +595,7 @@
       "stage": "Interview",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -603,7 +612,7 @@
         "twelfth_board": null,
         "graduation_year": 2022
       },
-      "experience_years": 2.5,
+      "experience_years": 4.8,
       "experience": [
         {
           "company": "Flipkart Internet",
@@ -637,16 +646,20 @@
         "graduation_year": 2021
       },
       "skills": [
-        "Python",
-        "PostgreSQL",
+        "Distributed Systems",
+        "Django",
         "Docker",
-        "Git",
         "FastAPI",
+        "Git",
+        "GitHub",
+        "Linux",
         "Microservices",
+        "Operating Systems",
+        "PostgreSQL",
+        "Python",
         "REST API",
         "Redis",
-        "Django",
-        "Linux"
+        "System Design"
       ],
       "categorized_skills": {
         "Backend": [
@@ -666,7 +679,7 @@
           "Git"
         ]
       },
-      "years_of_experience": 3.5,
+      "years_of_experience": 5.8,
       "experience_history": [
         {
           "company": "Zomato Ltd",
@@ -699,7 +712,7 @@
       "stage": "Rejected",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -716,7 +729,7 @@
         "twelfth_board": null,
         "graduation_year": 2021
       },
-      "experience_years": 3.5,
+      "experience_years": 5.8,
       "experience": [
         {
           "company": "Zomato Ltd",
@@ -750,16 +763,18 @@
         "graduation_year": 2020
       },
       "skills": [
-        "Python",
         "AWS",
-        "Docker",
-        "Kubernetes",
         "CI/CD",
-        "Linux",
+        "Docker",
+        "GitHub",
         "GitHub Actions",
         "Grafana",
+        "Kubernetes",
+        "Linux",
         "Nginx",
+        "Operating Systems",
         "Prometheus",
+        "Python",
         "Terraform"
       ],
       "categorized_skills": {
@@ -779,7 +794,7 @@
           "Python"
         ]
       },
-      "years_of_experience": 4.0,
+      "years_of_experience": 6.8,
       "experience_history": [
         {
           "company": "Paytm Labs",
@@ -814,7 +829,7 @@
       "stage": "Offer",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -831,7 +846,7 @@
         "twelfth_board": null,
         "graduation_year": 2020
       },
-      "experience_years": 4.0,
+      "experience_years": 6.8,
       "experience": [
         {
           "company": "Paytm Labs",
@@ -865,16 +880,18 @@
         "graduation_year": 2024
       },
       "skills": [
-        "Python",
-        "C++",
         "Algorithms",
-        "Java",
-        "Data Structures",
-        "SQL",
+        "C++",
         "CSS",
-        "HTML",
+        "Data Structures",
         "Git",
+        "GitHub",
+        "HTML",
+        "Java",
+        "Pandas",
         "Problem Solving",
+        "Python",
+        "SQL",
         "Spring Boot"
       ],
       "categorized_skills": {
@@ -926,7 +943,7 @@
       "stage": "Shortlisted",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -977,12 +994,13 @@
         "graduation_year": 2020
       },
       "skills": [
-        "JavaScript",
-        "MySQL",
         "CSS",
-        "HTML",
         "Git",
+        "GitHub",
+        "HTML",
+        "JavaScript",
         "Laravel",
+        "MySQL",
         "PHP",
         "jQuery"
       ],
@@ -1003,7 +1021,7 @@
           "Git"
         ]
       },
-      "years_of_experience": 4.0,
+      "years_of_experience": 6.8,
       "experience_history": [
         {
           "company": "Apex Web Solutions",
@@ -1022,7 +1040,7 @@
       "stage": "Rejected",
       "rejection_reason": "Skill gap: Lacks React, Node.js and modern cloud technologies required for Senior Full-Stack role.",
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -1039,7 +1057,7 @@
         "twelfth_board": null,
         "graduation_year": 2020
       },
-      "experience_years": 4.0,
+      "experience_years": 6.8,
       "experience": [
         {
           "company": "Apex Web Solutions",
@@ -1073,17 +1091,20 @@
         "graduation_year": 2019
       },
       "skills": [
-        "Node.js",
-        "React",
-        "TypeScript",
-        "PostgreSQL",
         "AWS",
         "Docker",
-        "Kubernetes",
+        "GitHub",
         "GraphQL",
+        "JavaScript",
+        "Jest",
+        "Kubernetes",
         "Microservices",
+        "Next.js",
+        "Node.js",
+        "PostgreSQL",
+        "React",
         "Redis",
-        "Jest"
+        "TypeScript"
       ],
       "categorized_skills": {
         "Frontend": [
@@ -1108,7 +1129,7 @@
           "Jest"
         ]
       },
-      "years_of_experience": 5.5,
+      "years_of_experience": 7.8,
       "experience_history": [
         {
           "company": "Ola Electric",
@@ -1150,7 +1171,7 @@
       "stage": "Interview",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -1167,7 +1188,7 @@
         "twelfth_board": null,
         "graduation_year": 2019
       },
-      "experience_years": 5.5,
+      "experience_years": 7.8,
       "experience": [
         {
           "company": "Ola Electric",
@@ -1209,14 +1230,16 @@
         "graduation_year": 2021
       },
       "skills": [
-        "Python",
         "AWS",
-        "Docker",
-        "Kubernetes",
-        "Git",
-        "CI/CD",
-        "Linux",
         "Bash",
+        "CI/CD",
+        "Docker",
+        "Git",
+        "GitHub",
+        "Kubernetes",
+        "Linux",
+        "Operating Systems",
+        "Python",
         "Terraform"
       ],
       "categorized_skills": {
@@ -1233,7 +1256,7 @@
           "Python"
         ]
       },
-      "years_of_experience": 3.2,
+      "years_of_experience": 5.8,
       "experience_history": [
         {
           "company": "Freshworks Inc",
@@ -1267,7 +1290,7 @@
       "stage": "Applied",
       "rejection_reason": null,
       "notes": [],
-      "applied_job_id": null,
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
       "company_id": "comp-acme-corp",
       "is_duplicate": false,
       "duplicate_reasons": [],
@@ -1284,7 +1307,7 @@
         "twelfth_board": null,
         "graduation_year": 2021
       },
-      "experience_years": 3.2,
+      "experience_years": 5.8,
       "experience": [
         {
           "company": "Freshworks Inc",
@@ -1736,6 +1759,879 @@
       "current_company": "Atlassian"
     },
     {
+      "id": "2605ad94-e6fd-41f9-98a3-beccf20f2457",
+      "name": "Aarav Sharma",
+      "email": "aarav.sharma@example.com",
+      "phone": "+91 98201 12345",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/aarav-sharma-tech",
+      "github": "https://github.com/aaravsharma",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "IIT Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": null,
+        "twelfth_percentage": 91.8,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "Node.js",
+        "React",
+        "Next.js",
+        "Express.js",
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
+        "System Design",
+        "Tailwind CSS",
+        "CSS",
+        "AWS",
+        "Docker",
+        "Git",
+        "GitHub",
+        "Microservices",
+        "REST API",
+        "Redis",
+        "Jest"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "TypeScript",
+          "CSS"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js"
+        ],
+        "Backend & APIs": [
+          "Node.js",
+          "REST API",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "AWS",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "System Design",
+          "Microservices"
+        ],
+        "Tools & Platforms": [
+          "Jest"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Developer \u2014 Swiggy Tech Labs (2020 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Aarav Sharma\nSenior Full-Stack Engineer | Bengaluru, India | aarav.sharma@example.com | +91 98201 12345\nLinkedIn: https://linkedin.com/in/aarav-sharma-tech | GitHub: https://github.com/aaravsharma\nProfessional Summary\nFull Stack Engineer with 4.5+ years of experience in enterprise web apps, microservices, and cloud deployments. Passionate\nabout system design and frontend performance.\nTechnical Skills\nKey Technologies: React, TypeScript, Node.js, Express, PostgreSQL, Docker, AWS, Redis, Next.js, Git, REST API, Tailwind\nCSS, Jest, Microservices\nEducation & Academic Background\nB.Tech in Computer Science and Engineering | IIT Delhi (2016 - 2020)\n\u007f CGPA: 8.85 / 10.0\n\u007f Class XII: 91.8%\n\u007f Class X: 93.4%\nWork Experience\nSenior Software Engineer \u2014 Razorpay Payments (2022 - Present)\n\u007f Architected merchant onboarding flow with React & TypeScript. Optimized PostgreSQL read latency by 45% using Redis\ncaching.\nSoftware Developer \u2014 Swiggy Tech Labs (2020 - 2022)\n\u007f Developed reactive order tracking frontend using React and Dockerized microservices. Maintained 99.9% uptime.\nKey Projects\nDistributed Task Queuer [Node.js, Redis, Docker]\n\u007f Built distributed job processing queue processing 10k messages/sec.\n\n",
+      "file_name": "Aarav_Sharma_FullStack.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:39.903399+00:00",
+      "updated_at": "2026-11-21T12:25:39.903399+00:00",
+      "academics": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "IIT Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": null,
+        "twelfth_percentage": 91.8,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Developer \u2014 Swiggy Tech Labs (2020 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "1ccbed5b-7cbe-41d8-b4f6-4e4132d3949c",
+      "name": "Aditya Verma",
+      "email": "aditya.verma@example.com",
+      "phone": "+91 98112 45678",
+      "location": "Delhi, India",
+      "linkedin": "https://linkedin.com/in/aditya-verma-cloud",
+      "github": "https://github.com/adityaverma",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | Delhi Technological University (DT",
+        "cgpa": 8.1,
+        "tenth_percentage": null,
+        "twelfth_percentage": 86.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "Python",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "GitHub",
+        "Linux",
+        "GitHub Actions",
+        "Nginx",
+        "Operating Systems",
+        "Terraform"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "GitHub",
+          "GitHub Actions",
+          "Nginx"
+        ],
+        "Core Competencies": [
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [],
+      "projects": [],
+      "certifications": [
+        "CKA"
+      ],
+      "raw_text": "Aditya Verma\nSenior DevOps & Cloud Engineer | Delhi, India | aditya.verma@example.com | +91 98112 45678\nLinkedIn: https://linkedin.com/in/aditya-verma-cloud | GitHub: https://github.com/adityaverma\nProfessional Summary\nDevOps Engineer with 4.0 years of experience managing Kubernetes clusters, AWS infrastructure, and automated CI/CD\npipelines. Certified CKA and AWS Solutions Architect.\nTechnical Skills\nKey Technologies: Docker, Kubernetes, AWS, Terraform, CI/CD, Linux, GitHub Actions, Prometheus, Grafana, Python,\nNginx, Helm\nEducation & Academic Background\nB.Tech Computer Science | Delhi Technological University (DTU) (2016 - 2020)\n\u007f CGPA: 8.1 / 10.0\n\u007f Class XII: 86.5%\n\u007f Class X: 88.0%\nWork Experience\nDevOps Engineer \u2014 Paytm Labs (2020 - Present)\n\u007f Designed multi-region AWS EKS clusters with Terraform GitOps workflows. Reduced deployment cycle time from 40 mins to\n4 mins.\nKey Projects\nCanary Deployer [Kubernetes, GitHub Actions]\n\u007f Custom Kubernetes controller managing traffic splits during canary releases.\n\n",
+      "file_name": "Aditya_Verma_DevOps.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:40.132539+00:00",
+      "updated_at": "2026-11-21T12:25:40.132539+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | Delhi Technological University (DT",
+        "cgpa": 8.1,
+        "tenth_percentage": null,
+        "twelfth_percentage": 86.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "d8aeae99-1080-48ae-8bf3-6224964a269b",
+      "name": "Ananya Sen",
+      "email": "ananya.sen@example.com",
+      "phone": "+91 98311 23456",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/ananya-sen-fullstack",
+      "github": "https://github.com/ananyasen",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": null,
+        "twelfth_percentage": 90.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2022
+      },
+      "skills": [
+        "Node.js",
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "GitHub",
+        "GraphQL",
+        "Microservices",
+        "Redis",
+        "Jest"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "TypeScript"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js"
+        ],
+        "Backend & APIs": [
+          "Node.js",
+          "GraphQL",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "Microservices"
+        ],
+        "Tools & Platforms": [
+          "Jest"
+        ]
+      },
+      "years_of_experience": 7.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Senior Developer \u2014 Infosys Ltd (2019 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Ananya Sen\nLead Full Stack Engineer | Bengaluru, India | ananya.sen@example.com | +91 98311 23456\nLinkedIn: https://linkedin.com/in/ananya-sen-fullstack | GitHub: https://github.com/ananyasen\nProfessional Summary\nLead Full Stack Engineer with 5.5 years of experience architecting large-scale React, Node.js, and cloud native architectures.\nMentor to 10+ engineers.\nTechnical Skills\nKey Technologies: React, Node.js, TypeScript, PostgreSQL, Docker, AWS, GraphQL, Microservices, Kubernetes, Redis,\nJest, Next.js\nEducation & Academic Background\nB.Tech Computer Science | IIIT Bangalore (2015 - 2019)\n\u007f CGPA: 8.7 / 10.0\n\u007f Class XII: 90.5%\n\u007f Class X: 92.0%\nWork Experience\nLead Full Stack Engineer \u2014 Ola Electric (2022 - Present)\n\u007f Led engineering for IoT vehicle telemetry console using React and Node.js microservices.\nSenior Developer \u2014 Infosys Ltd (2019 - 2022)\n\u007f Constructed microservices in Docker and PostgreSQL for financial enterprise clients.\nKey Projects\nFederated GraphQL Gateway [Node.js, GraphQL, Docker]\n\u007f Unified schema aggregator connecting 12 services.\n\n",
+      "file_name": "Ananya_Sen_SrFullStack.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:40.231054+00:00",
+      "updated_at": "2026-11-21T12:25:40.231054+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": null,
+        "twelfth_percentage": 90.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2022
+      },
+      "experience_years": 7.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Senior Developer \u2014 Infosys Ltd (2019 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "5a9a0b44-2f71-4e86-8378-8dae8169b2e0",
+      "name": "Karthik Raja",
+      "email": "karthik.raja@example.com",
+      "phone": "+91 94440 12389",
+      "location": "Chennai, India",
+      "linkedin": "https://linkedin.com/in/karthik-raja-cloud",
+      "github": "https://github.com/karthikraja",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "B.E. Computer Science | Anna University (2017 - 2021)",
+        "cgpa": 7.6,
+        "tenth_percentage": null,
+        "twelfth_percentage": 77.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "skills": [
+        "Python",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Git",
+        "CI/CD",
+        "GitHub",
+        "Linux",
+        "Bash",
+        "Operating Systems",
+        "Terraform"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python",
+          "Bash"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 5.8,
+      "experience_history": [],
+      "projects": [
+        {
+          "title": "Cloud DevOps Engineer",
+          "subtitle": "Chennai, India",
+          "date": "",
+          "tech_stack": [
+            "AWS"
+          ],
+          "bullets": [
+            "CGPA: 7.6 / 10.0",
+            "Class XII: 77.0%",
+            "Class X: 78.5%",
+            "Automated infrastructure rollout with Terraform across AWS environments.",
+            "Automated multi-region database snapshot and restore."
+          ],
+          "description": "CGPA: 7.6 / 10.0 Class XII: 77.0% Class X: 78.5% Automated infrastructure rollout with Terraform across AWS environments. Automated multi-region database snapshot and restore."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Karthik Raja\nCloud DevOps Engineer | Chennai, India\nEmail: karthik.raja@example.com | Phone: +91 94440 12389\nLinkedIn: https://linkedin.com/in/karthik-raja-cloud | GitHub: https://github.com/karthikraja\nProfessional Summary\nDevOps Engineer with 3.2 years of experience in container orchestration, Linux systems, and cloud infrastructure automation.\nTechnical Skills\nSkills & Tools: Docker, Kubernetes, AWS, Linux, CI/CD, Git, Terraform, Bash, Python\nEducation\nB.E. Computer Science | Anna University (2017 - 2021)\n\u2022 CGPA: 7.6 / 10.0\n\u2022 Class XII: 77.0%\n\u2022 Class X: 78.5%\nWork Experience\nCloud DevOps Engineer \u2014 Freshworks Inc (2021 - Present)\n\u2022 Automated infrastructure rollout with Terraform across AWS environments.\nKey Projects\nDisaster Recovery Automation (AWS, Terraform, Python)\n\u2022 Automated multi-region database snapshot and restore.\n",
+      "file_name": "Karthik_Raja_DevOps.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:40.320140+00:00",
+      "updated_at": "2026-11-21T12:25:40.320140+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "B.E. Computer Science | Anna University (2017 - 2021)",
+        "cgpa": 7.6,
+        "tenth_percentage": null,
+        "twelfth_percentage": 77.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "experience_years": 5.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "797bdd26-00f6-4a90-ad61-17e26782ce6b",
+      "name": "Priya Nair",
+      "email": "priya.nair@example.com",
+      "phone": "+91 97412 87654",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/priya-nair-frontend",
+      "github": "https://github.com/priyanair",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech",
+        "college": "NIT Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": null,
+        "twelfth_percentage": 88.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2018
+      },
+      "skills": [
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "CSS",
+        "Git",
+        "GitHub",
+        "CSS3",
+        "Figma",
+        "HTML5",
+        "Jest",
+        "Redux"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "JavaScript",
+          "TypeScript",
+          "HTML5",
+          "CSS",
+          "CSS3"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js",
+          "Tailwind CSS",
+          "Redux"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ],
+        "Tools & Platforms": [
+          "Figma",
+          "Jest"
+        ]
+      },
+      "years_of_experience": 4.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Priya Nair\nFrontend Developer (React & Next.js) | Bengaluru, India\nEmail: priya.nair@example.com | Phone: +91 97412 87654\nLinkedIn: https://linkedin.com/in/priya-nair-frontend | GitHub: https://github.com/priyanair\nProfessional Summary\nCreative and detail-oriented Frontend Developer with 2.5 years of experience crafting accessible, responsive, and blazing-fast web interfaces.\nTechnical Skills\nSkills & Tools: React, Next.js, JavaScript, TypeScript, Tailwind CSS, Redux, HTML5, CSS3, Figma, Jest, Git, Responsive Design\nEducation\nB.Tech in Information Technology | NIT Trichy (2018 - 2022)\n\u2022 CGPA: 8.4 / 10.0\n\u2022 Class XII: 88.5%\n\u2022 Class X: 89.0%\nWork Experience\nFrontend Engineer \u2014 Flipkart Internet (2022 - Present)\n\u2022 Developed UI components in React and Tailwind CSS. Implemented code-splitting reducing initial bundle size by 38%.\nKey Projects\nModern UI Kit (React, TypeScript, Tailwind CSS)\n\u2022 Open-source component library with 1,200+ stars on GitHub.\n",
+      "file_name": "Priya_Nair_Frontend.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:40.350660+00:00",
+      "updated_at": "2026-11-21T12:25:40.350660+00:00",
+      "academics": {
+        "degree": "B.Tech",
+        "college": "NIT Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": null,
+        "twelfth_percentage": 88.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2018
+      },
+      "experience_years": 4.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "33071ba5-de5a-44fa-af7c-cfb6559d941b",
+      "name": "Rohan Deshmukh",
+      "email": "rohan.deshmukh@example.com",
+      "phone": "+91 91672 34567",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/rohan-deshmukh-py",
+      "github": "https://github.com/rohandesh",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": null,
+        "twelfth_percentage": 82.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "skills": [
+        "Python",
+        "PostgreSQL",
+        "System Design",
+        "Docker",
+        "Git",
+        "GitHub",
+        "FastAPI",
+        "Microservices",
+        "REST API",
+        "Redis",
+        "Django",
+        "Linux",
+        "Distributed Systems",
+        "Operating Systems"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python"
+        ],
+        "Backend & APIs": [
+          "FastAPI",
+          "Django",
+          "REST API",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Linux",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "System Design",
+          "Microservices",
+          "Distributed Systems",
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 5.8,
+      "experience_history": [],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Rohan Deshmukh\nPython / Backend Engineer | Pune, India | rohan.deshmukh@example.com | +91 91672 34567\nLinkedIn: https://linkedin.com/in/rohan-deshmukh-py | GitHub: https://github.com/rohandesh\nProfessional Summary\nBackend specialist with 3.5 years of experience in distributed systems, asynchronous APIs, and relational databases. Strong\nfocus on code maintainability and test coverage.\nTechnical Skills\nKey Technologies: Python, FastAPI, Django, PostgreSQL, Redis, Docker, REST API, Microservices, Git, Linux, Celery\nEducation & Academic Background\nB.E. Computer Science | BITS Pilani (2017 - 2021)\n\u007f CGPA: 7.9 / 10.0\n\u007f Class XII: 82.0%\n\u007f Class X: 84.5%\nWork Experience\nBackend Engineer \u2014 Zomato Ltd (2021 - Present)\n\u007f Built asynchronous dispatch services with FastAPI and PostgreSQL handling 50k requests/min. Designed automated\ndatabase migration workflows.\nKey Projects\nGeofencing Engine [Python, FastAPI, Redis]\n\u007f Real-time location indexing engine with sub-millisecond query latency.\n\n",
+      "file_name": "Rohan_Deshmukh_Backend.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:40.397167+00:00",
+      "updated_at": "2026-11-21T12:25:40.397167+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": null,
+        "twelfth_percentage": 82.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "experience_years": 5.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "aeae9d84-c8d5-4209-9722-8a1552ee0efb",
+      "name": "Sneha Kulkarni",
+      "email": "sneha.kulkarni@example.com",
+      "phone": "+91 94230 98765",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/sneha-kulkarni-fresher",
+      "github": "https://github.com/snehakulkarni",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": null,
+        "twelfth_percentage": 94.2,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2020
+      },
+      "skills": [
+        "Python",
+        "C++",
+        "Algorithms",
+        "Java",
+        "Data Structures",
+        "SQL",
+        "CSS",
+        "HTML",
+        "Git",
+        "GitHub",
+        "Pandas",
+        "Spring Boot"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "C++",
+          "Java",
+          "Python",
+          "HTML",
+          "CSS",
+          "SQL"
+        ],
+        "Backend & APIs": [
+          "Spring Boot"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ],
+        "AI, ML & Data": [
+          "Pandas"
+        ],
+        "Core Competencies": [
+          "Data Structures",
+          "Algorithms"
+        ]
+      },
+      "years_of_experience": 0.0,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [
+        {
+          "title": "B.Tech Computer Science",
+          "subtitle": "College of Engineering Pune (COEP) (2020 - 2024)",
+          "date": "",
+          "tech_stack": [],
+          "bullets": [
+            "CGPA: 9.42 / 10.0",
+            "Class XII: 94.2%",
+            "Class X: 95.8%",
+            "Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications.",
+            "Backtested quantitative equity strategies using Pandas."
+          ],
+          "description": "CGPA: 9.42 / 10.0 Class XII: 94.2% Class X: 95.8% Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications. Backtested quantitative equity strategies using Pandas."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Sneha Kulkarni\nSoftware Engineer (Campus Graduate) | Pune, India\nEmail: sneha.kulkarni@example.com | Phone: +91 94230 98765\nLinkedIn: https://linkedin.com/in/sneha-kulkarni-fresher | GitHub: https://github.com/snehakulkarni\nProfessional Summary\nRecent CS Graduate from COEP with 9.42 CGPA. Winner of Smart India Hackathon. Solid grasp of algorithms, data structures, Java, Python, and SQL.\nTechnical Skills\nSkills & Tools: Java, Python, SQL, C++, Spring Boot, Git, Problem Solving, Data Structures, Algorithms, HTML, CSS\nEducation\nB.Tech Computer Science | College of Engineering Pune (COEP) (2020 - 2024)\n\u2022 CGPA: 9.42 / 10.0\n\u2022 Class XII: 94.2%\n\u2022 Class X: 95.8%\nWork Experience\nSoftware Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)\n\u2022 Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications.\nKey Projects\nAlgorithmic Trading Bot (Python, SQL)\n\u2022 Backtested quantitative equity strategies using Pandas.\n",
+      "file_name": "Sneha_Kulkarni_Fresher.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:40.428117+00:00",
+      "updated_at": "2026-11-21T12:25:40.428117+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": null,
+        "twelfth_percentage": 94.2,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2020
+      },
+      "experience_years": 0.0,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "51a39ba8-b8d9-4623-bc72-f42335d32ccc",
+      "name": "Vikram Singhania",
+      "email": "vikram.singhania@example.com",
+      "phone": "+91 98300 45678",
+      "location": "Mumbai, India",
+      "linkedin": "https://linkedin.com/in/vikram-singhania-dev",
+      "github": "https://github.com/vikramsingh",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech",
+        "college": "B.E. Computer Engineering | Mumbai University (2016 - 2020)",
+        "cgpa": 6.8,
+        "tenth_percentage": null,
+        "twelfth_percentage": 67.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "JavaScript",
+        "MySQL",
+        "CSS",
+        "HTML",
+        "Git",
+        "GitHub",
+        "Laravel",
+        "PHP"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "PHP"
+        ],
+        "Backend & APIs": [
+          "Laravel"
+        ],
+        "Databases & ORM": [
+          "MySQL"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Vikram Singhania\nWeb Developer | Mumbai, India | vikram.singhania@example.com | +91 98300 45678\nLinkedIn: https://linkedin.com/in/vikram-singhania-dev | GitHub: https://github.com/vikramsingh\nProfessional Summary\nWeb developer with 4 years of experience building PHP and Laravel web applications with MySQL databases.\nTechnical Skills\nKey Technologies: PHP, Laravel, MySQL, JavaScript, HTML, CSS, jQuery, Git, Apache\nEducation & Academic Background\nB.E. Computer Engineering | Mumbai University (2016 - 2020)\n\u007f CGPA: 6.8 / 10.0\n\u007f Class XII: 67.0%\n\u007f Class X: 68.5%\nWork Experience\nWeb Developer \u2014 Apex Web Solutions (2020 - Present)\n\u007f Developed and maintained 15+ client websites using Laravel and MySQL.\nKey Projects\nE-Commerce Portal [PHP, MySQL]\n\u007f Online store backend with payment gateway integration.\n\n",
+      "file_name": "Vikram_Singhania_PHP.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:25:40.471687+00:00",
+      "updated_at": "2026-11-21T12:25:40.471687+00:00",
+      "academics": {
+        "degree": "B.Tech",
+        "college": "B.E. Computer Engineering | Mumbai University (2016 - 2020)",
+        "cgpa": 6.8,
+        "tenth_percentage": null,
+        "twelfth_percentage": 67.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
       "id": "8558449b-a207-491e-8f7c-2bfe0705086e",
       "name": "Pillalamarri Revanth",
       "email": "revanthp2313.24@kgpian.iitkgp.ac.in",
@@ -2116,6 +3012,1786 @@
       ],
       "current_title": "Software Engineer",
       "current_company": "BlueTech Software \u2022 Los Angeles, California"
+    },
+    {
+      "id": "4c291f87-ab0c-46d8-8c9b-04672c44c7da",
+      "name": "Aarav Sharma",
+      "email": "aarav.sharma@example.com",
+      "phone": "+91 98201 12345",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/aarav-sharma-tech",
+      "github": "https://github.com/aaravsharma",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "IIT Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": null,
+        "twelfth_percentage": 91.8,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "Node.js",
+        "React",
+        "Next.js",
+        "Express.js",
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
+        "System Design",
+        "Tailwind CSS",
+        "CSS",
+        "AWS",
+        "Docker",
+        "Git",
+        "GitHub",
+        "Microservices",
+        "REST API",
+        "Redis",
+        "Jest"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "TypeScript",
+          "CSS"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js"
+        ],
+        "Backend & APIs": [
+          "Node.js",
+          "REST API",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "AWS",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "System Design",
+          "Microservices"
+        ],
+        "Tools & Platforms": [
+          "Jest"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Developer \u2014 Swiggy Tech Labs (2020 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Aarav Sharma\nSenior Full-Stack Engineer | Bengaluru, India | aarav.sharma@example.com | +91 98201 12345\nLinkedIn: https://linkedin.com/in/aarav-sharma-tech | GitHub: https://github.com/aaravsharma\nProfessional Summary\nFull Stack Engineer with 4.5+ years of experience in enterprise web apps, microservices, and cloud deployments. Passionate\nabout system design and frontend performance.\nTechnical Skills\nKey Technologies: React, TypeScript, Node.js, Express, PostgreSQL, Docker, AWS, Redis, Next.js, Git, REST API, Tailwind\nCSS, Jest, Microservices\nEducation & Academic Background\nB.Tech in Computer Science and Engineering | IIT Delhi (2016 - 2020)\n\u007f CGPA: 8.85 / 10.0\n\u007f Class XII: 91.8%\n\u007f Class X: 93.4%\nWork Experience\nSenior Software Engineer \u2014 Razorpay Payments (2022 - Present)\n\u007f Architected merchant onboarding flow with React & TypeScript. Optimized PostgreSQL read latency by 45% using Redis\ncaching.\nSoftware Developer \u2014 Swiggy Tech Labs (2020 - 2022)\n\u007f Developed reactive order tracking frontend using React and Dockerized microservices. Maintained 99.9% uptime.\nKey Projects\nDistributed Task Queuer [Node.js, Redis, Docker]\n\u007f Built distributed job processing queue processing 10k messages/sec.\n\n",
+      "file_name": "Aarav_Sharma_FullStack.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:16.939938+00:00",
+      "updated_at": "2026-11-21T12:27:16.940929+00:00",
+      "academics": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "IIT Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": null,
+        "twelfth_percentage": 91.8,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Developer \u2014 Swiggy Tech Labs (2020 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "ab9915a7-8e3f-4384-a583-d355b4a90d11",
+      "name": "Aditya Verma",
+      "email": "aditya.verma@example.com",
+      "phone": "+91 98112 45678",
+      "location": "Delhi, India",
+      "linkedin": "https://linkedin.com/in/aditya-verma-cloud",
+      "github": "https://github.com/adityaverma",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | Delhi Technological University (DT",
+        "cgpa": 8.1,
+        "tenth_percentage": null,
+        "twelfth_percentage": 86.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "Python",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "GitHub",
+        "Linux",
+        "GitHub Actions",
+        "Nginx",
+        "Operating Systems",
+        "Terraform"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "GitHub",
+          "GitHub Actions",
+          "Nginx"
+        ],
+        "Core Competencies": [
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [],
+      "projects": [],
+      "certifications": [
+        "CKA"
+      ],
+      "raw_text": "Aditya Verma\nSenior DevOps & Cloud Engineer | Delhi, India | aditya.verma@example.com | +91 98112 45678\nLinkedIn: https://linkedin.com/in/aditya-verma-cloud | GitHub: https://github.com/adityaverma\nProfessional Summary\nDevOps Engineer with 4.0 years of experience managing Kubernetes clusters, AWS infrastructure, and automated CI/CD\npipelines. Certified CKA and AWS Solutions Architect.\nTechnical Skills\nKey Technologies: Docker, Kubernetes, AWS, Terraform, CI/CD, Linux, GitHub Actions, Prometheus, Grafana, Python,\nNginx, Helm\nEducation & Academic Background\nB.Tech Computer Science | Delhi Technological University (DTU) (2016 - 2020)\n\u007f CGPA: 8.1 / 10.0\n\u007f Class XII: 86.5%\n\u007f Class X: 88.0%\nWork Experience\nDevOps Engineer \u2014 Paytm Labs (2020 - Present)\n\u007f Designed multi-region AWS EKS clusters with Terraform GitOps workflows. Reduced deployment cycle time from 40 mins to\n4 mins.\nKey Projects\nCanary Deployer [Kubernetes, GitHub Actions]\n\u007f Custom Kubernetes controller managing traffic splits during canary releases.\n\n",
+      "file_name": "Aditya_Verma_DevOps.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:16.976928+00:00",
+      "updated_at": "2026-11-21T12:27:16.976928+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | Delhi Technological University (DT",
+        "cgpa": 8.1,
+        "tenth_percentage": null,
+        "twelfth_percentage": 86.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "da4d1003-45aa-4a34-9e98-d9f169a535bc",
+      "name": "Ananya Sen",
+      "email": "ananya.sen@example.com",
+      "phone": "+91 98311 23456",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/ananya-sen-fullstack",
+      "github": "https://github.com/ananyasen",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": null,
+        "twelfth_percentage": 90.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2022
+      },
+      "skills": [
+        "Node.js",
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "GitHub",
+        "GraphQL",
+        "Microservices",
+        "Redis",
+        "Jest"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "TypeScript"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js"
+        ],
+        "Backend & APIs": [
+          "Node.js",
+          "GraphQL",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "Microservices"
+        ],
+        "Tools & Platforms": [
+          "Jest"
+        ]
+      },
+      "years_of_experience": 7.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Senior Developer \u2014 Infosys Ltd (2019 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Ananya Sen\nLead Full Stack Engineer | Bengaluru, India | ananya.sen@example.com | +91 98311 23456\nLinkedIn: https://linkedin.com/in/ananya-sen-fullstack | GitHub: https://github.com/ananyasen\nProfessional Summary\nLead Full Stack Engineer with 5.5 years of experience architecting large-scale React, Node.js, and cloud native architectures.\nMentor to 10+ engineers.\nTechnical Skills\nKey Technologies: React, Node.js, TypeScript, PostgreSQL, Docker, AWS, GraphQL, Microservices, Kubernetes, Redis,\nJest, Next.js\nEducation & Academic Background\nB.Tech Computer Science | IIIT Bangalore (2015 - 2019)\n\u007f CGPA: 8.7 / 10.0\n\u007f Class XII: 90.5%\n\u007f Class X: 92.0%\nWork Experience\nLead Full Stack Engineer \u2014 Ola Electric (2022 - Present)\n\u007f Led engineering for IoT vehicle telemetry console using React and Node.js microservices.\nSenior Developer \u2014 Infosys Ltd (2019 - 2022)\n\u007f Constructed microservices in Docker and PostgreSQL for financial enterprise clients.\nKey Projects\nFederated GraphQL Gateway [Node.js, GraphQL, Docker]\n\u007f Unified schema aggregator connecting 12 services.\n\n",
+      "file_name": "Ananya_Sen_SrFullStack.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:17.019451+00:00",
+      "updated_at": "2026-11-21T12:27:17.019451+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": null,
+        "twelfth_percentage": 90.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2022
+      },
+      "experience_years": 7.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Senior Developer \u2014 Infosys Ltd (2019 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "f2ef6caf-b2da-4183-8552-6b3d3dc6fa57",
+      "name": "Karthik Raja",
+      "email": "karthik.raja@example.com",
+      "phone": "+91 94440 12389",
+      "location": "Chennai, India",
+      "linkedin": "https://linkedin.com/in/karthik-raja-cloud",
+      "github": "https://github.com/karthikraja",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "B.E. Computer Science | Anna University (2017 - 2021)",
+        "cgpa": 7.6,
+        "tenth_percentage": null,
+        "twelfth_percentage": 77.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "skills": [
+        "Python",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Git",
+        "CI/CD",
+        "GitHub",
+        "Linux",
+        "Bash",
+        "Operating Systems",
+        "Terraform"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python",
+          "Bash"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 5.8,
+      "experience_history": [],
+      "projects": [
+        {
+          "title": "Cloud DevOps Engineer",
+          "subtitle": "Chennai, India",
+          "date": "",
+          "tech_stack": [
+            "AWS"
+          ],
+          "bullets": [
+            "CGPA: 7.6 / 10.0",
+            "Class XII: 77.0%",
+            "Class X: 78.5%",
+            "Automated infrastructure rollout with Terraform across AWS environments.",
+            "Automated multi-region database snapshot and restore."
+          ],
+          "description": "CGPA: 7.6 / 10.0 Class XII: 77.0% Class X: 78.5% Automated infrastructure rollout with Terraform across AWS environments. Automated multi-region database snapshot and restore."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Karthik Raja\nCloud DevOps Engineer | Chennai, India\nEmail: karthik.raja@example.com | Phone: +91 94440 12389\nLinkedIn: https://linkedin.com/in/karthik-raja-cloud | GitHub: https://github.com/karthikraja\nProfessional Summary\nDevOps Engineer with 3.2 years of experience in container orchestration, Linux systems, and cloud infrastructure automation.\nTechnical Skills\nSkills & Tools: Docker, Kubernetes, AWS, Linux, CI/CD, Git, Terraform, Bash, Python\nEducation\nB.E. Computer Science | Anna University (2017 - 2021)\n\u2022 CGPA: 7.6 / 10.0\n\u2022 Class XII: 77.0%\n\u2022 Class X: 78.5%\nWork Experience\nCloud DevOps Engineer \u2014 Freshworks Inc (2021 - Present)\n\u2022 Automated infrastructure rollout with Terraform across AWS environments.\nKey Projects\nDisaster Recovery Automation (AWS, Terraform, Python)\n\u2022 Automated multi-region database snapshot and restore.\n",
+      "file_name": "Karthik_Raja_DevOps.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:17.059456+00:00",
+      "updated_at": "2026-11-21T12:27:17.059456+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "B.E. Computer Science | Anna University (2017 - 2021)",
+        "cgpa": 7.6,
+        "tenth_percentage": null,
+        "twelfth_percentage": 77.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "experience_years": 5.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "347c6f60-67f3-45f3-9724-2f26750eec5a",
+      "name": "Priya Nair",
+      "email": "priya.nair@example.com",
+      "phone": "+91 97412 87654",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/priya-nair-frontend",
+      "github": "https://github.com/priyanair",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech",
+        "college": "NIT Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": null,
+        "twelfth_percentage": 88.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2018
+      },
+      "skills": [
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "CSS",
+        "Git",
+        "GitHub",
+        "CSS3",
+        "Figma",
+        "HTML5",
+        "Jest",
+        "Redux"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "JavaScript",
+          "TypeScript",
+          "HTML5",
+          "CSS",
+          "CSS3"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js",
+          "Tailwind CSS",
+          "Redux"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ],
+        "Tools & Platforms": [
+          "Figma",
+          "Jest"
+        ]
+      },
+      "years_of_experience": 4.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Priya Nair\nFrontend Developer (React & Next.js) | Bengaluru, India\nEmail: priya.nair@example.com | Phone: +91 97412 87654\nLinkedIn: https://linkedin.com/in/priya-nair-frontend | GitHub: https://github.com/priyanair\nProfessional Summary\nCreative and detail-oriented Frontend Developer with 2.5 years of experience crafting accessible, responsive, and blazing-fast web interfaces.\nTechnical Skills\nSkills & Tools: React, Next.js, JavaScript, TypeScript, Tailwind CSS, Redux, HTML5, CSS3, Figma, Jest, Git, Responsive Design\nEducation\nB.Tech in Information Technology | NIT Trichy (2018 - 2022)\n\u2022 CGPA: 8.4 / 10.0\n\u2022 Class XII: 88.5%\n\u2022 Class X: 89.0%\nWork Experience\nFrontend Engineer \u2014 Flipkart Internet (2022 - Present)\n\u2022 Developed UI components in React and Tailwind CSS. Implemented code-splitting reducing initial bundle size by 38%.\nKey Projects\nModern UI Kit (React, TypeScript, Tailwind CSS)\n\u2022 Open-source component library with 1,200+ stars on GitHub.\n",
+      "file_name": "Priya_Nair_Frontend.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:17.094055+00:00",
+      "updated_at": "2026-11-21T12:27:17.094055+00:00",
+      "academics": {
+        "degree": "B.Tech",
+        "college": "NIT Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": null,
+        "twelfth_percentage": 88.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2018
+      },
+      "experience_years": 4.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "172144d1-eb5c-4794-8124-7f5549be28ae",
+      "name": "Rohan Deshmukh",
+      "email": "rohan.deshmukh@example.com",
+      "phone": "+91 91672 34567",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/rohan-deshmukh-py",
+      "github": "https://github.com/rohandesh",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": null,
+        "twelfth_percentage": 82.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "skills": [
+        "Python",
+        "PostgreSQL",
+        "System Design",
+        "Docker",
+        "Git",
+        "GitHub",
+        "FastAPI",
+        "Microservices",
+        "REST API",
+        "Redis",
+        "Django",
+        "Linux",
+        "Distributed Systems",
+        "Operating Systems"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python"
+        ],
+        "Backend & APIs": [
+          "FastAPI",
+          "Django",
+          "REST API",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Linux",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "System Design",
+          "Microservices",
+          "Distributed Systems",
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 5.8,
+      "experience_history": [],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Rohan Deshmukh\nPython / Backend Engineer | Pune, India | rohan.deshmukh@example.com | +91 91672 34567\nLinkedIn: https://linkedin.com/in/rohan-deshmukh-py | GitHub: https://github.com/rohandesh\nProfessional Summary\nBackend specialist with 3.5 years of experience in distributed systems, asynchronous APIs, and relational databases. Strong\nfocus on code maintainability and test coverage.\nTechnical Skills\nKey Technologies: Python, FastAPI, Django, PostgreSQL, Redis, Docker, REST API, Microservices, Git, Linux, Celery\nEducation & Academic Background\nB.E. Computer Science | BITS Pilani (2017 - 2021)\n\u007f CGPA: 7.9 / 10.0\n\u007f Class XII: 82.0%\n\u007f Class X: 84.5%\nWork Experience\nBackend Engineer \u2014 Zomato Ltd (2021 - Present)\n\u007f Built asynchronous dispatch services with FastAPI and PostgreSQL handling 50k requests/min. Designed automated\ndatabase migration workflows.\nKey Projects\nGeofencing Engine [Python, FastAPI, Redis]\n\u007f Real-time location indexing engine with sub-millisecond query latency.\n\n",
+      "file_name": "Rohan_Deshmukh_Backend.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:17.141597+00:00",
+      "updated_at": "2026-11-21T12:27:17.141597+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": null,
+        "twelfth_percentage": 82.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "experience_years": 5.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "7f8421db-4000-4429-9f59-b21159720d3d",
+      "name": "Sneha Kulkarni",
+      "email": "sneha.kulkarni@example.com",
+      "phone": "+91 94230 98765",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/sneha-kulkarni-fresher",
+      "github": "https://github.com/snehakulkarni",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": null,
+        "twelfth_percentage": 94.2,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2020
+      },
+      "skills": [
+        "Python",
+        "C++",
+        "Algorithms",
+        "Java",
+        "Data Structures",
+        "SQL",
+        "CSS",
+        "HTML",
+        "Git",
+        "GitHub",
+        "Pandas",
+        "Spring Boot"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "C++",
+          "Java",
+          "Python",
+          "HTML",
+          "CSS",
+          "SQL"
+        ],
+        "Backend & APIs": [
+          "Spring Boot"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ],
+        "AI, ML & Data": [
+          "Pandas"
+        ],
+        "Core Competencies": [
+          "Data Structures",
+          "Algorithms"
+        ]
+      },
+      "years_of_experience": 0.0,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [
+        {
+          "title": "B.Tech Computer Science",
+          "subtitle": "College of Engineering Pune (COEP) (2020 - 2024)",
+          "date": "",
+          "tech_stack": [],
+          "bullets": [
+            "CGPA: 9.42 / 10.0",
+            "Class XII: 94.2%",
+            "Class X: 95.8%",
+            "Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications.",
+            "Backtested quantitative equity strategies using Pandas."
+          ],
+          "description": "CGPA: 9.42 / 10.0 Class XII: 94.2% Class X: 95.8% Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications. Backtested quantitative equity strategies using Pandas."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Sneha Kulkarni\nSoftware Engineer (Campus Graduate) | Pune, India\nEmail: sneha.kulkarni@example.com | Phone: +91 94230 98765\nLinkedIn: https://linkedin.com/in/sneha-kulkarni-fresher | GitHub: https://github.com/snehakulkarni\nProfessional Summary\nRecent CS Graduate from COEP with 9.42 CGPA. Winner of Smart India Hackathon. Solid grasp of algorithms, data structures, Java, Python, and SQL.\nTechnical Skills\nSkills & Tools: Java, Python, SQL, C++, Spring Boot, Git, Problem Solving, Data Structures, Algorithms, HTML, CSS\nEducation\nB.Tech Computer Science | College of Engineering Pune (COEP) (2020 - 2024)\n\u2022 CGPA: 9.42 / 10.0\n\u2022 Class XII: 94.2%\n\u2022 Class X: 95.8%\nWork Experience\nSoftware Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)\n\u2022 Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications.\nKey Projects\nAlgorithmic Trading Bot (Python, SQL)\n\u2022 Backtested quantitative equity strategies using Pandas.\n",
+      "file_name": "Sneha_Kulkarni_Fresher.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:17.180592+00:00",
+      "updated_at": "2026-11-21T12:27:17.180592+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": null,
+        "twelfth_percentage": 94.2,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2020
+      },
+      "experience_years": 0.0,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "db2d2ccb-db3b-4c82-b3ad-e4cb211c3ba9",
+      "name": "Vikram Singhania",
+      "email": "vikram.singhania@example.com",
+      "phone": "+91 98300 45678",
+      "location": "Mumbai, India",
+      "linkedin": "https://linkedin.com/in/vikram-singhania-dev",
+      "github": "https://github.com/vikramsingh",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech",
+        "college": "B.E. Computer Engineering | Mumbai University (2016 - 2020)",
+        "cgpa": 6.8,
+        "tenth_percentage": null,
+        "twelfth_percentage": 67.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "JavaScript",
+        "MySQL",
+        "CSS",
+        "HTML",
+        "Git",
+        "GitHub",
+        "Laravel",
+        "PHP"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "PHP"
+        ],
+        "Backend & APIs": [
+          "Laravel"
+        ],
+        "Databases & ORM": [
+          "MySQL"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Vikram Singhania\nWeb Developer | Mumbai, India | vikram.singhania@example.com | +91 98300 45678\nLinkedIn: https://linkedin.com/in/vikram-singhania-dev | GitHub: https://github.com/vikramsingh\nProfessional Summary\nWeb developer with 4 years of experience building PHP and Laravel web applications with MySQL databases.\nTechnical Skills\nKey Technologies: PHP, Laravel, MySQL, JavaScript, HTML, CSS, jQuery, Git, Apache\nEducation & Academic Background\nB.E. Computer Engineering | Mumbai University (2016 - 2020)\n\u007f CGPA: 6.8 / 10.0\n\u007f Class XII: 67.0%\n\u007f Class X: 68.5%\nWork Experience\nWeb Developer \u2014 Apex Web Solutions (2020 - Present)\n\u007f Developed and maintained 15+ client websites using Laravel and MySQL.\nKey Projects\nE-Commerce Portal [PHP, MySQL]\n\u007f Online store backend with payment gateway integration.\n\n",
+      "file_name": "Vikram_Singhania_PHP.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "is_duplicate": false,
+      "duplicate_reasons": [],
+      "duplicate_of_id": null,
+      "created_at": "2026-11-21T12:27:17.211146+00:00",
+      "updated_at": "2026-11-21T12:27:17.211146+00:00",
+      "academics": {
+        "degree": "B.Tech",
+        "college": "B.E. Computer Engineering | Mumbai University (2016 - 2020)",
+        "cgpa": 6.8,
+        "tenth_percentage": null,
+        "twelfth_percentage": 67.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "96d435b2-8c10-4bea-b470-9d807d25cd3a",
+      "name": "Aarav Sharma",
+      "email": "aarav.sharma@example.com",
+      "phone": "+91 98201 12345",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/aarav-sharma-tech",
+      "github": "https://github.com/aaravsharma",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "IIT Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": null,
+        "twelfth_percentage": 91.8,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "Node.js",
+        "React",
+        "Next.js",
+        "Express.js",
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
+        "System Design",
+        "Tailwind CSS",
+        "CSS",
+        "AWS",
+        "Docker",
+        "Git",
+        "GitHub",
+        "Microservices",
+        "REST API",
+        "Redis",
+        "Jest"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "TypeScript",
+          "CSS"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js"
+        ],
+        "Backend & APIs": [
+          "Node.js",
+          "REST API",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "AWS",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "System Design",
+          "Microservices"
+        ],
+        "Tools & Platforms": [
+          "Jest"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Developer \u2014 Swiggy Tech Labs (2020 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Aarav Sharma\nSenior Full-Stack Engineer | Bengaluru, India | aarav.sharma@example.com | +91 98201 12345\nLinkedIn: https://linkedin.com/in/aarav-sharma-tech | GitHub: https://github.com/aaravsharma\nProfessional Summary\nFull Stack Engineer with 4.5+ years of experience in enterprise web apps, microservices, and cloud deployments. Passionate\nabout system design and frontend performance.\nTechnical Skills\nKey Technologies: React, TypeScript, Node.js, Express, PostgreSQL, Docker, AWS, Redis, Next.js, Git, REST API, Tailwind\nCSS, Jest, Microservices\nEducation & Academic Background\nB.Tech in Computer Science and Engineering | IIT Delhi (2016 - 2020)\n\u007f CGPA: 8.85 / 10.0\n\u007f Class XII: 91.8%\n\u007f Class X: 93.4%\nWork Experience\nSenior Software Engineer \u2014 Razorpay Payments (2022 - Present)\n\u007f Architected merchant onboarding flow with React & TypeScript. Optimized PostgreSQL read latency by 45% using Redis\ncaching.\nSoftware Developer \u2014 Swiggy Tech Labs (2020 - 2022)\n\u007f Developed reactive order tracking frontend using React and Dockerized microservices. Maintained 99.9% uptime.\nKey Projects\nDistributed Task Queuer [Node.js, Redis, Docker]\n\u007f Built distributed job processing queue processing 10k messages/sec.\n\n",
+      "file_name": "Aarav_Sharma_FullStack.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (aarav.sharma@example.com) matching existing candidate 'Aarav Sharma'",
+        "Identical phone number (+91 98201 12345) matching 'Aarav Sharma'",
+        "Identical LinkedIn profile link matching 'Aarav Sharma'"
+      ],
+      "duplicate_of_id": "cand-01",
+      "created_at": "2026-11-21T13:53:31.079042+00:00",
+      "updated_at": "2026-11-21T13:53:31.080045+00:00",
+      "academics": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "IIT Delhi",
+        "cgpa": 8.85,
+        "tenth_percentage": null,
+        "twelfth_percentage": 91.8,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Software Developer \u2014 Swiggy Tech Labs (2020 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Senior Software Engineer \u2014 Razorpay Payments (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "a7f0e9b2-2c8e-4028-97d3-48e193e72f10",
+      "name": "Aditya Verma",
+      "email": "aditya.verma@example.com",
+      "phone": "+91 98112 45678",
+      "location": "Delhi, India",
+      "linkedin": "https://linkedin.com/in/aditya-verma-cloud",
+      "github": "https://github.com/adityaverma",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | Delhi Technological University (DT",
+        "cgpa": 8.1,
+        "tenth_percentage": null,
+        "twelfth_percentage": 86.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "Python",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "GitHub",
+        "Linux",
+        "GitHub Actions",
+        "Nginx",
+        "Operating Systems",
+        "Terraform"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "GitHub",
+          "GitHub Actions",
+          "Nginx"
+        ],
+        "Core Competencies": [
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [],
+      "projects": [],
+      "certifications": [
+        "CKA"
+      ],
+      "raw_text": "Aditya Verma\nSenior DevOps & Cloud Engineer | Delhi, India | aditya.verma@example.com | +91 98112 45678\nLinkedIn: https://linkedin.com/in/aditya-verma-cloud | GitHub: https://github.com/adityaverma\nProfessional Summary\nDevOps Engineer with 4.0 years of experience managing Kubernetes clusters, AWS infrastructure, and automated CI/CD\npipelines. Certified CKA and AWS Solutions Architect.\nTechnical Skills\nKey Technologies: Docker, Kubernetes, AWS, Terraform, CI/CD, Linux, GitHub Actions, Prometheus, Grafana, Python,\nNginx, Helm\nEducation & Academic Background\nB.Tech Computer Science | Delhi Technological University (DTU) (2016 - 2020)\n\u007f CGPA: 8.1 / 10.0\n\u007f Class XII: 86.5%\n\u007f Class X: 88.0%\nWork Experience\nDevOps Engineer \u2014 Paytm Labs (2020 - Present)\n\u007f Designed multi-region AWS EKS clusters with Terraform GitOps workflows. Reduced deployment cycle time from 40 mins to\n4 mins.\nKey Projects\nCanary Deployer [Kubernetes, GitHub Actions]\n\u007f Custom Kubernetes controller managing traffic splits during canary releases.\n\n",
+      "file_name": "Aditya_Verma_DevOps.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (aditya.verma@example.com) matching existing candidate 'Aditya Verma'",
+        "Identical phone number (+91 98112 45678) matching 'Aditya Verma'",
+        "Identical LinkedIn profile link matching 'Aditya Verma'"
+      ],
+      "duplicate_of_id": "cand-04",
+      "created_at": "2026-11-21T13:53:31.124084+00:00",
+      "updated_at": "2026-11-21T13:53:31.124785+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | Delhi Technological University (DT",
+        "cgpa": 8.1,
+        "tenth_percentage": null,
+        "twelfth_percentage": 86.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "05da55c9-8da4-4084-97d5-af783a8addbf",
+      "name": "Ananya Sen",
+      "email": "ananya.sen@example.com",
+      "phone": "+91 98311 23456",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/ananya-sen-fullstack",
+      "github": "https://github.com/ananyasen",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": null,
+        "twelfth_percentage": 90.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2022
+      },
+      "skills": [
+        "Node.js",
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "GitHub",
+        "GraphQL",
+        "Microservices",
+        "Redis",
+        "Jest"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "TypeScript"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js"
+        ],
+        "Backend & APIs": [
+          "Node.js",
+          "GraphQL",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "Microservices"
+        ],
+        "Tools & Platforms": [
+          "Jest"
+        ]
+      },
+      "years_of_experience": 7.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Senior Developer \u2014 Infosys Ltd (2019 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Ananya Sen\nLead Full Stack Engineer | Bengaluru, India | ananya.sen@example.com | +91 98311 23456\nLinkedIn: https://linkedin.com/in/ananya-sen-fullstack | GitHub: https://github.com/ananyasen\nProfessional Summary\nLead Full Stack Engineer with 5.5 years of experience architecting large-scale React, Node.js, and cloud native architectures.\nMentor to 10+ engineers.\nTechnical Skills\nKey Technologies: React, Node.js, TypeScript, PostgreSQL, Docker, AWS, GraphQL, Microservices, Kubernetes, Redis,\nJest, Next.js\nEducation & Academic Background\nB.Tech Computer Science | IIIT Bangalore (2015 - 2019)\n\u007f CGPA: 8.7 / 10.0\n\u007f Class XII: 90.5%\n\u007f Class X: 92.0%\nWork Experience\nLead Full Stack Engineer \u2014 Ola Electric (2022 - Present)\n\u007f Led engineering for IoT vehicle telemetry console using React and Node.js microservices.\nSenior Developer \u2014 Infosys Ltd (2019 - 2022)\n\u007f Constructed microservices in Docker and PostgreSQL for financial enterprise clients.\nKey Projects\nFederated GraphQL Gateway [Node.js, GraphQL, Docker]\n\u007f Unified schema aggregator connecting 12 services.\n\n",
+      "file_name": "Ananya_Sen_SrFullStack.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (ananya.sen@example.com) matching existing candidate 'Ananya Sen'",
+        "Identical phone number (+91 98311 23456) matching 'Ananya Sen'",
+        "Identical LinkedIn profile link matching 'Ananya Sen'",
+        "Same candidate name 'Ananya Sen' with matching academic history (IIIT Bangalore)"
+      ],
+      "duplicate_of_id": "cand-07",
+      "created_at": "2026-11-21T13:53:31.184915+00:00",
+      "updated_at": "2026-11-21T13:53:31.184915+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "IIIT Bangalore",
+        "cgpa": 8.7,
+        "tenth_percentage": null,
+        "twelfth_percentage": 90.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2022
+      },
+      "experience_years": 7.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        },
+        {
+          "company": "Technology Services",
+          "role": "Senior Developer \u2014 Infosys Ltd (2019 - 2022)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Lead Full Stack Engineer \u2014 Ola Electric (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "420bbf86-9441-4bbc-9348-ea76737645b4",
+      "name": "Karthik Raja",
+      "email": "karthik.raja@example.com",
+      "phone": "+91 94440 12389",
+      "location": "Chennai, India",
+      "linkedin": "https://linkedin.com/in/karthik-raja-cloud",
+      "github": "https://github.com/karthikraja",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "B.E. Computer Science | Anna University (2017 - 2021)",
+        "cgpa": 7.6,
+        "tenth_percentage": null,
+        "twelfth_percentage": 77.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "skills": [
+        "Python",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Git",
+        "CI/CD",
+        "GitHub",
+        "Linux",
+        "Bash",
+        "Operating Systems",
+        "Terraform"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python",
+          "Bash"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "CI/CD",
+          "Linux",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 5.8,
+      "experience_history": [],
+      "projects": [
+        {
+          "title": "Cloud DevOps Engineer",
+          "subtitle": "Chennai, India",
+          "date": "",
+          "tech_stack": [
+            "AWS"
+          ],
+          "bullets": [
+            "CGPA: 7.6 / 10.0",
+            "Class XII: 77.0%",
+            "Class X: 78.5%",
+            "Automated infrastructure rollout with Terraform across AWS environments.",
+            "Automated multi-region database snapshot and restore."
+          ],
+          "description": "CGPA: 7.6 / 10.0 Class XII: 77.0% Class X: 78.5% Automated infrastructure rollout with Terraform across AWS environments. Automated multi-region database snapshot and restore."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Karthik Raja\nCloud DevOps Engineer | Chennai, India\nEmail: karthik.raja@example.com | Phone: +91 94440 12389\nLinkedIn: https://linkedin.com/in/karthik-raja-cloud | GitHub: https://github.com/karthikraja\nProfessional Summary\nDevOps Engineer with 3.2 years of experience in container orchestration, Linux systems, and cloud infrastructure automation.\nTechnical Skills\nSkills & Tools: Docker, Kubernetes, AWS, Linux, CI/CD, Git, Terraform, Bash, Python\nEducation\nB.E. Computer Science | Anna University (2017 - 2021)\n\u2022 CGPA: 7.6 / 10.0\n\u2022 Class XII: 77.0%\n\u2022 Class X: 78.5%\nWork Experience\nCloud DevOps Engineer \u2014 Freshworks Inc (2021 - Present)\n\u2022 Automated infrastructure rollout with Terraform across AWS environments.\nKey Projects\nDisaster Recovery Automation (AWS, Terraform, Python)\n\u2022 Automated multi-region database snapshot and restore.\n",
+      "file_name": "Karthik_Raja_DevOps.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (karthik.raja@example.com) matching existing candidate 'Karthik Raja'",
+        "Identical phone number (+91 94440 12389) matching 'Karthik Raja'",
+        "Identical LinkedIn profile link matching 'Karthik Raja'"
+      ],
+      "duplicate_of_id": "cand-08",
+      "created_at": "2026-11-21T13:53:31.303243+00:00",
+      "updated_at": "2026-11-21T13:53:31.303243+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "B.E. Computer Science | Anna University (2017 - 2021)",
+        "cgpa": 7.6,
+        "tenth_percentage": null,
+        "twelfth_percentage": 77.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "experience_years": 5.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "2e04f766-fa09-4049-b25a-ef5e5531d0a7",
+      "name": "Priya Nair",
+      "email": "priya.nair@example.com",
+      "phone": "+91 97412 87654",
+      "location": "Bengaluru, India",
+      "linkedin": "https://linkedin.com/in/priya-nair-frontend",
+      "github": "https://github.com/priyanair",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech",
+        "college": "NIT Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": null,
+        "twelfth_percentage": 88.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2018
+      },
+      "skills": [
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "CSS",
+        "Git",
+        "GitHub",
+        "CSS3",
+        "Figma",
+        "HTML5",
+        "Jest",
+        "Redux"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "JavaScript",
+          "TypeScript",
+          "HTML5",
+          "CSS",
+          "CSS3"
+        ],
+        "Frontend": [
+          "React",
+          "Next.js",
+          "Tailwind CSS",
+          "Redux"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ],
+        "Tools & Platforms": [
+          "Figma",
+          "Jest"
+        ]
+      },
+      "years_of_experience": 4.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Priya Nair\nFrontend Developer (React & Next.js) | Bengaluru, India\nEmail: priya.nair@example.com | Phone: +91 97412 87654\nLinkedIn: https://linkedin.com/in/priya-nair-frontend | GitHub: https://github.com/priyanair\nProfessional Summary\nCreative and detail-oriented Frontend Developer with 2.5 years of experience crafting accessible, responsive, and blazing-fast web interfaces.\nTechnical Skills\nSkills & Tools: React, Next.js, JavaScript, TypeScript, Tailwind CSS, Redux, HTML5, CSS3, Figma, Jest, Git, Responsive Design\nEducation\nB.Tech in Information Technology | NIT Trichy (2018 - 2022)\n\u2022 CGPA: 8.4 / 10.0\n\u2022 Class XII: 88.5%\n\u2022 Class X: 89.0%\nWork Experience\nFrontend Engineer \u2014 Flipkart Internet (2022 - Present)\n\u2022 Developed UI components in React and Tailwind CSS. Implemented code-splitting reducing initial bundle size by 38%.\nKey Projects\nModern UI Kit (React, TypeScript, Tailwind CSS)\n\u2022 Open-source component library with 1,200+ stars on GitHub.\n",
+      "file_name": "Priya_Nair_Frontend.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (priya.nair@example.com) matching existing candidate 'Priya Nair'",
+        "Identical phone number (+91 97412 87654) matching 'Priya Nair'",
+        "Identical LinkedIn profile link matching 'Priya Nair'"
+      ],
+      "duplicate_of_id": "cand-02",
+      "created_at": "2026-11-21T13:53:31.352441+00:00",
+      "updated_at": "2026-11-21T13:53:31.352441+00:00",
+      "academics": {
+        "degree": "B.Tech",
+        "college": "NIT Trichy",
+        "cgpa": 8.4,
+        "tenth_percentage": null,
+        "twelfth_percentage": 88.5,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2018
+      },
+      "experience_years": 4.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Frontend Engineer \u2014 Flipkart Internet (2022 - Present)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "9aa0be4f-b355-4a22-8dcf-99fd6b661b7e",
+      "name": "Rohan Deshmukh",
+      "email": "rohan.deshmukh@example.com",
+      "phone": "+91 91672 34567",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/rohan-deshmukh-py",
+      "github": "https://github.com/rohandesh",
+      "portfolio": "",
+      "education": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": null,
+        "twelfth_percentage": 82.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "skills": [
+        "Python",
+        "PostgreSQL",
+        "System Design",
+        "Docker",
+        "Git",
+        "GitHub",
+        "FastAPI",
+        "Microservices",
+        "REST API",
+        "Redis",
+        "Django",
+        "Linux",
+        "Distributed Systems",
+        "Operating Systems"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "Python"
+        ],
+        "Backend & APIs": [
+          "FastAPI",
+          "Django",
+          "REST API",
+          "Microservices"
+        ],
+        "Databases & ORM": [
+          "PostgreSQL",
+          "Redis"
+        ],
+        "Cloud & DevOps": [
+          "Docker",
+          "Linux",
+          "Git",
+          "GitHub"
+        ],
+        "Core Competencies": [
+          "System Design",
+          "Microservices",
+          "Distributed Systems",
+          "Operating Systems"
+        ]
+      },
+      "years_of_experience": 5.8,
+      "experience_history": [],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Rohan Deshmukh\nPython / Backend Engineer | Pune, India | rohan.deshmukh@example.com | +91 91672 34567\nLinkedIn: https://linkedin.com/in/rohan-deshmukh-py | GitHub: https://github.com/rohandesh\nProfessional Summary\nBackend specialist with 3.5 years of experience in distributed systems, asynchronous APIs, and relational databases. Strong\nfocus on code maintainability and test coverage.\nTechnical Skills\nKey Technologies: Python, FastAPI, Django, PostgreSQL, Redis, Docker, REST API, Microservices, Git, Linux, Celery\nEducation & Academic Background\nB.E. Computer Science | BITS Pilani (2017 - 2021)\n\u007f CGPA: 7.9 / 10.0\n\u007f Class XII: 82.0%\n\u007f Class X: 84.5%\nWork Experience\nBackend Engineer \u2014 Zomato Ltd (2021 - Present)\n\u007f Built asynchronous dispatch services with FastAPI and PostgreSQL handling 50k requests/min. Designed automated\ndatabase migration workflows.\nKey Projects\nGeofencing Engine [Python, FastAPI, Redis]\n\u007f Real-time location indexing engine with sub-millisecond query latency.\n\n",
+      "file_name": "Rohan_Deshmukh_Backend.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (rohan.deshmukh@example.com) matching existing candidate 'Rohan Deshmukh'",
+        "Identical phone number (+91 91672 34567) matching 'Rohan Deshmukh'",
+        "Identical LinkedIn profile link matching 'Rohan Deshmukh'",
+        "Same candidate name 'Rohan Deshmukh' with matching academic history (BITS Pilani)"
+      ],
+      "duplicate_of_id": "cand-03",
+      "created_at": "2026-11-21T13:53:31.408920+00:00",
+      "updated_at": "2026-11-21T13:53:31.408920+00:00",
+      "academics": {
+        "degree": "B.E. Computer Science",
+        "college": "BITS Pilani",
+        "cgpa": 7.9,
+        "tenth_percentage": null,
+        "twelfth_percentage": 82.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2017
+      },
+      "experience_years": 5.8,
+      "experience": [],
+      "current_title": "Software Engineer",
+      "current_company": ""
+    },
+    {
+      "id": "3a605071-9cfa-4938-ba36-1515fef20e0a",
+      "name": "Sneha Kulkarni",
+      "email": "sneha.kulkarni@example.com",
+      "phone": "+91 94230 98765",
+      "location": "Pune, India",
+      "linkedin": "https://linkedin.com/in/sneha-kulkarni-fresher",
+      "github": "https://github.com/snehakulkarni",
+      "portfolio": "https://B.Tech",
+      "education": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": null,
+        "twelfth_percentage": 94.2,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2020
+      },
+      "skills": [
+        "Python",
+        "C++",
+        "Algorithms",
+        "Java",
+        "Data Structures",
+        "SQL",
+        "CSS",
+        "HTML",
+        "Git",
+        "GitHub",
+        "Pandas",
+        "Spring Boot"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "C++",
+          "Java",
+          "Python",
+          "HTML",
+          "CSS",
+          "SQL"
+        ],
+        "Backend & APIs": [
+          "Spring Boot"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ],
+        "AI, ML & Data": [
+          "Pandas"
+        ],
+        "Core Competencies": [
+          "Data Structures",
+          "Algorithms"
+        ]
+      },
+      "years_of_experience": 0.0,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [
+        {
+          "title": "B.Tech Computer Science",
+          "subtitle": "College of Engineering Pune (COEP) (2020 - 2024)",
+          "date": "",
+          "tech_stack": [],
+          "bullets": [
+            "CGPA: 9.42 / 10.0",
+            "Class XII: 94.2%",
+            "Class X: 95.8%",
+            "Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications.",
+            "Backtested quantitative equity strategies using Pandas."
+          ],
+          "description": "CGPA: 9.42 / 10.0 Class XII: 94.2% Class X: 95.8% Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications. Backtested quantitative equity strategies using Pandas."
+        }
+      ],
+      "certifications": [],
+      "raw_text": "Sneha Kulkarni\nSoftware Engineer (Campus Graduate) | Pune, India\nEmail: sneha.kulkarni@example.com | Phone: +91 94230 98765\nLinkedIn: https://linkedin.com/in/sneha-kulkarni-fresher | GitHub: https://github.com/snehakulkarni\nProfessional Summary\nRecent CS Graduate from COEP with 9.42 CGPA. Winner of Smart India Hackathon. Solid grasp of algorithms, data structures, Java, Python, and SQL.\nTechnical Skills\nSkills & Tools: Java, Python, SQL, C++, Spring Boot, Git, Problem Solving, Data Structures, Algorithms, HTML, CSS\nEducation\nB.Tech Computer Science | College of Engineering Pune (COEP) (2020 - 2024)\n\u2022 CGPA: 9.42 / 10.0\n\u2022 Class XII: 94.2%\n\u2022 Class X: 95.8%\nWork Experience\nSoftware Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)\n\u2022 Developed high-volume inventory reconciliation tools using Java and SQL. Automated batch error notifications.\nKey Projects\nAlgorithmic Trading Bot (Python, SQL)\n\u2022 Backtested quantitative equity strategies using Pandas.\n",
+      "file_name": "Sneha_Kulkarni_Fresher.docx",
+      "file_type": "docx",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (sneha.kulkarni@example.com) matching existing candidate 'Sneha Kulkarni'",
+        "Identical phone number (+91 94230 98765) matching 'Sneha Kulkarni'",
+        "Identical LinkedIn profile link matching 'Sneha Kulkarni'"
+      ],
+      "duplicate_of_id": "cand-05",
+      "created_at": "2026-11-21T13:53:31.453207+00:00",
+      "updated_at": "2026-11-21T13:53:31.453207+00:00",
+      "academics": {
+        "degree": "B.Tech Computer Science",
+        "college": "B.Tech Computer Science | College of Engineering Pune (COEP)",
+        "cgpa": 9.42,
+        "tenth_percentage": null,
+        "twelfth_percentage": 94.2,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2020
+      },
+      "experience_years": 0.0,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Software Engineering Intern \u2014 Amazon India (Jan 2024 - Jun 2024)",
+      "current_company": "Technology Services"
+    },
+    {
+      "id": "df7cc498-134e-46a0-b360-fa98f048b477",
+      "name": "Vikram Singhania",
+      "email": "vikram.singhania@example.com",
+      "phone": "+91 98300 45678",
+      "location": "Mumbai, India",
+      "linkedin": "https://linkedin.com/in/vikram-singhania-dev",
+      "github": "https://github.com/vikramsingh",
+      "portfolio": "",
+      "education": {
+        "degree": "B.Tech",
+        "college": "B.E. Computer Engineering | Mumbai University (2016 - 2020)",
+        "cgpa": 6.8,
+        "tenth_percentage": null,
+        "twelfth_percentage": 67.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "skills": [
+        "JavaScript",
+        "MySQL",
+        "CSS",
+        "HTML",
+        "Git",
+        "GitHub",
+        "Laravel",
+        "PHP"
+      ],
+      "categorized_skills": {
+        "Languages": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "PHP"
+        ],
+        "Backend & APIs": [
+          "Laravel"
+        ],
+        "Databases & ORM": [
+          "MySQL"
+        ],
+        "Cloud & DevOps": [
+          "Git",
+          "GitHub"
+        ]
+      },
+      "years_of_experience": 6.8,
+      "experience_history": [
+        {
+          "company": "Technology Services",
+          "role": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "projects": [],
+      "certifications": [],
+      "raw_text": "Vikram Singhania\nWeb Developer | Mumbai, India | vikram.singhania@example.com | +91 98300 45678\nLinkedIn: https://linkedin.com/in/vikram-singhania-dev | GitHub: https://github.com/vikramsingh\nProfessional Summary\nWeb developer with 4 years of experience building PHP and Laravel web applications with MySQL databases.\nTechnical Skills\nKey Technologies: PHP, Laravel, MySQL, JavaScript, HTML, CSS, jQuery, Git, Apache\nEducation & Academic Background\nB.E. Computer Engineering | Mumbai University (2016 - 2020)\n\u007f CGPA: 6.8 / 10.0\n\u007f Class XII: 67.0%\n\u007f Class X: 68.5%\nWork Experience\nWeb Developer \u2014 Apex Web Solutions (2020 - Present)\n\u007f Developed and maintained 15+ client websites using Laravel and MySQL.\nKey Projects\nE-Commerce Portal [PHP, MySQL]\n\u007f Online store backend with payment gateway integration.\n\n",
+      "file_name": "Vikram_Singhania_PHP.pdf",
+      "file_type": "pdf",
+      "stage": "Applied",
+      "rejection_reason": null,
+      "notes": [],
+      "applied_job_id": "job-fullstack-sr",
+      "company_id": "comp-acme-corp",
+      "is_duplicate": true,
+      "duplicate_reasons": [
+        "Identical email address (vikram.singhania@example.com) matching existing candidate 'Vikram Singhania'",
+        "Identical phone number (+91 98300 45678) matching 'Vikram Singhania'",
+        "Identical LinkedIn profile link matching 'Vikram Singhania'"
+      ],
+      "duplicate_of_id": "cand-06",
+      "created_at": "2026-11-21T13:53:31.491472+00:00",
+      "updated_at": "2026-11-21T13:53:31.491472+00:00",
+      "academics": {
+        "degree": "B.Tech",
+        "college": "B.E. Computer Engineering | Mumbai University (2016 - 2020)",
+        "cgpa": 6.8,
+        "tenth_percentage": null,
+        "twelfth_percentage": 67.0,
+        "tenth_board": "CBSE / State Board",
+        "twelfth_board": "CBSE / State Board",
+        "graduation_year": 2016
+      },
+      "experience_years": 6.8,
+      "experience": [
+        {
+          "company": "Technology Services",
+          "role": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+          "duration": "Duration",
+          "start_year": null,
+          "end_year": null,
+          "description": ""
+        }
+      ],
+      "current_title": "Web Developer \u2014 Apex Web Solutions (2020 - Present)",
+      "current_company": "Technology Services"
     }
   ],
   "companies": [
@@ -2167,7 +4843,7 @@
   "sessions": {
     "4Ka0J3A-jFsljxLE-HcuqWn1cdbuf5m8_E7e0CnRSKU": "comp-acme-corp",
     "6V82nQ8bHXWqT7eSm9Ew_RJDjSxpQYKhTYopIk5V31s": "dadeb13e-2ee1-4cbc-ab82-141db698cc87",
-    "n1wCh5KRCpVHv8VxupU0_ikFCp4qQbOnjOmh4IpMTlU": "4c7a3289-ff18-424a-90a5-021b3dfb35fa"
+    "FDVpyGvLaQOIFqC1lKHh2CZqMY7qgPtCanWuDNEmXCY": "4c7a3289-ff18-424a-90a5-021b3dfb35fa"
   },
   "sent_emails": [
     {
@@ -2229,6 +4905,306 @@
       "template_type": "talent_pool",
       "status": "Delivered",
       "sent_at": "2026-11-21T11:29:46.409439+00:00"
+    },
+    {
+      "id": "6f894f79-cf0c-49f1-b894-8111cbdbb77e",
+      "candidate_id": "cand-03",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Distributed Systems, Django, Docker, FastAPI).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:28:33.707998+00:00"
+    },
+    {
+      "id": "0db86af2-fc26-4a3d-afab-606fe3d29cea",
+      "candidate_id": "cand-06",
+      "candidate_name": "Vikram Singhania",
+      "candidate_email": "vikram.singhania@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Vikram Singhania,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (CSS, Git, GitHub, HTML).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:28:33.709125+00:00"
+    },
+    {
+      "id": "01f21ba6-fd9a-47dd-8ca9-30749714271d",
+      "candidate_id": "cand-03",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Distributed Systems, Django, Docker, FastAPI).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:28:58.728944+00:00"
+    },
+    {
+      "id": "159a75b3-ef5a-4a4a-984e-11ece4b7ca7e",
+      "candidate_id": "cand-06",
+      "candidate_name": "Vikram Singhania",
+      "candidate_email": "vikram.singhania@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Vikram Singhania,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (CSS, Git, GitHub, HTML).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:28:58.728944+00:00"
+    },
+    {
+      "id": "cd0dce64-7430-4bbf-bf77-145dc0329239",
+      "candidate_id": "cand-03",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Distributed Systems, Django, Docker, FastAPI).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:00.143618+00:00"
+    },
+    {
+      "id": "33d03333-004f-47a6-9077-96fc961391ae",
+      "candidate_id": "cand-06",
+      "candidate_name": "Vikram Singhania",
+      "candidate_email": "vikram.singhania@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Vikram Singhania,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (CSS, Git, GitHub, HTML).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:00.143618+00:00"
+    },
+    {
+      "id": "4226ab7e-273c-44b8-a239-571ff3fd2a2c",
+      "candidate_id": "cand-03",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Distributed Systems, Django, Docker, FastAPI).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:00.719115+00:00"
+    },
+    {
+      "id": "3070d9e8-0100-42db-9637-6a6b8406d5a1",
+      "candidate_id": "cand-06",
+      "candidate_name": "Vikram Singhania",
+      "candidate_email": "vikram.singhania@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Vikram Singhania,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (CSS, Git, GitHub, HTML).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:00.719115+00:00"
+    },
+    {
+      "id": "01db4e11-029f-438f-ad71-c48b5a2ac81c",
+      "candidate_id": "cand-03",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Distributed Systems, Django, Docker, FastAPI).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:01.319702+00:00"
+    },
+    {
+      "id": "4169f0fa-04d7-4eba-9695-c97129a040ad",
+      "candidate_id": "cand-06",
+      "candidate_name": "Vikram Singhania",
+      "candidate_email": "vikram.singhania@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Vikram Singhania,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (CSS, Git, GitHub, HTML).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:01.319702+00:00"
+    },
+    {
+      "id": "c551d256-dd09-48cc-b86a-a333a06f3f6a",
+      "candidate_id": "cand-03",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Distributed Systems, Django, Docker, FastAPI).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:01.859911+00:00"
+    },
+    {
+      "id": "0cfaf550-59e7-4a4e-9166-39b29688893f",
+      "candidate_id": "cand-06",
+      "candidate_name": "Vikram Singhania",
+      "candidate_email": "vikram.singhania@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Vikram Singhania,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (CSS, Git, GitHub, HTML).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:01.859911+00:00"
+    },
+    {
+      "id": "11ffa09b-4874-4653-b233-e936a54cc4e8",
+      "candidate_id": "cand-03",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Distributed Systems, Django, Docker, FastAPI).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:11.015804+00:00"
+    },
+    {
+      "id": "822fda37-b069-466a-8f4d-59b9bb8c4ae6",
+      "candidate_id": "cand-06",
+      "candidate_name": "Vikram Singhania",
+      "candidate_email": "vikram.singhania@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Vikram Singhania,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (CSS, Git, GitHub, HTML).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:11.015804+00:00"
+    },
+    {
+      "id": "8c1afca0-1c67-4d05-953d-2ee74034d661",
+      "candidate_id": "cand-01",
+      "candidate_name": "Aarav Sharma",
+      "candidate_email": "aarav.sharma@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Aarav Sharma,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (AWS, CSS, Docker, Express).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:11.015804+00:00"
+    },
+    {
+      "id": "126bb9af-07ca-4a0d-972c-8234d9f8ee50",
+      "candidate_id": "cand-05",
+      "candidate_name": "Sneha Kulkarni",
+      "candidate_email": "sneha.kulkarni@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
+      "job_title": "Software Engineer (Campus Fresher / Graduate)",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineer (Campus Fresher / Graduate)",
+      "body": "Dear Sneha Kulkarni,\n\nThank you for your interest in HappyWave and for applying to the Software Engineer (Campus Fresher / Graduate) opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Algorithms, C++, CSS, Data Structures).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:11.016757+00:00"
+    },
+    {
+      "id": "beb20de6-ca06-45ea-b996-446d858c44d8",
+      "candidate_id": "da4d1003-45aa-4a34-9e98-d9f169a535bc",
+      "candidate_name": "Ananya Sen",
+      "candidate_email": "ananya.sen@example.com",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Ananya Sen,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Node.js, React, Next.js, JavaScript).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:31.333517+00:00"
+    },
+    {
+      "id": "3cebe725-c842-4913-9619-caa2674d3698",
+      "candidate_id": "8558449b-a207-491e-8f7c-2bfe0705086e",
+      "candidate_name": "Pillalamarri Revanth",
+      "candidate_email": "revanthp2313.24@kgpian.iitkgp.ac.in",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "job_id": "13445ee7-0b10-4901-bc51-b4e2ca229812",
+      "job_title": "Software Engineer (Campus Fresher / Graduate)",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineer (Campus Fresher / Graduate)",
+      "body": "Dear Pillalamarri Revanth,\n\nThank you for your interest in HappyWave and for applying to the Software Engineer (Campus Fresher / Graduate) opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (MERN, Node.js, React, Express.js).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:31.333517+00:00"
+    },
+    {
+      "id": "fda329c4-cb88-4818-818a-1cab32e8eb1b",
+      "candidate_id": "33071ba5-de5a-44fa-af7c-cfb6559d941b",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "comp-acme-corp",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Python, PostgreSQL, System Design, Docker).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:31.333517+00:00"
+    },
+    {
+      "id": "fc390d80-379b-4937-847b-80b7ed3309c1",
+      "candidate_id": "172144d1-eb5c-4794-8124-7f5549be28ae",
+      "candidate_name": "Rohan Deshmukh",
+      "candidate_email": "rohan.deshmukh@example.com",
+      "company_id": "4c7a3289-ff18-424a-90a5-021b3dfb35fa",
+      "job_id": "946086aa-c7ec-4ae3-b314-2a15b0e94924",
+      "job_title": "Software Engineering - 2",
+      "campaign_scope": "global",
+      "subject": "Update regarding your application with HappyWave for Software Engineering - 2",
+      "body": "Dear Rohan Deshmukh,\n\nThank you for your interest in HappyWave and for applying to the Software Engineering - 2 opening.\n\nAfter reviewing candidate qualifications across our current open requisitions, we have decided to move forward with other applicants who align more immediately with our current project deliverables.\n\nWe were genuinely impressed by your background and will retain your profile in our active talent pool for future openings that match your skills (Python, PostgreSQL, System Design, Docker).\n\nThank you again for your time, and we wish you every success in your career!\n\nSincerely,\nPeople & Talent Acquisition Team\nHappyWave",
+      "template_type": "global_rejection",
+      "status": "Delivered",
+      "sent_at": "2026-11-22T03:29:31.334518+00:00"
     }
   ]
 }

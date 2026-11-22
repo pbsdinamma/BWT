@@ -22,6 +22,10 @@ yarn-error.log*
 .env.local
 .env.*.local
 
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
 # OS & Editors
 .DS_Store
 Thumbs.db
