@@ -239,9 +239,8 @@ python backend\run_backend.py
 ## 🧪 Demo Login Credentials
 
 HireSwift includes pre-seeded multi-tenant demo data:
-* **Email:** `revanthp2313.24@kgpian.iitkgp.ac.in`
-* **Password:** `revanth`
-* **Company:** `HappyWave`
+* **Email:** `hr@acme.com`
+* **Password:** `demo123`
 
 ---
 
